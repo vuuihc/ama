@@ -1,0 +1,41 @@
+{
+  "name": "7dyk",
+  "version": "0.0.0",
+  "description": "7dyk frontend",
+  "scripts": {
+    "build": "set NODE_ENV=development &webpack --progress --colors --watch",
+    "watch": "set NODE_ENV=development & webpack-dev-server --hot --inline --progress --colors",
+    "dist": "set NODE_ENV=production & webpack --progress --colors -p"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.3.14",
+    "isomorphic-fetch": "^2.1.1",
+    "moment": "^2.12.0",
+    "node-sass": "^3.4.2",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-link-state": "^0.1.2",
+    "react-redux": "^4.2.1",
+    "react-router": "^2.0.0",
+    "redux": "^3.2.1",
+    "redux-logger": "^2.4.0",
+    "redux-thunk": "^1.0.3",
+    "sweetalert": "^1.1.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.3.15",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-react-hmre": "^1.0.1",
+    "css-loader": "^0.23.1",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.9.11",
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-hot-middleware": "^2.2.0",
+    "sass-loader": "^3.2.0"
+  }
+}
