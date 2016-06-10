@@ -1,10 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 
-var CUSTOMER_PATH = path.join(__dirname,'public/javascript/customer')
 var MOBILE_PATH = path.join(__dirname,'public/javascript/mobile')
-var ADMIN_PATH = path.join(__dirname,'public/javascript/admin')
-var NODE_MODULE_PATH = path.join(__dirname,'node_modules')
 
 var isProduction = function () {
   return process.env.NODE_ENV === 'production';
@@ -28,13 +25,10 @@ if(isProduction()){
 module.exports = {
   devtool: isProduction()?false:'source-map',
   entry: {
-    customer: [path.resolve(CUSTOMER_PATH, 'index.js')],
-    // mobile: [path.resolve(MOBILE_PATH, 'index.js')],
-    // admin: path.resolve(ADMIN_PATH, 'index.js'),
-    //vendors: ['react', 'moment']
+    mobile: './index.js'
   },
   output: {
-    path: path.join(__dirname, 'public/javascript/dist'),
+    path: './dist',
     filename: '[name].js',
     publicPath: 'http://localhost:8080/assets/'
   },
@@ -60,9 +54,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'redux': path.resolve(NODE_MODULE_PATH,"redux/dist/redux.min.js"),
-      'react-dom': path.resolve(NODE_MODULE_PATH,"react-dom/dist/react-dom.min.js"),
-      'react-redux': path.resolve(NODE_MODULE_PATH,"react-redux/dist/react-redux.min.js")
+      'redux': path.resolve('node_modules',"redux/dist/redux.min.js"),
+      'react-dom': path.resolve('node_modules',"react-dom/dist/react-dom.min.js"),
+      'react-redux': path.resolve('node_modules',"react-redux/dist/react-redux.min.js")
     }
   }
 }
