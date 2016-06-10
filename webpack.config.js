@@ -1,7 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
 
-var MOBILE_PATH = path.join(__dirname,'public/javascript/mobile')
 
 var isProduction = function () {
   return process.env.NODE_ENV === 'production';
@@ -25,26 +24,30 @@ if(isProduction()){
 module.exports = {
   devtool: isProduction()?false:'source-map',
   entry: {
-    mobile: './index.js'
+    mobile: './src/javascripts/index.js'
   },
   output: {
     path: './dist',
     filename: '[name].js',
-    publicPath: 'http://localhost:8080/assets/'
+    publicPath: 'http://localhost:8080/dist/'
   },
   plugins: plugins,
 
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loaders: ['babel?presets[]=es2015&presets[]=react'],
         exclude: /node_modules/,
       },
       {
         test: /\.s?css$/,
         loader: 'style!css!sass'
-      }
+      },
+	  {
+		test:/\.(png|jpg|bmp)$/,
+		loader: 'url?limit=50000&name=dist/images/[name].[ext]'
+	  }
     ]
   },
   externals: {
