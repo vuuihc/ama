@@ -25,7 +25,7 @@ if(isProduction()){
 module.exports = {
   devtool: isProduction()?false:'source-map',
   entry: {
-    mobile: './index.js'
+    mobile: './src/javascripts/index.js'
   },
   output: {
     path: './dist',
@@ -48,9 +48,9 @@ module.exports = {
     ]
   },
   externals: {
-    'moment': 'moment',
-    'react': 'React',
-    'babel-polyfill': 'true'
+    //'moment': 'moment',
+    //'react': 'React',
+    //'babel-polyfill': 'true'
   },
   resolve: {
     alias: {

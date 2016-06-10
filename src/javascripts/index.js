@@ -8,7 +8,7 @@ import configureStore from './store/configureStore'
 import Index from './components/Index.js'
 
 
-//import '../../css/mobile/styles.scss'
+import '../stylesheets/style.scss'
 
 const store = configureStore()
 
