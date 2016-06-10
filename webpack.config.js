@@ -29,7 +29,7 @@ module.exports = {
   output: {
     path: './dist',
     filename: '[name].js',
-    publicPath: 'http://localhost:8080/dist/'
+    publicPath: 'http://localhost:8080/assets/'
   },
   plugins: plugins,
 
@@ -51,9 +51,9 @@ module.exports = {
     ]
   },
   externals: {
-    'moment': 'moment',
-    'react': 'React',
-    'babel-polyfill': 'true'
+    //'moment': 'moment',
+    //'react': 'React',
+    //'babel-polyfill': 'true'
   },
   resolve: {
     alias: {
