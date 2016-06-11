@@ -10,11 +10,18 @@ class HotQuestionList extends Component{
         console.log("hotQuestionList==="+this.props.hotQuestionList)
     }
     render() {
-        const { hotQuestionList } = this.props
+        //const { hotQuestionList } = this.props
         return (
-            <div className="hot-question-list">
-                热门问题列表
-            </div>
+            <main className="hot-question-list">
+                <section>
+                    <div>
+                        <p>入职心仪互联网的时机有哪些？</p>
+                    </div>
+                    <div>
+
+                    </div>
+                </section>
+            </main>
         )
     }
 }
