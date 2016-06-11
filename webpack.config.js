@@ -1,7 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
 
-var MOBILE_PATH = path.join(__dirname,'public/javascript/mobile')
 
 var isProduction = function () {
   return process.env.NODE_ENV === 'production';
@@ -37,14 +36,18 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loaders: ['babel?presets[]=es2015&presets[]=react'],
         exclude: /node_modules/,
       },
       {
         test: /\.s?css$/,
         loader: 'style!css!sass'
-      }
+      },
+	  {
+		test:/\.(png|jpg|bmp)$/,
+		loader: 'url?limit=50000&name=dist/images/[name].[ext]'
+	  }
     ]
   },
   externals: {
