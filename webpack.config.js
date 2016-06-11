@@ -46,7 +46,7 @@ module.exports = {
       },
 	  {
 		test:/\.(png|jpg|bmp)$/,
-		loader: 'url?limit=50000&name=dist/images/[name].[ext]'
+		loader: 'url?limit=50000&name=images/[name].[ext]'
 	  }
     ]
   },
