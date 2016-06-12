@@ -11,9 +11,11 @@ class App extends Component {
             <div>
                 { this.props.children }
                 <div className="footer">
-                    <Link to="hot">热点</Link>
-                    <Link to="tutor">导师</Link>
-                    <Link to="mine">我的</Link>
+                    <ul>
+                        <li><Link activeClassName='active' to="/hot">热点</Link></li>
+                        <li><Link activeClassName='active' to="/tutor">导师</Link></li>
+                        <li><Link activeClassName='active' to="/account">我的</Link></li>
+                    </ul>
                 </div>
             </div>
         )

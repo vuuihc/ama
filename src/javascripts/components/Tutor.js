@@ -7,7 +7,7 @@ class Tutor extends Component {
     render() {
         return(
             <div>
-                我的页面
+                导师页面
             </div>
         )
     }

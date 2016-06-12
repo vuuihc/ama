@@ -2,4 +2,25 @@
   font-size: px2rem(30px);
 }
 
-$main: rgb(3,135,231);
+/*蓝色*/
+$darkBlue : #0386e8;
+$lightBlue : #43a5ef;
+$borderBlue : #0975c6;
+
+/*红色*/
+$red : #ff0000;
+
+/*橙色*/
+$orange : #ff9b30;
+$borderOrange : #e88720;
+
+/*黑*/
+$fontColor : #000000; //主字
+$darkGray : #535353;
+$lightGray : #989898;
+$borderGray : #dddddd;
+$backgroundGray : #fafafa;
+
+/*高度和大小*/
+$buttonHeight : px2rem(90); //按钮高度
+$buttonFontSize : px2rem(90); //按钮字体大小
