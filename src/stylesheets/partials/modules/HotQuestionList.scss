@@ -1,20 +1,21 @@
+@import "../base";
 .hot-question-list {
   section {
     .question-content {
       p{
-        padding: px2rem(24px);
+        padding: px2rem(24);
       }
     }
     .mentor{
       float: left;
-      width: px2rem(100px);
-      margin: px2rem(57px) px2rem(21px) 0 px2rem(24px);
+      width: px2rem(100);
+      margin: px2rem(57) px2rem(21) 0 px2rem(24);
       img{
-        width: px2rem(100px);
-        height: px2rem(100px);
-        -webkit-border-radius: px2rem(50px);
-        -moz-border-radius: px2rem(50px);
-        border-radius: px2rem(50px);
+        width: px2rem(100);
+        height: px2rem(100);
+        -webkit-border-radius: px2rem(50);
+        -moz-border-radius: px2rem(50);
+        border-radius: px2rem(50);
       }
       p{
         position: relative;
@@ -22,21 +23,21 @@
     }
     .answer {
       float: left;
-      width: px2rem(335px);
+      width: px2rem(335);
       .bubble{
         display: block;
-        width: px2rem(335px);
-        height: px2rem(88px);
+        width: px2rem(335);
+        height: px2rem(88);
         background-color: rgb(3,135,231);
-        -webkit-border-radius: px2rem(20px);
-        -moz-border-radius: px2rem(20px);
-        border-radius: px2rem(20px);
+        -webkit-border-radius: px2rem(20);
+        -moz-border-radius: px2rem(20);
+        border-radius: px2rem(20);
       }
-      
+
     }
     .remark {
       float: left;
-      width: px2rem(230px);
+      width: px2rem(230);
       .value {
         text-align: right;
         color: red;
