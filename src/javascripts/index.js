@@ -9,9 +9,6 @@ import { Provider } from 'react-redux'
 import { Router, Route, hashHistory, IndexRoute } from 'react-router'
 import configureStore from './store/configureStore'
 
-import Index from './components/Index.js'
-
-
 import '../stylesheets/style.scss'
 
 const store = configureStore()
@@ -20,8 +17,7 @@ render(
     <Provider store={store}>
       <Router history={hashHistory}>
         <Route path="/" component={App}>
-          <IndexRoute component={Index} />
-            <Route path="hot" component={Hot}/>
+            <IndexRoute path="hot" component={Hot}/>
             <Route path="tutor" component={Tutor}/>
             <Route path="account" component={Account}/>
         </Route>

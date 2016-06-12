@@ -1,0 +1,49 @@
+.hot-question-list {
+  section {
+    .question-content {
+      p{
+        padding: px2rem(24px);
+      }
+    }
+    .mentor{
+      float: left;
+      width: px2rem(100px);
+      margin: px2rem(57px) px2rem(21px) 0 px2rem(24px);
+      img{
+        width: px2rem(100px);
+        height: px2rem(100px);
+        -webkit-border-radius: px2rem(50px);
+        -moz-border-radius: px2rem(50px);
+        border-radius: px2rem(50px);
+      }
+      p{
+        position: relative;
+      }
+    }
+    .answer {
+      float: left;
+      width: px2rem(335px);
+      .bubble{
+        display: block;
+        width: px2rem(335px);
+        height: px2rem(88px);
+        background-color: rgb(3,135,231);
+        -webkit-border-radius: px2rem(20px);
+        -moz-border-radius: px2rem(20px);
+        border-radius: px2rem(20px);
+      }
+      
+    }
+    .remark {
+      float: left;
+      width: px2rem(230px);
+      .value {
+        text-align: right;
+        color: red;
+      }
+      .remark-info {
+        color: gray;
+      }
+    }
+  }
+}
