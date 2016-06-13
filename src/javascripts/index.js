@@ -10,9 +10,6 @@ import { Provider } from 'react-redux'
 import { Router, Route, hashHistory, IndexRoute } from 'react-router'
 import configureStore from './store/configureStore'
 
-
-import '../stylesheets/style.scss'
-
 const store = configureStore()
 
 ReactDom.render((
