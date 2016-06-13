@@ -2,13 +2,11 @@
  * create by wuwq
  */
 import React, { Component } from 'react';
-
+import HotQuestionList from '../containers/HotQuestionList.js'
 class Hot extends Component {
     render() {
         return(
-            <div>
-                热门页面
-            </div>
+            <HotQuestionList />
         )
     }
 }

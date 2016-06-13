@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import '../../stylesheets/partials/App.scss';
+import '../../stylesheets/partials/modules/App.scss';
 
 class App extends Component {
     render() {
