@@ -1,11 +1,12 @@
 @import "../base";
 .footer{
-  position:absolute;
+  position: fixed;
   bottom:0;
   left:0;
   right:0;
   height: px2rem(90);
   line-height: px2rem(90);
+  background-color: white;
   border-top: 1px solid $borderGray;
   ul{
     list-style-type:none;

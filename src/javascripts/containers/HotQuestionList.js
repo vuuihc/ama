@@ -4,42 +4,48 @@
 import React, { Component, PropTypes } from 'react'
 import {Link} from 'react-router'
 import { connect } from 'react-redux'
+import {getHotQuestionList} from '../actions/question.js'
 
 import '../../stylesheets/partials/modules/HotQuestionList.scss'
 
 class HotQuestionList extends Component{
     componentDidMount(){
+        this.props.dispatch(getHotQuestionList(1,10))
         console.log("hotQuestionList==="+this.props.hotQuestionList)
     }
     render() {
         const { hotQuestionList } = this.props
         return (
             <main className="hot-question-list">
-                <section>
-                    <div className="question-content">
-                        <p>入职心仪互联网的时机有哪些？</p>
-                    </div>
-                    <div className="mentor">
-                        <img src="" />
-                        <p >
-                            <span>韩东君</span>
-                            <span>ceo</span>
-                        </p>
-                    </div>
-                    <div className="answer">
-                        <span className="bubble-tail"></span>
-                        <span className="bubble">
-                            <span className="bubble-text">一元偷偷听</span>
-                        </span>
-                    </div>
-                    <div className="remark">
-                        <p className="value">价值￥5.2</p>
-                        <p className="remark-info">
-                            <span>54人偷听</span>
-                            <span>3人觉得亏了</span>
-                        </p>
-                    </div>
-                </section>
+                {
+                    hotQuestionList.map((question,index) =>
+                    <article>
+                        <div className="question-content">
+                            <h4>{question.question_content}</h4>
+                        </div>
+                        <div className="mentor">
+                            <img src={question.user_face} />
+                            <div className="mentor-info">
+                                <span className="name">{question.user_name}</span>
+                                <span>{question.user_title}</span>
+                            </div>
+                        </div>
+                        <div className="answer">
+                            <span className="bubble">
+                                <span className="bubble-tail"></span>
+                                <span className="bubble-text">一元偷偷听</span>
+                            </span>
+                        </div>
+                        <div className="remark">
+                            <div className="value">价值￥{question.question_prize}</div>
+                            <div className="remark-info">
+                                <span>{question.answer_listen}人偷听</span>
+                                <span className="kui">{question.answer_dislike}人觉得亏了</span>
+                            </div>
+                        </div>
+                    </article>
+                    )
+                }
             </main>
         )
     }

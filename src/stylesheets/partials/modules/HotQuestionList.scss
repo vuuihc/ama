@@ -1,15 +1,21 @@
 @import "../base";
 .hot-question-list {
-  section {
+  article {
+    border-bottom: 1px solid $borderGray;
+    overflow: hidden;
+    min-height: px2rem(303);
     .question-content {
-      p{
-        padding: px2rem(24);
+      h4{
+        padding: px2rem(30) 0 px2rem(57) px2rem(24);
+        margin: 0;
+        font-size: px2rem(36);
+        font-weight: 600;
       }
     }
     .mentor{
       float: left;
       width: px2rem(100);
-      margin: px2rem(57) px2rem(21) 0 px2rem(24);
+      margin: 0 px2rem(21) px2rem(34) px2rem(24);
       img{
         width: px2rem(100);
         height: px2rem(100);
@@ -17,33 +23,65 @@
         -moz-border-radius: px2rem(50);
         border-radius: px2rem(50);
       }
-      p{
+      .mentor-info{
         position: relative;
+        margin-top: px2rem(30);
+        white-space: nowrap;
+        color: $lightBlue;
+        .name{
+          margin-right: px2rem(20);
+        }
       }
     }
     .answer {
       float: left;
       width: px2rem(335);
       .bubble{
+        position: relative;
+        left: px2rem(20);
         display: block;
         width: px2rem(335);
         height: px2rem(88);
         background-color: rgb(3,135,231);
-        -webkit-border-radius: px2rem(20);
-        -moz-border-radius: px2rem(20);
-        border-radius: px2rem(20);
+        -webkit-border-radius: px2rem(50);
+        -moz-border-radius: px2rem(50);
+        border-radius: px2rem(50);
+        .bubble-tail{
+          background-image: url(/src/images/bubble-tail.png);
+          width: px2rem(34);
+          height: px2rem(39);
+          position: absolute;
+          left: px2rem(-14);
+          bottom: 0;
+        }
+        .bubble-text {
+          position: absolute;
+          left: px2rem(84);
+          top: px2rem(28);
+          color: white;
+        }
       }
 
     }
     .remark {
       float: left;
       width: px2rem(230);
+      position: relative;
       .value {
+        margin-top: px2rem(55);
         text-align: right;
         color: red;
       }
       .remark-info {
-        color: gray;
+        position: absolute;
+        right: 0;
+        margin-top: px2rem(40);
+        color: $lightGray;
+        text-align: right;
+        white-space: nowrap;
+        .kui {
+          margin-left: px2rem(20);
+        }
       }
     }
   }
