@@ -5,6 +5,7 @@ import question from '../api/question'
 
 import {
     RECEIVE_HOT_QUESTION_LIST,
+    RECEIVE_QUESTION_INFO
 } from './ActionTypes'
 
 export function getHotQuestionList(page,number) {
@@ -13,6 +14,16 @@ export function getHotQuestionList(page,number) {
             dispatch({
                 type: RECEIVE_HOT_QUESTION_LIST,
                 hotQuestionList: data
+            })
+        })
+    }
+}
+export function getQuestionInfo(id) {
+    return dispatch => {
+        question.getQuestionInfo(id,data => {
+            dispatch({
+                type: RECEIVE_QUESTION_INFO,
+                questionInfo: data
             })
         })
     }

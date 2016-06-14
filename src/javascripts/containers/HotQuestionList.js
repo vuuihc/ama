@@ -20,9 +20,11 @@ class HotQuestionList extends Component{
                 {
                     hotQuestionList.map((question,index) =>
                     <article>
-                        <div className="question-content">
-                            <h4>{question.question_content}</h4>
-                        </div>
+                        <Link to={"question/"+question.id} >
+                            <div className="question-content">
+                                <h4>{question.question_content}</h4>
+                            </div>
+                        </Link>
                         <div className="mentor">
                             <img src={question.user_face} />
                             <div className="mentor-info">
@@ -33,7 +35,8 @@ class HotQuestionList extends Component{
                         <div className="answer">
                             <span className="bubble">
                                 <span className="bubble-tail"></span>
-                                <span className="bubble-text">一元偷偷听</span>
+                                <span className="bubble-voice"></span>
+                                <span className="bubble-text">1元偷偷听</span>
                             </span>
                         </div>
                         <div className="remark">

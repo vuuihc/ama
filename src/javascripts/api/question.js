@@ -11,9 +11,18 @@ export default  {
         const url = domain+'/api/v1/question/gettopic?page='+page+'&number='+num
         fetch(url)
             .then(response =>
-                response.json()
-            //data.questionList
+                //response.json()
+                data.questionList
             )
+            .then(json => cb(json.data))
+    },
+    getQuestionInfo(id,cb){
+        const url = domain+'/api/v1/question/gettopic?page='+1+'&number='+10
+        fetch(url)
+            .then(response =>
+                //response.json()
+                data.questionInfo
+        )
             .then(json => cb(json.data))
     }
 }
