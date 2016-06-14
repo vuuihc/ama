@@ -23,3 +23,9 @@ ul,li{
 @function px2rem($px){
   @return $px / 75 * 1rem;
 }
+
+@mixin uniMethod($key, $value){
+  -webkit-#{$key}:#{$value};
+  -moz-#{$key}:#{$value};
+  #{$key}:#{$value};
+}

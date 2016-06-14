@@ -29,6 +29,7 @@
       a{
         text-decoration: none !important;
         color:$darkGray;
+        display: block;
         &.active{
           color:$lightBlue;
         }

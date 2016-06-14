@@ -1,0 +1,35 @@
+@import "../base";
+#accountIndex{
+  text-align: center;
+  .headOuter{
+    margin:0 auto;
+    margin-top: px2rem(40);
+    border:2px solid $darkBlue;
+    @include uniMethod('border-radius', px2rem(88));
+    width:px2rem(176);
+    max-width:px2rem(176);
+    line-height:px2rem(176);
+    height:px2rem(176);
+    max-height:px2rem(176);
+    img{
+      width:px2rem(150);
+      height:px2rem(150);
+      border:2px solid $darkBlue;
+      vertical-align: middle;
+      margin-top:-6px;
+      @include uniMethod('border-radius', px2rem(75));
+    }
+  }
+  .name{
+    color:$darkBlue;
+    margin-top: px2rem(21);
+  }
+  .position{
+    color:$lightBlue;
+    margin-top: px2rem(26);
+  }
+  .description{
+    color:$fontColor;
+    margin-top: px2rem(39);
+  }
+}
