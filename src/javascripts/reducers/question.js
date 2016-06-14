@@ -3,10 +3,12 @@
  */
 import {
     RECEIVE_HOT_QUESTION_LIST,
+    RECEIVE_QUESTION_INFO
     }from '../actions/ActionTypes'
 
 const initialState = {
-    hotQuestionList:[]
+    hotQuestionList:[],
+    questionInfo:{}
 }
 
 export function hotQuestionList(state = initialState.hotQuestionList, action){
@@ -17,4 +19,13 @@ export function hotQuestionList(state = initialState.hotQuestionList, action){
             return state
     }
 }
+export function questionInfo(state = initialState.questionInfo, action){
+    switch (action.type) {
+        case RECEIVE_QUESTION_INFO:
+            return action.questionInfo
+        default:
+            return state
+    }
+}
+
 

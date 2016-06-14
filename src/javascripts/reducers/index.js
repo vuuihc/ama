@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import {hotQuestionList,} from './question.js'
+import {hotQuestionList,questionInfo} from './question.js'
 import {tutorList,} from './tutor.js'
 
 
 const rootReducer = combineReducers({
-    hotQuestionList,
+    hotQuestionList,questionInfo,
     tutorList
 })
 
