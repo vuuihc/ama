@@ -1,5 +1,6 @@
 @import "../base";
 .hot-question-list {
+  padding-bottom: px2rem(90);
   article {
     border-bottom: 1px solid $borderGray;
     overflow: hidden;
