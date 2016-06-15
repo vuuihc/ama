@@ -37,29 +37,8 @@ class Account extends Component {
                         <li>问我的</li>
                     </ul>
                 </div>
-                <div className="divider"></div>
                 <div className="container">
-                    <ul>
-                        <li>
-                            <div className="divider"></div>
-                            <div className="header">入职心仪互联网公司的实际有哪些？</div>
-                            <div className="content">
-                                <div className="headInner"><img src={require('../../images/head.jpg')}/></div>
-                                <div className="recording">recording</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="divider"></div>
-                            <div className="header">入职心仪互联网公司的实际有哪些？</div>
-                            <div className="content">
-                                <div className="headInner"><img src={require('../../images/head.jpg')}/></div>
-                                <div className="recording">recording</div>
-                            </div>
-                            <div className="innerFooter">
-                                <div className="howMany"></div>
-                            </div>
-                        </li>
-                    </ul>
+                    
                 </div>
             </div>
         )
