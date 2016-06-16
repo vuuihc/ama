@@ -112,9 +112,9 @@
       width:px2rem(703);
       li{
         text-align: left;
-        height:px2rem(298);
+        height:px2rem(303);
         .header{
-          margin-top: px2rem(46);
+          margin-top: px2rem(30);
           font-size: px2rem(32);
           color:$fontColor;
         }
@@ -128,18 +128,63 @@
               height:px2rem(100);
             }
           }
-          .recording{
-            float:left;
-            width:200px;
-            margin-left: px2rem(19);
+          .answer {
+              float: left;
+              width: px2rem(335);
+              width:200px;
+              margin-left: px2rem(19);
+              .bubble{
+                position: relative;
+                left: px2rem(20);
+                display: block;
+                width: px2rem(335);
+                height: px2rem(88);
+                background-color: rgb(3,135,231);
+                -webkit-border-radius: px2rem(50);
+                -moz-border-radius: px2rem(50);
+                border-radius: px2rem(50);
+                .bubble-voice {
+                  background-image: url(/src/images/voice.png);
+                  -webkit-background-size: 100% 100%;
+                  background-size: 100% 100%;
+                  width: px2rem(36);
+                  height: px2rem(36);
+                  position: absolute;
+                  left: px2rem(30);
+                  bottom: px2rem(27);
+                }
+                .bubble-tail{
+                  background-image: url(/src/images/bubble-tail-blue.png);
+                  -webkit-background-size: 100% 100%;
+                  background-size: 100% 100%;
+                  width: px2rem(36);
+                  height: px2rem(48);
+                  position: absolute;
+                  left: px2rem(-14);
+                  bottom: 0;
+                }
+                .bubble-text {
+                  position: absolute;
+                  left:px2rem(124);
+                  top: px2rem(28);
+                  font-size: px2rem(24);
+                  color: white;
+                }
+              }
+
           }
         }
-        .footer{
+        .innerFooter{
+          clear: left;
           color:$lightGray;
-          font-size:px2rem(24);
-          .howManyListen{}
-          .howManySorroy{
+          padding: px2rem(16) 0;
+          text-align: right;
+          .howManyListen{
+            font-size: px2rem(24);
+          }
+          .howManySorrow{
             margin-left:px2rem(27);
+            font-size: px2rem(24);
           }
         }
       }
