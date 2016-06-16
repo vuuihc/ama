@@ -1,0 +1,86 @@
+@import "../base";
+
+.tutor {
+  padding-bottom: px2rem(90);
+  .tutor-info {
+    text-align: center;
+    img {
+      width: 120px;
+      height: 120px;
+      border-radius: 60px;
+      margin: 57px auto 33px;
+    }
+    .tutor-name{
+      font-size: px2rem(48);
+      color: $darkBlue;
+    }
+    .tutor-title{
+      font-size: px2rem(32);
+      color: $lightBlue;
+      margin-top: px2rem(28);
+    }
+    .tutor-intro{
+      font-size: px2rem(24);
+      color: $darkGray;
+      margin-top: px2rem(46);
+    }
+    .grade {
+      margin-top: px2rem(52);
+      span {
+        font-size: px2rem(24);
+        color: $lightGray;
+      }
+      .num{
+        span:first-child {
+          margin-right: px2rem(229);
+        }
+      }
+      .grade-name{
+        margin-top: px2rem(16);
+        span:first-child {
+          margin-right: px2rem(208);
+        }
+      }
+    }
+    textarea {
+      font-size: px2rem(24);
+      color: $lightGray;
+      width: px2rem(704);
+      height: px2rem(190);
+      margin: px2rem(38) px2rem(24) 0;
+      padding: px2rem(20) px2rem(30);
+      line-height: px2rem(40);
+      -webkit-border-radius: px2rem(15);
+      -moz-border-radius: px2rem(15);
+      border-radius: px2rem(15);
+      &:active{
+        outline: none;
+      }
+    }
+    .value {
+      margin-top: px2rem(36);
+      font-size: px2rem(36);
+      color: $red;
+    }
+    a.bottom-btn{
+      display: block;
+      width: px2rem(702);
+      height: px2rem(90);
+      background-color: $orange;
+      border: 1px solid $borderOrange;
+      border-radius: px2rem(10);
+      color: white;
+      line-height: px2rem(90);
+      margin: px2rem(37) auto;
+    }
+  }
+  .question-list {
+    .title {
+      color: $lightGray;
+      margin: px2rem(65) auto px2rem(26) px2rem(24);
+    }
+    article {
+
+    }
+  }
+}

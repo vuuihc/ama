@@ -19,21 +19,23 @@ class TutorList extends Component{
             <main className="tutor-list">
                 {
                     tutorList.map((tutor,index) =>
-                        <article>
-                            <div className="tutor-info">
-                                <img src={tutor.avatar} />
-                                <div className="tutor-intro">
-                                    <h3 >{tutor.name}</h3>
-                                    <h4>
-                                        <span>{tutor.company}</span>
-                                        <span>{tutor.position}</span>
-                                    </h4>
+                        <Link to={"/tutor/"+tutor.user_id} >
+                            <article>
+                                <div className="tutor-info">
+                                    <img src={tutor.user_face} />
+                                    <div className="tutor-intro">
+                                        <h3 >{tutor.user_name}</h3>
+                                        <h4>
+                                            <span>{tutor.user_title}</span>
+                                            <span>{tutor.user_title}</span>
+                                        </h4>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="answer-info">
-                                {tutor.answer_num}个回答
-                            </div>
-                        </article>
+                                <div className="answer-info">
+                                    {tutor.answer_number}个回答
+                                </div>
+                            </article>
+                        </Link>
                     )
                 }
             </main>

@@ -11,8 +11,8 @@ export default  {
         const url = domain+'/api/v1/question/gettopic?page='+page+'&number='+num
         fetch(url)
             .then(response =>
-                //response.json()
-                data.tutorList
+                response.json()
+                //data.tutorList
             )
             .then(json => cb(json.data))
     }

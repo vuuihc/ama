@@ -1,0 +1,83 @@
+@import "../base";
+
+article {
+  border-top: 1px solid $borderGray;
+  border-bottom: 1px solid $borderGray;
+  overflow: hidden;
+  min-height: px2rem(277);
+  .question-content {
+    h4{
+      padding: px2rem(38) px2rem(27) px2rem(35) px2rem(27);
+      margin: 0;
+      font-size: px2rem(32);
+      font-weight: 500;
+    }
+  }
+  .answer {
+    width: 10rem;
+    padding-left: px2rem(27);
+    .bubble{
+      position: relative;
+      display: block;
+      width: px2rem(335);
+      height: px2rem(88);
+      background-color: rgb(3,135,231);
+      -webkit-border-radius: px2rem(50);
+      -moz-border-radius: px2rem(50);
+      border-radius: px2rem(50);
+      .bubble-voice {
+        background-image: url(/src/images/voice.png);
+        -webkit-background-size: 100% 100%;
+        background-size: 100% 100%;
+        width: px2rem(36);
+        height: px2rem(36);
+        position: absolute;
+        left: px2rem(30);
+        bottom: px2rem(27);
+      }
+      .bubble-tail{
+        background-image: url(/src/images/bubble-tail-blue.png);
+        -webkit-background-size: 100% 100%;
+        background-size: 100% 100%;
+        width: px2rem(36);
+        height: px2rem(48);
+        position: absolute;
+        left: px2rem(-14);
+        bottom: 0;
+      }
+      .bubble-text {
+        position: absolute;
+        left:px2rem(124);
+        top: px2rem(28);
+        font-size: px2rem(24);
+        color: white;
+      }
+    }
+
+  }
+  .remark {
+    padding: px2rem(32) px2rem(27) px2rem(29) px2rem(33);
+    width: 10rem;
+    overflow: hidden;
+    .time{
+      float: left;
+      span{
+        font-size: px2rem(20);
+        color: $lightGray;
+      }
+    }
+    .remark-info {
+      float: right;
+      color: $lightGray;
+      white-space: nowrap;
+      span {
+        font-size: px2rem(20);
+      }
+      .kui {
+        margin-left: px2rem(20);
+        font-size: px2rem(20);
+
+      }
+    }
+  }
+}

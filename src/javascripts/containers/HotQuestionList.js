@@ -56,9 +56,6 @@ class HotQuestionList extends Component{
 
 HotQuestionList.propTypes = {
     hotQuestionList: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        icon: PropTypes.string.isRequired,
     })).isRequired,
 }
 

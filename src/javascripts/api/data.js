@@ -157,72 +157,105 @@ export default {
                 "name": "韩东君",
                 "company": "君宏科技",
                 "position": "CEO",
-                "answer_num": 123
+                "answer_num": 123,
+                "teacher_id": 10001
             },
             {
                 "avatar": "http://ww3.sinaimg.cn/mw690/684ff39bjw1f4ugvt0wkdj208m0640sx.jpg",
                 "name": "韩东君",
                 "company": "君宏科技",
                 "position": "CEO",
-                "answer_num": 123
+                "answer_num": 123,
+                "teacher_id": 10001
             },
             {
                 "avatar": "http://ww3.sinaimg.cn/mw690/684ff39bjw1f4ugvt0wkdj208m0640sx.jpg",
                 "name": "韩东君",
                 "company": "君宏科技",
                 "position": "CEO",
-                "answer_num": 123
+                "answer_num": 123,
+                "teacher_id": 10001
             },
             {
                 "avatar": "http://ww3.sinaimg.cn/mw690/684ff39bjw1f4ugvt0wkdj208m0640sx.jpg",
                 "name": "韩东君",
                 "company": "君宏科技",
                 "position": "CEO",
-                "answer_num": 123
+                "answer_num": 123,
+                "teacher_id": 10001
             },
             {
                 "avatar": "http://ww3.sinaimg.cn/mw690/684ff39bjw1f4ugvt0wkdj208m0640sx.jpg",
                 "name": "韩东君",
                 "company": "君宏科技",
                 "position": "CEO",
-                "answer_num": 123
+                "answer_num": 123,
+                "teacher_id": 10001
             },
             {
                 "avatar": "http://ww3.sinaimg.cn/mw690/684ff39bjw1f4ugvt0wkdj208m0640sx.jpg",
                 "name": "韩东君",
                 "company": "君宏科技",
                 "position": "CEO",
-                "answer_num": 123
+                "answer_num": 123,
+                "teacher_id": 10001
             },
             {
                 "avatar": "http://ww3.sinaimg.cn/mw690/684ff39bjw1f4ugvt0wkdj208m0640sx.jpg",
                 "name": "韩东君",
                 "company": "君宏科技",
                 "position": "CEO",
-                "answer_num": 123
+                "answer_num": 123,
+                "teacher_id": 10001
             },
             {
                 "avatar": "http://ww3.sinaimg.cn/mw690/684ff39bjw1f4ugvt0wkdj208m0640sx.jpg",
                 "name": "韩东君",
                 "company": "君宏科技",
                 "position": "CEO",
-                "answer_num": 123
+                "answer_num": 123,
+                "teacher_id": 10001
             },
             {
                 "avatar": "http://ww3.sinaimg.cn/mw690/684ff39bjw1f4ugvt0wkdj208m0640sx.jpg",
                 "name": "韩东君",
                 "company": "君宏科技",
                 "position": "CEO",
-                "answer_num": 123
+                "answer_num": 123,
+                "teacher_id": 10001
             },
             {
                 "avatar": "http://ww3.sinaimg.cn/mw690/684ff39bjw1f4ugvt0wkdj208m0640sx.jpg",
                 "name": "韩东君",
                 "company": "君宏科技",
                 "position": "CEO",
-                "answer_num": 123
+                "answer_num": 123,
+                "teacher_id": 10001
+            },
+            {
+                "avatar": "http://ww3.sinaimg.cn/mw690/684ff39bjw1f4ugvt0wkdj208m0640sx.jpg",
+                "name": "韩东君",
+                "company": "君宏科技",
+                "position": "CEO",
+                "answer_num": 123,
+                "teacher_id": 10001
+            },
+            {
+                "avatar": "http://ww3.sinaimg.cn/mw690/684ff39bjw1f4ugvt0wkdj208m0640sx.jpg",
+                "name": "韩东君",
+                "company": "君宏科技",
+                "position": "CEO",
+                "answer_num": 123,
+                "teacher_id": 10001
+            },
+            {
+                "avatar": "http://ww3.sinaimg.cn/mw690/684ff39bjw1f4ugvt0wkdj208m0640sx.jpg",
+                "name": "韩东君",
+                "company": "君宏科技",
+                "position": "CEO",
+                "answer_num": 123,
+                "teacher_id": 10001
             }
-
         ]
     },
     questionInfo:{
