@@ -3,8 +3,24 @@
  */
 import React, { Component } from 'react';
 import '../../stylesheets/partials/modules/Account.scss';
+import LitenedList from '../containers/lists/LitenedList';
+import IAskedList from '../containers/lists/IAskedList';
+import AskedMeList from '../containers/lists/AskedMeList';
 
 class Account extends Component {
+    constructor(){
+        super();
+        this.state={
+            //index
+            index: 1,
+            listenedData: [],
+            iAskedData:[],
+            askedMeData:[]
+        }
+    }
+    handleClick(value, event){
+        this.setState({index : value});
+    }
     render() {
         return(
             <div id="accountIndex">
@@ -32,14 +48,38 @@ class Account extends Component {
                 <div className="dividerWide"></div>
                 <div className="nav">
                     <ul>
-                        <li className="active">听过的</li>
-                        <li>我问的</li>
-                        <li>问我的</li>
+                        <li
+                            onClick={this.handleClick.bind(this, 1) }
+                            className={this.state.index == 1 ? 'active': ''}
+                        >听过的</li>
+                        <li
+                            onClick={this.handleClick.bind(this, 2) }
+                            className={this.state.index == 2 ? 'active': ''}
+                        >我问的</li>
+                        <li
+                            onClick={this.handleClick.bind(this, 3) }
+                            className={this.state.index == 3 ? 'active': ''}
+                        >问我的</li>
                     </ul>
                 </div>
-                <div className="container">
-                    
-                </div>
+                <div className="divider"></div>
+                {
+                    (()=>{switch(this.state.index){
+                            case 1:
+                                return <LitenedList listenedData = {this.state.listenedData}/>;
+                                break;
+                            case 2:
+                                return <IAskedList iAskedData = {this.state.iAskedData}/>;
+                                break;
+                            case 3:
+                                return <AskedMeList askedMeData = {this.state.askedMeData} />;
+                                 break;
+                            default:
+                                 return <LitenedList/>;
+                        }})()
+
+                }
+
             </div>
         )
     }
