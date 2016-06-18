@@ -1,0 +1,58 @@
+@import "../base";
+
+.user {
+  .user-card-bg {
+    width: 10rem;
+    height: 16rem;
+    vertical-align: middle;
+    display: table-cell;
+    -webkit-filter: blur(px2rem(30));
+    img {
+      width: 100%;
+      height:100%;
+      -o-object-fit: cover;
+      object-fit: cover;
+    }
+  }
+  .user-card {
+    position: fixed;
+    top: px2rem(203);
+    left: px2rem(64);
+    width: px2rem(623);
+    height: px2rem(777);
+    background-color: white;
+    text-align: center;
+    -webkit-border-radius: px2rem(15);
+    -moz-border-radius: px2rem(15);
+    border-radius: px2rem(15);
+    img {
+      width: px2rem(166);
+      height: px2rem(166);
+      -webkit-border-radius: px2rem(88);
+      -moz-border-radius: px2rem(88);
+      border-radius: px2rem(88);
+      top: - px2rem(83);
+      position: relative;
+      background: white;
+      border: 1px solid $lightGray;
+    }
+    .name {
+      margin-top: - px2rem(49);
+      font-size: px2rem(48);
+      color: $darkBlue;
+    }
+    .title {
+      margin-top: px2rem(27);
+      font-size: px2rem(36);
+      color: $lightBlue;
+    }
+    .self-intro {
+      margin: px2rem(89) px2rem(83);
+      line-height: px2rem(50);
+      text-align: left;
+      height: px2rem(310);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
