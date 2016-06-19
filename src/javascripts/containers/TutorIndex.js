@@ -5,7 +5,7 @@ import React, { Component, PropTypes } from 'react'
 import {Link} from 'react-router'
 import { connect } from 'react-redux'
 
-import {getTutorInfo} from '../actions/question.js'
+import {getTutorInfo} from '../actions/tutor.js'
 import QuestionItemWithoutAvatar from "./QuestionItemWithoutAvatar"
 
 import '../../stylesheets/partials/modules/TutorIndex.scss'

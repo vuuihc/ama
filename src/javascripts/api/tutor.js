@@ -8,11 +8,11 @@ import data from './data.js'
 
 export default  {
     getTutorList(page,num,cb){
-        const url = domain+'/api/v1/question/gettopic?page='+page+'&number='+num
+        const url = domain+'/api/v1/user/getteacher?page='+page+'&number='+num
         fetch(url)
             .then(response =>
                 response.json()
-                //data.tutorList
+                // data.tutorList
             )
             .then(json => cb(json.data))
     }

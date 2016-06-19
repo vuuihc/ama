@@ -12,6 +12,7 @@ import Tutor from './components/Tutor'
 import Account from './components/Account'
 import Question from './containers/Question'
 import TutorIndex from './containers/TutorIndex'
+import UserIndex from './containers/UserIndex'
 
 const store = configureStore()
 
@@ -25,6 +26,7 @@ ReactDom.render((
                     <Route path="account" component={Account}/>
                     <Route path="question/:id" component={Question} />
                     <Route path="tutor/:id" component={TutorIndex} />
+                    <Route path="user/:id" component={UserIndex} />
                 </Route>
             </Router>
         </Provider>
