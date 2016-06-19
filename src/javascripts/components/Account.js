@@ -62,7 +62,8 @@ class Account extends Component {
                         >问我的</li>
                     </ul>
                 </div>
-                <div className="divider"></div>
+                <div className="divider" ></div>
+                <div onDrag ={(()=>{console.log(111)})()}>
                 {
                     (()=>{switch(this.state.index){
                             case 1:
@@ -79,6 +80,7 @@ class Account extends Component {
                         }})()
 
                 }
+                    </div>
 
             </div>
         )
