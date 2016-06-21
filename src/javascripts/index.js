@@ -15,7 +15,12 @@ import TutorIndex from './containers/TutorIndex'
 import UserIndex from './containers/UserIndex'
 
 const store = configureStore()
-
+wx.ready(function(){
+  console.log('wxapi is ready')
+})
+wx.error(function (res) {
+  console.log("error is "+res)
+})
 ReactDom.render((
         <Provider store={store}>
             <Router history={hashHistory}>
