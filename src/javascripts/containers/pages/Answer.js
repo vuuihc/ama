@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import '../../../stylesheets/partials/modules/Answer.scss';
+import '../../../stylesheets/partials/modules/Answer.scss';
 
 class Answer extends Component {
 
