@@ -13,6 +13,7 @@ import Account from './components/Account'
 import Question from './containers/Question'
 import TutorIndex from './containers/TutorIndex'
 import UserIndex from './containers/UserIndex'
+import Answer from './containers/pages/Answer'
 
 const store = configureStore()
 wx.ready(function(){
@@ -28,7 +29,10 @@ ReactDom.render((
                     <IndexRoute component={Hot}/>
                     <Route path="hot" component={Hot}/>
                     <Route path="tutor" component={Tutor}/>
-                    <Route path="account" component={Account}/>
+                    <Route path="account" >
+                        <IndexRoute component={Account}/>
+                        <Route path="answer" component = {Answer}/>
+                    </Route>
                     <Route path="question/:id" component={Question} />
                     <Route path="tutor/:id" component={TutorIndex} />
                     <Route path="user/:id" component={UserIndex} />
