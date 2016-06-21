@@ -53,7 +53,7 @@
         -moz-border-radius: px2rem(50);
         border-radius: px2rem(50);
         .bubble-voice {
-          background-image: url(/src/images/voice.png);
+          background-image: url(../../../images/voice.png);
           -webkit-background-size: 100% 100%;
           background-size: 100% 100%;
           width: px2rem(36);
@@ -63,7 +63,7 @@
           bottom: px2rem(27);
         }
         .bubble-tail{
-          background-image: url(/src/images/bubble-tail-blue.png);
+          background-image: url(../../../images/bubble-tail-blue.png);
           -webkit-background-size: 100% 100%;
           background-size: 100% 100%;
           width: px2rem(36);

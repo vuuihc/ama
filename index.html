@@ -2,6 +2,7 @@
 <html>
   <head>
     <script type="text/javascript" src="./libs/flexible.js"></script>
+    <script type="text/javascript" src="./libs/vconsole.min.js"></script>
     <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <title>七点一刻</title>
   </head>
@@ -48,9 +49,17 @@
 //          jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 //        })
         getWxConfig();
+        wx.ready(function(){
+          alert('wxapi is ready')
+          console.log('wxapi is ready')
+        })
+        wx.error(function (res) {
+          alert("error is "+res)
+          console.log("error is "+res)
+        })
       }
     </script>
-    <!--<script src="./dist/mobile.js"></script>-->
-    <script src="http://localhost:8080/assets/mobile.js"></script>
+    <script src="./dist/mobile.js"></script>
+    <!--<script src="http://localhost:8080/assets/mobile.js"></script>-->
   </body>
 </html>
