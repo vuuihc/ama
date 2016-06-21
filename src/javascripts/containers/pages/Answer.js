@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ''
+import '../../../stylesheets/partials/modules/Answer.scss';
 
 class Answer extends Component {
 
@@ -8,7 +8,7 @@ class Answer extends Component {
             <div className="accountAnswer">
                 <div className="question">
                     <div className="head">
-                        <img src={require('../../../images/head.jpg')} style={{width:100, height:100}} />
+                        <img src={require('../../../images/head.jpg')} />
                         <span className="name">奥特曼</span>
                         <span className="price">￥ 5.2</span>
                     </div>
