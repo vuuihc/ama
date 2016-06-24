@@ -9,8 +9,8 @@ import '../../stylesheets/partials/modules/UserIndex.scss'
 
 class UserIndex extends Component{
   componentDidMount(){
-    const {id} = this.props.params
-    this.props.dispatch(getTutorInfo(id))
+    // const {id} = this.props.params
+    // this.props.dispatch(getTutorInfo(id))
     console.log("questionInfo==="+this.props.tutorInfo)
   }
   render() {
@@ -21,7 +21,7 @@ class UserIndex extends Component{
           <img src="https://img.acg.moe/common/7/70/%E7%AB%A0%E9%B1%BC%E7%8C%AB.png" />
         </div>
           <div className="user-card">
-            <img src="https://img.acg.moe/common/7/70/%E7%AB%A0%E9%B1%BC%E7%8C%AB.png" />
+            <img className="avatar" src="https://img.acg.moe/common/7/70/%E7%AB%A0%E9%B1%BC%E7%8C%AB.png" />
             <h3 className="name">
               韩东君
             </h3>

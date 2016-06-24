@@ -1,0 +1,59 @@
+@import "../base";
+
+.user.edit{
+  .user-card{
+    height: px2rem(980);
+    .name {
+      margin-top: - px2rem(71);
+    }
+    img.avatar{
+      border: 3px solid $darkBlue;
+    }
+    div.form-group {
+      margin: px2rem(61) px2rem(62) 0;
+      &:first-of-type{
+        margin-top: px2rem(57);
+      }
+      label{
+        font-size: px2rem(34);
+        display: inline-block;
+        width: px2rem(160);
+        white-space: pre;
+      }
+      input{
+        font-size: px2rem(20);
+        width: px2rem(337);
+        border: none;
+        border-bottom: 1px solid $lightGray;
+        &:focus{
+          outline: none;
+        }
+      }
+      &.self-intro-text{
+        label{
+          display: block;
+        }
+        textarea{
+          width: px2rem(500);
+          height: px2rem(232);
+          border: 1px solid $lightGray;
+          -webkit-border-radius:px2rem(5);
+          -moz-border-radius:px2rem(5);
+          border-radius:px2rem(5);
+        }
+      }
+    }
+    a.bottom-btn{
+      display: block;
+      width: px2rem(496);
+      height: px2rem(79);
+      background-color: $orange;
+      border: 1px solid $borderOrange;
+      border-radius: px2rem(10);
+      color: white;
+      line-height: px2rem(90);
+      margin: px2rem(37) auto;
+    }
+  }
+
+}

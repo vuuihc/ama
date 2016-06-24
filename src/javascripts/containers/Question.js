@@ -14,6 +14,9 @@ class Question extends Component{
         this.props.dispatch(getQuestionInfo(id))
         console.log("questionInfo==="+this.props.questionInfo)
     }
+    playVoice(){
+      // wx.
+    }
     render() {
         const { questionInfo } = this.props
         return (
@@ -26,7 +29,7 @@ class Question extends Component{
                     <h3 >{questionInfo.name}</h3>
                     <h4 >{questionInfo.company} {questionInfo.position} </h4>
                 </div>
-                <div className="answer">
+                <div className="answer" onClick={this.playVoice.bind(this)}>
                     <span className="bubble">
                         <span className="bubble-tail"></span>
                         <span className="bubble-voice"></span>

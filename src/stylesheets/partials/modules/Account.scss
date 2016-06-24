@@ -1,6 +1,13 @@
 @import "../base";
 #accountIndex{
   text-align: center;
+  img.editEntry{
+    width: px2rem(32);
+    height: px2rem(30);
+    position: absolute;
+    top: px2rem(26);
+    right: px2rem(26);
+  }
   .head{
     width:100%;
     margin-top: px2rem(40);

@@ -4,7 +4,14 @@
   padding-bottom: px2rem(90);
   .tutor-info {
     text-align: center;
-    img {
+    img.QREntry{
+      position: absolute;
+      top: px2rem(26);
+      right: px2rem(26);
+      width: px2rem(36);
+      height: px2rem(38);
+    }
+    img.avatar {
       width: 120px;
       height: 120px;
       border-radius: 60px;

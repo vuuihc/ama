@@ -24,6 +24,7 @@ class Account extends Component {
     render() {
         return(
             <div id="accountIndex">
+                <img className="editEntry" src={require("../../images/EditEntry.png")} />
                 <div className="head">
                     <div className="headOuter">
                         <img src={require("../../images/head.jpg")}/>
