@@ -1,0 +1,131 @@
+@import '../base';
+
+.accountAnswer{
+  min-height: 100vh;
+  background: $backgroundGray;
+  padding-top:px2rem(44);
+  .question{
+    background: white;
+    border-top: 1px solid $borderGray;
+    border-bottom: 1px solid $borderGray;
+    height:px2rem(339);
+    .head{
+      margin-top: px2rem(24);
+      height: px2rem(120);
+      line-height: px2rem(120);
+      img{
+        width:px2rem(120);
+        height:px2rem(120);
+        @include uniMethod("border-radius", px2rem(120));
+        margin-left: px2rem(24);
+        float:left;
+      }
+      .name{
+        color:#202020;
+        margin-left:px2rem(24);
+        font-size: px2rem(35);
+        float:left;
+      }
+      .price{
+        color:$red;
+        font-size: px2rem(30);
+        margin-right: px2rem(24);
+        float:right;
+      }
+    }
+    .stem{
+      padding: 0 px2rem(39);
+      padding-top: px2rem(46) ;
+      color:#202020;
+    }
+    .time{
+      margin-bottom: px2rem(20);
+      color:$darkGray;
+      font-size: px2rem(21);
+      padding-right:px2rem(24);
+      text-align: right;
+    }
+  }
+  .hint{
+    margin-top:px2rem(23);
+    font-size: px2rem(21);
+    color:$lightGray;
+    text-align: center;
+  }
+  .replyHint{
+    color:#202020;
+    margin-top:px2rem(74);
+    text-align: center;
+  }
+  .replyContainer{
+    position: relative;
+    height: px2rem(241);
+    line-height: px2rem(241);
+    text-align: center;
+    .replyIcon{
+      display: inline-block;
+      @include uniMethod('border-radius', px2rem(90));
+      width:px2rem(180);
+      height: px2rem(180);
+      background: #0387e7 url('../../../images/microphone.png') 50% 50% no-repeat;
+      background-size:50%;
+      vertical-align: middle;
+      &.on{ //录音中
+        opacity:0.29;
+      }
+    }
+    .recording{
+      position: absolute;
+      background: url('../../../images/wave.png') 50% 50% no-repeat;
+      background-size:px2rem(524);
+      width: 100%;
+      height: 100%;
+      top: 0;
+      display: block;
+    }
+  }
+  .reRecord{//重录
+    color:$white;
+    margin:0 auto;
+    margin-top:px2rem(2);
+    text-align: center;
+    background: #da2726;
+    width:px2rem(76);
+    height: px2rem(76);
+    @include uniMethod('border-radius', px2rem(38));
+    line-height: px2rem(76);
+  }
+
+  @-webkit-keyframes anLoca {
+    from {
+      -webkit-transform: scale(1,1);
+    }
+
+    to {
+      -webkit-transform: scale(2,2);
+    }
+  }
+  .recordHint{
+    margin-top: px2rem(51);
+    text-align: center;
+    color:$lightGray;
+  }
+  .sendBtn{
+    background:$orange;
+    width:px2rem(701);
+    color:$white;
+    height: px2rem(92);
+    line-height: px2rem(92);
+    @include uniMethod('border-radius', 5px);
+    border:1px solid $borderOrange;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: px2rem(21);
+  }
+  .anLocaApply:hover{
+    text-align: center;
+    -webkit-animation: anLoca 0.8s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-direction: alternate;
+  }
+}

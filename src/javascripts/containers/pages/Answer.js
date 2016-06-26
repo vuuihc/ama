@@ -19,6 +19,7 @@ class Answer extends Component {
                 <div className="replyHint">语音回复</div>
                 <div className="replyContainer">
                     <div className="replyIcon"></div>
+                    <div className="recording"></div>
                 </div>
                 <div className="reRecord">重录</div>
                 <div className="recordHint" >点击开始录制最多可录制120S</div>
