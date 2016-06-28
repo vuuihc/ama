@@ -14,7 +14,7 @@ class HotQuestionList extends Component {
     console.log("hotQuestionList===" + this.props.hotQuestionList)
   }
   playAudio(answer_audio){
-    audio=new Audio(answer_audio);//路径
+    var audio=new Audio("http://7fvhf6.com1.z0.glb.clouddn.com/Westlife%20-%20My%20Love.mp3");//路径
     audio.src = answer_audio;
     audio.addEventListener("canplaythrough", function () {
       audio.play();
