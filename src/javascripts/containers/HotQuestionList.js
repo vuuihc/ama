@@ -18,13 +18,13 @@ class HotQuestionList extends Component {
     // var audio=new Audio("http://7fvhf6.com1.z0.glb.clouddn.com/Westlife%20-%20My%20Love.mp3");//路径
     var audio = document.createElement('audio')
     audio.src= "http://7fvhf6.com1.z0.glb.clouddn.com/Westlife%20-%20My%20Love.mp3";
-    // audio.addEventListener("canplaythrough", function () {
-    //   console.log('音频文件已经准备好，随时待命');
-    // }, false);
     if (window.WeixinJSBridge) {
       wx.getNetworkType({
         success: function (res) {
-          audio.play();
+          audio.addEventListener("canplaythrough", function () {
+            console.log('音频文件已经准备好，随时待命');
+            audio.play();
+          }, false);
         },
         fail: function (res) {
           audio.play();
@@ -34,7 +34,10 @@ class HotQuestionList extends Component {
       document.addEventListener("WeixinJSBridgeReady", function() {
         wx.getNetworkType({
           success: function (res) {
-            audio.play();
+            audio.addEventListener("canplaythrough", function () {
+              console.log('音频文件已经准备好，随时待命');
+              audio.play();
+            }, false);
           },
           fail: function (res) {
             audio.play();
