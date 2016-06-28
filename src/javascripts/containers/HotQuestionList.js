@@ -17,7 +17,7 @@ class HotQuestionList extends Component {
     console.log("into playAudio");
     // var audio=new Audio("http://7fvhf6.com1.z0.glb.clouddn.com/Westlife%20-%20My%20Love.mp3");//路径
     var audio = document.createElement('audio')
-    audio.src= "http://7fvhf6.com1.z0.glb.clouddn.com/Westlife%20-%20My%20Love.mp3";
+    audio.src= "http://7fvhf6.com1.z0.glb.clouddn.com/7dyk%E7%BE%A4%E6%98%9F%20-%20%E6%A2%81%E7%A5%9D.mp3";
     if (window.WeixinJSBridge) {
       wx.getNetworkType({
         success: function (res) {
