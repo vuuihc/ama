@@ -16,11 +16,32 @@ class HotQuestionList extends Component {
   playAudio(answer_audio){
     console.log("into playAudio");
     var audio=new Audio("http://7fvhf6.com1.z0.glb.clouddn.com/Westlife%20-%20My%20Love.mp3");//路径
-    audio.addEventListener("canplaythrough", function () {
-      console.log('音频文件已经准备好，随时待命');
-    }, false);
-    console.log(audio.src);
-    audio.play();
+    // audio.addEventListener("canplaythrough", function () {
+    //   console.log('音频文件已经准备好，随时待命');
+    // }, false);
+    if (window.WeixinJSBridge) {
+      wx.getNetworkType({
+        success: function (res) {
+          audio.play();
+        },
+        fail: function (res) {
+          audio.play();
+        }
+      });
+    }else{
+      document.addEventListener("WeixinJSBridgeReady", function() {
+        wx.getNetworkType({
+          success: function (res) {
+            audio.play();
+          },
+          fail: function (res) {
+            audio.play();
+          }
+        });
+      }, false);
+    }
+    // console.log(audio.src);
+    // audio.play();
   }
   render() {
     const {hotQuestionList} = this.props
