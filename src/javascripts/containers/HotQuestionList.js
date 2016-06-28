@@ -14,8 +14,8 @@ class HotQuestionList extends Component {
     console.log("hotQuestionList===" + this.props.hotQuestionList)
   }
   playAudio(answer_audio){
+    console.log("into playAudio");
     var audio=new Audio("http://7fvhf6.com1.z0.glb.clouddn.com/Westlife%20-%20My%20Love.mp3");//路径
-    audio.src = answer_audio;
     audio.addEventListener("canplaythrough", function () {
       audio.play();
       console.log('音频文件已经准备好，随时待命');
@@ -42,8 +42,8 @@ class HotQuestionList extends Component {
                   </div>
                 </div>
               </Link>
-              <div className="answer" onCLick={this.playAudio.bind(this,question.answer_audio)}>
-                <span className="bubble">
+              <div className="answer" >
+                <span className="bubble" onClick={this.playAudio.bind(this,question.answer_audio)}>
                   <span className="bubble-tail"></span>
                   <span className="bubble-voice"></span>
                   <span className="bubble-text">1元偷偷听</span>
