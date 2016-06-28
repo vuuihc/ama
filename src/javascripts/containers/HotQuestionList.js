@@ -16,10 +16,11 @@ class HotQuestionList extends Component {
   playAudio(answer_audio){
     console.log("into playAudio");
     var audio=new Audio("http://7fvhf6.com1.z0.glb.clouddn.com/Westlife%20-%20My%20Love.mp3");//路径
-    audio.addEventListener("canplaythrough", function () {
-      audio.play();
-      console.log('音频文件已经准备好，随时待命');
-    }, false);
+    // audio.addEventListener("canplaythrough", function () {
+    //   audio.play();
+    //   console.log('音频文件已经准备好，随时待命');
+    // }, false);
+    audio.play()
   }
   render() {
     const {hotQuestionList} = this.props
@@ -27,7 +28,7 @@ class HotQuestionList extends Component {
       <main className="hot-question-list">
         {
           hotQuestionList.map((question, index) =>
-            <article>
+            <article key={index}>
               <Link to={"question/"+question.id}>
                 <div className="question-content">
                   <h4>{question.question_content}</h4>
