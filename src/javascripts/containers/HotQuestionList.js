@@ -9,22 +9,40 @@ import {getHotQuestionList} from '../actions/question.js'
 import '../../stylesheets/partials/modules/HotQuestionList.scss'
 
 class HotQuestionList extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+      curAudio:""
+    }
+  }
   componentDidMount() {
     this.props.dispatch(getHotQuestionList(1, 10))
     console.log("hotQuestionList===" + this.props.hotQuestionList)
   }
+  wxpay(answer_audio){
+    var self = this
+    alert("微信支付中")
+    var audio = new Audio("http://7fvhf6.com1.z0.glb.clouddn.com/7dyk%E7%BE%A4%E6%98%9F%20-%20%E6%A2%81%E7%A5%9D.mp3")
+    this.setState({curAudio:audio})
+    setTimeout(()=>{
+      alert("支付成功,开始播放")
+      self.playAudio()
+    })
+  }
   playAudio(answer_audio){
     console.log("into playAudio");
     // var audio=new Audio("http://7fvhf6.com1.z0.glb.clouddn.com/Westlife%20-%20My%20Love.mp3");//路径
-    var audio = document.createElement('audio')
-    audio.src= "http://7fvhf6.com1.z0.glb.clouddn.com/7dyk%E7%BE%A4%E6%98%9F%20-%20%E6%A2%81%E7%A5%9D.mp3";
+    var audio = this.state.curAudio
+    // audio.src= "http://7fvhf6.com1.z0.glb.clouddn.com/7dyk%E7%BE%A4%E6%98%9F%20-%20%E6%A2%81%E7%A5%9D.mp3";
     if (window.WeixinJSBridge) {
       wx.getNetworkType({
         success: function (res) {
-          audio.addEventListener("canplaythrough", function () {
-            console.log('音频文件已经准备好，随时待命');
-            audio.play();
-          }, false);
+          audio.play();
+
+          // audio.addEventListener("canplaythrough", function () {
+          //   console.log('音频文件已经准备好，随时待命');
+          //   audio.play();
+          // }, false);
         },
         fail: function (res) {
           audio.play();
@@ -34,10 +52,12 @@ class HotQuestionList extends Component {
       document.addEventListener("WeixinJSBridgeReady", function() {
         wx.getNetworkType({
           success: function (res) {
-            audio.addEventListener("canplaythrough", function () {
-              console.log('音频文件已经准备好，随时待命');
-              audio.play();
-            }, false);
+            // audio.addEventListener("canplaythrough", function () {
+            //   console.log('音频文件已经准备好，随时待命');
+            //   audio.play();
+            // }, false);
+            audio.play();
+
           },
           fail: function (res) {
             audio.play();
