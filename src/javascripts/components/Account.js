@@ -2,10 +2,12 @@
  * create by wuwq
  */
 import React, {Component} from 'react';
+import { Link } from 'react-router';
 import '../../stylesheets/partials/modules/Account.scss';
 import LitenedList from '../containers/lists/LitenedList';
 import IAskedList from '../containers/lists/IAskedList';
 import AskedMeList from '../containers/lists/AskedMeList';
+
 
 class Account extends Component {
   constructor() {
@@ -71,7 +73,7 @@ class Account extends Component {
           </ul>
         </div>
         <div className="divider"></div>
-        <div onDrag={(()=>{console.log(111)})()}>
+        <div>
           {
             (()=> {
               switch (this.state.index) {
@@ -88,10 +90,9 @@ class Account extends Component {
                   return <LitenedList/>;
               }
             })()
-
           }
         </div>
-
+        <div className="modalContainer active"></div>
       </div>
     )
   }
