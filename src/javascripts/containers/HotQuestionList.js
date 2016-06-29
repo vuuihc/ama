@@ -16,6 +16,7 @@ class HotQuestionList extends Component {
     }
   }
   componentDidMount() {
+    console.log(this.props);
     this.props.dispatch(getHotQuestionList(1, 10))
     console.log("hotQuestionList===" + this.props.hotQuestionList)
   }

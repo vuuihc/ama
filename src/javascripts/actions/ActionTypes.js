@@ -8,7 +8,9 @@ export const RECEIVE_QUESTION_INFO  = 'RECEIVE_QUESTION_INFO'
 /*********导师**********/
 export const RECEIVE_TUTOR_LIST  = 'RECEIVE_TUTOR_LIST'
 
-
+/*********我的**********/
+//获取到用户消息
+export const RECEIVE_USER_INFO = 'RECEIVE_USER_INFO'
 
 
 
