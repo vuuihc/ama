@@ -27,7 +27,7 @@ class HotQuestionList extends Component {
     setTimeout(()=>{
       alert("支付成功,开始播放")
       self.playAudio()
-    })
+    },5000)
   }
   playAudio(answer_audio){
     console.log("into playAudio");
