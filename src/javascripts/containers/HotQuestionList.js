@@ -90,7 +90,7 @@ class HotQuestionList extends Component {
                 </div>
               </Link>
               <div className="answer" >
-                <span className="bubble" onClick={this.playAudio.bind(this,question.answer_audio)}>
+                <span className="bubble" onClick={this.wxpay.bind(this,question.answer_audio)}>
                   <span className="bubble-tail"></span>
                   <span className="bubble-voice"></span>
                   <span className="bubble-text">1元偷偷听</span>
