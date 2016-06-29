@@ -11,7 +11,7 @@ class Answer extends Component {
 
   componentDidMount(){
     var talkBtn = document.querySelector(".replyContainer")
-    var localId;
+    var localId,START,END,recordTimer;
     function uploadVoice(){
       //调用微信的上传录音接口把本地录音先上传到微信的服务器
       //不过，微信只保留3天，而我们需要长期保存，我们需要把资源从微信服务器下载到自己的服务器
