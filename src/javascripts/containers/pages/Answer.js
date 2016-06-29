@@ -81,8 +81,12 @@ class Answer extends Component {
       }
       
     }
+    var touchMoveHandler = function (event) {
+      event.preventDefault();
+    }
     talkBtn.addEventListener('touchstart',recordStartHandler)
     talkBtn.addEventListener('touchend',recordStopHandler)
+    talkBtn.addEventListener('touchmove',touchMoveHandler)
   }
   render() {
     return (
