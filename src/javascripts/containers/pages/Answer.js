@@ -63,6 +63,7 @@ class Answer extends Component {
       if((END - START) < 300){
         END = 0;
         START = 0;
+        console.log("时间太短");
         //小于300ms，不录音
         clearTimeout(recordTimer);
       }else{
