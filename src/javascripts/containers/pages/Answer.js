@@ -44,7 +44,7 @@ class Answer extends Component {
     var recordStartHandler = function (event) {
       event.preventDefault();
       START = new Date().getTime();
-      event.target.classList.add('on')
+      talkBtn.classList.add('on')
       recordTimer = setTimeout(function(){
         wx.startRecord({
           success: function(){
@@ -59,17 +59,19 @@ class Answer extends Component {
     var recordStopHandler = function (event) {
       event.preventDefault();
       END = new Date().getTime();
-      event.target.classList.remove('on');
+      talkBtn.classList.remove('on');
       if((END - START) < 300){
         END = 0;
         START = 0;
-        console.log("时间太短");
+        console.log("录音时间"+(END-START));
         //小于300ms，不录音
         clearTimeout(recordTimer);
       }else{
+        console.log("录音时间"+(END-START));
         wx.stopRecord({
           success: function (res) {
             localId = res.localId
+            console.log("停止录音成功，开始上传")
             uploadVoice();
           },
           fail: function (res) {
