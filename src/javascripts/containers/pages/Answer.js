@@ -2,7 +2,13 @@ import React, { Component } from 'react'
 import '../../../stylesheets/partials/modules/Answer.scss';
 
 class Answer extends Component {
-
+    constructor(){
+        super();
+        this.handleRecording = this.handleRecording.bind(this);
+    }
+    handleRecording(e){
+        console.log(e);
+    }
     render(){
         return (
             <div className="accountAnswer">
@@ -17,7 +23,7 @@ class Answer extends Component {
                 </div>
                 <div className="hint">您的回答将被公开，答案每被偷听一次，你就赚 ￥0.3</div>
                 <div className="replyHint">语音回复</div>
-                <div className="replyContainer">
+                <div className="replyContainer" >
                     <div className="replyIcon"></div>
                     <div className="recording"></div>
                 </div>
