@@ -7,13 +7,13 @@ import '../../stylesheets/partials/modules/Account.scss';
 import LitenedList from '../containers/lists/LitenedList';
 import IAskedList from '../containers/lists/IAskedList';
 import AskedMeList from '../containers/lists/AskedMeList';
-
+import { connect } from  'react-redux';
+import { getUserInfo } from '../actions/account'
 
 class Account extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      //index
       index: 1,
       listenedData: [],
       iAskedData: [],
@@ -21,6 +21,9 @@ class Account extends Component {
     }
   }
 
+  componentDidMount(){
+      this.props.getUserInfo();
+  }
   handleClick(value, event) {
     this.setState({index: value});
   }
@@ -36,15 +39,15 @@ class Account extends Component {
             <img src={require("../../images/head.jpg")}/>
           </div>
         </div>
-        <div className="name">倪龙云</div>
-        <div className="position">浩瀚科技 CEO</div>
-        <div className="description">欢迎咨询有关创业、投资、互联网等方面问题</div>
+        <div className="name">{this.props.userInfo.user_name}</div>
+        <div className="position">{this.props.userInfo.user_title}</div>
+        <div className="description">{this.props.userInfo.user_introduction}</div>
         <div className="divider top"></div>
         <div className="statics">
           <ul>
-            <li>23题</li>
-            <li>3000次</li>
-            <li>￥293848</li>
+            <li>{this.props.userInfo.answer_num}题</li>
+            <li>{this.props.userInfo.listen_num}次</li>
+            <li>￥{this.props.userInfo.teacher_prize}</li>
           </ul>
           <ul>
             <li>回答过</li>
@@ -92,9 +95,16 @@ class Account extends Component {
             })()
           }
         </div>
-        <div className="modalContainer active"></div>
       </div>
     )
   }
 }
+const mapStateToProps = (state) =>{
+    return{
+        userInfo: state.account.userInfo
+    }
+}
+
+Account = connect(mapStateToProps, {getUserInfo})(Account);
+
 export default Account;

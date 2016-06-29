@@ -17,7 +17,7 @@ import UserIndex from './containers/UserIndex'
 import UserShare from './containers/UserShare'
 import Answer from './containers/pages/Answer'
 
-const store = configureStore()
+const store = configureStore();
 
 ReactDom.render((
         <Provider store={store}>
