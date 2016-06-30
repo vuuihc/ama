@@ -10,10 +10,10 @@ class IAskedList extends Component{
         return (
             <div className="iAskedList">
                 {
-                    this.props.iAskedData.length ? (
+                    this.props.iAsked.data.length ? (
                         <ul >
                             <li>
-                                {this.props}
+                                列表
                             </li>
                         </ul>
                     ):(

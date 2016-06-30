@@ -18,9 +18,9 @@ export function  getUserInfo() {
     }
 }
 
-export function getListened(){
+export function getListened(page, num){
     return (dispatch) => {
-        account.getListened((data) => {
+        account.getListened(page, num, (data) => {
             dispatch({
                 type: RECEIVE_LISTENED,
                 data
@@ -29,9 +29,9 @@ export function getListened(){
     }
 }
 
-export function getIAsked(){
+export function getIAsked(page, num){
     return (dispatch) => {
-        account.getIAsked((data) => {
+        account.getIAsked(page, num, (data) => {
             dispatch({
                 type: RECEIVE_I_ASKED,
                 data
@@ -40,9 +40,9 @@ export function getIAsked(){
     }
 }
 
-export function getAskedMe(){
+export function getAskedMe(page, num){
     return (dispatch) => {
-        account.getAskedMe((data) => {
+        account.getAskedMe(page, num, (data) => {
             dispatch({
                 type: RECEIVE_ASKED_ME,
                 data

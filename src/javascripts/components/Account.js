@@ -8,7 +8,7 @@ import LitenedList from '../containers/lists/LitenedList';
 import IAskedList from '../containers/lists/IAskedList';
 import AskedMeList from '../containers/lists/AskedMeList';
 import { connect } from  'react-redux';
-import { getUserInfo } from '../actions/account'
+import { getUserInfo, getListened, getAskedMe, getIAsked } from '../actions/account'
 
 class Account extends Component {
   constructor(props) {
@@ -23,6 +23,8 @@ class Account extends Component {
 
   componentDidMount(){
       this.props.getUserInfo();
+      // this.props.getListened(0,);
+      this.props.getIAsked(1, 2);
   }
   handleClick(value, event) {
     this.setState({index: value});
@@ -81,13 +83,13 @@ class Account extends Component {
             (()=> {
               switch (this.state.index) {
                 case 1:
-                  return <LitenedList listenedData={this.state.listenedData}/>;
+                  return <LitenedList listened={this.props.listened}/>;
                   break;
                 case 2:
-                  return <IAskedList iAskedData={this.state.iAskedData}/>;
+                  return <IAskedList iAsked={this.props.iAsked}/>;
                   break;
                 case 3:
-                  return <AskedMeList askedMeData={this.state.askedMeData}/>;
+                  return <AskedMeList askedMe={this.props.askedMe}/>;
                   break;
                 default:
                   return <LitenedList/>;
@@ -101,10 +103,13 @@ class Account extends Component {
 }
 const mapStateToProps = (state) =>{
     return{
-        userInfo: state.account.userInfo
+        userInfo: state.account.userInfo,
+        listened: state.account.listened,
+        iAsked: state.account.iAsked,
+        askedMe: state.account.askedMe
     }
 }
 
-Account = connect(mapStateToProps, {getUserInfo})(Account);
+Account = connect(mapStateToProps, { getUserInfo, getListened, getIAsked, getAskedMe })(Account);
 
 export default Account;

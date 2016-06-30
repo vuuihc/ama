@@ -3,9 +3,13 @@
  */
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 import '../../stylesheets/partials/modules/App.scss';
 
 class App extends Component {
+    constructor(){
+        super();
+    }
     render() {
         return(
             <div>
@@ -21,4 +25,5 @@ class App extends Component {
         )
     }
 }
+App = connect()(App);
 export default App;
