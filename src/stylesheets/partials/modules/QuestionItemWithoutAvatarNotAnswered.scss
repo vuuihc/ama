@@ -1,0 +1,29 @@
+@import "../base";
+
+article.question-without-avatar-not-answered {
+  border-bottom: 1px solid $borderGray;
+  overflow: hidden;
+  min-height: px2rem(156);
+  .question-content {
+    h4{
+      padding: px2rem(38) px2rem(27) px2rem(20) px2rem(27);
+      margin: 0;
+      font-size: px2rem(32);
+      font-weight: 500;
+    }
+  }
+  .status{
+    float: right;
+    .btn{
+      display: inline-block;
+      width:px2rem(83);
+      height:px2rem(37);
+      line-height: px2rem(37);
+      text-align: center;
+      @include uniMethod('border-radius', 5px);
+      background: $orange;
+      color: $white;
+      font-size: px2rem(16);
+    }
+  }
+}
