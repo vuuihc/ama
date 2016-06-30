@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import '../../../stylesheets/partials/modules/IAskedList.scss';
+import QuestionItemWithoutAvatar from '../blocks/QuestionItemWithoutAvatar';
+import QuestionItemWithoutAvatarNotAnswered from '../blocks/QuestionItemWithoutAvatarNotAnswered';
 
 class IAskedList extends Component{
     constructor(){
@@ -13,7 +15,19 @@ class IAskedList extends Component{
                     this.props.iAsked.data.length ? (
                         <ul >
                             <li>
-                                列表
+                                {
+                                    this.props.iAsked.data.map((item, index)=>{
+                                        switch(item.isanswered){
+                                            case '0':
+                                                return <QuestionItemWithoutAvatarNotAnswered key={index} question={item}/>;
+                                            case '1':
+                                                return <QuestionItemWithoutAvatar key={index} question={item}/>;
+                                            default:
+                                                console.log("这个问题有问题", item);
+                                                return '';
+                                        }
+                                    })
+                                }
                             </li>
                         </ul>
                     ):(
