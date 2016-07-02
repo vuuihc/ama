@@ -17,7 +17,7 @@ export default  {
             .then(json => cb(json.data))
     },
     getQuestionInfo(id,cb){
-        const url = domain+'/api/v1/question/gettopic?page='+1+'&number='+10
+        const url = domain+'/api/v1/question/getquestion?id='+id;
         fetch(url)
             .then(response =>
                 response.json()

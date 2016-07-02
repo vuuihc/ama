@@ -25,9 +25,9 @@ class Question extends Component{
                     {questionInfo.question_content}
                 </div>
                 <div className="tutor">
-                    <img src={questionInfo.avatar} />
-                    <h3 >{questionInfo.name}</h3>
-                    <h4 >{questionInfo.company} {questionInfo.position} </h4>
+                    <img src={questionInfo.teacher_face} />
+                    <h3 >{questionInfo.teacher_name}</h3>
+                    <h4 >{questionInfo.teacher_title}  </h4>
                 </div>
                 <div className="answer" onClick={this.playVoice.bind(this)}>
                     <span className="bubble">
@@ -50,9 +50,7 @@ class Question extends Component{
 }
 
 Question.propTypes = {
-    questionInfo: PropTypes.arrayOf(PropTypes.shape({
-
-    })).isRequired,
+    questionInfo: PropTypes.shape({}).isRequired,
 }
 
 function mapStateToProps(state) {

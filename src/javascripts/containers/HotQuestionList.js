@@ -76,7 +76,7 @@ class HotQuestionList extends Component {
         {
           hotQuestionList.map((question, index) =>
             <article key={index}>
-              <Link to={"question/"+question.id}>
+              <Link to={"question/"+question.question_id}>
                 <div className="question-content">
                   <h4>{question.question_content}</h4>
                 </div>

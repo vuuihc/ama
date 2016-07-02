@@ -27,7 +27,6 @@ class TutorList extends Component{
                                         <h3 >{tutor.user_name}</h3>
                                         <h4>
                                             <span>{tutor.user_title}</span>
-                                            <span>{tutor.user_title}</span>
                                         </h4>
                                     </div>
                                 </div>
@@ -44,10 +43,7 @@ class TutorList extends Component{
 }
 
 TutorList.propTypes = {
-    tutorList: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-    })).isRequired,
+    tutorList: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 }
 
 function mapStateToProps(state) {

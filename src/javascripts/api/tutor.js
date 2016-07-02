@@ -7,13 +7,19 @@ const env = 'development'
 import data from './data.js'
 
 export default  {
-    getTutorList(page,num,cb){
-        const url = domain+'/api/v1/user/getteacher?page='+page+'&number='+num
-        fetch(url)
-            .then(response =>
-                response.json()
-                // data.tutorList
-            )
-            .then(json => cb(json.data))
-    }
+  getTutorList(page, num, cb){
+    const url = domain + '/api/v1/user/getteacher?page=' + page + '&number=' + num
+    fetch(url)
+      .then(response =>
+          response.json()
+        // data.tutorList
+      )
+      .then(json => cb(json.data))
+  },
+  getTutorInfo(id,cb){
+    const url = domain + '/api/v1/user/getuserinfo?id='+id
+    fetch(url)
+      .then(response => response.json())
+      .then(json => cb(json.data))
+  }
 }
