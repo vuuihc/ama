@@ -10,7 +10,7 @@ class AskedMeList extends Component{
         return (
             <div className="askedMeList">
                 {
-                    this.props.askedMeData.length ? (
+                    this.props.askedMe.data.length ? (
                         <ul >
                             <li>
                                 {this.props}

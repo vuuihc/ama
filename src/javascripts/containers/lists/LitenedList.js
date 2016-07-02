@@ -7,10 +7,11 @@ class LitenedList extends Component{
         super();
     }
     render(){
+        console.log(this.props);
         return (
             <div className="askMeList">
                 {
-                    this.props.listenedData.length ? (
+                    this.props.listened.data.length ? (
                         <ul >
                             <li>
                                 <div className="header">入职心仪互联网公司的实际有哪些？</div>
