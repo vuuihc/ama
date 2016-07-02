@@ -21,5 +21,11 @@ export default  {
     fetch(url)
       .then(response => response.json())
       .then(json => cb(json.data))
+  },
+  getTutorAnswerList(id,page,number,cb){
+    const url = domain + `/api/v1/user/getteacheranswer?user_id=${id}&page=${page}&number=${number}`
+    fetch(url)
+      .then(response => response.json())
+      .then(json => cb(json.data))
   }
 }

@@ -6,6 +6,8 @@ import { Provider } from 'react-redux'
 import { Router, Route, hashHistory,browserHistory, IndexRoute } from 'react-router'
 import configureStore from './store/configureStore'
 
+import "../stylesheets/style.scss"
+
 import App from './components/App'
 import Hot from './components/Hot'
 import Tutor from './components/Tutor'

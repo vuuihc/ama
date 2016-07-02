@@ -38,7 +38,7 @@
         color: $lightGray;
       }
       .num{
-        span:first-child {
+        >span:first-child {
           margin-right: px2rem(229);
         }
       }

@@ -5,7 +5,8 @@ import tutor from '../api/tutor'
 
 import {
   RECEIVE_TUTOR_LIST,
-  RECEIVE_TUTOR_INFO
+  RECEIVE_TUTOR_INFO,
+  RECEIVE_TUTOR_ANSWER_LIST,
 } from './ActionTypes'
 
 export function getTutorList(page, number) {
@@ -13,7 +14,8 @@ export function getTutorList(page, number) {
     tutor.getTutorList(page, number, data => {
       dispatch({
         type: RECEIVE_TUTOR_LIST,
-        tutorList: data
+        data,
+        page
       })
     })
   }
@@ -25,6 +27,18 @@ export function getTutorInfo(id) {
         type: RECEIVE_TUTOR_INFO,
         tutorInfo: data
       })
+    })
+  }
+}
+export function getTutorAnswerList(id,page,number) {
+  return dispatch => {
+    tutor.getTutorAnswerList(id,page,number, data => {
+      dispatch({
+        type: RECEIVE_TUTOR_ANSWER_LIST,
+        data,
+        page
+      })
+      
     })
   }
 }

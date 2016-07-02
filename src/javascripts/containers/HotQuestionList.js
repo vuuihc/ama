@@ -5,6 +5,7 @@ import React, {Component, PropTypes} from 'react'
 import {Link} from 'react-router'
 import {connect} from 'react-redux'
 import {getHotQuestionList} from '../actions/question.js'
+import Loading from "./Loading"
 
 import '../../stylesheets/partials/modules/HotQuestionList.scss'
 
@@ -12,13 +13,20 @@ class HotQuestionList extends Component {
   constructor(props){
     super(props)
     this.state={
-      curAudio:""
+      curAudio:"",
+      curPage:1
     }
   }
   componentDidMount() {
-    console.log(this.props);
     this.props.dispatch(getHotQuestionList(1, 10))
-    console.log("hotQuestionList===" + this.props.hotQuestionList)
+    function onScroll(e) {
+      if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.hotQuestionList.completed) {
+        const curPage = ++this.state.curPage;
+        this.setState({curPage});
+        this.props.dispatch(getHotQuestionList(curPage, 10))
+      }
+    }
+    document.addEventListener('scroll', onScroll.bind(this));
   }
   wxpay(answer_audio){
     var self = this
@@ -66,15 +74,13 @@ class HotQuestionList extends Component {
         });
       }, false);
     }
-    // console.log(audio.src);
-    // audio.play();
   }
   render() {
     const {hotQuestionList} = this.props
     return (
       <main className="hot-question-list">
         {
-          hotQuestionList.map((question, index) =>
+          hotQuestionList.data.map((question, index) =>
             <article key={index}>
               <Link to={"question/"+question.question_id}>
                 <div className="question-content">
@@ -107,13 +113,14 @@ class HotQuestionList extends Component {
             </article>
           )
         }
+        {!hotQuestionList.completed && <Loading /> }
       </main>
     )
   }
 }
 
 HotQuestionList.propTypes = {
-  hotQuestionList: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  hotQuestionList: PropTypes.shape({}).isRequired,
 }
 
 function mapStateToProps(state) {

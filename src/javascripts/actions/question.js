@@ -4,27 +4,28 @@
 import question from '../api/question'
 
 import {
-    RECEIVE_HOT_QUESTION_LIST,
-    RECEIVE_QUESTION_INFO
+  RECEIVE_HOT_QUESTION_LIST,
+  RECEIVE_QUESTION_INFO,
 } from './ActionTypes'
 
-export function getHotQuestionList(page,number) {
-    return dispatch => {
-        question.getHotQuestionList(page,number,data => {
-            dispatch({
-                type: RECEIVE_HOT_QUESTION_LIST,
-                hotQuestionList: data
-            })
-        })
-    }
+export function getHotQuestionList(page, number) {
+  return dispatch => {
+    question.getHotQuestionList(page, number, data => {
+      dispatch({
+        type: RECEIVE_HOT_QUESTION_LIST,
+        data,
+        page
+      })
+    })
+  }
 }
 export function getQuestionInfo(id) {
-    return dispatch => {
-        question.getQuestionInfo(id,data => {
-            dispatch({
-                type: RECEIVE_QUESTION_INFO,
-                questionInfo: data
-            })
-        })
-    }
+  return dispatch => {
+    question.getQuestionInfo(id, data => {
+      dispatch({
+        type: RECEIVE_QUESTION_INFO,
+        questionInfo: data
+      })
+    })
+  }
 }

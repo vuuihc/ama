@@ -1,8 +1,13 @@
-@import "./_normalize";
-@import "./custom_normalize";
-* {
-  font-size: px2rem(30);
+@function px2rem($px){
+  @return $px / 75 * 1rem;
 }
+
+@mixin uniMethod($key, $value){
+  -webkit-#{$key}:#{$value};
+  -moz-#{$key}:#{$value};
+  #{$key}:#{$value};
+}
+
 
 /*蓝色*/
 $darkBlue : #0386e8;
@@ -29,3 +34,4 @@ $white : #ffffff;
 /*高度和大小*/
 $buttonHeight : px2rem(90); //按钮高度
 $buttonFontSize : px2rem(30); //按钮字体大小
+
