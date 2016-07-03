@@ -4,7 +4,8 @@
 import {
   RECEIVE_TUTOR_LIST,
   RECEIVE_TUTOR_INFO,
-  RECEIVE_TUTOR_ANSWER_LIST
+  RECEIVE_TUTOR_ANSWER_LIST,
+  RECEIVE_PREPAY_INFO
 }from '../actions/ActionTypes'
 
 const initialState = {
@@ -18,7 +19,8 @@ const initialState = {
     data:[],
     completed:false,
     page:1
-  }
+  },
+  prepayInfo:{}
 }
 
 export function tutorList(state = initialState.tutorList, action) {
@@ -53,6 +55,14 @@ export function tutorAnswerList(state = initialState.tutorAnswerList, action){
       else{
         return {data:state.data.concat(action.data),page:action.page,loading:false}
       }
+    default:
+      return state
+  }
+}
+export function prepayInfo(state = initialState.prepayInfo, action){
+  switch (action.type) {
+    case RECEIVE_PREPAY_INFO:
+      return action.data
     default:
       return state
   }

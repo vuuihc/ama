@@ -27,5 +27,11 @@ export default  {
     fetch(url)
       .then(response => response.json())
       .then(json => cb(json.data))
+  },
+  getPrepayInfo(prize,content,tutorId,cb){
+    const url = domain + `/api/v1/question/testquestion?prize=${prize}&content=${content}&answer_user_id=${tutorId}`
+    fetch(url)
+      .then(response => response.json())
+      .then(json => cb(json.data))
   }
 }
