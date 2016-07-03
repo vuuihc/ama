@@ -13,7 +13,7 @@ export default class QuestionItemWithoutAvatar extends Component {
     super(props)
   }
   render() {
-    const {question} = this.props
+    const {question} = this.props;
     return (
       <article className="question-without-avatar-not-answered">
         <div className="question-content">

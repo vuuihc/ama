@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { connect } from "react-redux";
 import '../../../stylesheets/partials/modules/IAskedList.scss';
 import QuestionItemWithoutAvatar from '../blocks/QuestionItemWithoutAvatar';
 import QuestionItemWithoutAvatarNotAnswered from '../blocks/QuestionItemWithoutAvatarNotAnswered';
+import { getIAsked } from '../../actions/account'
 
 class IAskedList extends Component{
     constructor(){
         super();
     }
-    
+    componentDidMount(){
+        this.props.getIAsked(1, 2);
+    }
     render(){
         return (
             <div className="iAskedList">
                 {
-                    this.props.iAsked.data.length ? (
+                    this.props.data.length ? (
                         <ul >
                             <li>
                                 {
-                                    this.props.iAsked.data.map((item, index)=>{
+                                    this.props.data.map((item, index)=>{
                                         switch(item.isanswered){
                                             case '0':
                                                 return <QuestionItemWithoutAvatarNotAnswered key={index} question={item}/>;
@@ -46,5 +50,14 @@ class IAskedList extends Component{
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        loading: state.account.iAsked.loading,
+        data: state.account.iAsked.data
+    }
+}
+
+IAskedList = connect(mapStateToProps, { getIAsked })(IAskedList);
 
 export default IAskedList;

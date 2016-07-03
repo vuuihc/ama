@@ -17,7 +17,16 @@ export function  getUserInfo() {
         })
     }
 }
-
+export function editUserInfo(company, job, experience, introduction){
+    return (dispatch) => {
+        account.editUserInfo(company, job, experience, introduction, (data) => {
+            dispatch({
+                type: RECEIVE_USER_INFO,
+                data
+            })
+        });
+    }
+}
 export function getListened(page, num){
     return (dispatch) => {
         account.getListened(page, num, (data) => {
