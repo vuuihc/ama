@@ -8,6 +8,7 @@ class IAskedList extends Component{
     constructor(){
         super();
     }
+    
     render(){
         return (
             <div className="iAskedList">
