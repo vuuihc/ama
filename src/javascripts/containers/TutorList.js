@@ -35,7 +35,7 @@ class TutorList extends Component {
       <main className="tutor-list">
         {
           tutorList.data.map((tutor, index) =>
-            <Link to={"/tutor/"+tutor.user_id}>
+            <Link key={index} to={"/tutor/"+tutor.user_id}>
               <article>
                 <div className="tutor-info">
                   <img src={tutor.user_face}/>
