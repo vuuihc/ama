@@ -102,7 +102,7 @@ class TutorIndex extends Component {
 }
 
 TutorIndex.propTypes = {
-  tutorInfo: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  tutorInfo: PropTypes.shape({}).isRequired,
 }
 
 function mapStateToProps(state) {
