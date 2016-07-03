@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import '../../../stylesheets/partials/modules/AskedMeList.scss';
+import Modal from '../Modal';
 
 class AskedMeList extends Component{
     constructor(){
@@ -27,9 +28,12 @@ class AskedMeList extends Component{
                             <div className="next">
                                 审核通过后我们会以邮件的形式发放邀请码
                             </div>
-                            <button className="becomeTutor">
+                            <button className="becomeTutor" onClick={(e)=>{
+                            console.log(this);
+                            }}>
                                 成为导师
                             </button>
+                            <Modal ref="modal"/>
                         </div>
                     )
                 }

@@ -6,7 +6,7 @@
  */
 import React, {Component} from 'react';
 import { Link } from 'react-router';
-import '../../stylesheets/partials/modules/QuestionItemWithoutAvatar.scss';
+import '../../../stylesheets/partials/modules/QuestionItemWithoutAvatar.scss';
 
 export default class QuestionItemWithoutAvatar extends Component {
   constructor(props) {
@@ -17,9 +17,9 @@ export default class QuestionItemWithoutAvatar extends Component {
     const {question} = this.props
     return (
       <article className="question-without-avatar">
-        <Link to={"question/"+question.answer_id}>
+        <Link to={"question/10001"}>
           <div className="question-content">
-            <h4>{question.content}</h4>
+            <h4>{ question.content }</h4>
           </div>
         </Link>
         <div className="answer">
@@ -30,7 +30,7 @@ export default class QuestionItemWithoutAvatar extends Component {
                 </span>
         </div>
         <div className="remark">
-          <div className="time">{question.time}</div>
+          <div className="time">{"2"}小时前被回答</div>
           <div className="remark-info">
             <span>{"23"}人偷听</span>
             <span className="kui">{"4"}人觉得亏了</span>

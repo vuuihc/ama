@@ -6,10 +6,8 @@ import {Link} from 'react-router'
 import { connect } from 'react-redux'
 
 import '../../stylesheets/partials/modules/UserIndex.scss'
-
-import React,{Component} from 'react'
 import  ReactDOM  from 'react-dom'
-export class Modal extends Component{
+export default class Modal extends Component{
   constructor(props){
     super(props)
   }

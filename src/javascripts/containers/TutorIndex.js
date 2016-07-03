@@ -6,7 +6,7 @@ import {Link} from 'react-router'
 import {connect} from 'react-redux'
 
 import {getTutorInfo,getTutorAnswerList,getPrepayInfo} from '../actions/tutor.js'
-import QuestionItemWithoutAvatar from "./QuestionItemWithoutAvatar"
+import QuestionItemWithoutAvatar from "./blocks/QuestionItemWithoutAvatar"
 import Loading from "./Loading"
 
 import '../../stylesheets/partials/modules/TutorIndex.scss'
