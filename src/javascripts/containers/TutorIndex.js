@@ -31,6 +31,10 @@ class TutorIndex extends Component {
         paySign: nextProps.prepayInfo.paySign, // 支付签名
         success: function (res) {
           console.log("支付成功！");
+        },
+        fail:function(res){
+          console.log("失败原因：")
+          console.log(res)
         }
       });
       // function onBridgeReady(){
