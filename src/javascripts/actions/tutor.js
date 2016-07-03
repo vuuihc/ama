@@ -42,9 +42,9 @@ export function getTutorAnswerList(id,page,number) {
     })
   }
 }
-export function getPrepayInfo(prize,content,tutorId) {
+export function getPrepayInfo(content,tutorId) {
   return dispatch => {
-    tutor.getPrepayInfo(prize,content,tutorId,data => {
+    tutor.getPrepayInfo(content,tutorId,data => {
       dispatch({
         type: RECEIVE_PREPAY_INFO,
         data

@@ -43,7 +43,7 @@ class TutorIndex extends Component {
     }
     const {tutorInfo} = this.props
     const {id} = this.props.params
-    this.props.dispatch(getPrepayInfo(1,content,id))
+    this.props.dispatch(getPrepayInfo(content,id))
   }
 
   componentDidMount() {
