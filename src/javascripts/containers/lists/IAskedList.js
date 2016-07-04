@@ -11,30 +11,39 @@ class IAskedList extends Component{
         super();
     }
     componentDidMount(){
-        this.props.getIAsked(1, 2);
+        if(this.props.data.length === 0){
+            this.props.getIAsked(1, 10);
+        }
+        this.handleScroll = this.handleScroll.bind(this);
+        document.addEventListener('scroll', this.handleScroll);
+    }
+
+    componentWillUnmount(){
+        document.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll() {
+        if (window.scrollY + window.innerHeight == document.body.offsetHeight && !this.props.completed) {
+            console.log('hah');
+            this.props.getIAsked(this.props.page, 10);
+        }
     }
     render(){
         return (
             <div className="iAskedList">
                 {
                     this.props.data.length ? (
-                        <ul >
-                            <li>
-                                {
-                                    this.props.data.map((item, index)=>{
-                                        switch(item.isanswered){
-                                            case '0':
-                                                return <QuestionItemWithoutAvatarNotAnswered key={index} question={item}/>;
-                                            case '1':
-                                                return <QuestionItemWithoutAvatar key={index} question={item}/>;
-                                            default:
-                                                console.log("这个问题有问题", item);
-                                                return '';
-                                        }
-                                    })
-                                }
-                            </li>
-                        </ul>
+                        this.props.data.map((item, index)=>{
+                            switch(item.isanswered){
+                                case '0':
+                                    return <QuestionItemWithoutAvatarNotAnswered key={index} question={item}/>;
+                                case '1':
+                                    return <QuestionItemWithoutAvatar key={index} question={item}/>;
+                                default:
+                                    console.log("这个问题有问题", item);
+                                    return '';
+                            }
+                        })
                     ):(
                         <div>
                             <div className="hint">
@@ -54,7 +63,9 @@ class IAskedList extends Component{
 const mapStateToProps = (state) => {
     return {
         loading: state.account.iAsked.loading,
-        data: state.account.iAsked.data
+        data: state.account.iAsked.data,
+        completed: state.account.iAsked.completed,
+        page: state.account.iAsked.page
     }
 }
 

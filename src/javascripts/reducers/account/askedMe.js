@@ -11,7 +11,7 @@ const askedMe = (state = defaultState, action) => {
             return Object.assign({}, state, {loading: true});
         case RECEIVE_ASKED_ME:
             const data = state.data.concat(action.data);
-            return Object.assign({}, state, {loading: false, data:action.data, page:state.page +1});
+            return Object.assign({}, state, {loading: false, data:data, page:state.page +1});
         case ASKED_ME_COMPLETED:
             return Object.assign({}, state, {completed:true});
         default:

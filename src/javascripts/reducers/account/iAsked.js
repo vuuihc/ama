@@ -11,7 +11,7 @@ const iAsked = (state = defaultState, action) => {
             return Object.assign({}, state, {loading: true});
         case RECEIVE_I_ASKED:
             const data = state.data.concat(action.data);
-            return Object.assign({}, state, {loading: false, data:action.data, page:state.page +1});
+            return Object.assign({}, state, {loading: false, data:data, page:state.page +1});
         case I_ASKED_COMPLETED:
             return Object.assign({}, state, {completed:true});
         default:

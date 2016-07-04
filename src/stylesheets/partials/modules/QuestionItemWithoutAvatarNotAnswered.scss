@@ -3,7 +3,8 @@
 article.question-without-avatar-not-answered {
   border-bottom: 1px solid $borderGray;
   overflow: hidden;
-  min-height: px2rem(156);
+  height: px2rem(156);
+  text-align: left;
   .question-content {
     h4{
       padding: px2rem(38) px2rem(27) px2rem(20) px2rem(27);

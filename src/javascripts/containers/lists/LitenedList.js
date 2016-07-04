@@ -9,12 +9,11 @@ import QuestionItemWithAvatar from '../blocks/QuestionItemWithAvatar'
 class LitenedList extends Component{
     constructor(){
         super();
-        this.state = {
-            curPage: 1
-        }
     }
     componentDidMount(){
-        this.props.getListened(1, 10);
+        if(this.props.data.length === 0){
+            this.props.getListened(1, 10);
+        }
         this.handleScroll = this.handleScroll.bind(this);
         document.addEventListener('scroll', this.handleScroll);
     }
@@ -25,9 +24,7 @@ class LitenedList extends Component{
 
     handleScroll() {
         if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.completed) {
-            const curPage = ++this.state.curPage;
-            this.setState({curPage});
-            this.props.getListened(curPage, 10);
+            this.props.getListened(this.props.page, 10);
         }
     }
 
@@ -63,12 +60,11 @@ class LitenedList extends Component{
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.account.listened.completed);
-    console.log('数据', state.account.listened.data);
     return {
         loading: state.account.listened.loading,
         data: state.account.listened.data,
-        compeleted: state.account.listened.completed
+        compeleted: state.account.listened.completed,
+        page:state.account.listened.page
     }
 }
 LitenedList = connect(mapStateToProps, { getListened })(LitenedList);
