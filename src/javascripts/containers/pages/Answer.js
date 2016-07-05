@@ -85,7 +85,7 @@ class Answer extends Component {
       event.preventDefault();
     }
     talkBtn.addEventListener('touchstart',recordStartHandler)
-    talkBtn.addEventListener('touchend',recordStopHandler)
+    talkBtn.addEventListener('mouseup',recordStopHandler)
     talkBtn.addEventListener('touchmove',touchMoveHandler)
   }
   render() {

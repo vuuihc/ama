@@ -53,14 +53,13 @@
       -moz-border-radius: px2rem(50);
       border-radius: px2rem(50);
       .bubble-voice {
-        background-image: url(../../../images/voice.png);
-        -webkit-background-size: 100% 100%;
-        background-size: 100% 100%;
-        width: px2rem(36);
-        height: px2rem(36);
+        background-image: url(../../../images/voicewave3.png);
+        background-size: cover;
         position: absolute;
-        left: px2rem(30);
-        bottom: px2rem(27);
+        width: px2rem(29);
+        height: px2rem(36);
+        left: px2rem(32);
+        top: px2rem(23);
       }
       .bubble-tail{
         background-image: url(../../../images/bubble-tail-blue.png);
