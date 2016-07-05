@@ -15,16 +15,11 @@ class Account extends Component {
     super(props);
     this.state = {
       index: 1,
-      listenedData: [],
-      iAskedData: [],
-      askedMeData: []
     }
   }
 
   componentDidMount(){
       this.props.getUserInfo();
-      // this.props.getListened(0,);
-      this.props.getIAsked(1, 2);
   }
   handleClick(value, event) {
     this.setState({index: value});
@@ -38,7 +33,7 @@ class Account extends Component {
         </Link>
         <div className="head">
           <div className="headOuter">
-            <img src={require("../../images/head.jpg")}/>
+            <img src={this.props.userInfo.user_face}/>
           </div>
         </div>
         <div className="name">{this.props.userInfo.user_name}</div>
@@ -76,23 +71,23 @@ class Account extends Component {
             >问我的
             </li>
           </ul>
+          <div className="divider"></div>
         </div>
-        <div className="divider"></div>
         <div>
           {
             (()=> {
               switch (this.state.index) {
                 case 1:
-                  return <LitenedList listened={this.props.listened}/>;
+                  return <LitenedList />;
                   break;
                 case 2:
-                  return <IAskedList iAsked={this.props.iAsked}/>;
+                  return <IAskedList />;
                   break;
                 case 3:
-                  return <AskedMeList askedMe={this.props.askedMe}/>;
+                  return <AskedMeList />;
                   break;
                 default:
-                  return <LitenedList/>;
+                  return <LitenedList />;
               }
             })()
           }
@@ -110,6 +105,6 @@ const mapStateToProps = (state) =>{
     }
 }
 
-Account = connect(mapStateToProps, { getUserInfo, getListened, getIAsked, getAskedMe })(Account);
+Account = connect(mapStateToProps, { getUserInfo })(Account);
 
 export default Account;

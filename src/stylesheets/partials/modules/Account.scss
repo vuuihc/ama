@@ -1,6 +1,7 @@
 @import "../base";
 #accountIndex{
   text-align: center;
+  padding-top: px2rem(40);
   img.editEntry{
     width: px2rem(32);
     height: px2rem(30);
@@ -10,7 +11,6 @@
   }
   .head{
     width:100%;
-    margin-top: px2rem(40);
     padding-left: px2rem(287);
     .headOuter{
       border: 2px solid $darkBlue;
@@ -108,7 +108,14 @@
           border-bottom:1px solid $darkBlue;
         }
       }
-
+    }
+    .divider{
+      clear:both;
+    }
+    &.fixed{
+      position:fixed;
+      top:0;
+      margin-left:px2rem(25);
     }
   }
   .container{

@@ -1,60 +1,52 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
-import '../../../stylesheets/partials/modules/LitenedList.scss';
+import React, { Component } from 'react'
+import { Link } from 'react-router'
+import '../../../stylesheets/partials/modules/LitenedList.scss'
+import { getListened } from '../../actions/account'
+import { connect } from 'react-redux'
+import Loading from '../Loading'
+import QuestionItemWithAvatar from '../blocks/QuestionItemWithAvatar'
 
 class LitenedList extends Component{
     constructor(){
         super();
     }
+    componentDidMount(){
+        if(this.props.data.length === 0){
+            this.props.getListened(1, 10);
+        }
+        this.handleScroll = this.handleScroll.bind(this);
+        document.addEventListener('scroll', this.handleScroll);
+    }
+
+    componentWillUnmount(){
+        document.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll() {
+        if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.completed) {
+            this.props.getListened(this.props.page, 10);
+        }
+    }
+
     render(){
-        console.log(this.props);
         return (
             <div className="askMeList">
                 {
-                    this.props.listened.data.length ? (
-                        <ul >
-                            <li>
-                                <div className="header">入职心仪互联网公司的实际有哪些？</div>
-                                <div className="content">
-                                    <div className="headInner">
-                                        <img src={require('../../../images/head.jpg')}/>
-                                    </div>
-                                    <div className="answer">
-                                    <span className="bubble">
-                                        <span className="bubble-tail"></span>
-                                        <span className="bubble-voice"></span>
-                                        <span className="bubble-text">1元偷偷听</span>
-                                    </span>
-                                    </div>
-                                </div>
-                                <div className="innerFooter">
-                                    <span className="howManyListen">54人偷听</span>
-                                    <span className="howManySorrow">3人觉得亏了</span>
-                                </div>
-                                <div className="divider"></div>
-                            </li>
-                            <li>
-                                <div className="header">入职心仪互联网公司的实际有哪些？</div>
-                                <div className="content">
-                                    <div className="headInner"><img src={require('../../../images/head.jpg')}/></div>
-                                    <div className="answer">
-                                    <span className="bubble">
-                                        <span className="bubble-tail"></span>
-                                        <span className="bubble-voice"></span>
-                                        <span className="bubble-text">1元偷偷听</span>
-                                    </span>
-                                    </div>
-                                </div>
-                                <div className="innerFooter">
-                                    <div className="howMany"></div>
-                                </div>
-                                <div className="divider"></div>
-                            </li>
+                    this.props.data.length ? (
+                        <ul>
+                            {
+                                this.props.data.map((question, index) => {
+                                    return <QuestionItemWithAvatar question={question} key={index} />;
+                                })
+                            }
+                            {
+                                this.props.loading ? <Loading /> : ''
+                            }
                         </ul>
                     ):(
                         <div>
                             <div className="hint">
-                                你还没有偷听过呦~
+                                你还没有偷听过呦~{this.props.data.length}
                             </div>
                             <div className="go">
                                 快去<Link to="/hot">热门</Link>逛一逛吧~
@@ -67,4 +59,13 @@ class LitenedList extends Component{
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        loading: state.account.listened.loading,
+        data: state.account.listened.data,
+        compeleted: state.account.listened.completed,
+        page:state.account.listened.page
+    }
+}
+LitenedList = connect(mapStateToProps, { getListened })(LitenedList);
 export default LitenedList;

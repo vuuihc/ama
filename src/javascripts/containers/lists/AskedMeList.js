@@ -2,19 +2,23 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import '../../../stylesheets/partials/modules/AskedMeList.scss';
 import Modal from '../Modal';
-
+import { connect } from 'react-redux'
+import { getAskedMe } from '../../actions/account'
 class AskedMeList extends Component{
     constructor(){
         super();
+    }
+    componentDidMount(){
+        this.props.getAskedMe(1, 2);
     }
     render(){
         return (
             <div className="askedMeList">
                 {
-                    this.props.askedMe.data.length ? (
+                    this.props.data.length ? (
                         <ul >
                             <li>
-                                {this.props}
+                                {/*this.props*/}
                             </li>
                         </ul>
                     ):(
@@ -41,5 +45,14 @@ class AskedMeList extends Component{
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        loading: state.account.askedMe.loading,
+        data: state.account.askedMe.data
+    }
+}
+
+AskedMeList = connect(mapStateToProps, { getAskedMe })(AskedMeList);
 
 export default AskedMeList;
