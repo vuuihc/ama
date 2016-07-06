@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import '../../../stylesheets/partials/modules/Answer.scss';
-import { getQuestionInfo } from  '../../actions/question';
+import { getQuestionInfo,saveVoice } from  '../../actions/question';
 import time from '../../util/time'
 
 class Answer extends Component {
   constructor(){
     super();
     this.state={
-      localId: ''
+      localId: null,
+      playing:false
     }
   }
   componentWillMount(){
@@ -18,34 +19,7 @@ class Answer extends Component {
   componentDidMount(){
     var talkBtn = document.querySelector(".replyContainer")
     var localId,START,END,recordTimer;
-    function uploadVoice(){
-      //调用微信的上传录音接口把本地录音先上传到微信的服务器
-      //不过，微信只保留3天，而我们需要长期保存，我们需要把资源从微信服务器下载到自己的服务器
-      wx.uploadVoice({
-        localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
-        isShowProgressTips: 1, // 默认为1，显示进度提示
-        success: function (res) {
-          console.log("上传成功了！")
-          console.log("serverId is ==="+res.serverId)
-          wx.playVoice({
-            localId:localId
-          })
-          //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
-          // $.ajax({
-          //   url: '后端处理上传录音的接口',
-          //   type: 'post',
-          //   data: JSON.stringify(res),
-          //   dataType: "json",
-          //   success: function (data) {
-          //     alert('文件已经保存到七牛的服务器');//这回，我使用七牛存储
-          //   },
-          //   error: function (xhr, errorType, error) {
-          //     console.log(error);
-          //   }
-          // });
-        }
-      });
-    }
+    var self = this
 
     var recordStartHandler = function (event) {
       event.preventDefault();
@@ -77,8 +51,7 @@ class Answer extends Component {
         wx.stopRecord({
           success: function (res) {
             localId = res.localId
-            console.log("停止录音成功，开始上传")
-            uploadVoice();
+            self.setState({localId:localId})
           },
           fail: function (res) {
             alert(JSON.stringify(res));
@@ -93,9 +66,57 @@ class Answer extends Component {
     talkBtn.addEventListener('touchstart',recordStartHandler)
     talkBtn.addEventListener('mouseup',recordStopHandler)
     talkBtn.addEventListener('touchmove',touchMoveHandler)
+
+    wx.onVoicePlayEnd({
+      success: function (res) {
+        self.setState({playing: false})
+      }
+    });
+  }
+  componentWillReceiveProps(nextProps){
+    if(nextProps.saveVoiceInfo.data.url!=undefined){
+      alert("保存成功，感谢您的回答")
+    }
+  }
+  confirmAnswer(){
+    const self = this
+    const localId = this.state.localId
+    if(localId==null){
+      alert("请先录音哦")
+      return
+    }
+    wx.uploadVoice({
+      localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
+      isShowProgressTips: 1, // 默认为1，显示进度提示
+      success: function (res) {
+        console.log("上传成功了！")
+        console.log("serverId is ==="+res.serverId)
+        const serverId = res.serverId
+        const questionId = self.props.params.id
+        self.props.dispatch(saveVoice(serverId,questionId))
+      }
+    });
+    
+  }
+  playVoice(){
+    wx.playVoice({
+      localId: this.state.localId // 需要播放的音频的本地ID，由stopRecord接口获得
+    });
+    this.setState({playing:true})
+  }
+  reRecord(){
+    this.setState({localId:null,serverId:null})
   }
   render() {
     const questionInfo = this.props.questionInfo ;
+    const replyContainer = <div className="replyContainer">
+      <div className="replyIcon"></div>
+      <div className="recording"></div>
+    </div>;
+    const voiceContainer =
+      <div className="voiceContainer" onClick={this.playVoice.bind(this)}>
+        {this.state.playing ? <VoiceWave /> : <span className="bubble-voice"></span>}
+      </div>;
     return (
       <div className="accountAnswer">
         <div className="question">
@@ -108,14 +129,11 @@ class Answer extends Component {
           <div className="time">{time.getTimeSpan(questionInfo.asked_time)}之前</div>
         </div>
         <div className="hint">您的回答将被公开，答案每被偷听一次，你就赚 ￥0.3</div>
-        <div className="replyHint">语音回复</div>
-        <div className="replyContainer">
-          <div className="replyIcon"></div>
-          <div className="recording"></div>
-        </div>
-        <div className="reRecord">重录</div>
-        <div className="recordHint">点击开始录制最多可录制120S</div>
-        <div className="sendBtn">发送</div>
+        <div className="replyHint">{this.state.localId==null?"按下录音":"点击试听"}</div>
+        {this.state.localId==null?replyContainer:voiceContainer}
+        <div className="reRecord" onClick={this.reRecord.bind(this)}>重录</div>
+        <div className="recordHint">{this.state.localId==null?"按住录音按钮最多可录制120S":"点击试听可试听您最近一次的回答"}</div>
+        <div className="sendBtn" onClick={this.confirmAnswer.bind(this)}>发送</div>
       </div>
     )
   }

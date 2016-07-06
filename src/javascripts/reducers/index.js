@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import {hotQuestionList,questionInfo} from './question.js'
+import {hotQuestionList,questionInfo,listenInfo,saveVoiceInfo} from './question.js'
 import {tutorList,tutorInfo,tutorAnswerList,prepayInfo} from './tutor.js'
 import account from './account/index'
 
 const rootReducer = combineReducers({
-    hotQuestionList,questionInfo,
+    hotQuestionList,questionInfo,listenInfo,saveVoiceInfo,
     tutorList,tutorInfo,tutorAnswerList,prepayInfo,
     account
 })

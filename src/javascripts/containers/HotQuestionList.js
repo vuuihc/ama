@@ -4,7 +4,7 @@
 import React, {Component, PropTypes} from 'react'
 import {Link} from 'react-router'
 import {connect} from 'react-redux'
-import {getHotQuestionList} from '../actions/question.js'
+import {getHotQuestionList,getListenInfo} from '../actions/question.js'
 import Loading from "./Loading"
 
 import '../../stylesheets/partials/modules/HotQuestionList.scss'
@@ -14,7 +14,8 @@ class HotQuestionList extends Component {
     super(props)
     this.state={
       curAudio:"",
-      curPage:1
+      curPage:1,
+      curQuestionId:null,
     }
   }
   componentDidMount() {
@@ -32,53 +33,38 @@ class HotQuestionList extends Component {
     }
     document.addEventListener('scroll', onScroll.bind(this));
   }
-  wxpay(answer_audio){
-    var self = this
-    alert("微信支付中")
-    var audio = new Audio("http://7fvhf6.com1.z0.glb.clouddn.com/7dyk%E7%BE%A4%E6%98%9F%20-%20%E6%A2%81%E7%A5%9D.mp3")
-    this.setState({curAudio:audio})
-    setTimeout(()=>{
-      alert("支付成功,开始播放")
-      self.playAudio()
-    },5000)
+  getPrepayInfo(answerId){
+    this.setState({curQuestionId:answerId})
+    this.props.dispatch(getListenInfo(answerId))
   }
-  playAudio(answer_audio){
-    console.log("into playAudio");
-    // var audio=new Audio("http://7fvhf6.com1.z0.glb.clouddn.com/Westlife%20-%20My%20Love.mp3");//路径
-    var audio = this.state.curAudio
-    // audio.src= "http://7fvhf6.com1.z0.glb.clouddn.com/7dyk%E7%BE%A4%E6%98%9F%20-%20%E6%A2%81%E7%A5%9D.mp3";
-    if (window.WeixinJSBridge) {
-      wx.getNetworkType({
-        success: function (res) {
-          audio.play();
-
-          // audio.addEventListener("canplaythrough", function () {
-          //   console.log('音频文件已经准备好，随时待命');
-          //   audio.play();
-          // }, false);
-        },
-        fail: function (res) {
-          audio.play();
-        }
-      });
-    }else{
-      document.addEventListener("WeixinJSBridgeReady", function() {
-        wx.getNetworkType({
+  componentWillReceiveProps(nextProps){
+    const self = this
+    if(nextProps.listenInfo.data.timeStamp!=undefined){
+      const time = new Date()
+      if(time.valueOf()/1000-nextProps.prepayInfo.timeStamp<5){
+        console.log("进入微信支付")
+        wx.chooseWXPay({
+          timestamp:nextProps.listenInfo.data.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+          nonceStr: nextProps.listenInfo.data.nonceStr, // 支付签名随机串，不长于 32 位
+          package: nextProps.listenInfo.data.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+          signType: nextProps.listenInfo.data.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+          paySign: nextProps.listenInfo.data.paySign, // 支付签名
           success: function (res) {
-            // audio.addEventListener("canplaythrough", function () {
-            //   console.log('音频文件已经准备好，随时待命');
-            //   audio.play();
-            // }, false);
-            audio.play();
-
+            console.log("支付成功！");
+            self.context.router.push(`question/${self.state.curQuestionId}`)
           },
-          fail: function (res) {
-            audio.play();
+          fail:function(res){
+            alert("支付失败")
+            console.log("失败原因：")
+            console.log(res)
           }
         });
-      }, false);
+      }
+    }else{
+      this.context.router.push(`question/${self.state.curQuestionId}`)
     }
   }
+  
   render() {
     const {hotQuestionList} = this.props
     return (
@@ -125,11 +111,15 @@ class HotQuestionList extends Component {
 
 HotQuestionList.propTypes = {
   hotQuestionList: PropTypes.shape({}).isRequired,
+  listenInfo: PropTypes.shape({}).isRequired
 }
-
+HotQuestionList.contextTypes = {
+  router: PropTypes.object
+}
 function mapStateToProps(state) {
   return {
-    hotQuestionList: state.hotQuestionList
+    hotQuestionList: state.hotQuestionList,
+    listenInfo:state.listenInfo
   }
 }
 
