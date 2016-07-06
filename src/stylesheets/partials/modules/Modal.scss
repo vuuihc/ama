@@ -1,0 +1,37 @@
+@import "../base";
+.modal-package-blur{
+  display:none;
+  .modal-content{
+    background:white;
+    z-index:1000;
+    border-radius:5px;
+    position:fixed;
+    filter:none;
+    .modal-header{
+      height:px2rem(85);
+      line-height:px2rem(85);
+      padding: 0 px2rem(36);
+      .title{
+        display:inline-block;
+        float:left;
+      }
+      .close{
+        display:inline-block;
+        float:right;
+        font-size:px2rem(40);
+        color:$lightGray;
+      }
+    }
+  }
+  .modal-background{
+    background:rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:px2rem(90);
+  }
+}
+.blur{
+  -webkit-filter: blur(4px);
+}

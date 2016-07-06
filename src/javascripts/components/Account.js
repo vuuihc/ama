@@ -26,6 +26,21 @@ class Account extends Component {
   }
 
   render() {
+      let list = <LitenedList />
+      switch (this.state.index){
+          case 1:
+              list = <LitenedList />;
+              break;
+          case 2:
+              list = <IAskedList />;
+              break;
+          case 3:
+              list = <AskedMeList />;
+              break;
+          default:
+              list = <LitenedList />;
+              break;
+      }
     return (
       <div id="accountIndex">
         <Link to="account/edit" >
@@ -74,23 +89,7 @@ class Account extends Component {
           <div className="divider"></div>
         </div>
         <div>
-          {
-            (()=> {
-              switch (this.state.index) {
-                case 1:
-                  return <LitenedList />;
-                  break;
-                case 2:
-                  return <IAskedList />;
-                  break;
-                case 3:
-                  return <AskedMeList />;
-                  break;
-                default:
-                  return <LitenedList />;
-              }
-            })()
-          }
+          { list }
         </div>
       </div>
     )

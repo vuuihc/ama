@@ -13,7 +13,7 @@ class App extends Component {
     render() {
         return(
             <div>
-                { this.props.children }
+                <div ref="content">{ this.props.children }</div>
                 <div className="footer">
                     <ul>
                         <li><Link activeClassName='active' to="/hot">热点</Link></li>
