@@ -28,7 +28,7 @@ export default class Modal extends Component{
     const top = (this.props.top) ? this.props.top/75 : 330/75;
     return(
       <div className="modal-package-blur" id="modal">
-          <div className="modal-content" style={{left: `${left}rem`, right:`${left}rem`, top:`${top}rem`, bottom:`${top}rem` }}>
+          <div className="modal-content" style={{left: `${left}rem`, right:`${left}rem`, top:`${top}rem`}}>
             <div className="modal-header">
               <h4 className="title">{this.props.title}</h4>
               <div className="close" onClick={this.close.bind(this)}>x</div>

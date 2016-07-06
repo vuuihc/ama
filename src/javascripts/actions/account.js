@@ -80,3 +80,14 @@ export function getAskedMe(page, num){
         })
     }
 }
+
+export function requestBecomeTeacher(invite, prize){
+    return (dispatch) => {
+        account.requestBecomeTeacher(invite, prize, (data) => {
+            dispatch({
+                type: RECEIVE_USER_INFO,
+                data
+            })
+        })
+    }
+}

@@ -3,8 +3,12 @@ import { Link } from 'react-router';
 import '../../../stylesheets/partials/modules/AskedMeList.scss';
 import Modal from '../Modal';
 import { connect } from 'react-redux'
-import { getAskedMe } from '../../actions/account'
+import QuestionItemWithoutAvatar from '../blocks/QuestionItemWithoutAvatar';
+import QuestionItemWithoutAvatarWithoutBubble from '../blocks/QuestionItemWithoutAvatarWithoutBubble';
+import { getAskedMe, requestBecomeTeacher } from '../../actions/account'
+import Loading from '../Loading'
 class AskedMeList extends Component{
+
     constructor(){
         super();
         this.state={
@@ -12,19 +16,50 @@ class AskedMeList extends Component{
             inviteCode:''
         }
     }
+
     componentDidMount(){
-        this.props.getAskedMe(1, 2);
+        if(this.props.data.length === 0){
+            this.props.getAskedMe(1, 10);
+        }
+        this.handleScroll = this.handleScroll.bind(this);
+        document.addEventListener('scroll', this.handleScroll);
+    }
+
+    componentWillUnmount(){
+        document.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleSubmit(){
+        this.props.requestBecomeTeacher(this.state.inviteCode, this.state.afford);
+        this.refs.modal.close();
+    }
+    handleScroll() {
+        if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.completed) {
+            this.props.getAskedMe(this.props.page, 10);
+        }
     }
     render(){
         return (
             <div className="askedMeList">
                 {
-                    this.props.data.length ? (
-                        <ul >
-                            <li>
-                                {/*this.props*/}
-                            </li>
-                        </ul>
+                    this.props.userInfo.is_teacher === '1' ? (
+                        this.props.data.length === 0
+                        ? (
+                            <div>
+                                <div className="hint">
+                                    还没有人问你
+                                </div>
+                                <button className="becomeTutor" >
+                                    让更多人了解你
+                                </button>
+                            </div>
+                        ) : this.props.data.map((item, index)=>{
+                                if(item.isanswered === '1'){
+                                    return <Link to={`/question/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble key={index} question={item}/></Link>;
+                                }else{
+                                    return <Link to={`/account/answer/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble key={index} question={item}/></Link>;
+                                }
+                            })
                     ):(
                         <div>
                             <div className="hint">
@@ -45,6 +80,7 @@ class AskedMeList extends Component{
                                     <input
                                         type="text"
                                         className="no-underline"
+                                        style={{width:`${250/75}rem`}}
                                         value={this.state.inviteCode}
                                         placeholder="请输入您的邀请码"
                                         onChange={(e)=>{this.setState({inviteCode:e.target.value})}}
@@ -54,14 +90,14 @@ class AskedMeList extends Component{
                                     <span>向我提问需要支付</span>
                                     <input
                                         type="text"
-                                        width={`${30/75}rem`}
+                                        style={{width:`${30/75}rem`}}
                                         className="no-underline"
                                         value={this.state.afford}
                                         onChange={(e)=>{this.setState({afford:e.target.value})}}
                                     />
                                     <span>元</span>
                                 </div>
-                                <div className="submit">确定</div>
+                                <div className="submit" onClick={this.handleSubmit.bind(this)}>确定</div>
                             </Modal>
                         </div>
                     )
@@ -74,10 +110,12 @@ class AskedMeList extends Component{
 const mapStateToProps = (state) => {
     return {
         loading: state.account.askedMe.loading,
-        data: state.account.askedMe.data
+        data: state.account.askedMe.data,
+        userInfo: state.account.userInfo,
+        page:state.account.askedMe.page
     }
 }
 
-AskedMeList = connect(mapStateToProps, { getAskedMe })(AskedMeList);
+AskedMeList = connect(mapStateToProps, { getAskedMe, requestBecomeTeacher })(AskedMeList);
 
 export default AskedMeList;

@@ -30,7 +30,7 @@ ReactDom.render((
                     <Route path="tutor" component={Tutor}/>
                     <Route path="account" >
                         <IndexRoute component={Account}/>
-                        <Route path="answer" component = {Answer}/>
+                        <Route path="answer/:id" component = {Answer}/>
                         <Route path="edit" component = {AccountEdit}/>
                     </Route>
                     <Route path="question/:id" component={Question} />

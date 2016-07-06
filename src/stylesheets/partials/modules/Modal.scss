@@ -8,6 +8,9 @@
     position:fixed;
     filter:none;
     .modal-header{
+      position:absolute;
+      left:0;
+      right:0;
       height:px2rem(85);
       line-height:px2rem(85);
       padding: 0 px2rem(36);
@@ -24,7 +27,7 @@
     }
   }
   .modal-background{
-    background:rgba(0, 0, 0, 0.1);
+    background:rgba(0, 0, 0, 0.2);
     position: fixed;
     left:0;
     right:0;

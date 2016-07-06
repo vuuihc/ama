@@ -15,7 +15,7 @@ class QuestionItemWithAvatar extends Component{
                     <div className="header">{ question.content }</div>
                     <div className="content">
                         <div className="headInner">
-                            <img src={require('../../../images/head.jpg')}/>
+                            <img src={question.user_face} />
                         </div>
                         <div className="answer">
                             <span className="bubble">
@@ -26,8 +26,8 @@ class QuestionItemWithAvatar extends Component{
                         </div>
                     </div>
                     <div className="innerFooter">
-                        <span className="howManyListen">{ 54 }人偷听</span>
-                        <span className="howManySorrow">{ 3 }人觉得亏了</span>
+                        <span className="howManyListen">{ question.listen }人偷听</span>
+                        <span className="howManySorrow">{ question.listen - question.dislike }人觉得赞</span>
                     </div>
                     <div className="divider"></div>
                 </Link>

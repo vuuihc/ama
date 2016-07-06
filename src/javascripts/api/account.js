@@ -2,6 +2,7 @@ import { domain } from './config'
 
 export default  {
     getUserInfo(cb) {
+        
         fetch(domain + `/api/v1/user/getusernow`, {
             credentials: 'same-origin'
         })
@@ -73,5 +74,45 @@ export default  {
                 }
             })
     },
+    getAskedMe(page, num, cb) {
+        return fetch(domain + `/api/v1/question/myanswer?page=${page}&number=${num}`, {
+            credentials: 'same-origin'
+        })
+            .then(res => res.json())
+            .then(json => {
+                switch(json.errCode){
+                    case 0:
+                        cb(json.data);
+                        break;
+                    default:
+                        console.log('获取我问列表失败', json);
+                }
+            })
+    },
+    requestBecomeTeacher(invite, prize, cb){
+        return fetch(domain + '/api/v1/user/beteacher',{
+            credentials: 'same-origin',
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify({
+                invite,
+                prize
+            })
+        })
+            .then(res => res.json())
+            .then(json => {
+                switch(json.errCode){
+                    case 0:
+                        cb(json.data);
+                        break;
+                    default:
+                        alert(json.msg);
+                }
+            })
+    }
 }
     

@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { connect } from "react-redux";
 import '../../../stylesheets/partials/modules/IAskedList.scss';
 import QuestionItemWithoutAvatar from '../blocks/QuestionItemWithoutAvatar';
-import QuestionItemWithoutAvatarNotAnswered from '../blocks/QuestionItemWithoutAvatarNotAnswered';
+import QuestionItemWithoutAvatarWithoutBubble from '../blocks/QuestionItemWithoutAvatarWithoutBubble';
 import { getIAsked } from '../../actions/account'
 
 class IAskedList extends Component{
@@ -36,7 +36,7 @@ class IAskedList extends Component{
                         this.props.data.map((item, index)=>{
                             switch(item.isanswered){
                                 case '0':
-                                    return <QuestionItemWithoutAvatarNotAnswered key={index} question={item}/>;
+                                    return <QuestionItemWithoutAvatarWithoutBubble key={index} question={item}/>;
                                 case '1':
                                     return <QuestionItemWithoutAvatar key={index} question={item}/>;
                                 default:

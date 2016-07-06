@@ -1,5 +1,14 @@
 @import '../base';
 .askedMeList{
+  padding: 0 px2rem(25) px2rem(90);
+  text-align: left;
+  article{
+    width:100%;
+    h4, .answer, .remark{
+      padding-left: 0 !important;
+    }
+  }
+  /*
   ul{
     list-style-type: none;
     margin: 0 auto;
@@ -84,6 +93,7 @@
       }
     }
   }
+      */
   .hint{
     margin-top: px2rem(86);
     color:$darkGray;
@@ -112,7 +122,7 @@
     outline: none;
   }
   .afford, .invitation {
-    margin: px2rem(107), px2rem(114), px2rem(130), 0;
+    margin: px2rem(107) px2rem(130) 0 px2rem(114);
     span{
       font-size: px2rem(36);
       font-weight: bold;
@@ -135,7 +145,7 @@
     color: $white;
     font-size: px2rem(24);
     border: 1px solid $borderOrange;
-    margin: px2rem(190) px2rem(94) 0;
+    margin: px2rem(190) px2rem(94) px2rem(60);
     height: px2rem(90);
     line-height: px2rem(90);
   }

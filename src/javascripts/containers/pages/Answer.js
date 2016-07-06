@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
 import '../../../stylesheets/partials/modules/Answer.scss';
+import { getQuestionInfo } from  '../../actions/question';
+import time from '../../util/time'
 
 class Answer extends Component {
   constructor(){
@@ -8,7 +11,10 @@ class Answer extends Component {
       localId: ''
     }
   }
-
+  componentWillMount(){
+    const {id} = this.props.params;
+    this.props.getQuestionInfo(id);
+  }
   componentDidMount(){
     var talkBtn = document.querySelector(".replyContainer")
     var localId,START,END,recordTimer;
@@ -89,16 +95,17 @@ class Answer extends Component {
     talkBtn.addEventListener('touchmove',touchMoveHandler)
   }
   render() {
+    const questionInfo = this.props.questionInfo ;
     return (
       <div className="accountAnswer">
         <div className="question">
           <div className="head">
             <img src={require('../../../images/head.jpg')}/>
-            <span className="name">奥特曼</span>
-            <span className="price">￥ 5.2</span>
+            <span className="name">{questionInfo.user_name}</span>
+            <span className="price">￥ {questionInfo.question_prize}</span>
           </div>
-          <div className="stem">陈老师，长得太帅总是被爱怎么办，有么有什么解决办法</div>
-          <div className="time">15分钟之前</div>
+          <div className="stem">{ questionInfo.question_content}</div>
+          <div className="time">{time.getTimeSpan(questionInfo.asked_time)}之前</div>
         </div>
         <div className="hint">您的回答将被公开，答案每被偷听一次，你就赚 ￥0.3</div>
         <div className="replyHint">语音回复</div>
@@ -114,5 +121,12 @@ class Answer extends Component {
   }
 
 }
+const mapStateToProps = (state) =>{
+  return {
+    questionInfo: state.questionInfo
+  }
+}
+
+Answer = connect( mapStateToProps, { getQuestionInfo })(Answer);
 
 export default Answer;

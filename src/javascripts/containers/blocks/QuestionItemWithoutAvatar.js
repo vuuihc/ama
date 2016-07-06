@@ -32,8 +32,8 @@ export default class QuestionItemWithoutAvatar extends Component {
                 <div className="remark">
                     <div className="time">{"2"}小时前被回答</div>
                     <div className="remark-info">
-                        <span>{"23"}人偷听</span>
-                        <span className="kui">{"4"}人觉得亏了</span>
+                        <span>{question.listened}人偷听</span>
+                        <span className="kui">{question.listened - question.dislike}人觉得赞</span>
                     </div>
                 </div>
             </article>

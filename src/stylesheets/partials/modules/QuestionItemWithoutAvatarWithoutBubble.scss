@@ -1,6 +1,6 @@
 @import "../base";
 
-article.question-without-avatar-not-answered {
+article.question-without-avatar-without-bubble {
   border-bottom: 1px solid $borderGray;
   overflow: hidden;
   height: px2rem(156);
@@ -22,9 +22,14 @@ article.question-without-avatar-not-answered {
       line-height: px2rem(37);
       text-align: center;
       @include uniMethod('border-radius', 5px);
-      background: $orange;
       color: $white;
       font-size: px2rem(16);
+      &.not-solved{
+        background: $orange;
+      }
+      &.solved{
+        background: $darkBlue;
+      }
     }
   }
 }
