@@ -38,7 +38,7 @@ export default class Modal extends Component{
             </div>
             <div className="modal-footer"></div>
           </div>
-          <div className="modal-background"></div>
+          <div className="modal-background" onClick={() => {this.close();}}></div>
       </div>
     )
   }

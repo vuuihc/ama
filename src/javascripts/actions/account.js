@@ -1,5 +1,8 @@
 import account from '../api/account'
-import { 
+import {
+    REQUEST_LISTENED,
+    REQUEST_ASKED_ME,
+    REQUEST_I_ASKED,
     RECEIVE_USER_INFO,
     RECEIVE_LISTENED,
     RECEIVE_I_ASKED,
@@ -32,6 +35,9 @@ export function editUserInfo(company, job, experience, introduction){
 }
 export function getListened(page, num){
     return (dispatch) => {
+        dispatch({
+            type:REQUEST_LISTENED
+        });
         account.getListened(page, num, (data) => {
             if(data.length === 0){
                 dispatch({
@@ -49,6 +55,9 @@ export function getListened(page, num){
 
 export function getIAsked(page, num){
     return (dispatch) => {
+        dispatch({
+            type:RECEIVE_I_ASKED
+        });
         account.getIAsked(page, num, (data) => {
             if(data.length === 0){
                 dispatch({
@@ -66,6 +75,9 @@ export function getIAsked(page, num){
 
 export function getAskedMe(page, num){
     return (dispatch) => {
+        dispatch({
+            type:REQUEST_ASKED_ME
+        });
         account.getAskedMe(page, num, (data) => {
             if(data.length === 0){
                 dispatch({

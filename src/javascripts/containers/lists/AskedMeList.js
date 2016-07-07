@@ -3,10 +3,11 @@ import { Link } from 'react-router';
 import '../../../stylesheets/partials/modules/AskedMeList.scss';
 import Modal from '../Modal';
 import { connect } from 'react-redux'
-import QuestionItemWithoutAvatar from '../blocks/QuestionItemWithoutAvatar';
 import QuestionItemWithoutAvatarWithoutBubble from '../blocks/QuestionItemWithoutAvatarWithoutBubble';
 import { getAskedMe, requestBecomeTeacher } from '../../actions/account'
 import Loading from '../Loading'
+import ReactDom from 'react-dom'
+
 class AskedMeList extends Component{
 
     constructor(){
@@ -15,6 +16,7 @@ class AskedMeList extends Component{
             afford:'',
             inviteCode:''
         }
+
     }
 
     componentDidMount(){
@@ -27,6 +29,7 @@ class AskedMeList extends Component{
 
     componentWillUnmount(){
         document.removeEventListener('scroll', this.handleScroll);
+        console.log(this.refs);
     }
 
     handleSubmit(){
@@ -44,22 +47,44 @@ class AskedMeList extends Component{
                 {
                     this.props.userInfo.is_teacher === '1' ? (
                         this.props.data.length === 0
+                        // this.props.data.length
                         ? (
                             <div>
                                 <div className="hint">
                                     还没有人问你
                                 </div>
-                                <button className="becomeTutor" >
+                                <button className="becomeTutor" onClick={(e) => {this.refs.qrcode.open();}}>
                                     让更多人了解你
                                 </button>
+                                <Modal ref="qrcode" left="22" top="300">
+                                   <img width="100%" src={
+                                        jrQrcode.getQrBase64(`http://h5app.7dyk.com/ama/7dyk/#/tutor/${this.props.userInfo.user_id}`, {
+                                            padding		: 10,   //二维码四边空白，默认为10px
+                                            width		: 256,  //二维码图片宽度，默认为256px
+                                            height		: 256,  //二维码图片高度，默认为256px
+                                            correctLevel	: 2,    //二维码容错level，默认为高
+                                            background      : "#ffffff",    //二维码颜色
+                                            foreground      : "#000000"     //二维码背景颜色
+                                        })}
+                                    />
+                                </Modal>
                             </div>
-                        ) : this.props.data.map((item, index)=>{
-                                if(item.isanswered === '1'){
-                                    return <Link to={`/question/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble key={index} question={item}/></Link>;
-                                }else{
-                                    return <Link to={`/account/answer/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble key={index} question={item}/></Link>;
-                                }
-                            })
+                        ) : (
+                            <div>
+                            {
+                                this.props.data.map((item, index)=>{
+                                    if(item.isanswered === '1'){
+                                        return <Link to={`/question/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble key={index} question={item}/></Link>;
+                                    }else{
+                                        return <Link to={`/account/answer/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble key={index} question={item}/></Link>;
+                                    }
+                                })
+                            }
+                            {
+                                this.props.loading ? <Loading  /> :''
+                            }
+                            </div>
+                        )
                     ):(
                         <div>
                             <div className="hint">
@@ -74,7 +99,7 @@ class AskedMeList extends Component{
                             <button className="becomeTutor" onClick={(e)=>{this.refs.modal.open()}}>
                                 成为导师
                             </button>
-                            <Modal left="22" right="330" ref="modal">
+                            <Modal left="22" top="330" ref="modal">
                                 <div className="invitation">
                                     <span>邀请码</span>
                                     <input
