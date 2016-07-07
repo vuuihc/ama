@@ -103,9 +103,9 @@ class Answer extends Component {
     });
   }
   componentWillReceiveProps(nextProps){
-    // if(nextProps.saveVoiceInfo.data.url!=undefined){
-    //   alert("保存成功，感谢您的回答")
-    // }
+    if(nextProps.saveVoiceInfo.data.url!=undefined){
+      alert("保存成功，感谢您的回答")
+    }
   }
   confirmAnswer(){
     const self = this
