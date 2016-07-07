@@ -16,6 +16,7 @@ export const RECEIVE_PREPAY_INFO  = 'RECEIVE_PREPAY_INFO'
 /*********我的**********/
 //获取到用户消息
 export const RECEIVE_USER_INFO = 'RECEIVE_USER_INFO';
+export const RECEIVE_OTHER_USER_INFO = 'RECEIVE_OTHER_USER_INFO';
 //获取听过的问题列表
 export const REQUEST_LISTENED = 'REQUEST_LISTENED';
 export const LISTENED_COMPLETED = 'LISTENED_COMPLETED';

@@ -17,6 +17,21 @@ export default  {
                 }
             });
     },
+    getOtherUserInfo(id, cb) {
+        fetch(domain + `/api/v1/user/getuserinfo?id=${id}`, {
+            credentials: 'same-origin'
+        })
+            .then(res => res.json())
+            .then(json => {
+                switch(json.errCode){
+                    case 0:
+                        cb(json.data);
+                        break;
+                    default:
+                        console.log('获取用户信息失败', json);
+                }
+            });
+    },
     editUserInfo(company, job, experience, introduction, cb) {
       fetch( domain + `/api/v1/user/editusernow`,{
           credentials: 'same-origin',
