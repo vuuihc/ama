@@ -39,9 +39,10 @@ class HotQuestionList extends Component {
   }
   componentWillReceiveProps(nextProps){
     const self = this
+    console.log(nextProps.listenInfo.data)
     if(nextProps.listenInfo.data.timeStamp!=undefined){
       const time = new Date()
-      if(time.valueOf()/1000-nextProps.prepayInfo.timeStamp<5){
+      if(time.valueOf()/1000-nextProps.listenInfo.data.timeStamp<5){
         console.log("进入微信支付")
         wx.chooseWXPay({
           timestamp:nextProps.listenInfo.data.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
@@ -59,7 +60,7 @@ class HotQuestionList extends Component {
             console.log(res)
           }
         });
-      }else{
+      }else if(nextProps.listenInfo.data.audio!=undefined){
         this.context.router.push(`question/${self.state.curQuestionId}`)
       }
     }
@@ -111,7 +112,9 @@ class HotQuestionList extends Component {
 
 HotQuestionList.propTypes = {
   hotQuestionList: PropTypes.shape({}).isRequired,
-  listenInfo: PropTypes.shape({}).isRequired
+  listenInfo: PropTypes.shape({
+    data:PropTypes.shape({}).isRequired
+  }).isRequired
 }
 HotQuestionList.contextTypes = {
   router: PropTypes.object

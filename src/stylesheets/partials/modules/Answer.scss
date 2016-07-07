@@ -89,6 +89,21 @@
       display: none;
     }
   }
+  .voiceContainer{
+    position: relative;
+    height: px2rem(241);
+    line-height: px2rem(241);
+    text-align: center;
+    .bubble-voice{
+      display: inline-block;
+      @include uniMethod('border-radius', px2rem(90));
+      width: px2rem(180);
+      height: px2rem(180);
+      background: #0387e7 url('../../../images/voicewave3.png') 50% 50% no-repeat;
+      background-size:50%;
+      vertical-align: middle;
+    }
+  }
   .reRecord{//重录
     color:$white;
     margin:0 auto;
