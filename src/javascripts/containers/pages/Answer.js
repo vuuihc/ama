@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import '../../../stylesheets/partials/modules/Answer.scss';
 import { getQuestionInfo,saveVoice } from  '../../actions/question';
 import time from '../../util/time'
+import VoiceWave from  "../../components/VoiceWave"
 
 class Answer extends Component {
   constructor(){
