@@ -62,10 +62,12 @@ class Answer extends Component {
       
     }
     var clickHandler  = function (event) {
-      if(this.state.recording){
+      if(self.state.recording){
         recordStopHandler(event)
+        self.setState({recording:false})
       }else{
         recordStartHandler(event)
+        self.setState({recording:true})
       }
     }
     talkBtn.addEventListener('click',clickHandler)
