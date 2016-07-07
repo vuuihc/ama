@@ -25,6 +25,7 @@ class Question extends Component {
     this.props.dispatch(getListenInfo(answerId))
   }
   bubbleClick(){
+    console.log(this.state.answerAudio)
     if(this.state.answerAudio!=null){
       this.playAudio()
     }else{

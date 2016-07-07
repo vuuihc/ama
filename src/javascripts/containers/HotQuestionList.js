@@ -60,7 +60,7 @@ class HotQuestionList extends Component {
             console.log(res)
           }
         });
-      }else{
+      }else if(nextProps.listenInfo.data.audio!=undefined){
         this.context.router.push(`question/${self.state.curQuestionId}`)
       }
     }
