@@ -3,7 +3,9 @@
  */
 import {
   RECEIVE_HOT_QUESTION_LIST,
-  RECEIVE_QUESTION_INFO
+  RECEIVE_QUESTION_INFO,
+  RECEIVE_LISTEN_INFO,
+  RECEIVE_SAVE_VOICE
 }from '../actions/ActionTypes'
 
 const initialState = {
@@ -12,7 +14,13 @@ const initialState = {
     completed: false,
     page: 1
   },
-  questionInfo: {}
+  questionInfo: {},
+  listenInfo:{
+    data: {}
+  },
+  saveVoiceInfo:{
+    data:{}
+  }
 }
 
 export function hotQuestionList(state = initialState.hotQuestionList, action) {
@@ -33,6 +41,22 @@ export function questionInfo(state = initialState.questionInfo, action) {
   switch (action.type) {
     case RECEIVE_QUESTION_INFO:
       return action.questionInfo
+    default:
+      return state
+  }
+}
+export function listenInfo(state = initialState.listenInfo, action) {
+  switch (action.type) {
+    case RECEIVE_LISTEN_INFO:
+      return {data: action.data}
+    default:
+      return state
+  }
+}
+export function saveVoiceInfo(state = initialState.saveVoiceInfo,action) {
+  switch (action.type) {
+    case RECEIVE_SAVE_VOICE:
+      return {data: action.data}
     default:
       return state
   }

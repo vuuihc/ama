@@ -4,6 +4,8 @@
 /*********问题**********/
 export const RECEIVE_HOT_QUESTION_LIST  = 'RECEIVE_HOT_QUESTION_LIST'
 export const RECEIVE_QUESTION_INFO  = 'RECEIVE_QUESTION_INFO'
+export const RECEIVE_LISTEN_INFO  = 'RECEIVE_LISTEN_INFO'
+export const RECEIVE_SAVE_VOICE  = 'RECEIVE_SAVE_VOICE'
 
 /*********导师**********/
 export const RECEIVE_TUTOR_LIST  = 'RECEIVE_TUTOR_LIST'
