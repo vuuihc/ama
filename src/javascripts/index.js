@@ -35,9 +35,11 @@ ReactDom.render((
                     </Route>
                     <Route path="question/:id" component={Question} />
                     <Route path="tutor/:id" component={TutorIndex} />
-                    <Route path="user" >
-                      <IndexRoute component={UserIndex} />
-                      <Route path="share" component={UserShare} />
+                    <Route path="user/:id" component={UserIndex}>
+                        {/*
+                         <IndexRoute component={UserIndex} />
+                         <Route path="share" component={UserShare} />
+                        */}
                     </Route>
                 </Route>
             </Router>

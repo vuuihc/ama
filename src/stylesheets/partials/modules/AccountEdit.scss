@@ -15,14 +15,15 @@
         margin-top: px2rem(57);
       }
       label{
-        font-size: px2rem(34);
+        font-size: px2rem(25);
         display: inline-block;
-        width: px2rem(160);
+        width: px2rem(180);
         white-space: pre;
       }
       input{
+        text-align: center;
         font-size: px2rem(20);
-        width: px2rem(337);
+        width: px2rem(310);
         border: none;
         border-bottom: 1px solid $lightGray;
         &:focus{

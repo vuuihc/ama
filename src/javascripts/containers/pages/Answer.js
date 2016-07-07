@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import '../../../stylesheets/partials/modules/Answer.scss';
 import { getQuestionInfo,saveVoice } from  '../../actions/question';
@@ -17,6 +18,7 @@ class Answer extends Component {
     this.props.getQuestionInfo(id);
   }
   componentDidMount(){
+    console.log(this.props.questionInfo);
     var talkBtn = document.querySelector(".replyContainer")
     var localId,START,END,recordTimer;
     var self = this
@@ -74,9 +76,9 @@ class Answer extends Component {
     });
   }
   componentWillReceiveProps(nextProps){
-    if(nextProps.saveVoiceInfo.data.url!=undefined){
-      alert("保存成功，感谢您的回答")
-    }
+    // if(nextProps.saveVoiceInfo.data.url!=undefined){
+    //   alert("保存成功，感谢您的回答")
+    // }
   }
   confirmAnswer(){
     const self = this
@@ -108,7 +110,7 @@ class Answer extends Component {
     this.setState({localId:null,serverId:null})
   }
   render() {
-    const questionInfo = this.props.questionInfo ;
+    const questionInfo = this.props.questionInfo;
     const replyContainer = <div className="replyContainer">
       <div className="replyIcon"></div>
       <div className="recording"></div>
@@ -121,12 +123,12 @@ class Answer extends Component {
       <div className="accountAnswer">
         <div className="question">
           <div className="head">
-            <img src={require('../../../images/head.jpg')}/>
+            <Link to={`user/${questionInfo.user_id}`}><img src={questionInfo.user_face}/></Link>
             <span className="name">{questionInfo.user_name}</span>
             <span className="price">￥ {questionInfo.question_prize}</span>
           </div>
           <div className="stem">{ questionInfo.question_content}</div>
-          <div className="time">{time.getTimeSpan(questionInfo.asked_time)}之前</div>
+          <div className="time">{time.getTimeSpan(questionInfo.question_time)}之前</div>
         </div>
         <div className="hint">您的回答将被公开，答案每被偷听一次，你就赚 ￥0.3</div>
         <div className="replyHint">{this.state.localId==null?"按下录音":"点击试听"}</div>
@@ -139,6 +141,7 @@ class Answer extends Component {
   }
 
 }
+
 const mapStateToProps = (state) =>{
   return {
     questionInfo: state.questionInfo

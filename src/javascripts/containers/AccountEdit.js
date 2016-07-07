@@ -39,15 +39,15 @@ class AccountEdit extends Component{
                     { userInfo.user_name }
                 </h3>
                 <div className="form-group">
-                <label>工作单位：</label>
+                <label>工作单位/学校：</label>
                 <input
-                    placeholder="输入您所在的公司"
+                    placeholder="您所在的公司/学校"
                     value={this.state.company}
                     onChange={(e)=>{this.setState({company: e.target.value})}}
                 />
                 </div>
                 <div className="form-group">
-                <label>职      业：</label>
+                <label>职   业/学   历：</label>
                 <input
                     placeholder="输入您的职业类型"
                     value={this.state.job}
@@ -55,7 +55,7 @@ class AccountEdit extends Component{
                 />
                 </div>
                 <div className="form-group">
-                <label>经      验：</label>
+                <label>经   验/年   级：</label>
                 <input
                     placeholder="输入您的工作时间"
                     value={this.state.experience}
@@ -63,7 +63,7 @@ class AccountEdit extends Component{
                 />
                 </div>
                 <div className="form-group self-intro-text">
-                <label>您的介绍：</label>
+                <label>您  的   介  绍：</label>
                 <textarea
                     placeholder="写点什么让大家更了解你吧~"
                     value={this.state.introduction}

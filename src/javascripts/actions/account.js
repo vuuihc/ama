@@ -10,10 +10,11 @@ import {
     LISTENED_COMPLETED,
     I_ASKED_COMPLETED,
     ASKED_ME_COMPLETED,
+    RECEIVE_OTHER_USER_INFO,
 } from './ActionTypes'
 
 
-export function  getUserInfo() {
+export function  getUserInfo(id) {
     return (dispatch) => {
         account.getUserInfo((data) => {
             dispatch({
@@ -23,6 +24,17 @@ export function  getUserInfo() {
         })
     }
 }
+export function  getOtherUserInfo(id) {
+    return (dispatch) => {
+        account.getOtherUserInfo(id, (data) => {
+            dispatch({
+                type: RECEIVE_OTHER_USER_INFO,
+                data
+            })
+        })
+    }
+}
+
 export function editUserInfo(company, job, experience, introduction){
     return (dispatch) => {
         account.editUserInfo(company, job, experience, introduction, (data) => {
@@ -56,7 +68,7 @@ export function getListened(page, num){
 export function getIAsked(page, num){
     return (dispatch) => {
         dispatch({
-            type:RECEIVE_I_ASKED
+            type:REQUEST_I_ASKED
         });
         account.getIAsked(page, num, (data) => {
             if(data.length === 0){
