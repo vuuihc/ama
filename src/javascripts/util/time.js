@@ -5,6 +5,8 @@ export default  {
      */
     getTimeSpan(time){
         let now = new Date();
+        time = new Date(time);
+        time = time.getTime();
         let seconds = (now.getTime() - time) / 1000;
         if( seconds < 60){
             return parseInt(seconds) + ' 秒';
