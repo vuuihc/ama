@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import ReactDOM from 'react-dom'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import '../../../stylesheets/partials/modules/Answer.scss';
@@ -11,8 +12,7 @@ class Answer extends Component {
     super();
     this.state={
       localId: null,
-      playing: false,
-      recording: false
+      status: 0//0:话筒等待录音，1：正在录音，2：音波等待播放，3：正在播放
     }
   }
   componentWillMount(){
@@ -21,14 +21,13 @@ class Answer extends Component {
   }
   componentDidMount(){
     console.log(this.props.questionInfo);
-    var talkBtn = document.querySelector(".replyContainer")
+    var talkBtn = ReactDOM.findDOMNode(this.refs.replyContainer)
     var localId,START,END,recordTimer;
     var self = this
-
     var recordStartHandler = function (event) {
       event.preventDefault();
       START = new Date().getTime();
-      talkBtn.classList.add('on')
+      // talkBtn.classList.add('on')
       recordTimer = setTimeout(function(){
         wx.startRecord({
           success: function(){
@@ -62,22 +61,44 @@ class Answer extends Component {
           }
         });
       }
-      
+    }
+    var playStartHandler = function (event) {
+      wx.playVoice({
+        localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
+      });
+    }
+    var playStopHandler = function (event) {
+      event.preventDefault()
+      wx.stopVoice({
+        localId: localId // 需要停止的音频的本地ID，由stopRecord接口获得
+      });
     }
     var clickHandler  = function (event) {
-      if(self.state.recording){
-        recordStopHandler(event)
-        self.setState({recording:false})
-      }else{
-        recordStartHandler(event)
-        self.setState({recording:true})
+      switch (self.state.status) {
+        case 0:
+          recordStartHandler(event)
+          self.setState({status:1})
+          break
+        case 1:
+          recordStopHandler(event)
+          self.setState({status:2})
+          break
+        case 2:
+          playStartHandler(event)
+          self.setState({status:3})
+          break
+        case 3:
+          playStopHandler(event)
+          self.setState({status:2})
+
+
       }
     }
     talkBtn.addEventListener('click',clickHandler)
 
     wx.onVoicePlayEnd({
       success: function (res) {
-        self.setState({playing: false})
+        self.setState({status: 2})
       }
     });
   }
@@ -107,24 +128,24 @@ class Answer extends Component {
     
   }
   playVoice(){
-    wx.playVoice({
-      localId: this.state.localId // 需要播放的音频的本地ID，由stopRecord接口获得
-    });
     this.setState({playing:true})
   }
   reRecord(){
-    this.setState({localId:null,serverId:null})
+    this.setState({status:0})
   }
   render() {
     const questionInfo = this.props.questionInfo;
-    const replyContainer = <div className="replyContainer">
-      <div className="replyIcon"></div>
-      <div className="recording"></div>
-    </div>;
-    const voiceContainer =
-      <div className="voiceContainer" onClick={this.playVoice.bind(this)}>
-        {this.state.playing ? <VoiceWave /> : <span className="bubble-voice"></span>}
-      </div>;
+    const classNames = {
+      0 : " ",
+      1 : " on",
+      2 : " voice",
+      3 : " voice-on"
+    }
+    // const replyContainer = ;
+    // const voiceContainer =
+    //   <div className="voiceContainer" onClick={this.playVoice.bind(this)}>
+    //     {this.state.playing ? <VoiceWave /> : }
+    //   </div>;
     return (
       <div className="accountAnswer">
         <div className="question">
@@ -138,7 +159,12 @@ class Answer extends Component {
         </div>
         <div className="hint">您的回答将被公开，答案每被偷听一次，你就赚 ￥0.3</div>
         <div className="replyHint">{this.state.localId==null?"点击录音":"点击试听"}</div>
-        {this.state.localId==null?replyContainer:voiceContainer}
+        <div ref="replyContainer" className={"replyContainer"+classNames[this.state.status]}>
+          <div className="replyIcon"></div>
+          <div className="recording"></div>
+          <div className="bubble-voice"></div>
+          <VoiceWave />
+        </div>
         <div className="reRecord" onClick={this.reRecord.bind(this)}>重录</div>
         <div className="recordHint">{this.state.localId==null?"点击录音按钮最多可录制120S":"点击试听可试听您最近一次的回答"}</div>
         <div className="sendBtn" onClick={this.confirmAnswer.bind(this)}>发送</div>

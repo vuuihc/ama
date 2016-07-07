@@ -69,6 +69,25 @@
       .recording{
         display: block;
       }
+      .voice-waves,.bubble-voice{
+        display: none;
+      }
+    }
+    &.voice{
+      .recording,.replyIcon,.voice-waves{
+        display: none;
+      }
+      .bubble-voice{
+        display: block;
+      }
+    }
+    &.voice-on{
+      .voice-waves{
+        display: block;
+      }
+      .recording,.replyIcon,.bubble-voice{
+        display: none;
+      }
     }
     .replyIcon{
       display: inline-block;
