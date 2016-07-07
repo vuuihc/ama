@@ -9,7 +9,8 @@ class Answer extends Component {
     super();
     this.state={
       localId: null,
-      playing:false
+      playing: false,
+      recording: false
     }
   }
   componentWillMount(){
@@ -60,12 +61,14 @@ class Answer extends Component {
       }
       
     }
-    var touchMoveHandler = function (event) {
-      event.preventDefault();
+    var clickHandler  = function (event) {
+      if(this.state.recording){
+        recordStopHandler(event)
+      }else{
+        recordStartHandler(event)
+      }
     }
-    talkBtn.addEventListener('touchstart',recordStartHandler)
-    talkBtn.addEventListener('mouseup',recordStopHandler)
-    talkBtn.addEventListener('touchmove',touchMoveHandler)
+    talkBtn.addEventListener('click',clickHandler)
 
     wx.onVoicePlayEnd({
       success: function (res) {
@@ -129,10 +132,10 @@ class Answer extends Component {
           <div className="time">{time.getTimeSpan(questionInfo.asked_time)}之前</div>
         </div>
         <div className="hint">您的回答将被公开，答案每被偷听一次，你就赚 ￥0.3</div>
-        <div className="replyHint">{this.state.localId==null?"按下录音":"点击试听"}</div>
+        <div className="replyHint">{this.state.localId==null?"点击录音":"点击试听"}</div>
         {this.state.localId==null?replyContainer:voiceContainer}
         <div className="reRecord" onClick={this.reRecord.bind(this)}>重录</div>
-        <div className="recordHint">{this.state.localId==null?"按住录音按钮最多可录制120S":"点击试听可试听您最近一次的回答"}</div>
+        <div className="recordHint">{this.state.localId==null?"点击录音按钮最多可录制120S":"点击试听可试听您最近一次的回答"}</div>
         <div className="sendBtn" onClick={this.confirmAnswer.bind(this)}>发送</div>
       </div>
     )
