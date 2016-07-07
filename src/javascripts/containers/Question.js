@@ -25,6 +25,7 @@ class Question extends Component {
     this.props.dispatch(getListenInfo(answerId))
   }
   bubbleClick(){
+    console.log("this.state.answerAudio")
     console.log(this.state.answerAudio)
     if(this.state.answerAudio!=null){
       this.playAudio()
@@ -38,7 +39,7 @@ class Question extends Component {
     const answerId = this.props.params.id
     if(nextProps.listenInfo.data.timeStamp!=undefined){
       const time = new Date()
-      if(time.valueOf()/1000-nextProps.prepayInfo.timeStamp<5){
+      if(time.valueOf()/1000-nextProps.listenInfo.data.timeStamp<5){
         console.log("进入微信支付")
         wx.chooseWXPay({
           timestamp:nextProps.listenInfo.data.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
@@ -56,10 +57,10 @@ class Question extends Component {
             console.log(res)
           }
         });
+      }else if(nextProps.listenInfo.data.audio){
+        const answerAudio = new Audio(nextProps.listenInfo.data.audio)
+        this.setState({answerAudio:answerAudio})
       }
-    }else{
-      const answerAudio = new Audio(nextProps.listenInfo.data.answer_audio)
-      this.setState({answerAudio:answerAudio})
     }
   }
   playAudio(){
