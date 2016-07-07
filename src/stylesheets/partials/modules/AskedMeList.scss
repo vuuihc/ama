@@ -111,12 +111,13 @@
     font-size: px2rem(24);
   }
   .becomeTutor{
+    text-align: center;
     margin-top: px2rem(53);
-    border:none;
+    border: none;
     @include uniMethod('border-radius', 5px);
     background: $orange;
     font-size: px2rem(30);
-    color:$white;
+    color: $white;
     width: px2rem(702);
     height: px2rem(88);
     outline: none;
