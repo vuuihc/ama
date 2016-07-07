@@ -121,11 +121,13 @@ class Question extends Component {
 
 Question.propTypes = {
   questionInfo: PropTypes.shape({}).isRequired,
+  listenInfo: PropTypes.shape({}).isRequired,
 }
 
 function mapStateToProps(state) {
   return {
-    questionInfo: state.questionInfo
+    questionInfo: state.questionInfo,
+    listenInfo: state.listenInfo
   }
 }
 
