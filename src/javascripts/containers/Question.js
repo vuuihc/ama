@@ -104,11 +104,11 @@ class Question extends Component {
           <h4 >{questionInfo.teacher_company+"　"+questionInfo.teacher_position}  </h4>
         </div>
         <div className="answer" onClick={this.bubbleClick.bind(this)}>
-                    <span className="bubble">
-                        <span className="bubble-tail"></span>
-                      {this.state.playing ? <VoiceWave /> : <span className="bubble-voice"></span>}
-                      <span className="bubble-text">{listenInfo.data.answer_audio?"点击播放":`${questionInfo.question_prize}元偷偷听`}</span>
-                    </span>
+            <span className="bubble">
+                <span className="bubble-tail"></span>
+              {this.state.playing ? <VoiceWave /> : <span className="bubble-voice"></span>}
+              <span className="bubble-text">{listenInfo.data.answer_audio?"点击播放":`${questionInfo.question_prize}元偷偷听`}</span>
+            </span>
         </div>
         <div className="remark">
           <span>{questionInfo.answer_listen}人偷听</span>
