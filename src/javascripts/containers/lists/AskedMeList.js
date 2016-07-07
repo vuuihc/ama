@@ -46,8 +46,8 @@ class AskedMeList extends Component{
             <div className="askedMeList">
                 {
                     this.props.userInfo.is_teacher === '1' ? (
-                        // this.props.data.length === 0
-                        this.props.data.length
+                        this.props.data.length === 0
+                        // this.props.data.length
                         ? (
                             <div>
                                 <div className="hint">
