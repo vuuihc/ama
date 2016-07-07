@@ -57,7 +57,9 @@ class Question extends Component {
             console.log(res)
           }
         });
-      }else if(nextProps.listenInfo.data.audio){
+      }else if(nextProps.listenInfo.data.audio!=undefined){
+        console.log("nextProps.listenInfo.data")
+        console.log(nextProps.listenInfo.data)
         const answerAudio = new Audio(nextProps.listenInfo.data.audio)
         this.setState({answerAudio:answerAudio})
       }
