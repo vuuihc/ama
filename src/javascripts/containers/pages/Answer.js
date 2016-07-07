@@ -141,7 +141,8 @@ class Answer extends Component {
 }
 const mapStateToProps = (state) =>{
   return {
-    questionInfo: state.questionInfo
+    questionInfo: state.questionInfo,
+    saveVoiceInfo: state.saveVoiceInfo
   }
 }
 
