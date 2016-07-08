@@ -159,11 +159,13 @@ class Answer extends Component {
         </div>
         <div className="hint">您的回答将被公开，答案每被偷听一次，你就赚 ￥0.3</div>
         <div className="replyHint">{this.state.localId==null?"点击录音":"点击试听"}</div>
-        <div ref="replyContainer" className={"replyContainer"+classNames[this.state.status]}>
-          <div className="replyIcon"></div>
-          <div className="recording"></div>
-          <div className="bubble-voice"></div>
-          <VoiceWave />
+        <div ref="replyContainer" className="replyContainer">
+          <div className={"round-container"+classNames[this.state.status]}>
+            <div className="replyIcon"></div>
+            <div className="recording"></div>
+            <div className="bubble-voice"></div>
+            <VoiceWave />
+          </div>
         </div>
         <div className="reRecord" onClick={this.reRecord.bind(this)}>重录</div>
         <div className="recordHint">{this.state.localId==null?"点击录音按钮最多可录制120S":"点击试听可试听您最近一次的回答"}</div>

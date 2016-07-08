@@ -2,7 +2,7 @@
  * Created by zhushihao on 2016/6/13.
  */
 import fetch from 'isomorphic-fetch'
-const domain = 'http://api.7dyk.com'
+import { domain } from './config'
 const env = 'development'
 import data from './data.js'
 
