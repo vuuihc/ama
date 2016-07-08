@@ -3,7 +3,7 @@
  */
 export default {
   handleResponse(json,cb){
-    switch(json.data.errCode){
+    switch(json.errCode){
       case 0:
         return cb(json.data)
         break
