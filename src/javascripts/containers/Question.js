@@ -20,6 +20,7 @@ class Question extends Component {
     const {id} = this.props.params
     this.props.dispatch(getQuestionInfo(id))
     console.log("questionInfo===" + this.props.questionInfo)
+    console.log("listenInfo===" + this.props.listenInfo)
   }
   getPrepayInfo(answerId){
     this.props.dispatch(getListenInfo(answerId))
@@ -57,12 +58,12 @@ class Question extends Component {
             console.log(res)
           }
         });
-      }else if(nextProps.listenInfo.data.url!=undefined){
-        console.log("nextProps.listenInfo.data")
-        console.log(nextProps.listenInfo.data)
-        const answerAudio = new Audio(nextProps.listenInfo.data.url)
-        this.setState({answerAudio:answerAudio})
       }
+    }else if(nextProps.listenInfo.data.url!=undefined){
+      console.log("nextProps.listenInfo.data")
+      console.log(nextProps.listenInfo.data)
+      const answerAudio = new Audio(nextProps.listenInfo.data.url)
+      this.setState({answerAudio:answerAudio})
     }
   }
   playAudio(){
