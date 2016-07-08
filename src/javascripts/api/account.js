@@ -8,7 +8,7 @@ export default  {
             credentials: 'same-origin'
         })
             .then(res => res.json())
-            .then(json => apiHandler.handleResponse(json));
+            .then(json => apiHandler.handleResponse(json,cb));
     },
     getOtherUserInfo(id, cb) {
         fetch(domain + `/api/v1/user/getuserinfo?id=${id}`, {
@@ -34,28 +34,28 @@ export default  {
           })
       })
           .then(res => res.json())
-          .then(json => apiHandler.handleResponse(json));
+          .then(json => apiHandler.handleResponse(json,cb));
     },
     getListened(page, num, cb) {
         return fetch(domain + `/api/v1/question/mylisten?page=${page}&number=${num}`, {
             credentials: 'same-origin'
         })
             .then(res => res.json())
-            .then(json => apiHandler.handleResponse(json))
+            .then(json => apiHandler.handleResponse(json,cb))
     },
     getIAsked(page, num, cb) {
         return fetch(domain + `/api/v1/question/myquestion?page=${page}&number=${num}`, {
             credentials: 'same-origin'
         })
             .then(res => res.json())
-            .then(json => apiHandler.handleResponse(json))
+            .then(json => apiHandler.handleResponse(json,cb))
     },
     getAskedMe(page, num, cb) {
         return fetch(domain + `/api/v1/question/myanswer?page=${page}&number=${num}`, {
             credentials: 'same-origin'
         })
             .then(res => res.json())
-            .then(json => apiHandler.handleResponse(json))
+            .then(json => apiHandler.handleResponse(json,cb))
     },
     requestBecomeTeacher(invite, prize, cb){
         return fetch(domain + '/api/v1/user/beteacher',{
@@ -72,7 +72,7 @@ export default  {
             })
         })
             .then(res => res.json())
-            .then(json => apiHandler.handleResponse(json))
+            .then(json => apiHandler.handleResponse(json,cb))
     }
 }
     

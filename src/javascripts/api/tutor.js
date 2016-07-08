@@ -16,7 +16,7 @@ export default  {
           response.json()
         // data.tutorList
       )
-      .then(json => apiHandler.handleResponse(json))
+      .then(json => apiHandler.handleResponse(json,cb))
   },
   getTutorInfo(id,cb){
     const url = domain + '/api/v1/user/getuserinfo?id='+id
@@ -24,7 +24,7 @@ export default  {
       credentials: 'same-origin'
     })
       .then(response => response.json())
-      .then(json => apiHandler.handleResponse(json))
+      .then(json => apiHandler.handleResponse(json,cb))
   },
   getTutorAnswerList(id,page,number,cb){
     const url = domain + `/api/v1/user/getteacheranswer?user_id=${id}&page=${page}&number=${number}`
@@ -32,7 +32,7 @@ export default  {
       credentials: 'same-origin'
     })
       .then(response => response.json())
-      .then(json => apiHandler.handleResponse(json))
+      .then(json => apiHandler.handleResponse(json,cb))
   },
   getPrepayInfo(content,tutorId,cb){
     const url = domain + `/api/v1/question/testquestion?content=${content}&answer_user_id=${tutorId}`
@@ -40,6 +40,6 @@ export default  {
       credentials: 'same-origin'
     })
       .then(response => response.json())
-      .then(json => apiHandler.handleResponse(json))
+      .then(json => apiHandler.handleResponse(json,cb))
   }
 }

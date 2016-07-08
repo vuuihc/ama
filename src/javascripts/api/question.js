@@ -16,7 +16,7 @@ export default  {
           response.json()
         // data.questionList
       )
-      .then(json => apiHandler.handleResponse(json))
+      .then(json => apiHandler.handleResponse(json,cb))
   },
   getQuestionInfo(id, cb){
     const url = domain + '/api/v1/question/getquestion?id=' + id;
@@ -27,14 +27,14 @@ export default  {
           response.json()
         // data.questionInfo
       )
-      .then(json => apiHandler.handleResponse(json))
+      .then(json => apiHandler.handleResponse(json,cb))
   },
   getListenInfo(answerId,cb){
     fetch(`${domain}/api/v1/answer/listen?answer_id=${answerId}`,{
       credentials: 'same-origin'
     })
       .then(response => response.json())
-      .then(json => apiHandler.handleResponse(json))
+      .then(json => apiHandler.handleResponse(json,cb))
   },
   saveVoice(serverId,questionId,cb) {
     fetch( `${domain}/api/v1/answer/answer`,{
@@ -57,7 +57,7 @@ export default  {
             cb(json.data);
             break;
           default:
-            apiHandler.handleResponse(json);
+            apiHandler.handleResponse(json,cb);
         }
       });
   }
