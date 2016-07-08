@@ -9,7 +9,9 @@ import apiHandler from "../util/apiHandler"
 export default  {
   getHotQuestionList(page, num, cb){
     const url = domain + '/api/v1/question/gettopic?page=' + page + '&number=' + num
-    fetch(url)
+    fetch(url,{
+      credentials: 'same-origin'
+    })
       .then(response =>
           response.json()
         // data.questionList
@@ -18,7 +20,9 @@ export default  {
   },
   getQuestionInfo(id, cb){
     const url = domain + '/api/v1/question/getquestion?id=' + id;
-    fetch(url)
+    fetch(url,{
+      credentials: 'same-origin'
+    })
       .then(response =>
           response.json()
         // data.questionInfo
@@ -26,7 +30,9 @@ export default  {
       .then(json => apiHandler.handleResponse(json))
   },
   getListenInfo(answerId,cb){
-    fetch(`${domain}/api/v1/answer/listen?answer_id=${answerId}`)
+    fetch(`${domain}/api/v1/answer/listen?answer_id=${answerId}`,{
+      credentials: 'same-origin'
+    })
       .then(response => response.json())
       .then(json => apiHandler.handleResponse(json))
   },

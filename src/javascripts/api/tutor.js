@@ -9,7 +9,9 @@ import apiHandler from "../util/apiHandler"
 export default  {
   getTutorList(page, num, cb){
     const url = domain + '/api/v1/user/getteacher?page=' + page + '&number=' + num
-    fetch(url)
+    fetch(url,{
+      credentials: 'same-origin'
+    })
       .then(response =>
           response.json()
         // data.tutorList
@@ -18,19 +20,25 @@ export default  {
   },
   getTutorInfo(id,cb){
     const url = domain + '/api/v1/user/getuserinfo?id='+id
-    fetch(url)
+    fetch(url,{
+      credentials: 'same-origin'
+    })
       .then(response => response.json())
       .then(json => apiHandler.handleResponse(json))
   },
   getTutorAnswerList(id,page,number,cb){
     const url = domain + `/api/v1/user/getteacheranswer?user_id=${id}&page=${page}&number=${number}`
-    fetch(url)
+    fetch(url,{
+      credentials: 'same-origin'
+    })
       .then(response => response.json())
       .then(json => apiHandler.handleResponse(json))
   },
   getPrepayInfo(content,tutorId,cb){
     const url = domain + `/api/v1/question/testquestion?content=${content}&answer_user_id=${tutorId}`
-    fetch(url)
+    fetch(url,{
+      credentials: 'same-origin'
+    })
       .then(response => response.json())
       .then(json => apiHandler.handleResponse(json))
   }
