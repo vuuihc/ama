@@ -12,7 +12,7 @@ class Question extends Component {
   constructor(props){
     super(props)
     this.state={
-      playing: true,
+      playing: false,
       answerAudio:null
     }
   }
@@ -57,10 +57,10 @@ class Question extends Component {
             console.log(res)
           }
         });
-      }else if(nextProps.listenInfo.data.audio!=undefined){
+      }else if(nextProps.listenInfo.data.url!=undefined){
         console.log("nextProps.listenInfo.data")
         console.log(nextProps.listenInfo.data)
-        const answerAudio = new Audio(nextProps.listenInfo.data.audio)
+        const answerAudio = new Audio(nextProps.listenInfo.data.url)
         this.setState({answerAudio:answerAudio})
       }
     }
@@ -107,7 +107,7 @@ class Question extends Component {
             <span className="bubble">
                 <span className="bubble-tail"></span>
               {this.state.playing ? <VoiceWave /> : <span className="bubble-voice"></span>}
-              <span className="bubble-text">{listenInfo.data.answer_audio?"点击播放":`${questionInfo.question_prize}元偷偷听`}</span>
+              <span className="bubble-text">{listenInfo.data.url?"点击播放":`${questionInfo.question_prize}元偷偷听`}</span>
             </span>
         </div>
         <div className="remark">

@@ -21,10 +21,6 @@ class HotQuestionList extends Component {
   componentDidMount() {
     this.props.dispatch(getHotQuestionList(1, 10))
     function onScroll(e) {
-        console.log(window.scrollY);
-        console.log(window.innerHeight);
-        console.log(document.body.clientHeight);
-
       if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.hotQuestionList.completed) {
         const curPage = ++this.state.curPage;
         this.setState({curPage});

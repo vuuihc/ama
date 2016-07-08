@@ -63,7 +63,7 @@ const mapStateToProps = (state) => {
     return {
         loading: state.account.listened.loading,
         data: state.account.listened.data,
-        compeleted: state.account.listened.completed,
+        completed: state.account.listened.completed,
         page:state.account.listened.page
     }
 }
