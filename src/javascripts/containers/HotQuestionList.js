@@ -98,7 +98,7 @@ class HotQuestionList extends Component {
                 <div className="value">价值￥{question.question_prize}</div>
                 <div className="remark-info">
                   <span>{question.answer_listen}人偷听</span>
-                  <span className="kui">{question.answer_dislike}人觉得亏了</span>
+                  <span className="kui">{question.answer_like}人觉得赞</span>
                 </div>
               </div>
             </article>

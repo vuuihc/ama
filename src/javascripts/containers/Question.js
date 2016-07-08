@@ -112,7 +112,7 @@ class Question extends Component {
         </div>
         <div className="remark">
           <span>{questionInfo.answer_listen}人偷听</span>
-          <span className="kui">{questionInfo.answer_dislike}人觉得亏了</span>
+          <span className="kui">{questionInfo.answer_like}人觉得赞</span>
         </div>
         <div className="ask">
           <div className="value">￥{questionInfo.teacher_prize}</div>
