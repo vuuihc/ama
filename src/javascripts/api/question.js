@@ -4,7 +4,7 @@
 import fetch from 'isomorphic-fetch'
 import { domain } from './config'
 const env = 'development'
-import data from './data.js'
+import apiHandler from "../util/apiHandler"
 
 export default  {
   getHotQuestionList(page, num, cb){
@@ -14,7 +14,7 @@ export default  {
           response.json()
         // data.questionList
       )
-      .then(json => cb(json.data))
+      .then(json => apiHandler.handleResponse(json))
   },
   getQuestionInfo(id, cb){
     const url = domain + '/api/v1/question/getquestion?id=' + id;
@@ -23,12 +23,12 @@ export default  {
           response.json()
         // data.questionInfo
       )
-      .then(json => cb(json.data))
+      .then(json => apiHandler.handleResponse(json))
   },
   getListenInfo(answerId,cb){
     fetch(`${domain}/api/v1/answer/listen?answer_id=${answerId}`)
       .then(response => response.json())
-      .then(json => cb(json.data))
+      .then(json => apiHandler.handleResponse(json))
   },
   saveVoice(serverId,questionId,cb) {
     fetch( `${domain}/api/v1/answer/answer`,{
@@ -51,7 +51,7 @@ export default  {
             cb(json.data);
             break;
           default:
-            console.log('上传录音失败', json);
+            apiHandler.handleResponse(json);
         }
       });
   }

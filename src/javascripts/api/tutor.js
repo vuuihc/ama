@@ -3,8 +3,8 @@
  */
 import fetch from 'isomorphic-fetch'
 import { domain } from './config'
-const env = 'development'
-import data from './data.js'
+import apiHandler from "../util/apiHandler"
+
 
 export default  {
   getTutorList(page, num, cb){
@@ -14,24 +14,24 @@ export default  {
           response.json()
         // data.tutorList
       )
-      .then(json => cb(json.data))
+      .then(json => apiHandler.handleResponse(json))
   },
   getTutorInfo(id,cb){
     const url = domain + '/api/v1/user/getuserinfo?id='+id
     fetch(url)
       .then(response => response.json())
-      .then(json => cb(json.data))
+      .then(json => apiHandler.handleResponse(json))
   },
   getTutorAnswerList(id,page,number,cb){
     const url = domain + `/api/v1/user/getteacheranswer?user_id=${id}&page=${page}&number=${number}`
     fetch(url)
       .then(response => response.json())
-      .then(json => cb(json.data))
+      .then(json => apiHandler.handleResponse(json))
   },
   getPrepayInfo(content,tutorId,cb){
     const url = domain + `/api/v1/question/testquestion?content=${content}&answer_user_id=${tutorId}`
     fetch(url)
       .then(response => response.json())
-      .then(json => cb(json.data))
+      .then(json => apiHandler.handleResponse(json))
   }
 }
