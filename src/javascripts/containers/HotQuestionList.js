@@ -18,16 +18,20 @@ class HotQuestionList extends Component {
       curQuestionId:null,
     }
   }
+  handleScroll(){
+    if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.hotQuestionList.completed) {
+      const curPage = ++this.state.curPage;
+      this.setState({curPage});
+      this.props.dispatch(getHotQuestionList(curPage, 10))
+    }
+  }
   componentDidMount() {
     this.props.dispatch(getHotQuestionList(1, 10))
-    function onScroll(e) {
-      if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.hotQuestionList.completed) {
-        const curPage = ++this.state.curPage;
-        this.setState({curPage});
-        this.props.dispatch(getHotQuestionList(curPage, 10))
-      }
-    }
-    document.addEventListener('scroll', onScroll.bind(this));
+    document.addEventListener('scroll', this.handleScroll.bind(this));
+  }
+  componentWillUnmount(){
+    document.removeEventListener('scroll', this.handleScroll.bind(this));
+    console.log(this.refs);
   }
   getPrepayInfo(answerId){
     this.setState({curQuestionId:answerId})

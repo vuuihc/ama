@@ -23,12 +23,11 @@ class AskedMeList extends Component{
         if(this.props.data.length === 0){
             this.props.getAskedMe(1, 10);
         }
-        this.handleScroll = this.handleScroll.bind(this);
-        document.addEventListener('scroll', this.handleScroll);
+        document.addEventListener('scroll', this.handleScroll.bind(this));
     }
 
     componentWillUnmount(){
-        document.removeEventListener('scroll', this.handleScroll);
+        document.removeEventListener('scroll', this.handleScroll.bind(this));
         console.log(this.refs);
     }
 
