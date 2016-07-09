@@ -6,13 +6,16 @@ import '../../../stylesheets/partials/modules/Answer.scss';
 import { getQuestionInfo,saveVoice } from  '../../actions/question';
 import time from '../../util/time'
 import VoiceWave from  "../../components/VoiceWave"
+import Toast from "../../util/weui/toast"
 
 class Answer extends Component {
   constructor(){
     super();
     this.state={
       localId: null,
-      status: 0//0:话筒等待录音，1：正在录音，2：音波等待播放，3：正在播放
+      status: 0,//0:话筒等待录音，1：正在录音，2：音波等待播放，3：正在播放
+      answerSuccess: false,
+      successTimer:null
     }
   }
   componentWillMount(){
@@ -103,10 +106,16 @@ class Answer extends Component {
     });
   }
   componentWillReceiveProps(nextProps){
-    if(nextProps.saveVoiceInfo.data.saved){
-      alert("保存成功，感谢您的回答")
-      this.context.router.push("/account");
+    if(nextProps.saveVoiceInfo.saved){
+      this.setState({answerSuccess:true})
+      this.state.successTimer = setTimeout(()=>{
+        this.setState({answerSuccess:false})
+        this.context.router.push("/account")
+      },2000)
     }
+  }
+  componentWillUnmount(){
+    clearTimeout(this.state.successTimer)
   }
   confirmAnswer(){
     const self = this
@@ -123,7 +132,7 @@ class Answer extends Component {
         console.log("serverId is ==="+res.serverId)
         const serverId = res.serverId
         const questionId = self.props.params.id
-        self.props.dispatch(saveVoice(serverId,questionId))
+        self.props.saveVoice(serverId,questionId)
       }
     });
     
@@ -144,6 +153,7 @@ class Answer extends Component {
     }
     return (
       <div className="accountAnswer">
+        <Toast  show={this.state.askSuccess} >回答成功</Toast>
         <div className="question">
           <div className="head">
             <Link to={`user/${questionInfo.user_id}`}><img src={questionInfo.user_face}/></Link>
@@ -180,6 +190,6 @@ const mapStateToProps = (state) =>{
   }
 }
 
-Answer = connect( mapStateToProps, { getQuestionInfo })(Answer);
+Answer = connect( mapStateToProps, { getQuestionInfo,saveVoice })(Answer);
 
 export default Answer;

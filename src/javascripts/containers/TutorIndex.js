@@ -72,6 +72,9 @@ class TutorIndex extends Component {
     }
     document.addEventListener('scroll', onScroll.bind(this));
   }
+  componentWillUnmount(){
+    clearTimeout(this.state.successTimer)
+  }
 
   render() {
     const {tutorInfo,tutorAnswerList,prepayInfo} = this.props

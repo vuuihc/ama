@@ -22,7 +22,8 @@ const initialState = {
     loading:false
   },
   saveVoiceInfo:{
-    data:{}
+    data:{},
+    saved:false
   }
 }
 
@@ -61,7 +62,7 @@ export function listenInfo(state = initialState.listenInfo, action) {
 export function saveVoiceInfo(state = initialState.saveVoiceInfo,action) {
   switch (action.type) {
     case RECEIVE_SAVE_VOICE:
-      return {data: {saved:true}}
+      return {saved:true}
     default:
       return state
   }
