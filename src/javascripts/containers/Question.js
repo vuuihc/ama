@@ -29,7 +29,7 @@ class Question extends Component {
     console.log("this.state.answerAudio")
     console.log(this.state.answerAudio)
     if(this.state.answerAudio!=null){
-      this.playAudio()
+      this.playAudio(this.state.answerAudio)
     }else{
       const answerId = this.props.params.id
       this.getPrepayInfo(answerId)
@@ -62,30 +62,34 @@ class Question extends Component {
     }else if(nextProps.listenInfo.data.url!=undefined){
       console.log("nextProps.listenInfo.data")
       console.log(nextProps.listenInfo.data)
-      const answerAudio = new Audio(nextProps.listenInfo.data.url)
-      this.setState({answerAudio:answerAudio})
+      const time = new Date().valueOf()
+      const answerId = this.props.params.id
+      if(nextProps.listenInfo.data.question_id==answerId && time-nextProps.listenInfo.timeStamp<500){
+        const answerAudio = new Audio(nextProps.listenInfo.data.url)
+        this.setState({answerAudio:answerAudio})
+        this.playAudio(answerAudio) 
+      }
     }
   }
-  playAudio(){
+  playAudio(answerAudio){
     console.log("into playAudio");
-    var audio = this.state.answerAudio
     if (window.WeixinJSBridge) {
       wx.getNetworkType({
         success: function (res) {
-          audio.play();
+          answerAudio.play();
         },
         fail: function (res) {
-          audio.play();
+          answerAudio.play();
         }
       });
     }else{
       document.addEventListener("WeixinJSBridgeReady", function() {
         wx.getNetworkType({
           success: function (res) {
-            audio.play();
+            answerAudio.play();
           },
           fail: function (res) {
-            audio.play();
+            answerAudio.play();
           }
         });
       }, false);
@@ -108,7 +112,7 @@ class Question extends Component {
             <span className="bubble">
                 <span className="bubble-tail"></span>
               {this.state.playing ? <VoiceWave /> : <span className="bubble-voice"></span>}
-              <span className="bubble-text">{listenInfo.data.url?"点击播放":`${questionInfo.question_prize}元偷偷听`}</span>
+              <span className="bubble-text">{questionInfo.answer_ispayed?"点击播放":`${questionInfo.question_prize}元偷偷听`}</span>
             </span>
         </div>
         <div className="remark">

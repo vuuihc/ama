@@ -37,6 +37,13 @@ class HotQuestionList extends Component {
     this.setState({curQuestionId:answerId})
     this.props.dispatch(getListenInfo(answerId))
   }
+  bubbleClick(answerId,isPayed){
+    if(isPayed){
+      this.context.router.push(`question/${answerId}`)
+    }else{
+      this.getPrepayInfo(answerId)
+    }
+  }
   componentWillReceiveProps(nextProps){
     const self = this
     console.log(nextProps.listenInfo.data)
@@ -53,6 +60,7 @@ class HotQuestionList extends Component {
           success: function (res) {
             console.log("支付成功！");
             self.context.router.push(`question/${self.state.curQuestionId}`)
+            // self.props.dispatch(getListenInfo(self.state.curQuestionId))
           },
           fail:function(res){
             alert("支付失败")
@@ -60,8 +68,8 @@ class HotQuestionList extends Component {
             console.log(res)
           }
         });
-      }else if(nextProps.listenInfo.data.audio!=undefined){
-        this.context.router.push(`question/${self.state.curQuestionId}`)
+      }else if(nextProps.listenInfo.data.url!=undefined){
+        // this.context.router.push(`question/${self.state.curQuestionId}`)
       }
     }
   }
@@ -88,7 +96,7 @@ class HotQuestionList extends Component {
                 </div>
               </Link>
               <div className="answer" >
-                <span className="bubble" onClick={this.getPrepayInfo.bind(this,question.question_id)}>
+                <span className="bubble" onClick={this.bubbleClick.bind(this,question.question_id,question.answer_ispayed)}>
                   <span className="bubble-tail"></span>
                   <span className="bubble-voice"></span>
                   <span className="bubble-text">1元偷偷听</span>

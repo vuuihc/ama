@@ -48,7 +48,7 @@ export function questionInfo(state = initialState.questionInfo, action) {
 export function listenInfo(state = initialState.listenInfo, action) {
   switch (action.type) {
     case RECEIVE_LISTEN_INFO:
-      return {data: action.data}
+      return {data: action.data,timeStamp: new Date().valueOf()}
     default:
       return state
   }
