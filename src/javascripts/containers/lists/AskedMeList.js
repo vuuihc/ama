@@ -73,9 +73,9 @@ class AskedMeList extends Component{
                             {
                                 this.props.data.map((item, index)=>{
                                     if(item.isanswered === '1'){
-                                        return <Link to={`/question/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble key={index} question={item}/></Link>;
+                                        return <Link key={index} to={`/question/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble  question={item}/></Link>;
                                     }else{
-                                        return <Link to={`/account/answer/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble key={index} question={item}/></Link>;
+                                        return <Link key={index} to={`/account/answer/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble question={item}/></Link>;
                                     }
                                 })
                             }
