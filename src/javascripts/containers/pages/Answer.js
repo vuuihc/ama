@@ -110,7 +110,7 @@ class Answer extends Component {
       this.setState({answerSuccess:true})
       this.state.successTimer = setTimeout(()=>{
         this.setState({answerSuccess:false})
-        this.context.router.push("/account")
+        this.context.router.push("/account/AskedMeList")
       },2000)
     }
   }

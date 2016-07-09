@@ -37,7 +37,7 @@ class TutorIndex extends Component {
           self.setState({askSuccess:true})
           self.state.successTimer = setTimeout(()=>{
             self.setState({askSuccess:false})
-            self.context.router.push("/account")
+            self.context.router.push("account/IAskedList")
           },2000)
         },
         fail:function(res){

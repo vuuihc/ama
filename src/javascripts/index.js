@@ -32,7 +32,7 @@ ReactDom.render((
                     <Route path="hot" component={Hot}/>
                     <Route path="tutor" component={Tutor}/>
                     <Route path="account" component={Account}>
-                        <IndexRoute component={Account}/>
+                      <IndexRoute component={ListenedList}/>
                       <Route path="ListenedList" component={ListenedList} />
                       <Route path="AskedMeList" component={AskedMeList} />
                       <Route path="IAskedList" component={IAskedList} />
