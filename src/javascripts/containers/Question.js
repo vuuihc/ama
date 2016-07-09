@@ -15,6 +15,7 @@ class Question extends Component {
       playing: 0,
       answerAudio:null,
       curAnswerId:null,
+      playNow: false,
     }
   }
   componentDidMount() {
@@ -39,6 +40,7 @@ class Question extends Component {
           success: function (res) {
             console.log("支付成功！");
             self.props.dispatch(getListenInfo(answerId))
+            self.setState({playNow: false})
           },
           fail:function(res){
             alert("支付失败")
@@ -57,6 +59,9 @@ class Question extends Component {
         console.log("get audio===="+nextProps.listenInfo.data.url)
         this.setState({answerAudio:answerAudio})
         this.props.dispatch(getQuestionInfo(nextProps.listenInfo.data.question_id))
+        if(this.state.playNow){
+          this.playAudio(answerAudio)
+        }
       }
     }
   }
@@ -116,11 +121,11 @@ class Question extends Component {
           <h4 >{questionInfo.teacher_company+"　"+questionInfo.teacher_position}  </h4>
         </div>
         <div className="answer" onClick={this.bubbleClick.bind(this,questionInfo.answer_id)}>
-            <span className={"bubble"+classNames[this.state.playing]}>
+            <span className={`bubble"${classNames[this.state.playing]}`}>
                 <span className="bubble-tail"></span>
                 <VoiceWave />
                 <span className="bubble-voice"></span>
-              <span className="bubble-text">{questionInfo.answer_ispayed?"点击播放":`${questionInfo.question_prize}元偷偷听`}</span>
+              <span className="bubble-text">{questionInfo.answer_ispayed?(this.state.playing==1?"":"点击播放"):`${questionInfo.question_prize}元偷偷听`}</span>
             </span>
         </div>
         <div className="remark">

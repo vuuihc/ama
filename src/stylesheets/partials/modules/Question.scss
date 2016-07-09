@@ -52,6 +52,17 @@
       -webkit-border-radius: px2rem(50);
       -moz-border-radius: px2rem(50);
       border-radius: px2rem(50);
+      &.playing{
+        .bubble-voice {
+          display: none;
+        }
+        .voice-waves {
+          display: block;
+        }
+      }
+      .voice-waves{
+        display: none;
+      }
       .bubble-voice {
         background-image: url(../../../images/voicewave3.png);
         background-size: cover;

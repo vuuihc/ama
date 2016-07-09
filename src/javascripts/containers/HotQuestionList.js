@@ -28,10 +28,10 @@ class HotQuestionList extends Component {
   }
   componentDidMount() {
     this.props.dispatch(getHotQuestionList(1, 10))
-    document.addEventListener('scroll', this.handleScroll.bind(this));
+    document.addEventListener('scroll', this.handleScroll);
   }
   componentWillUnmount(){
-    document.removeEventListener('scroll', this.handleScroll.bind(this));
+    document.removeEventListener('scroll', this.handleScroll);
     console.log(this.refs);
   }
   getPrepayInfo(questionId,answerId){
