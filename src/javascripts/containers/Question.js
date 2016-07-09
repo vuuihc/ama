@@ -15,7 +15,7 @@ class Question extends Component {
       playing: 0,
       answerAudio:null,
       curAnswerId:null,
-      playNow: false,
+      playNow: true,
     }
   }
   componentDidMount() {
@@ -121,11 +121,11 @@ class Question extends Component {
           <h4 >{questionInfo.teacher_company+"　"+questionInfo.teacher_position}  </h4>
         </div>
         <div className="answer" onClick={this.bubbleClick.bind(this,questionInfo.answer_id)}>
-            <span className={`bubble"${classNames[this.state.playing]}`}>
+            <span className={`bubble${classNames[this.state.playing]}`}>
                 <span className="bubble-tail"></span>
                 <VoiceWave />
                 <span className="bubble-voice"></span>
-              <span className="bubble-text">{questionInfo.answer_ispayed?(this.state.playing==1?"":"点击播放"):`${questionInfo.question_prize}元偷偷听`}</span>
+              <span className="bubble-text">{questionInfo.answer_ispayed?(this.state.playing==1?"正在播放":"点击播放"):`${questionInfo.question_prize}元偷偷听`}</span>
             </span>
         </div>
         <div className="remark">
