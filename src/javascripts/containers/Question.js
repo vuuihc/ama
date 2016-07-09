@@ -12,7 +12,7 @@ class Question extends Component {
   constructor(props){
     super(props)
     this.state={
-      playing: false,
+      playing: 0,
       answerAudio:null,
       curAnswerId:null,
     }
@@ -22,19 +22,6 @@ class Question extends Component {
     this.props.dispatch(getQuestionInfo(id))
     console.log("questionInfo===" + this.props.questionInfo)
     console.log("listenInfo===" + this.props.listenInfo)
-  }
-  getPrepayInfo(answerId){
-    this.props.dispatch(getListenInfo(answerId))
-  }
-  bubbleClick(answerId){
-    console.log("this.state.answerAudio")
-    console.log(this.state.answerAudio)
-    if(this.state.answerAudio!=null){
-      this.playAudio(this.state.answerAudio)
-    }else{
-      this.setState({curAnswerId:answerId})
-      this.getPrepayInfo(answerId)
-    }
   }
   componentWillReceiveProps(nextProps){
     const self = this
@@ -67,9 +54,24 @@ class Question extends Component {
       const questionId = this.props.params.id
       if(nextProps.listenInfo.data.question_id==questionId && time-nextProps.listenInfo.timeStamp<500){
         const answerAudio = new Audio(nextProps.listenInfo.data.url)
+        console.log("get audio===="+nextProps.listenInfo.data.url)
         this.setState({answerAudio:answerAudio})
-        this.playAudio(answerAudio) 
+        this.props.dispatch(getQuestionInfo(nextProps.listenInfo.data.question_id))
       }
+    }
+  }
+  getPrepayInfo(answerId){
+    this.props.dispatch(getListenInfo(answerId))
+  }
+  bubbleClick(answerId){
+    console.log("this.state.answerAudio")
+    console.log(this.state.answerAudio)
+    if(this.state.answerAudio!=null){
+      this.setState({playing:1})
+      this.playAudio(this.state.answerAudio)
+    }else{
+      this.setState({curAnswerId:answerId})
+      this.getPrepayInfo(answerId)
     }
   }
   playAudio(answerAudio){
@@ -99,6 +101,10 @@ class Question extends Component {
 
   render() {
     const {questionInfo,listenInfo} = this.props
+    const classNames = {
+      0: " ",
+      1: " playing"
+    }
     return (
       <main className="question">
         <div className="question-content">
@@ -110,9 +116,10 @@ class Question extends Component {
           <h4 >{questionInfo.teacher_company+"　"+questionInfo.teacher_position}  </h4>
         </div>
         <div className="answer" onClick={this.bubbleClick.bind(this,questionInfo.answer_id)}>
-            <span className="bubble">
+            <span className={"bubble"+classNames[this.state.playing]}>
                 <span className="bubble-tail"></span>
-              {this.state.playing ? <VoiceWave /> : <span className="bubble-voice"></span>}
+                <VoiceWave />
+                <span className="bubble-voice"></span>
               <span className="bubble-text">{questionInfo.answer_ispayed?"点击播放":`${questionInfo.question_prize}元偷偷听`}</span>
             </span>
         </div>

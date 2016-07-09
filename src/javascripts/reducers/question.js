@@ -16,6 +16,7 @@ const initialState = {
   },
   questionInfo: {},
   listenInfo:{
+    timeStamp:0,
     data: {}
   },
   saveVoiceInfo:{
