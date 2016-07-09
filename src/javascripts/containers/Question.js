@@ -60,6 +60,7 @@ class Question extends Component {
         this.setState({answerAudio:answerAudio})
         this.props.dispatch(getQuestionInfo(nextProps.listenInfo.data.question_id))
         if(this.state.playNow){
+          this.setState({playing:1})
           this.playAudio(answerAudio)
         }
       }
@@ -106,6 +107,7 @@ class Question extends Component {
 
   render() {
     const {questionInfo,listenInfo} = this.props
+    console.log("this.state.playing=="+this.state.playing)
     const classNames = {
       0: " ",
       1: " playing"
