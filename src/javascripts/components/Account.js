@@ -27,6 +27,7 @@ class Account extends Component {
 
   render() {
       let list = <LitenedList />
+
       switch (this.state.index){
           case 1:
               list = <LitenedList />;

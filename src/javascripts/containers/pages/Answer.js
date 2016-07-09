@@ -103,8 +103,9 @@ class Answer extends Component {
     });
   }
   componentWillReceiveProps(nextProps){
-    if(nextProps.saveVoiceInfo.data.url!=undefined){
+    if(nextProps.saveVoiceInfo.data.saved){
       alert("保存成功，感谢您的回答")
+      this.context.router.push("/account");
     }
   }
   confirmAnswer(){
@@ -141,11 +142,6 @@ class Answer extends Component {
       2 : " voice",
       3 : " voice-on"
     }
-    // const replyContainer = ;
-    // const voiceContainer =
-    //   <div className="voiceContainer" onClick={this.playVoice.bind(this)}>
-    //     {this.state.playing ? <VoiceWave /> : }
-    //   </div>;
     return (
       <div className="accountAnswer">
         <div className="question">
@@ -168,14 +164,15 @@ class Answer extends Component {
           </div>
         </div>
         <div className="reRecord" onClick={this.reRecord.bind(this)}>重录</div>
-        <div className="recordHint">{this.state.localId==null?"点击录音按钮最多可录制120S":"点击试听可试听您最近一次的回答"}</div>
+        <div className="recordHint">{this.state.localId==null?"点击录音按钮最多可录制60S":"点击试听可试听您最近一次的回答"}</div>
         <div className="sendBtn" onClick={this.confirmAnswer.bind(this)}>发送</div>
       </div>
     )
   }
-
 }
-
+Answer.contextTypes = {
+  router: PropTypes.object
+}
 const mapStateToProps = (state) =>{
   return {
     questionInfo: state.questionInfo,

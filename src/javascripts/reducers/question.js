@@ -57,7 +57,7 @@ export function listenInfo(state = initialState.listenInfo, action) {
 export function saveVoiceInfo(state = initialState.saveVoiceInfo,action) {
   switch (action.type) {
     case RECEIVE_SAVE_VOICE:
-      return {data: action.data}
+      return {data: {saved:true}}
     default:
       return state
   }

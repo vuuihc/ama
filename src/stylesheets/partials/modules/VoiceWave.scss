@@ -11,14 +11,17 @@
     &-1{
       animation: opacity-1-3 2s linear infinite;
       background-image: url(../../../images/voicewave1.png);
+      @include uniMethod('background-size', 'cover');
     }
     &-2{
       animation: opacity-2-3 2s linear infinite;
       background-image: url(../../../images/voicewave2.png);
+      @include uniMethod('background-size', 'cover');
     }
     &-3{
       animation: opacity-3-3 2s linear infinite;
       background: url(../../../images/voicewave3.png);
+      @include uniMethod('background-size', 'cover');
     }
 
   }
