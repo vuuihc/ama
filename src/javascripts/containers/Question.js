@@ -13,7 +13,8 @@ class Question extends Component {
     super(props)
     this.state={
       playing: false,
-      answerAudio:null
+      answerAudio:null,
+      curAnswerId:null,
     }
   }
   componentDidMount() {
@@ -25,13 +26,13 @@ class Question extends Component {
   getPrepayInfo(answerId){
     this.props.dispatch(getListenInfo(answerId))
   }
-  bubbleClick(){
+  bubbleClick(answerId){
     console.log("this.state.answerAudio")
     console.log(this.state.answerAudio)
     if(this.state.answerAudio!=null){
       this.playAudio(this.state.answerAudio)
     }else{
-      const answerId = this.props.params.id
+      this.setState({curAnswerId:answerId})
       this.getPrepayInfo(answerId)
     }
   }
@@ -63,8 +64,8 @@ class Question extends Component {
       console.log("nextProps.listenInfo.data")
       console.log(nextProps.listenInfo.data)
       const time = new Date().valueOf()
-      const answerId = this.props.params.id
-      if(nextProps.listenInfo.data.question_id==answerId && time-nextProps.listenInfo.timeStamp<500){
+      const questionId = this.props.params.id
+      if(nextProps.listenInfo.data.question_id==questionId && time-nextProps.listenInfo.timeStamp<500){
         const answerAudio = new Audio(nextProps.listenInfo.data.url)
         this.setState({answerAudio:answerAudio})
         this.playAudio(answerAudio) 
@@ -108,7 +109,7 @@ class Question extends Component {
           <h3 >{questionInfo.teacher_name}</h3>
           <h4 >{questionInfo.teacher_company+"　"+questionInfo.teacher_position}  </h4>
         </div>
-        <div className="answer" onClick={this.bubbleClick.bind(this)}>
+        <div className="answer" onClick={this.bubbleClick.bind(this,questionInfo.answer_id)}>
             <span className="bubble">
                 <span className="bubble-tail"></span>
               {this.state.playing ? <VoiceWave /> : <span className="bubble-voice"></span>}

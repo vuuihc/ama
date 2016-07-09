@@ -6,10 +6,7 @@ var isProduction = function () {
   return process.env.NODE_ENV === 'production';
 };
 
-var plugins = [
-  new webpack.optimize.OccurenceOrderPlugin(),
-  new webpack.HotModuleReplacementPlugin(),
-];
+var plugins = [];
 
 if(isProduction()){
   plugins.push(
@@ -18,6 +15,11 @@ if(isProduction()){
           warnings: false
         }
       })
+  )
+}else{
+  plugins.push(
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   )
 }
 

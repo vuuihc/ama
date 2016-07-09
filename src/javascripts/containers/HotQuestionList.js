@@ -16,6 +16,7 @@ class HotQuestionList extends Component {
       curAudio:"",
       curPage:1,
       curQuestionId:null,
+      curAnswerId:null,
     }
   }
   handleScroll(){
@@ -33,15 +34,15 @@ class HotQuestionList extends Component {
     document.removeEventListener('scroll', this.handleScroll.bind(this));
     console.log(this.refs);
   }
-  getPrepayInfo(answerId){
-    this.setState({curQuestionId:answerId})
+  getPrepayInfo(questionId,answerId){
+    this.setState({curQuestionId:questionId,curAnswerId:answerId})
     this.props.dispatch(getListenInfo(answerId))
   }
-  bubbleClick(answerId,isPayed){
+  bubbleClick(answerId,questionId,isPayed){
     if(isPayed){
-      this.context.router.push(`question/${answerId}`)
+      this.context.router.push(`question/${questionId}`)
     }else{
-      this.getPrepayInfo(answerId)
+      this.getPrepayInfo(questionId,answerId)
     }
   }
   componentWillReceiveProps(nextProps){
@@ -96,10 +97,10 @@ class HotQuestionList extends Component {
                 </div>
               </Link>
               <div className="answer" >
-                <span className="bubble" onClick={this.bubbleClick.bind(this,question.question_id,question.answer_ispayed)}>
+                <span className="bubble" onClick={this.bubbleClick.bind(this,question.answer_id,question.question_id,question.answer_ispayed)}>
                   <span className="bubble-tail"></span>
                   <span className="bubble-voice"></span>
-                  <span className="bubble-text">1元偷偷听</span>
+                  <span className="bubble-text">{question.answer_ispayed?"点击偷偷听":"1元偷偷听"}</span>
                 </span>
               </div>
               <div className="remark">
