@@ -44,7 +44,7 @@ class Account extends Component {
       }
     return (
       <div id="accountIndex">
-        <Link to="account/edit" >
+        <Link to="edit" >
           <img className="editEntry" src={require("../../images/EditEntry.png")}/>
         </Link>
         <div className="head">
@@ -70,7 +70,7 @@ class Account extends Component {
         </div>
         <div className="dividerWide"></div>
         <div className="nav">
-          <ul>
+          {/*<ul>
             <li
               onClick={this.handleClick.bind(this, 1) }
               className={this.state.index == 1 ? 'active': ''}
@@ -86,11 +86,14 @@ class Account extends Component {
               className={this.state.index == 3 ? 'active': ''}
             >问我的
             </li>
-          </ul>
+          </ul>*/}
+          <Link to="account/ListenedList" activeClassName="active" >听过的</Link>
+          <Link to="account/IAskedList" activeClassName="active" >我问的</Link>
+          <Link to="account/AskedMeList" activeClassName="active" >问我的</Link>
           <div className="divider"></div>
         </div>
         <div>
-          { list }
+          { this.props.children }
         </div>
       </div>
     )

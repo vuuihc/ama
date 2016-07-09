@@ -78,7 +78,7 @@ class AskedMeList extends Component {
                       return <Link key={index} to={`/question/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble
                         question={item}/></Link>;
                     } else {
-                      return <Link key={index} to={`/account/answer/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble
+                      return <Link key={index} to={`/answer/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble
                         question={item}/></Link>;
                     }
                   })
