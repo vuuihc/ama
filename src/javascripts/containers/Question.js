@@ -6,6 +6,7 @@ import {Link} from 'react-router'
 import {connect} from 'react-redux'
 import {getQuestionInfo,getListenInfo} from '../actions/question.js'
 import VoiceWave from "../components/VoiceWave"
+import Toast from "../util/weui/toast"
 import '../../stylesheets/partials/modules/Question.scss'
 
 class Question extends Component {
@@ -16,6 +17,7 @@ class Question extends Component {
       answerAudio:null,
       curAnswerId:null,
       playNow: true,
+      listenTimer:null,
     }
   }
   componentDidMount() {
@@ -39,7 +41,7 @@ class Question extends Component {
           paySign: nextProps.listenInfo.data.paySign, // 支付签名
           success: function (res) {
             console.log("支付成功！");
-            self.props.dispatch(getListenInfo(answerId))
+            self.state.listenTimer = setTimeout(() => self.props.dispatch(getListenInfo(answerId)),1000);
             self.setState({playNow: false})
           },
           fail:function(res){
@@ -65,6 +67,10 @@ class Question extends Component {
         }
       }
     }
+  }
+  componentWillUnmount(){
+    const self = this
+    clearTimeout(self.state.listenTimer);
   }
   getPrepayInfo(answerId){
     this.props.dispatch(getListenInfo(answerId))
@@ -114,6 +120,7 @@ class Question extends Component {
     }
     return (
       <main className="question">
+        <Toast icon="loading" show={listenInfo.loading} >请求支付中……</Toast>
         <div className="question-content">
           {questionInfo.question_content}
         </div>

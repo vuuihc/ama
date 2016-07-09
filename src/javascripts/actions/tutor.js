@@ -7,6 +7,7 @@ import {
   RECEIVE_TUTOR_LIST,
   RECEIVE_TUTOR_INFO,
   RECEIVE_TUTOR_ANSWER_LIST,
+  REQUEST_PREPAY_INFO,
   RECEIVE_PREPAY_INFO
 } from './ActionTypes'
 
@@ -44,6 +45,7 @@ export function getTutorAnswerList(id,page,number) {
 }
 export function getPrepayInfo(content,tutorId) {
   return dispatch => {
+    dispatch({type:REQUEST_PREPAY_INFO})
     tutor.getPrepayInfo(content,tutorId,data => {
       dispatch({
         type: RECEIVE_PREPAY_INFO,

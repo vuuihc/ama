@@ -6,7 +6,7 @@ import {Link} from 'react-router'
 import {connect} from 'react-redux'
 import {getHotQuestionList,getListenInfo} from '../actions/question.js'
 import Loading from "./Loading"
-
+import Toast from "../util/weui/toast"
 import '../../stylesheets/partials/modules/HotQuestionList.scss'
 
 class HotQuestionList extends Component {
@@ -76,9 +76,10 @@ class HotQuestionList extends Component {
   }
   
   render() {
-    const {hotQuestionList} = this.props
+    const {hotQuestionList,listenInfo} = this.props
     return (
       <main className="hot-question-list">
+        <Toast icon="loading" show={listenInfo.loading} >正在请求……</Toast>
         {
           hotQuestionList.data.map((question, index) =>
             <article key={index}>

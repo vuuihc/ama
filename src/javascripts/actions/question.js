@@ -6,6 +6,7 @@ import question from '../api/question'
 import {
   RECEIVE_HOT_QUESTION_LIST,
   RECEIVE_QUESTION_INFO,
+  REQUEST_LISTEN_INFO,
   RECEIVE_LISTEN_INFO,
   RECEIVE_SAVE_VOICE
 } from './ActionTypes'
@@ -33,6 +34,7 @@ export function getQuestionInfo(id) {
 }
 export function getListenInfo(answerId) {
   return dispatch => {
+    dispatch({type:REQUEST_LISTEN_INFO})
     question.getListenInfo(answerId, data => {
       dispatch({
         type: RECEIVE_LISTEN_INFO,

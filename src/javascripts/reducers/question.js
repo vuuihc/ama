@@ -4,6 +4,7 @@
 import {
   RECEIVE_HOT_QUESTION_LIST,
   RECEIVE_QUESTION_INFO,
+  REQUEST_LISTEN_INFO,
   RECEIVE_LISTEN_INFO,
   RECEIVE_SAVE_VOICE
 }from '../actions/ActionTypes'
@@ -17,7 +18,8 @@ const initialState = {
   questionInfo: {},
   listenInfo:{
     timeStamp:0,
-    data: {}
+    data: {},
+    loading:false
   },
   saveVoiceInfo:{
     data:{}
@@ -48,8 +50,10 @@ export function questionInfo(state = initialState.questionInfo, action) {
 }
 export function listenInfo(state = initialState.listenInfo, action) {
   switch (action.type) {
+    case REQUEST_LISTEN_INFO:
+      return Object.assign({},state,{loading:true})
     case RECEIVE_LISTEN_INFO:
-      return {data: action.data,timeStamp: new Date().valueOf()}
+      return {data: action.data,timeStamp: new Date().valueOf(),loading:false}
     default:
       return state
   }
