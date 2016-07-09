@@ -15,18 +15,19 @@ class TutorList extends Component {
     this.state = {
       curPage:1,
     }
+    this.handleScroll = this.handleScroll.bind(this)
   }
   componentDidMount() {
     this.props.dispatch(getTutorList(1, 10))
     console.log("tutorList===" + this.props.tutorList)
-    function onScroll(e) {
-      if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.tutorList.completed) {
-        const curPage = ++this.state.curPage;
-        this.setState({curPage});
-        this.props.dispatch(getTutorList(curPage, 10))
-      }
+    document.addEventListener('scroll', this.handleScroll);
+  }
+  handleScroll() {
+    if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.tutorList.completed) {
+      const curPage = ++this.state.curPage;
+      this.setState({curPage});
+      this.props.dispatch(getTutorList(curPage, 10))
     }
-    document.addEventListener('scroll', onScroll.bind(this));
   }
 
   render() {
