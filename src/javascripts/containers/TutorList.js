@@ -22,6 +22,9 @@ class TutorList extends Component {
     console.log("tutorList===" + this.props.tutorList)
     document.addEventListener('scroll', this.handleScroll);
   }
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.handleScroll);
+  }
   handleScroll() {
     if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.tutorList.completed) {
       const curPage = ++this.state.curPage;

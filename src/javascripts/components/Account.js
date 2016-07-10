@@ -45,7 +45,7 @@ class Account extends Component {
       }
     return (
       <div id="accountIndex">
-        <Link to="edit" >
+        <Link to={baseUrl+"edit"} >
           <img className="editEntry" src={require("../../images/EditEntry.png")}/>
         </Link>
         <div className="head">
