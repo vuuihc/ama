@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import {getQuestionInfo,getListenInfo} from '../actions/question.js'
 import VoiceWave from "../components/VoiceWave"
 import Toast from "../util/weui/toast"
+import {baseUrl} from "../api/config"
 import '../../stylesheets/partials/modules/Question.scss'
 
 class Question extends Component {
@@ -141,7 +142,7 @@ class Question extends Component {
         </div>
         <div className="ask">
           <div className="value">￥{questionInfo.teacher_prize}</div>
-          <Link className="bottom-btn" to={"tutor/"+questionInfo.teacher_id}>向TA提问</Link>
+          <Link className="bottom-btn" to={baseUrl+"tutor/"+questionInfo.teacher_id}>向TA提问</Link>
         </div>
       </main>
     )

@@ -7,7 +7,7 @@ import QuestionItemWithoutAvatarWithoutBubble from '../blocks/QuestionItemWithou
 import {getAskedMe, requestBecomeTeacher} from '../../actions/account'
 import Loading from '../Loading'
 import ReactDom from 'react-dom'
-
+import {baseUrl} from "../../api/config"
 class AskedMeList extends Component {
 
   constructor() {
@@ -75,10 +75,10 @@ class AskedMeList extends Component {
                 {
                   this.props.data.map((item, index)=> {
                     if (item.isanswered === '1') {
-                      return <Link key={index} to={`/question/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble
+                      return <Link key={index} to={`${baseUrl}/question/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble
                         question={item}/></Link>;
                     } else {
-                      return <Link key={index} to={`/answer/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble
+                      return <Link key={index} to={`${baseUrl}/answer/${item.id}`}><QuestionItemWithoutAvatarWithoutBubble
                         question={item}/></Link>;
                     }
                   })

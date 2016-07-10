@@ -5,6 +5,7 @@ import '../../../stylesheets/partials/modules/IAskedList.scss';
 import QuestionItemWithoutAvatar from '../blocks/QuestionItemWithoutAvatar';
 import QuestionItemWithoutAvatarWithoutBubble from '../blocks/QuestionItemWithoutAvatarWithoutBubble';
 import {getIAsked} from '../../actions/account'
+import {baseUrl} from "../../api/config"
 
 class IAskedList extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ class IAskedList extends Component {
                 你还没有问过呦~
               </div>
               <div className="go">
-                快去找<Link to="/tutor">导师</Link>帮你解决问题吧~
+                快去找<Link to={baseUrl+"tutor"}>导师</Link>帮你解决问题吧~
               </div>
             </div>
           )

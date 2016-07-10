@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router'
-
+import {baseUrl} from "../../api/config"
 
 class QuestionItemWithAvatar extends Component{
     constructor(){
@@ -11,7 +11,7 @@ class QuestionItemWithAvatar extends Component{
         console.log(question);
         return(
             <li>
-                <Link to={`question/${question.id}`}>
+                <Link to={`${baseUrl}question/${question.id}`}>
                     <div className="header">{ question.content }</div>
                     <div className="content">
                         <div className="headInner">

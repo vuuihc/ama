@@ -7,6 +7,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
 import '../../../stylesheets/partials/modules/QuestionItemWithoutAvatar.scss';
+import {baseUrl} from "../../api/config"
 
 export default class QuestionItemWithoutAvatar extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ export default class QuestionItemWithoutAvatar extends Component {
         const {question} = this.props
         return (
             <article className="question-without-avatar">
-                <Link to={"question/10001"}>
+                <Link to={baseUrl+"question/"+question.question_id}>
                     <div className="question-content">
                         <h4>{ question.content }</h4>
                     </div>

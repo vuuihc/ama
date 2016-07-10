@@ -2,7 +2,6 @@
  * Created by zhushihao on 2016/6/24.
  */
 import React, { Component, PropTypes } from 'react'
-import {Link} from 'react-router'
 import { connect } from 'react-redux'
 import { editUserInfo } from '../actions/account';
 import '../../stylesheets/partials/modules/AccountEdit.scss'

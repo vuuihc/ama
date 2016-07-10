@@ -7,6 +7,7 @@ import { getQuestionInfo,saveVoice } from  '../../actions/question';
 import time from '../../util/time'
 import VoiceWave from  "../../components/VoiceWave"
 import Toast from "../../util/weui/toast"
+import {baseUrl} from "../../api/config"
 
 class Answer extends Component {
   constructor(){
@@ -110,7 +111,7 @@ class Answer extends Component {
       this.setState({answerSuccess:true})
       this.state.successTimer = setTimeout(()=>{
         this.setState({answerSuccess:false})
-        browserHistory.push("/account/AskedMeList")
+        browserHistory.push(baseUrl+"/account/AskedMeList")
       },2000)
     }
   }
@@ -156,7 +157,7 @@ class Answer extends Component {
         <Toast  show={this.state.askSuccess} >回答成功</Toast>
         <div className="question">
           <div className="head">
-            <Link to={`user/${questionInfo.user_id}`}><img src={questionInfo.user_face}/></Link>
+            <Link to={`${baseUrl}user/${questionInfo.user_id}`}><img src={questionInfo.user_face}/></Link>
             <span className="name">{questionInfo.user_name}</span>
             <span className="price">￥ {questionInfo.question_prize}</span>
           </div>

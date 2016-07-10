@@ -10,6 +10,7 @@ import QuestionItemWithoutAvatar from "./blocks/QuestionItemWithoutAvatar"
 import Loading from "./Loading"
 import Toast from "../util/weui/toast"
 
+import {baseUrl} from "../api/config"
 import '../../stylesheets/partials/modules/TutorIndex.scss'
 
 class TutorIndex extends Component {
@@ -37,7 +38,7 @@ class TutorIndex extends Component {
           self.setState({askSuccess:true})
           self.state.successTimer = setTimeout(()=>{
             self.setState({askSuccess:false})
-            browserHistory.push("account/IAskedList")
+            browserHistory.push(baseUrl+"account/IAskedList")
           },2000)
         },
         fail:function(res){
@@ -83,7 +84,7 @@ class TutorIndex extends Component {
         <Toast  show={this.state.askSuccess} >提问成功</Toast>
         <Toast  icon="loading" show={prepayInfo.loading} >请求支付中……</Toast>
         <div className="tutor-info">
-          <Link to="/user/share" >
+          <Link to={baseUrl+"/user/share"} >
             <img className="QREntry" src={require("../../images/QREntry.png")}/>
           </Link>
           <img className="avatar" src={tutorInfo.user_face}/>

@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import {getHotQuestionList,getListenInfo} from '../actions/question.js'
 import Loading from "./Loading"
 import Toast from "../util/weui/toast"
+import {baseUrl} from "../api/config"
 import '../../stylesheets/partials/modules/HotQuestionList.scss'
 
 class HotQuestionList extends Component {
@@ -41,7 +42,7 @@ class HotQuestionList extends Component {
   }
   bubbleClick(answerId,questionId,isPayed){
     if(isPayed){
-      browserHistory.push(`question/${questionId}`)
+      browserHistory.push(`${baseUrl}question/${questionId}`)
     }else{
       this.getPrepayInfo(questionId,answerId)
     }
@@ -84,12 +85,12 @@ class HotQuestionList extends Component {
         {
           hotQuestionList.data.map((question, index) =>
             <article key={index}>
-              <Link to={"question/"+question.question_id}>
+              <Link to={baseUrl +"question/"+question.question_id}>
                 <div className="question-content">
                   <h4>{question.question_content}</h4>
                 </div>
               </Link>
-              <Link to={"tutor/"+question.teacher_id}>
+              <Link to={baseUrl+"tutor/"+question.teacher_id}>
                 <div className="mentor">
                   <img src={question.teacher_face}/>
                   <div className="mentor-info">

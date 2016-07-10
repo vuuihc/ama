@@ -8,7 +8,7 @@ import {getTutorList} from '../actions/tutor.js'
 
 import '../../stylesheets/partials/modules/TutorList.scss'
 import Loading from "./Loading"
-
+import {baseUrl} from "../api/config"
 class TutorList extends Component {
   constructor(props){
     super(props)
@@ -36,7 +36,7 @@ class TutorList extends Component {
       <main className="tutor-list">
         {
           tutorList.data.map((tutor, index) =>
-            <Link key={index} to={"/tutor/"+tutor.user_id}>
+            <Link key={index} to={baseUrl+"/tutor/"+tutor.user_id}>
               <article>
                 <div className="tutor-info">
                   <img src={tutor.user_face}/>

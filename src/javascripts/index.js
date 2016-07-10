@@ -1,10 +1,10 @@
 import 'babel-polyfill'
 import React from 'react'
 import ReactDom from 'react-dom'
-import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import { Router, Route, hashHistory,browserHistory, IndexRoute } from 'react-router'
-import configureStore from './store/configureStore'
+import {render} from 'react-dom'
+import {Provider} from 'react-redux'
+import {Router, Route, IndexRoute, browserHistory, useRouterHistory} from 'react-router'
+
 
 import "../stylesheets/style.scss"
 
@@ -22,34 +22,36 @@ import UserIndex from './containers/UserIndex'
 import UserShare from './containers/UserShare'
 import Answer from './containers/pages/Answer'
 
+import configureStore from './store/configureStore'
 const store = configureStore();
+import {baseUrl} from "./api/config"
 
 ReactDom.render((
-        <Provider store={store}>
-            <Router history={browserHistory}>
-                <Route path="/ama/7dyk/" component={App}>
-                    <IndexRoute component={Hot}/>
-                    <Route path="hot" component={Hot}/>
-                    <Route path="tutor" component={Tutor}/>
-                    <Route path="account" component={Account}>
-                      <IndexRoute component={ListenedList}/>
-                      <Route path="ListenedList" component={ListenedList} />
-                      <Route path="AskedMeList" component={AskedMeList} />
-                      <Route path="IAskedList" component={IAskedList} />
-                    </Route>
-                  <Route path="answer/:id" component = {Answer}/>
-                  <Route path="edit" component = {AccountEdit}/>
-                  <Route path="question/:id" component={Question} />
-                    <Route path="tutor/:id" component={TutorIndex} />
-                    <Route path="user/:id" component={UserIndex}>
-                        {/*
-                         <IndexRoute component={UserIndex} />
-                         <Route path="share" component={UserShare} />
-                        */}
-                    </Route>
-                </Route>
-            </Router>
-        </Provider>
-),document.getElementById('root'));
+  <Provider store={store}>
+    <Router history={browserHistory}>
+      <Route path={baseUrl} component={App}>
+        <IndexRoute component={Hot}/>
+        <Route path={baseUrl+"hot"} component={Hot}/>
+        <Route path={baseUrl+"tutor"} component={Tutor}/>
+        <Route path={baseUrl+"account"} component={Account}>
+          <IndexRoute component={ListenedList}/>
+          <Route path={baseUrl+"account/ListenedList"} component={ListenedList}/>
+          <Route path={baseUrl+"account/AskedMeList"} component={AskedMeList}/>
+          <Route path={baseUrl+"account/IAskedList"} component={IAskedList}/>
+        </Route>
+        <Route path={baseUrl+"answer/:id" } component={Answer}/>
+        <Route path={baseUrl+"edit"} component={AccountEdit}/>
+        <Route path={baseUrl+"question/:id"} component={Question}/>
+        <Route path={baseUrl+"tutor/:id"} component={TutorIndex}/>
+        <Route path={baseUrl+"user/:id"} component={UserIndex}>
+          {/*
+           <IndexRoute component={UserIndex} />
+           <Route path="share" component={UserShare} />
+           */}
+        </Route>
+      </Route>
+    </Router>
+  </Provider>
+), document.getElementById('root'));
 
 
