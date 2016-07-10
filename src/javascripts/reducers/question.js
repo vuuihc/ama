@@ -13,7 +13,8 @@ const initialState = {
   hotQuestionList: {
     data: [],
     completed: false,
-    page: 1
+    page: 1,
+    num: 10,
   },
   questionInfo: {},
   listenInfo:{
@@ -30,7 +31,7 @@ const initialState = {
 export function hotQuestionList(state = initialState.hotQuestionList, action) {
   switch (action.type) {
     case RECEIVE_HOT_QUESTION_LIST:
-      if (action.data.length == 0) {
+      if (action.data.length < action.data.num) {
         return Object.assign({}, state, {completed: true})
       } else if (action.page == 1)
         return Object.assign({}, initialState.hotQuestionList, {data: action.data})

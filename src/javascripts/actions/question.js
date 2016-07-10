@@ -11,13 +11,14 @@ import {
   RECEIVE_SAVE_VOICE
 } from './ActionTypes'
 
-export function getHotQuestionList(page, number) {
+export function getHotQuestionList(page, num) {
   return dispatch => {
-    question.getHotQuestionList(page, number, data => {
+    question.getHotQuestionList(page, num, data => {
       dispatch({
         type: RECEIVE_HOT_QUESTION_LIST,
         data,
-        page
+        page,
+        num
       })
     })
   }
