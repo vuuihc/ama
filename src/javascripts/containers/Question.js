@@ -9,7 +9,7 @@ import VoiceWave from "../components/VoiceWave"
 import Toast from "../util/weui/toast"
 import {baseUrl} from "../api/config"
 import '../../stylesheets/partials/modules/Question.scss'
-
+import Loading from "./Loading"
 class Question extends Component {
   constructor(props){
     super(props)
@@ -117,7 +117,7 @@ class Question extends Component {
       0: " ",
       1: " playing"
     }
-    return ( questionInfo.question_content && 
+    return ( questionInfo.question_content ? 
       <main className="question">
         <Toast icon="loading" show={listenInfo.loading} >{questionInfo.answer_ispayed?"加载声音中……":"请求支付中……"}</Toast>
         <div className="question-content">
@@ -145,6 +145,8 @@ class Question extends Component {
           <Link className="bottom-btn" to={baseUrl+"tutor/"+questionInfo.teacher_id}>向TA提问</Link>
         </div>
       </main>
+        :
+        <Loading />
     )
   }
 }

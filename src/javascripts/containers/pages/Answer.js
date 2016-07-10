@@ -111,7 +111,7 @@ class Answer extends Component {
       this.setState({answerSuccess:true})
       this.state.successTimer = setTimeout(()=>{
         this.setState({answerSuccess:false})
-        browserHistory.push(baseUrl+"/account/AskedMeList")
+        browserHistory.push(baseUrl+"account/AskedMeList")
       },2000)
     }
   }
