@@ -27,22 +27,22 @@ class Account extends Component {
   }
 
   render() {
-      let list = <LitenedList />
-
-      switch (this.state.index){
-          case 1:
-              list = <LitenedList />;
-              break;
-          case 2:
-              list = <IAskedList />;
-              break;
-          case 3:
-              list = <AskedMeList />;
-              break;
-          default:
-              list = <LitenedList />;
-              break;
-      }
+      // let list = <LitenedList />
+      //
+      // switch (this.state.index){
+      //     case 1:
+      //         list = <LitenedList />;
+      //         break;
+      //     case 2:
+      //         list = <IAskedList />;
+      //         break;
+      //     case 3:
+      //         list = <AskedMeList />;
+      //         break;
+      //     default:
+      //         list = <LitenedList />;
+      //         break;
+      // }
     return (
       <div id="accountIndex">
         <Link to={baseUrl+"edit"} >
@@ -88,7 +88,7 @@ class Account extends Component {
             >问我的
             </li>
           </ul>*/}
-          <Link to={baseUrl+"account/ListenedList"} activeClassName="active" >听过的</Link>
+          <Link to={baseUrl+"account/ListenedList"} activeClassName="active" className="active">听过的</Link>
           <Link to={baseUrl+"account/IAskedList"} activeClassName="active" >我问的</Link>
           <Link to={baseUrl+"account/AskedMeList"} activeClassName="active" >问我的</Link>
           <div className="divider"></div>

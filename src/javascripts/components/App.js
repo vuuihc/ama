@@ -16,7 +16,7 @@ class App extends Component {
                 <div ref="content">{ this.props.children }</div>
                 <div className="footer">
                     <ul>
-                        <li><Link activeClassName='active' to={baseUrl+"hot"}>热点</Link></li>
+                        <li><Link activeClassName='active' className="active" to={baseUrl+"hot"}>热点</Link></li>
                         <li><Link activeClassName='active' to={baseUrl+"tutor"}>导师</Link></li>
                         <li><Link activeClassName='active' to={baseUrl+"account"}>我的</Link></li>
                     </ul>
