@@ -2,7 +2,7 @@
  * create by wuwq
  */
 import React, {Component} from 'react';
-import { Link } from 'react-router';
+import { IndexLink,Link } from 'react-router';
 import '../../stylesheets/partials/modules/Account.scss';
 import LitenedList from '../containers/lists/LitenedList';
 import IAskedList from '../containers/lists/IAskedList';
@@ -88,7 +88,7 @@ class Account extends Component {
             >问我的
             </li>
           </ul>*/}
-          <Link to={baseUrl+"account/ListenedList"} activeClassName="active" className="active">听过的</Link>
+          <IndexLink to={baseUrl+"account/ListenedList"} activeClassName="active" >听过的</IndexLink>
           <Link to={baseUrl+"account/IAskedList"} activeClassName="active" >我问的</Link>
           <Link to={baseUrl+"account/AskedMeList"} activeClassName="active" >问我的</Link>
           <div className="divider"></div>

@@ -2,7 +2,7 @@
  * create by wuwq 
  */
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import {IndexLink, Link } from 'react-router';
 import { connect } from 'react-redux';
 import '../../stylesheets/partials/modules/App.scss';
 import {baseUrl} from "../api/config"
@@ -16,7 +16,7 @@ class App extends Component {
                 <div ref="content">{ this.props.children }</div>
                 <div className="footer">
                     <ul>
-                        <li><Link activeClassName='active' className="active" to={baseUrl+"hot"}>热点</Link></li>
+                        <li><IndexLink activeClassName='active' to={baseUrl+"hot"}>热点</IndexLink></li>
                         <li><Link activeClassName='active' to={baseUrl+"tutor"}>导师</Link></li>
                         <li><Link activeClassName='active' to={baseUrl+"account"}>我的</Link></li>
                     </ul>
