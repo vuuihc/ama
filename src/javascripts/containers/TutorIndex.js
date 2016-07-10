@@ -2,7 +2,7 @@
  * Created by zhushihao on 2016/6/15.
  */
 import React, {Component, PropTypes} from 'react'
-import {Link} from 'react-router'
+import {Link,browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 
 import {getTutorInfo,getTutorAnswerList,getPrepayInfo} from '../actions/tutor.js'
@@ -37,7 +37,7 @@ class TutorIndex extends Component {
           self.setState({askSuccess:true})
           self.state.successTimer = setTimeout(()=>{
             self.setState({askSuccess:false})
-            self.context.router.push("account/IAskedList")
+            browserHistory.push("account/IAskedList")
           },2000)
         },
         fail:function(res){

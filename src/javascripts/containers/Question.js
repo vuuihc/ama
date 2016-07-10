@@ -23,8 +23,6 @@ class Question extends Component {
   componentDidMount() {
     const {id} = this.props.params
     this.props.dispatch(getQuestionInfo(id))
-    console.log("questionInfo===" + this.props.questionInfo)
-    console.log("listenInfo===" + this.props.listenInfo)
   }
   componentWillReceiveProps(nextProps){
     const self = this
@@ -118,9 +116,9 @@ class Question extends Component {
       0: " ",
       1: " playing"
     }
-    return (
+    return ( questionInfo.question_content && 
       <main className="question">
-        <Toast icon="loading" show={listenInfo.loading} >请求支付中……</Toast>
+        <Toast icon="loading" show={listenInfo.loading} >{questionInfo.answer_ispayed?"加载声音中……":"请求支付中……"}</Toast>
         <div className="question-content">
           {questionInfo.question_content}
         </div>

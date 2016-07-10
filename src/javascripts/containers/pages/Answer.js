@@ -1,6 +1,6 @@
 import React, {Component,PropTypes} from 'react'
 import ReactDOM from 'react-dom'
-import { Link } from 'react-router'
+import { Link,browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import '../../../stylesheets/partials/modules/Answer.scss';
 import { getQuestionInfo,saveVoice } from  '../../actions/question';
@@ -110,7 +110,7 @@ class Answer extends Component {
       this.setState({answerSuccess:true})
       this.state.successTimer = setTimeout(()=>{
         this.setState({answerSuccess:false})
-        this.context.router.push("/account/AskedMeList")
+        browserHistory.push("/account/AskedMeList")
       },2000)
     }
   }

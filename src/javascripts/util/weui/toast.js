@@ -13,8 +13,6 @@ import "./weui_toast.css"
 import "./weui_icon_font.css"
 
 class Toast extends Component {
-    
-
     render() {
         const {icon, show, children, iconSize} = this.props;
 

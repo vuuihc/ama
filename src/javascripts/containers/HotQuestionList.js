@@ -2,7 +2,7 @@
  * Created by zsh on 2016/3/11.
  */
 import React, {Component, PropTypes} from 'react'
-import {Link} from 'react-router'
+import {Link,browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 import {getHotQuestionList,getListenInfo} from '../actions/question.js'
 import Loading from "./Loading"
@@ -41,7 +41,7 @@ class HotQuestionList extends Component {
   }
   bubbleClick(answerId,questionId,isPayed){
     if(isPayed){
-      this.context.router.push(`question/${questionId}`)
+      browserHistory.push(`question/${questionId}`)
     }else{
       this.getPrepayInfo(questionId,answerId)
     }
@@ -61,7 +61,7 @@ class HotQuestionList extends Component {
           paySign: nextProps.listenInfo.data.paySign, // 支付签名
           success: function (res) {
             console.log("支付成功！");
-            self.context.router.push(`question/${self.state.curQuestionId}`)
+            browserHistory.push(`/question/${self.state.curQuestionId}`)
             // self.props.dispatch(getListenInfo(self.state.curQuestionId))
           },
           fail:function(res){
