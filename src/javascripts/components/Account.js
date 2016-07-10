@@ -88,7 +88,7 @@ class Account extends Component {
             >问我的
             </li>
           </ul>*/}
-          <IndexLink to={baseUrl+"account/ListenedList"} activeClassName="active" >听过的</IndexLink>
+          <IndexLink to={baseUrl+"account/"} activeClassName="active" >听过的</IndexLink>
           <Link to={baseUrl+"account/IAskedList"} activeClassName="active" >我问的</Link>
           <Link to={baseUrl+"account/AskedMeList"} activeClassName="active" >问我的</Link>
           <div className="divider"></div>

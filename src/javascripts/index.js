@@ -31,11 +31,9 @@ ReactDom.render((
     <Router history={browserHistory}>
       <Route path={baseUrl} component={App}>
         <IndexRoute component={Hot}/>
-        <Route path={baseUrl+"hot"} component={Hot}/>
         <Route path={baseUrl+"tutor"} component={Tutor}/>
         <Route path={baseUrl+"account"} component={Account}>
           <IndexRoute component={ListenedList}/>
-          <Route path={baseUrl+"account/ListenedList"} component={ListenedList}/>
           <Route path={baseUrl+"account/AskedMeList"} component={AskedMeList}/>
           <Route path={baseUrl+"account/IAskedList"} component={IAskedList}/>
         </Route>
