@@ -27,7 +27,7 @@ const store = configureStore();
 ReactDom.render((
         <Provider store={store}>
             <Router history={browserHistory}>
-                <Route path="/" component={App}>
+                <Route path="/ama/7dyk/" component={App}>
                     <IndexRoute component={Hot}/>
                     <Route path="hot" component={Hot}/>
                     <Route path="tutor" component={Tutor}/>
