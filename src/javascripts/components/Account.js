@@ -9,6 +9,7 @@ import IAskedList from '../containers/lists/IAskedList';
 import AskedMeList from '../containers/lists/AskedMeList';
 import { connect } from  'react-redux';
 import { getUserInfo, getListened, getAskedMe, getIAsked } from '../actions/account'
+import {baseUrl} from "../api/config"
 
 class Account extends Component {
   constructor(props) {
@@ -87,9 +88,9 @@ class Account extends Component {
             >问我的
             </li>
           </ul>*/}
-          <Link to="account/ListenedList" activeClassName="active" >听过的</Link>
-          <Link to="account/IAskedList" activeClassName="active" >我问的</Link>
-          <Link to="account/AskedMeList" activeClassName="active" >问我的</Link>
+          <Link to={baseUrl+"account/ListenedList"} activeClassName="active" >听过的</Link>
+          <Link to={baseUrl+"account/IAskedList"} activeClassName="active" >我问的</Link>
+          <Link to={baseUrl+"account/AskedMeList"} activeClassName="active" >问我的</Link>
           <div className="divider"></div>
         </div>
         <div>
