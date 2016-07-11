@@ -51,9 +51,9 @@
               tmp_wx_config['jsApiList'] = jsApiList;
               console.log(tmp_wx_config);
               wx.config(tmp_wx_config);
-            })
+            })()
       }
-      window.onload = function () {
+//      window.onload = function () {
 //        if(wx_config[])
 //        getWxConfig();
         wx.ready(function(){
@@ -65,7 +65,7 @@
           alert("error is "+res)
           console.log("error is "+JSON.stringify(res))
         })
-      }
+//      }
     </script>
     <script src="/ama/7dyk/dist/mobile.js"></script>
     <!--<script src="http://localhost:8080/assets/mobile.js"></script>-->
