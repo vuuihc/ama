@@ -91,17 +91,14 @@ class Answer extends Component {
       let START = new Date().getTime();
       self.setState({START:START})
       console.log("start at ==="+ START)
-      let recordTimer = setTimeout(function(){
-        wx.startRecord({
-          success: function(){
-            localStorage.rainAllowRecord = 'true';
-          },
-          cancel: function () {
-            alert('用户拒绝授权录音');
-          }
-        });
-      },300);
-      self.setState({recordTimer:recordTimer})
+      wx.startRecord({
+        success: function(){
+          localStorage.rainAllowRecord = 'true';
+        },
+        cancel: function () {
+          alert('用户拒绝授权录音');
+        }
+      });
     }
     var recordStopHandler = function (event) {
       event.preventDefault();

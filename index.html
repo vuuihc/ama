@@ -38,11 +38,10 @@
                   'pauseVoice',
                   'stopVoice',
                   'onVoicePlayEnd',
-                  'uploadVoice',
-                  'chooseWXPay'
+                  'uploadVoice'
               ]
 //              wx_config['url'] = "http://h5app.7dyk.com/ama/7dyk/";
-              wx_config['debug'] = false;
+              wx_config['debug'] = true;
 //              wx_config['url'] = "http://localhost:8080/";
               wx_config['appId'] = data['appId'];
               wx_config['timestamp'] = data['timestamp'];
@@ -54,7 +53,8 @@
             })
       }
       window.onload = function () {
-        getWxConfig();
+//        if(wx_config[])
+//        getWxConfig();
         wx.ready(function(){
           alert('wxapi is ready')
           console.log('wxapi is ready')
