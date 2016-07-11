@@ -15,7 +15,7 @@ class AskedMeList extends Component {
     this.state = {
       afford: '',
       inviteCode: '',
-      isTeacher:true
+      isTeacher:false
     }
     this.handleScroll = this.handleScroll.bind(this)
   }
