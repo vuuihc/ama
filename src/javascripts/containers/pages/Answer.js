@@ -47,9 +47,13 @@ class Answer extends Component {
         browserHistory.push(baseUrl+"account/AskedMeList")
       },2000)
     }
+    console.log("nextProps.WXConfig.data=="+JSON.stringify(nextProps.WXConfig.data))
     if(nextProps.WXConfig.data.timestamp){
       const now = new Date().valueOf()
+      console.log("now==="+now/1000)
+      console.log("timestamp==="+nextProps.WXConfig.data.timestamp)
       if(now/1000 - nextProps.WXConfig.data.timestamp<3){
+        console.log("into config===");
         const jsApiList = [
           'startRecord',
           'stopRecord',
