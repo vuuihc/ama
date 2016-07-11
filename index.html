@@ -12,63 +12,63 @@
 <div id="root">
 </div>
 <script>
-  console.log("00000000000000");
-  window.wx_config = {};//全局变量
-  console.log("111111111111111");
-  var entryUrl = location.href || "http://h5app.7dyk.com/ama/7dyk";
-  console.log("2222222222222===" + entryUrl);
-  function getWxConfig() {
-    fetch("http://h5app.7dyk.com/ama/api/public/api/v1/question/test", {
-      credentials: 'same-origin',
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        url: entryUrl
-      })
-    })
-        .then(function (response) {
-          return response.json()
-        })
-        .then(function (json) {
-          var data = json.data;
-          var jsApiList = [
-            'startRecord',
-            'stopRecord',
-            'onVoiceRecordEnd',
-            'playVoice',
-            'pauseVoice',
-            'stopVoice',
-            'onVoicePlayEnd',
-            'uploadVoice'
-          ];
-          console.log("33333333333");
-//              wx_config['url'] = "http://h5app.7dyk.com/ama/7dyk/";
-          var tmp_wx_config = {}
-          tmp_wx_config['debug'] = true;
-//              wx_config['url'] = "http://localhost:8080/";
-          tmp_wx_config['appId'] = data['appId'];
-          tmp_wx_config['timestamp'] = data['timestamp'];
-          tmp_wx_config['nonceStr'] = data['nonceStr'];
-          tmp_wx_config['signature'] = data['signature'];
-          tmp_wx_config['jsApiList'] = jsApiList;
-          console.log(tmp_wx_config);
-          wx.config(tmp_wx_config);
-        })
-  }
-  ;
-  getWxConfig();
-  wx.ready(function () {
-    window.wx_config['ready'] = true;
-    console.log('wxapi is ready');
-    console.log("00000000000000");
-  });
-  wx.error(function (res) {
-    alert("error is " + res);
-    console.log("error is " + JSON.stringify(res));
-  });
+//  console.log("00000000000000");
+//  window.wx_config = {};//全局变量
+//  console.log("111111111111111");
+//  var entryUrl = location.href || "http://h5app.7dyk.com/ama/7dyk";
+//  console.log("2222222222222===" + entryUrl);
+//  function getWxConfig() {
+//    fetch("http://h5app.7dyk.com/ama/api/public/api/v1/question/test", {
+//      credentials: 'same-origin',
+//      method: 'post',
+//      headers: {
+//        'Accept': 'application/json',
+//        'Content-Type': 'application/json'
+//      },
+//      body: JSON.stringify({
+//        url: entryUrl
+//      })
+//    })
+//        .then(function (response) {
+//          return response.json()
+//        })
+//        .then(function (json) {
+//          var data = json.data;
+//          var jsApiList = [
+//            'startRecord',
+//            'stopRecord',
+//            'onVoiceRecordEnd',
+//            'playVoice',
+//            'pauseVoice',
+//            'stopVoice',
+//            'onVoicePlayEnd',
+//            'uploadVoice'
+//          ];
+//          console.log("33333333333");
+////              wx_config['url'] = "http://h5app.7dyk.com/ama/7dyk/";
+//          var tmp_wx_config = {}
+//          tmp_wx_config['debug'] = true;
+////              wx_config['url'] = "http://localhost:8080/";
+//          tmp_wx_config['appId'] = data['appId'];
+//          tmp_wx_config['timestamp'] = data['timestamp'];
+//          tmp_wx_config['nonceStr'] = data['nonceStr'];
+//          tmp_wx_config['signature'] = data['signature'];
+//          tmp_wx_config['jsApiList'] = jsApiList;
+//          console.log(tmp_wx_config);
+//          wx.config(tmp_wx_config);
+//        })
+//  }
+//  ;
+//  getWxConfig();
+//  wx.ready(function () {
+//    window.wx_config['ready'] = true;
+//    console.log('wxapi is ready');
+//    console.log("00000000000000");
+//  });
+//  wx.error(function (res) {
+//    alert("error is " + res);
+//    console.log("error is " + JSON.stringify(res));
+//  });
 </script>
 <script src="/ama/7dyk/dist/mobile.js"></script>
 <!--<script src="http://localhost:8080/assets/mobile.js"></script>-->

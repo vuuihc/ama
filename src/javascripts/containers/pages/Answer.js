@@ -35,7 +35,10 @@ class Answer extends Component {
     }
     console.log(this.props.questionInfo);
     var talkBtn = ReactDOM.findDOMNode(this.refs.replyContainer)
-    talkBtn.addEventListener('click',this.clickHandler)
+    const self = this
+    wx.ready(function(){
+      talkBtn.addEventListener('click',self.clickHandler)
+    })
     wx.onVoicePlayEnd({
       success: function (res) {
         self.setState({status: 2})
@@ -83,15 +86,16 @@ class Answer extends Component {
     }
   }
   componentWillUnmount(){
+    const self =this
     clearTimeout(this.state.successTimer)
     var talkBtn = ReactDOM.findDOMNode(this.refs.replyContainer)
     wx.ready(function(){
-      talkBtn.removeEventListener('click',this.clickHandler)
+      talkBtn.removeEventListener('click',self.clickHandler)
   })
 
   }
   refreshWXConfig(){
-    const url = location.href
+    const url = this.props.landPage || location.href
     console.log("now get wxconfig for url==="+url)
     this.props.getWXConfig(url)
   }
@@ -238,6 +242,7 @@ const mapStateToProps = (state) =>{
     questionInfo: state.questionInfo,
     saveVoiceInfo: state.saveVoiceInfo,
     WXConfig:state.WXConfig,
+    landPage:state.landPage
   }
 }
 

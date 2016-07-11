@@ -2,6 +2,7 @@
  * Created by zsh on 2016/3/11.
  */
 export const RECEIVE_WX_CONFIG  = 'RECEIVE_WX_CONFIG'
+export const SET_LAND_PAGE  = 'SET_LAND_PAGE'
 /*********问题**********/
 export const RECEIVE_HOT_QUESTION_LIST  = 'RECEIVE_HOT_QUESTION_LIST'
 export const RECEIVE_QUESTION_INFO  = 'RECEIVE_QUESTION_INFO'

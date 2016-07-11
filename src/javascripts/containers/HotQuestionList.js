@@ -5,6 +5,7 @@ import React, {Component, PropTypes} from 'react'
 import {Link,browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 import {getHotQuestionList,getListenInfo} from '../actions/question.js'
+import {setLandPage} from '../actions/config.js'
 import Loading from "./Loading"
 import Toast from "../util/weui/toast"
 import {baseUrl} from "../api/config"
@@ -29,6 +30,9 @@ class HotQuestionList extends Component {
     }
   }
   componentDidMount() {
+    if(this.props.landPage==null){
+      this.props.dispatch(setLandPage(location.href))
+    }
     this.props.dispatch(getHotQuestionList(1, 10))
     document.addEventListener('scroll', this.handleScroll);
   }
@@ -159,7 +163,8 @@ HotQuestionList.contextTypes = {
 function mapStateToProps(state) {
   return {
     hotQuestionList: state.hotQuestionList,
-    listenInfo:state.listenInfo
+    listenInfo:state.listenInfo,
+    landPage:state.landPage
   }
 }
 

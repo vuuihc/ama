@@ -1,7 +1,6 @@
 import 'babel-polyfill'
 import React from 'react'
 import ReactDom from 'react-dom'
-import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 import {Router, Route, IndexRoute, browserHistory, useRouterHistory} from 'react-router'
 
