@@ -53,7 +53,7 @@ class Answer extends Component {
 
   }
   refreshWXConfig(){
-    const url = loaction.href
+    const url = location.href
     console.log("now get wxconfig for url==="+url)
     this.props.getWXConfig(url)
   }
