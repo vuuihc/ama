@@ -27,22 +27,6 @@ class Account extends Component {
   }
 
   render() {
-      // let list = <LitenedList />
-      //
-      // switch (this.state.index){
-      //     case 1:
-      //         list = <LitenedList />;
-      //         break;
-      //     case 2:
-      //         list = <IAskedList />;
-      //         break;
-      //     case 3:
-      //         list = <AskedMeList />;
-      //         break;
-      //     default:
-      //         list = <LitenedList />;
-      //         break;
-      // }
     return (
       <div id="accountIndex">
         <Link to={baseUrl+"edit"} >
@@ -71,28 +55,11 @@ class Account extends Component {
         </div>
         <div className="dividerWide"></div>
         <div className="nav">
-          {/*<ul>
-            <li
-              onClick={this.handleClick.bind(this, 1) }
-              className={this.state.index == 1 ? 'active': ''}
-            >听过的
-            </li>
-            <li
-              onClick={this.handleClick.bind(this, 2) }
-              className={this.state.index == 2 ? 'active': ''}
-            >我问的
-            </li>
-            <li
-              onClick={this.handleClick.bind(this, 3) }
-              className={this.state.index == 3 ? 'active': ''}
-            >问我的
-            </li>
-          </ul>*/}
           <IndexLink to={baseUrl+"account/"} activeClassName="active" >听过的</IndexLink>
           <Link to={baseUrl+"account/IAskedList"} activeClassName="active" >我问的</Link>
           <Link to={baseUrl+"account/AskedMeList"} activeClassName="active" >问我的</Link>
-          <div className="divider"></div>
         </div>
+        <div className="divider"></div>
         <div>
           { this.props.children }
         </div>

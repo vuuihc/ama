@@ -7,7 +7,7 @@ import QuestionItemWithoutAvatarWithoutBubble from '../blocks/QuestionItemWithou
 import {getAskedMe, requestBecomeTeacher} from '../../actions/account'
 import Loading from '../Loading'
 import ReactDom from 'react-dom'
-import {baseUrl} from "../../api/config"
+import {baseUrl, domainPath} from "../../api/config"
 class AskedMeList extends Component {
 
   constructor() {
@@ -28,7 +28,6 @@ class AskedMeList extends Component {
 
   componentWillUnmount() {
     document.removeEventListener('scroll', this.handleScroll);
-    console.log(this.refs);
   }
 
   handleSubmit() {
@@ -47,8 +46,8 @@ class AskedMeList extends Component {
       <div className="askedMeList">
         {
           this.props.userInfo.is_teacher === '1' ? (
+          // this.state.isTeacher ? (
             this.props.data.length === 0
-              // this.props.data.length
               ? (
               <div>
                 <div className="hint">
@@ -59,7 +58,7 @@ class AskedMeList extends Component {
                 </button>
                 <Modal ref="qrcode" left="22" top="300">
                   <img width="100%" src={
-                                        jrQrcode.getQrBase64(`http://h5app.7dyk.com/ama/7dyk/#/tutor/${this.props.userInfo.user_id}`, {
+                                        jrQrcode.getQrBase64(`${domainPath}/tutor/${this.props.userInfo.user_id}`, {
                                             padding		: 10,   //二维码四边空白，默认为10px
                                             width		: 256,  //二维码图片宽度，默认为256px
                                             height		: 256,  //二维码图片高度，默认为256px
