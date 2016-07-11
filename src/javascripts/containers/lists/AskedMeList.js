@@ -29,7 +29,6 @@ class AskedMeList extends Component {
 
   componentWillUnmount() {
     document.removeEventListener('scroll', this.handleScroll);
-    console.log(this.refs);
   }
 
   handleSubmit() {
