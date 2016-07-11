@@ -11,13 +11,14 @@ import {
   RECEIVE_PREPAY_INFO
 } from './ActionTypes'
 
-export function getTutorList(page, number) {
+export function getTutorList(page, num) {
   return dispatch => {
-    tutor.getTutorList(page, number, data => {
+    tutor.getTutorList(page, num, data => {
       dispatch({
         type: RECEIVE_TUTOR_LIST,
         data,
-        page
+        page,
+        num
       })
     })
   }
