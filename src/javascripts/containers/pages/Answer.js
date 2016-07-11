@@ -65,15 +65,17 @@ class Answer extends Component {
           'uploadVoice',
           'chooseWXPay'
         ]
-        wx_config['debug'] = true;
+        const newWxConfig = {}
+        console.log("newWxConfig")
+        newWxConfig['debug'] = true;
 //              wx_config['url'] = "http://localhost:8080/";
-        wx_config['appId'] = nextProps.WXConfig.data['appId'];
-        wx_config['timestamp'] = nextProps.WXConfig.data['timestamp'];
-        wx_config['nonceStr'] = nextProps.WXConfig.data['nonceStr'];
-        wx_config['signature'] = nextProps.WXConfig.data['signature'];
-        wx_config['jsApiList'] = jsApiList;
-        console.log(JSON.stringify(wx_config))
-        wx.config(wx_config)
+        newWxConfig['appId'] = nextProps.WXConfig.data['appId'];
+        newWxConfig['timestamp'] = nextProps.WXConfig.data['timestamp'];
+        newWxConfig['nonceStr'] = nextProps.WXConfig.data['nonceStr'];
+        newWxConfig['signature'] = nextProps.WXConfig.data['signature'];
+        newWxConfig['jsApiList'] = jsApiList;
+        console.log("newWxConfig"+JSON.stringify(newWxConfig))
+        // wx.config(newWxConfig)
       }
     }
   }
