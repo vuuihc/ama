@@ -14,8 +14,7 @@ class AskedMeList extends Component {
     super();
     this.state = {
       afford: '',
-      inviteCode: '',
-      isTeacher:false
+      inviteCode: ''
     }
     this.handleScroll = this.handleScroll.bind(this)
   }
@@ -46,10 +45,9 @@ class AskedMeList extends Component {
     return (
       <div className="askedMeList">
         {
-          // this.props.userInfo.is_teacher === '1' ? (
-          this.state.isTeacher ? (
+          this.props.userInfo.is_teacher === '1' ? (
+          // this.state.isTeacher ? (
             this.props.data.length === 0
-              // this.props.data.length
               ? (
               <div>
                 <div className="hint">
@@ -131,7 +129,6 @@ class AskedMeList extends Component {
             </div>
           )
         }
-       <div onClick={() => {this.setState({isTeacher: !this.state.isTeacher})}}>改变角色</div>
       </div>
     )
   }
