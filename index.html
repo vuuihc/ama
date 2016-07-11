@@ -13,11 +13,11 @@
     </div>
     <script>
       window.wx_config = {};//全局变量
-      var entryUrl = location.href;
-      console.log("entryUrl==="+entryUrl)
+      var entryUrl = location.href || "http://h5app.7dyk.com/ama/7dyk";
+      console.log("entryUrl==="+entryUrl);
       function getWxConfig(){
-        fetch(`http://api.7dyk.com/api/v1/question/test`,{
-          //credentials: 'same-origin',
+        fetch(`http://h5app.7dyk.com/ama/api/public/api/v1/question/test`,{
+          credentials: 'same-origin',
           method: 'post',
           headers: {
             'Accept': 'application/json',
@@ -39,7 +39,7 @@
                   'stopVoice',
                   'onVoicePlayEnd',
                   'uploadVoice'
-              ]
+              ];
 //              wx_config['url'] = "http://h5app.7dyk.com/ama/7dyk/";
               var tmp_wx_config = {}
               tmp_wx_config['debug'] = true;
@@ -58,13 +58,14 @@
 //        getWxConfig();
         wx.ready(function(){
 //          alert('wxapi is ready')
-          window.wx_config['ready'] = true
-          console.log('wxapi is ready')
-        })
+          window.wx_config['ready'] = true;
+          console.log('wxapi is ready');
+          alert(JSON.stringify(window.wx_config));
+        });
         wx.error(function (res) {
-          alert("error is "+res)
-          console.log("error is "+JSON.stringify(res))
-        })
+          alert("error is "+res);
+          console.log("error is "+JSON.stringify(res));
+        });
 //      }
     </script>
     <script src="/ama/7dyk/dist/mobile.js"></script>
