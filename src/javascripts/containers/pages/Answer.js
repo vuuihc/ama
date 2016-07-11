@@ -17,7 +17,10 @@ class Answer extends Component {
       localId: null,
       status: 0,//0:话筒等待录音，1：正在录音，2：音波等待播放，3：正在播放
       answerSuccess: false,
-      successTimer:null
+      successTimer:null,
+      START:0,
+      END:0,
+      recordTimer:null
     }
     this.clickHandler = this.clickHandler.bind(this)
   }
@@ -56,13 +59,14 @@ class Answer extends Component {
           'stopVoice',
           'onVoicePlayEnd',
           'uploadVoice',
+          'chooseWXPay'
         ]
         wx_config['debug'] = false;
 //              wx_config['url'] = "http://localhost:8080/";
-        wx_config['appId'] = data['appId'];
-        wx_config['timestamp'] = data['timestamp'];
-        wx_config['nonceStr'] = data['nonceStr'];
-        wx_config['signature'] = data['signature'];
+        wx_config['appId'] = nextProps.WXConfig.data['appId'];
+        wx_config['timestamp'] = nextProps.WXConfig.data['timestamp'];
+        wx_config['nonceStr'] = nextProps.WXConfig.data['nonceStr'];
+        wx_config['signature'] = nextProps.WXConfig.data['signature'];
         wx_config['jsApiList'] = jsApiList;
         wx.config(wx_config)
       }
@@ -80,13 +84,14 @@ class Answer extends Component {
     this.props.getWXConfig(url)
   }
   clickHandler(event){
-    var localId,START,END,recordTimer;
+    // var localId,START,END,recordTimer;
     var self = this
     var recordStartHandler = function (event) {
       event.preventDefault();
-      START = new Date().getTime();
+      let START = new Date().getTime();
+      this.setState({START:START})
       console.log("start at ==="+ START)
-      recordTimer = setTimeout(function(){
+      let recordTimer = setTimeout(function(){
         wx.startRecord({
           success: function(){
             localStorage.rainAllowRecord = 'true';
@@ -96,22 +101,24 @@ class Answer extends Component {
           }
         });
       },300);
+      self.setState({recordTimer:recordTimer})
     }
     var recordStopHandler = function (event) {
       event.preventDefault();
-      END = new Date().getTime();
-      console.log("stop at ==="+ START)
-      if((END - START) < 300){
+      let END = new Date().getTime();
+      console.log("start at ==="+ self.state.START)
+      console.log("stop at ==="+ END)
+      if((END - self.state.START) < 300){
         END = 0;
-        START = 0;
-        console.log("录音时间"+(END-START));
+        self.setState({START:0})
+        console.log("录音时间"+(END-self.state.START));
         //小于300ms，不录音
-        clearTimeout(recordTimer);
+        clearTimeout(self.state.recordTimer);
       }else{
-        console.log("录音时间"+(END-START));
+        console.log("录音时间"+(END-this.stateSTART));
         wx.stopRecord({
           success: function (res) {
-            localId = res.localId
+            let localId = res.localId
             self.setState({localId:localId})
           },
           fail: function (res) {
@@ -122,13 +129,13 @@ class Answer extends Component {
     }
     var playStartHandler = function (event) {
       wx.playVoice({
-        localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
+        localId: self.state.localId // 需要播放的音频的本地ID，由stopRecord接口获得
       });
     }
     var playStopHandler = function (event) {
       event.preventDefault()
       wx.stopVoice({
-        localId: localId // 需要停止的音频的本地ID，由stopRecord接口获得
+        localId: self.state.localId // 需要停止的音频的本地ID，由stopRecord接口获得
       });
     }
     switch (self.state.status) {
