@@ -4,6 +4,7 @@ import { Link,browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import '../../../stylesheets/partials/modules/Answer.scss';
 import { getQuestionInfo,saveVoice } from  '../../actions/question';
+import { getWXConfig } from "../../actions/config"
 import time from '../../util/time'
 import VoiceWave from  "../../components/VoiceWave"
 import Toast from "../../util/weui/toast"
@@ -18,20 +19,50 @@ class Answer extends Component {
       answerSuccess: false,
       successTimer:null
     }
+    this.clickHandler = this.clickHandler.bind(this)
   }
   componentWillMount(){
     const {id} = this.props.params;
     this.props.getQuestionInfo(id);
   }
   componentDidMount(){
+    this.refreshWXConfig()
     console.log(this.props.questionInfo);
     var talkBtn = ReactDOM.findDOMNode(this.refs.replyContainer)
+    talkBtn.addEventListener('click',this.clickHandler)
+  }
+  componentWillReceiveProps(nextProps){
+    if(nextProps.saveVoiceInfo.saved){
+      this.setState({answerSuccess:true})
+      this.state.successTimer = setTimeout(()=>{
+        this.setState({answerSuccess:false})
+        browserHistory.push(baseUrl+"account/AskedMeList")
+      },2000)
+    }
+    if(nextProps.WXConfig.data.timeStamp){
+      const now = new Date().valueOf()
+      if(now/1000 - nextProps.WXConfig.data.timeStamp<3){
+        wx.config(nextProps.WXConfig.data)
+      }
+    }
+  }
+  componentWillUnmount(){
+    clearTimeout(this.state.successTimer)
+    var talkBtn = ReactDOM.findDOMNode(this.refs.replyContainer)
+    talkBtn.removeEventListener('click',this.clickHandler)
+
+  }
+  refreshWXConfig(){
+    const url = loaction.href
+    console.log("now get wxconfig for url==="+url)
+    this.props.getWXConfig(url)
+  }
+  clickHandler(event){
     var localId,START,END,recordTimer;
     var self = this
     var recordStartHandler = function (event) {
       event.preventDefault();
       START = new Date().getTime();
-      // talkBtn.classList.add('on')
       recordTimer = setTimeout(function(){
         wx.startRecord({
           success: function(){
@@ -46,7 +77,6 @@ class Answer extends Component {
     var recordStopHandler = function (event) {
       event.preventDefault();
       END = new Date().getTime();
-      talkBtn.classList.remove('on');
       if((END - START) < 300){
         END = 0;
         START = 0;
@@ -77,46 +107,30 @@ class Answer extends Component {
         localId: localId // 需要停止的音频的本地ID，由stopRecord接口获得
       });
     }
-    var clickHandler  = function (event) {
-      switch (self.state.status) {
-        case 0:
-          recordStartHandler(event)
-          self.setState({status:1})
-          break
-        case 1:
-          recordStopHandler(event)
-          self.setState({status:2})
-          break
-        case 2:
-          playStartHandler(event)
-          self.setState({status:3})
-          break
-        case 3:
-          playStopHandler(event)
-          self.setState({status:2})
+    switch (self.state.status) {
+      case 0:
+        recordStartHandler(event)
+        self.setState({status:1})
+        break
+      case 1:
+        recordStopHandler(event)
+        self.setState({status:2})
+        break
+      case 2:
+        playStartHandler(event)
+        self.setState({status:3})
+        break
+      case 3:
+        playStopHandler(event)
+        self.setState({status:2})
 
 
-      }
     }
-    talkBtn.addEventListener('click',clickHandler)
-
     wx.onVoicePlayEnd({
       success: function (res) {
         self.setState({status: 2})
       }
     });
-  }
-  componentWillReceiveProps(nextProps){
-    if(nextProps.saveVoiceInfo.saved){
-      this.setState({answerSuccess:true})
-      this.state.successTimer = setTimeout(()=>{
-        this.setState({answerSuccess:false})
-        browserHistory.push(baseUrl+"account/AskedMeList")
-      },2000)
-    }
-  }
-  componentWillUnmount(){
-    clearTimeout(this.state.successTimer)
   }
   confirmAnswer(){
     const self = this
@@ -187,10 +201,11 @@ Answer.contextTypes = {
 const mapStateToProps = (state) =>{
   return {
     questionInfo: state.questionInfo,
-    saveVoiceInfo: state.saveVoiceInfo
+    saveVoiceInfo: state.saveVoiceInfo,
+    WXConfig:state.WXConfig,
   }
 }
 
-Answer = connect( mapStateToProps, { getQuestionInfo,saveVoice })(Answer);
+Answer = connect( mapStateToProps, { getQuestionInfo,saveVoice,getWXConfig })(Answer);
 
 export default Answer;
