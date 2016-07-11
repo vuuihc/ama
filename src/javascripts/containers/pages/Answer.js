@@ -75,7 +75,7 @@ class Answer extends Component {
         newWxConfig['signature'] = nextProps.WXConfig.data['signature'];
         newWxConfig['jsApiList'] = jsApiList;
         console.log("newWxConfig"+JSON.stringify(newWxConfig))
-        // wx.config(newWxConfig)
+        wx.config(newWxConfig)
       }
     }
   }
