@@ -59,7 +59,7 @@ class AskedMeList extends Component {
                 </button>
                 <Modal ref="qrcode" left="22" top="300">
                   <img width="100%" src={
-                                        jrQrcode.getQrBase64(`${domianPath}/tutor/${this.props.userInfo.user_id}`, {
+                                        jrQrcode.getQrBase64(`${domainPath}/tutor/${this.props.userInfo.user_id}`, {
                                             padding		: 10,   //二维码四边空白，默认为10px
                                             width		: 256,  //二维码图片宽度，默认为256px
                                             height		: 256,  //二维码图片高度，默认为256px
