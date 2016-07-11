@@ -2,10 +2,11 @@
  * Created by zsh on 2016/7/11.
  */
 import apiHandler from "../util/apiHandler"
+import {domain} from "../api/config"
 export default {
   getWXConfig(url,cb){
-    fetch(`http://api.7dyk.com/api/v1/question/test`,{
-      //credentials: 'same-origin',
+    fetch(`${domain}/api/v1/question/test`,{
+      credentials: 'same-origin',
       method: 'post',
       headers: {
         'Accept': 'application/json',

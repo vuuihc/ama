@@ -30,6 +30,11 @@ class Answer extends Component {
     console.log(this.props.questionInfo);
     var talkBtn = ReactDOM.findDOMNode(this.refs.replyContainer)
     talkBtn.addEventListener('click',this.clickHandler)
+    wx.onVoicePlayEnd({
+      success: function (res) {
+        self.setState({status: 2})
+      }
+    });
   }
   componentWillReceiveProps(nextProps){
     if(nextProps.saveVoiceInfo.saved){
@@ -42,7 +47,24 @@ class Answer extends Component {
     if(nextProps.WXConfig.data.timeStamp){
       const now = new Date().valueOf()
       if(now/1000 - nextProps.WXConfig.data.timeStamp<3){
-        wx.config(nextProps.WXConfig.data)
+        const jsApiList = [
+          'startRecord',
+          'stopRecord',
+          'onVoiceRecordEnd',
+          'playVoice',
+          'pauseVoice',
+          'stopVoice',
+          'onVoicePlayEnd',
+          'uploadVoice',
+        ]
+        wx_config['debug'] = false;
+//              wx_config['url'] = "http://localhost:8080/";
+        wx_config['appId'] = data['appId'];
+        wx_config['timestamp'] = data['timestamp'];
+        wx_config['nonceStr'] = data['nonceStr'];
+        wx_config['signature'] = data['signature'];
+        wx_config['jsApiList'] = jsApiList;
+        wx.config(wx_config)
       }
     }
   }
@@ -63,6 +85,7 @@ class Answer extends Component {
     var recordStartHandler = function (event) {
       event.preventDefault();
       START = new Date().getTime();
+      console.log("start at ==="+ START)
       recordTimer = setTimeout(function(){
         wx.startRecord({
           success: function(){
@@ -77,6 +100,7 @@ class Answer extends Component {
     var recordStopHandler = function (event) {
       event.preventDefault();
       END = new Date().getTime();
+      console.log("stop at ==="+ START)
       if((END - START) < 300){
         END = 0;
         START = 0;
@@ -123,14 +147,8 @@ class Answer extends Component {
       case 3:
         playStopHandler(event)
         self.setState({status:2})
-
-
     }
-    wx.onVoicePlayEnd({
-      success: function (res) {
-        self.setState({status: 2})
-      }
-    });
+    
   }
   confirmAnswer(){
     const self = this
