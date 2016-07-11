@@ -29,7 +29,10 @@ class Answer extends Component {
     this.props.getQuestionInfo(id);
   }
   componentDidMount(){
-    this.refreshWXConfig()
+    console.log("window.wx_config.ready=="+window.wx_config.ready)
+    if(!window.wx_config.ready){
+      this.refreshWXConfig()
+    }
     console.log(this.props.questionInfo);
     var talkBtn = ReactDOM.findDOMNode(this.refs.replyContainer)
     talkBtn.addEventListener('click',this.clickHandler)
@@ -82,7 +85,9 @@ class Answer extends Component {
   componentWillUnmount(){
     clearTimeout(this.state.successTimer)
     var talkBtn = ReactDOM.findDOMNode(this.refs.replyContainer)
-    talkBtn.removeEventListener('click',this.clickHandler)
+    wx.ready(function(){
+      talkBtn.removeEventListener('click',this.clickHandler)
+  })
 
   }
   refreshWXConfig(){
