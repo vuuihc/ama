@@ -47,9 +47,9 @@ class Answer extends Component {
         browserHistory.push(baseUrl+"account/AskedMeList")
       },2000)
     }
-    if(nextProps.WXConfig.data.timeStamp){
+    if(nextProps.WXConfig.data.timestamp){
       const now = new Date().valueOf()
-      if(now/1000 - nextProps.WXConfig.data.timeStamp<3){
+      if(now/1000 - nextProps.WXConfig.data.timestamp<3){
         const jsApiList = [
           'startRecord',
           'stopRecord',
@@ -61,7 +61,7 @@ class Answer extends Component {
           'uploadVoice',
           'chooseWXPay'
         ]
-        wx_config['debug'] = false;
+        wx_config['debug'] = true;
 //              wx_config['url'] = "http://localhost:8080/";
         wx_config['appId'] = nextProps.WXConfig.data['appId'];
         wx_config['timestamp'] = nextProps.WXConfig.data['timestamp'];
