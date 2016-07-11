@@ -89,7 +89,7 @@ class Answer extends Component {
     var recordStartHandler = function (event) {
       event.preventDefault();
       let START = new Date().getTime();
-      this.setState({START:START})
+      self.setState({START:START})
       console.log("start at ==="+ START)
       let recordTimer = setTimeout(function(){
         wx.startRecord({
@@ -115,7 +115,7 @@ class Answer extends Component {
         //小于300ms，不录音
         clearTimeout(self.state.recordTimer);
       }else{
-        console.log("录音时间"+(END-this.stateSTART));
+        console.log("录音时间"+(END-self.state.START));
         wx.stopRecord({
           success: function (res) {
             let localId = res.localId
@@ -128,6 +128,7 @@ class Answer extends Component {
       }
     }
     var playStartHandler = function (event) {
+      event.preventDefault()
       wx.playVoice({
         localId: self.state.localId // 需要播放的音频的本地ID，由stopRecord接口获得
       });
