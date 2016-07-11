@@ -72,6 +72,7 @@ class Answer extends Component {
         wx_config['nonceStr'] = nextProps.WXConfig.data['nonceStr'];
         wx_config['signature'] = nextProps.WXConfig.data['signature'];
         wx_config['jsApiList'] = jsApiList;
+        console.log(JSON.stringify(wx_config))
         wx.config(wx_config)
       }
     }
