@@ -13,7 +13,7 @@ export default {
             "user_title": "头衔",
             "user_face": "http://wenwen.soso.com/p/20130920/20130920111618-238747972.jpg",
             "answer_listen": "0",
-            "answer_dislike": "0",
+            "answer_like": "0",
             "answer_audio": "http://m1.songtaste.com/201606121313/fcdd5c51defe58c58e31aa244ea298a4/g/20160612/1/1b/1b96dc777212c01587d8c64c8887ae71.mp3"
         },{
             "id": 100001,
@@ -23,7 +23,7 @@ export default {
             "user_title": "头衔",
             "user_face": "http://wenwen.soso.com/p/20130920/20130920111618-238747972.jpg",
             "answer_listen": "0",
-            "answer_dislike": "0",
+            "answer_like": "0",
             "answer_audio": "http://m1.songtaste.com/201606121313/fcdd5c51defe58c58e31aa244ea298a4/g/20160612/1/1b/1b96dc777212c01587d8c64c8887ae71.mp3"
         },{
             "id": 100001,
@@ -33,7 +33,7 @@ export default {
             "user_title": "头衔",
             "user_face": "http://wenwen.soso.com/p/20130920/20130920111618-238747972.jpg",
             "answer_listen": "0",
-            "answer_dislike": "0",
+            "answer_like": "0",
             "answer_audio": "http://m1.songtaste.com/201606121313/fcdd5c51defe58c58e31aa244ea298a4/g/20160612/1/1b/1b96dc777212c01587d8c64c8887ae71.mp3"
         },{
             "id": 100001,
@@ -43,7 +43,7 @@ export default {
             "user_title": "头衔",
             "user_face": "http://wenwen.soso.com/p/20130920/20130920111618-238747972.jpg",
             "answer_listen": "0",
-            "answer_dislike": "0",
+            "answer_like": "0",
             "answer_audio": "http://m1.songtaste.com/201606121313/fcdd5c51defe58c58e31aa244ea298a4/g/20160612/1/1b/1b96dc777212c01587d8c64c8887ae71.mp3"
         },{
             "id": 100001,
@@ -53,7 +53,7 @@ export default {
             "user_title": "头衔",
             "user_face": "http://wenwen.soso.com/p/20130920/20130920111618-238747972.jpg",
             "answer_listen": "0",
-            "answer_dislike": "0",
+            "answer_like": "0",
             "answer_audio": "http://m1.songtaste.com/201606121313/fcdd5c51defe58c58e31aa244ea298a4/g/20160612/1/1b/1b96dc777212c01587d8c64c8887ae71.mp3"
         },{
             "id": 100001,
@@ -63,7 +63,7 @@ export default {
             "user_title": "头衔",
             "user_face": "http://wenwen.soso.com/p/20130920/20130920111618-238747972.jpg",
             "answer_listen": "0",
-            "answer_dislike": "0",
+            "answer_like": "0",
             "answer_audio": "http://m1.songtaste.com/201606121313/fcdd5c51defe58c58e31aa244ea298a4/g/20160612/1/1b/1b96dc777212c01587d8c64c8887ae71.mp3"
         },{
             "id": 100001,
@@ -73,7 +73,7 @@ export default {
             "user_title": "头衔",
             "user_face": "http://wenwen.soso.com/p/20130920/20130920111618-238747972.jpg",
             "answer_listen": "0",
-            "answer_dislike": "0",
+            "answer_like": "0",
             "answer_audio": "http://m1.songtaste.com/201606121313/fcdd5c51defe58c58e31aa244ea298a4/g/20160612/1/1b/1b96dc777212c01587d8c64c8887ae71.mp3"
         },{
             "id": 100001,
@@ -83,7 +83,7 @@ export default {
             "user_title": "头衔",
             "user_face": "http://wenwen.soso.com/p/20130920/20130920111618-238747972.jpg",
             "answer_listen": "0",
-            "answer_dislike": "0",
+            "answer_like": "0",
             "answer_audio": "http://m1.songtaste.com/201606121313/fcdd5c51defe58c58e31aa244ea298a4/g/20160612/1/1b/1b96dc777212c01587d8c64c8887ae71.mp3"
         },{
             "id": 100001,
@@ -93,7 +93,7 @@ export default {
             "user_title": "头衔",
             "user_face": "http://wenwen.soso.com/p/20130920/20130920111618-238747972.jpg",
             "answer_listen": "0",
-            "answer_dislike": "0",
+            "answer_like": "0",
             "answer_audio": "http://m1.songtaste.com/201606121313/fcdd5c51defe58c58e31aa244ea298a4/g/20160612/1/1b/1b96dc777212c01587d8c64c8887ae71.mp3"
         },{
             "id": 100001,
@@ -103,7 +103,7 @@ export default {
             "user_title": "头衔",
             "user_face": "http://wenwen.soso.com/p/20130920/20130920111618-238747972.jpg",
             "answer_listen": "0",
-            "answer_dislike": "0",
+            "answer_like": "0",
             "answer_audio": "http://m1.songtaste.com/201606121313/fcdd5c51defe58c58e31aa244ea298a4/g/20160612/1/1b/1b96dc777212c01587d8c64c8887ae71.mp3"
         },{
             "id": 100001,
@@ -113,7 +113,7 @@ export default {
             "user_title": "头衔",
             "user_face": "http://wenwen.soso.com/p/20130920/20130920111618-238747972.jpg",
             "answer_listen": "0",
-            "answer_dislike": "0",
+            "answer_like": "0",
             "answer_audio": "http://m1.songtaste.com/201606121313/fcdd5c51defe58c58e31aa244ea298a4/g/20160612/1/1b/1b96dc777212c01587d8c64c8887ae71.mp3"
         },{
             "id": 100001,
@@ -123,7 +123,7 @@ export default {
             "user_title": "头衔",
             "user_face": "http://wenwen.soso.com/p/20130920/20130920111618-238747972.jpg",
             "answer_listen": "0",
-            "answer_dislike": "0",
+            "answer_like": "0",
             "answer_audio": "http://m1.songtaste.com/201606121313/fcdd5c51defe58c58e31aa244ea298a4/g/20160612/1/1b/1b96dc777212c01587d8c64c8887ae71.mp3"
         },{
             "id": 100001,
@@ -133,7 +133,7 @@ export default {
             "user_title": "头衔",
             "user_face": "http://wenwen.soso.com/p/20130920/20130920111618-238747972.jpg",
             "answer_listen": "0",
-            "answer_dislike": "0",
+            "answer_like": "0",
             "answer_audio": "http://m1.songtaste.com/201606121313/fcdd5c51defe58c58e31aa244ea298a4/g/20160612/1/1b/1b96dc777212c01587d8c64c8887ae71.mp3"
         },{
             "id": 100001,
@@ -143,7 +143,7 @@ export default {
             "user_title": "头衔",
             "user_face": "http://wenwen.soso.com/p/20130920/20130920111618-238747972.jpg",
             "answer_listen": "0",
-            "answer_dislike": "0",
+            "answer_like": "0",
             "answer_audio": "http://m1.songtaste.com/201606121313/fcdd5c51defe58c58e31aa244ea298a4/g/20160612/1/1b/1b96dc777212c01587d8c64c8887ae71.mp3"
         }]
     }
@@ -266,7 +266,7 @@ export default {
             "company":"俊宏科技",
             "position":"CEO",
             "answer_listen":123,
-            "answer_dislike":23,
+            "answer_like":23,
             "question_prize":5.2,
             "voice":"http://ww3.sinaimg.cn/mw690/684ff39bjw1f4ugvt0wkdj208m0640sx.jpg"
         }

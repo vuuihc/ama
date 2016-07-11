@@ -6,33 +6,24 @@ import {Link} from 'react-router'
 import {connect} from 'react-redux'
 import {getQuestionInfo,getListenInfo} from '../actions/question.js'
 import VoiceWave from "../components/VoiceWave"
+import Toast from "../util/weui/toast"
+import {baseUrl} from "../api/config"
 import '../../stylesheets/partials/modules/Question.scss'
-
+import Loading from "./Loading"
 class Question extends Component {
   constructor(props){
     super(props)
     this.state={
-      playing: false,
-      answerAudio:null
+      playing: 0,
+      answerAudio:null,
+      curAnswerId:null,
+      playNow: true,
+      listenTimer:null,
     }
   }
   componentDidMount() {
     const {id} = this.props.params
     this.props.dispatch(getQuestionInfo(id))
-    console.log("questionInfo===" + this.props.questionInfo)
-  }
-  getPrepayInfo(answerId){
-    this.props.dispatch(getListenInfo(answerId))
-  }
-  bubbleClick(){
-    console.log("this.state.answerAudio")
-    console.log(this.state.answerAudio)
-    if(this.state.answerAudio!=null){
-      this.playAudio()
-    }else{
-      const answerId = this.props.params.id
-      this.getPrepayInfo(answerId)
-    }
   }
   componentWillReceiveProps(nextProps){
     const self = this
@@ -49,7 +40,8 @@ class Question extends Component {
           paySign: nextProps.listenInfo.data.paySign, // 支付签名
           success: function (res) {
             console.log("支付成功！");
-            self.props.dispatch(getListenInfo(answerId))
+            self.state.listenTimer = setTimeout(() => self.props.dispatch(getListenInfo(answerId)),1000);
+            self.setState({playNow: false})
           },
           fail:function(res){
             alert("支付失败")
@@ -57,34 +49,61 @@ class Question extends Component {
             console.log(res)
           }
         });
-      }else if(nextProps.listenInfo.data.audio!=undefined){
-        console.log("nextProps.listenInfo.data")
-        console.log(nextProps.listenInfo.data)
-        const answerAudio = new Audio(nextProps.listenInfo.data.audio)
+      }
+    }else if(nextProps.listenInfo.data.url!=undefined){
+      console.log("nextProps.listenInfo.data")
+      console.log(nextProps.listenInfo.data)
+      const time = new Date().valueOf()
+      const questionId = this.props.params.id
+      if(nextProps.listenInfo.data.question_id==questionId && time-nextProps.listenInfo.timeStamp<500){
+        const answerAudio = new Audio(nextProps.listenInfo.data.url)
+        console.log("get audio===="+nextProps.listenInfo.data.url)
         this.setState({answerAudio:answerAudio})
+        this.props.dispatch(getQuestionInfo(nextProps.listenInfo.data.question_id))
+        if(this.state.playNow){
+          this.setState({playing:1})
+          this.playAudio(answerAudio)
+        }
       }
     }
   }
-  playAudio(){
+  componentWillUnmount(){
+    const self = this
+    clearTimeout(self.state.listenTimer);
+  }
+  getPrepayInfo(answerId){
+    this.props.dispatch(getListenInfo(answerId))
+  }
+  bubbleClick(answerId){
+    console.log("this.state.answerAudio")
+    console.log(this.state.answerAudio)
+    if(this.state.answerAudio!=null){
+      this.setState({playing:1})
+      this.playAudio(this.state.answerAudio)
+    }else{
+      this.setState({curAnswerId:answerId})
+      this.getPrepayInfo(answerId)
+    }
+  }
+  playAudio(answerAudio){
     console.log("into playAudio");
-    var audio = this.state.answerAudio
     if (window.WeixinJSBridge) {
       wx.getNetworkType({
         success: function (res) {
-          audio.play();
+          answerAudio.play();
         },
         fail: function (res) {
-          audio.play();
+          answerAudio.play();
         }
       });
     }else{
       document.addEventListener("WeixinJSBridgeReady", function() {
         wx.getNetworkType({
           success: function (res) {
-            audio.play();
+            answerAudio.play();
           },
           fail: function (res) {
-            audio.play();
+            answerAudio.play();
           }
         });
       }, false);
@@ -93,8 +112,14 @@ class Question extends Component {
 
   render() {
     const {questionInfo,listenInfo} = this.props
-    return (
+    console.log("this.state.playing=="+this.state.playing)
+    const classNames = {
+      0: " ",
+      1: " playing"
+    }
+    return ( questionInfo.question_content ? 
       <main className="question">
+        <Toast icon="loading" show={listenInfo.loading} >{questionInfo.answer_ispayed?"加载声音中……":"请求支付中……"}</Toast>
         <div className="question-content">
           {questionInfo.question_content}
         </div>
@@ -103,22 +128,25 @@ class Question extends Component {
           <h3 >{questionInfo.teacher_name}</h3>
           <h4 >{questionInfo.teacher_company+"　"+questionInfo.teacher_position}  </h4>
         </div>
-        <div className="answer" onClick={this.bubbleClick.bind(this)}>
-            <span className="bubble">
+        <div className="answer" onClick={this.bubbleClick.bind(this,questionInfo.answer_id)}>
+            <span className={`bubble${classNames[this.state.playing]}`}>
                 <span className="bubble-tail"></span>
-              {this.state.playing ? <VoiceWave /> : <span className="bubble-voice"></span>}
-              <span className="bubble-text">{listenInfo.data.answer_audio?"点击播放":`${questionInfo.question_prize}元偷偷听`}</span>
+                <VoiceWave />
+                <span className="bubble-voice"></span>
+              <span className="bubble-text">{questionInfo.answer_ispayed?(this.state.playing==1?"正在播放":"点击播放"):`${questionInfo.question_prize}元偷偷听`}</span>
             </span>
         </div>
         <div className="remark">
           <span>{questionInfo.answer_listen}人偷听</span>
-          <span className="kui">{questionInfo.answer_dislike}人觉得亏了</span>
+          <span className="kui">{questionInfo.answer_like}人觉得赞</span>
         </div>
         <div className="ask">
           <div className="value">￥{questionInfo.teacher_prize}</div>
-          <Link className="bottom-btn" to={"tutor/"+questionInfo.teacher_id}>向TA提问</Link>
+          <Link className="bottom-btn" to={baseUrl+"tutor/"+questionInfo.teacher_id}>向TA提问</Link>
         </div>
       </main>
+        :
+        <Loading />
     )
   }
 }

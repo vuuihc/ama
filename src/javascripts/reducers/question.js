@@ -4,6 +4,7 @@
 import {
   RECEIVE_HOT_QUESTION_LIST,
   RECEIVE_QUESTION_INFO,
+  REQUEST_LISTEN_INFO,
   RECEIVE_LISTEN_INFO,
   RECEIVE_SAVE_VOICE
 }from '../actions/ActionTypes'
@@ -12,22 +13,26 @@ const initialState = {
   hotQuestionList: {
     data: [],
     completed: false,
-    page: 1
+    page: 1,
+    num: 10,
   },
   questionInfo: {},
   listenInfo:{
-    data: {}
+    timeStamp:0,
+    data: {},
+    loading:false
   },
   saveVoiceInfo:{
-    data:{}
+    data:{},
+    saved:false
   }
 }
 
 export function hotQuestionList(state = initialState.hotQuestionList, action) {
   switch (action.type) {
     case RECEIVE_HOT_QUESTION_LIST:
-      if (action.data.length == 0) {
-        return Object.assign({}, state, {completed: true})
+      if (action.data.length < action.num) {
+        return Object.assign({}, state, {data:action.data,completed: true})
       } else if (action.page == 1)
         return Object.assign({}, initialState.hotQuestionList, {data: action.data})
       else {
@@ -47,8 +52,10 @@ export function questionInfo(state = initialState.questionInfo, action) {
 }
 export function listenInfo(state = initialState.listenInfo, action) {
   switch (action.type) {
+    case REQUEST_LISTEN_INFO:
+      return Object.assign({},state,{loading:true})
     case RECEIVE_LISTEN_INFO:
-      return {data: action.data}
+      return {data: action.data,timeStamp: new Date().valueOf(),loading:false}
     default:
       return state
   }
@@ -56,7 +63,7 @@ export function listenInfo(state = initialState.listenInfo, action) {
 export function saveVoiceInfo(state = initialState.saveVoiceInfo,action) {
   switch (action.type) {
     case RECEIVE_SAVE_VOICE:
-      return {data: action.data}
+      return {saved:true}
     default:
       return state
   }

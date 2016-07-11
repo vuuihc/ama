@@ -2,35 +2,44 @@
  * Created by zhushihao on 2016/6/15.
  */
 import React, {Component, PropTypes} from 'react'
-import {Link} from 'react-router'
+import {Link,browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 
 import {getTutorInfo,getTutorAnswerList,getPrepayInfo} from '../actions/tutor.js'
 import QuestionItemWithoutAvatar from "./blocks/QuestionItemWithoutAvatar"
 import Loading from "./Loading"
+import Toast from "../util/weui/toast"
 
+import {baseUrl} from "../api/config"
 import '../../stylesheets/partials/modules/TutorIndex.scss'
 
 class TutorIndex extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      curPage:1
+      curPage:1,
+      askSuccess:false
     }
   }
   componentWillReceiveProps(nextProps){
     const time = new Date()
-    if(nextProps.prepayInfo.timeStamp!=undefined && time.valueOf()/1000-nextProps.prepayInfo.timeStamp<5){
+    const self =this
+    if(nextProps.prepayInfo.data.timeStamp!=undefined && time.valueOf()/1000-nextProps.prepayInfo.data.timeStamp<5){
       console.log("获得了最新的timestamp")
       console.log(nextProps.prepayInfo)
       wx.chooseWXPay({
-        timestamp:nextProps.prepayInfo.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-        nonceStr: nextProps.prepayInfo.nonceStr, // 支付签名随机串，不长于 32 位
-        package: nextProps.prepayInfo.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
-        signType: nextProps.prepayInfo.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-        paySign: nextProps.prepayInfo.paySign, // 支付签名
+        timestamp:nextProps.prepayInfo.data.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+        nonceStr: nextProps.prepayInfo.data.nonceStr, // 支付签名随机串，不长于 32 位
+        package: nextProps.prepayInfo.data.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+        signType: nextProps.prepayInfo.data.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+        paySign: nextProps.prepayInfo.data.paySign, // 支付签名
         success: function (res) {
           console.log("支付成功！");
+          self.setState({askSuccess:true})
+          self.state.successTimer = setTimeout(()=>{
+            self.setState({askSuccess:false})
+            browserHistory.push(baseUrl+"account/IAskedList")
+          },2000)
         },
         fail:function(res){
           console.log("失败原因：")
@@ -64,13 +73,18 @@ class TutorIndex extends Component {
     }
     document.addEventListener('scroll', onScroll.bind(this));
   }
+  componentWillUnmount(){
+    clearTimeout(this.state.successTimer)
+  }
 
   render() {
-    const {tutorInfo,tutorAnswerList} = this.props
+    const {tutorInfo,tutorAnswerList,prepayInfo} = this.props
     return (
       <main className="tutor">
+        <Toast  show={this.state.askSuccess} >提问成功</Toast>
+        <Toast  icon="loading" show={prepayInfo.loading} >请求支付中……</Toast>
         <div className="tutor-info">
-          <Link to="/user/share" >
+          <Link to={baseUrl+"user/share"} >
             <img className="QREntry" src={require("../../images/QREntry.png")}/>
           </Link>
           <img className="avatar" src={tutorInfo.user_face}/>
@@ -108,6 +122,9 @@ class TutorIndex extends Component {
 
 TutorIndex.propTypes = {
   tutorInfo: PropTypes.shape({}).isRequired,
+}
+TutorIndex.contextTypes = {
+  router: PropTypes.object
 }
 
 function mapStateToProps(state) {

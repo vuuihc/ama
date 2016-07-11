@@ -5,6 +5,7 @@ import {
   RECEIVE_TUTOR_LIST,
   RECEIVE_TUTOR_INFO,
   RECEIVE_TUTOR_ANSWER_LIST,
+  REQUEST_PREPAY_INFO,
   RECEIVE_PREPAY_INFO
 }from '../actions/ActionTypes'
 
@@ -12,7 +13,8 @@ const initialState = {
   tutorList: {
     data:[],
     completed:false,
-    page:1
+    page:1,
+    num:10
   },
   tutorInfo:{},
   tutorAnswerList: {
@@ -20,14 +22,17 @@ const initialState = {
     completed:false,
     page:1
   },
-  prepayInfo:{}
+  prepayInfo:{
+    data:{},
+    loading:false
+  }
 }
 
 export function tutorList(state = initialState.tutorList, action) {
   switch (action.type) {
     case RECEIVE_TUTOR_LIST:
-      if(action.data.length==0){
-        return  Object.assign({},state,{completed:true,loading:false})
+      if(action.data.length < action.num){
+        return  Object.assign({},state,{data:action.data,completed:true,loading:false})
       }else if(action.page==1)
         return Object.assign({},initialState.tutorList,{data:action.data,loading:false})
       else{
@@ -61,8 +66,10 @@ export function tutorAnswerList(state = initialState.tutorAnswerList, action){
 }
 export function prepayInfo(state = initialState.prepayInfo, action){
   switch (action.type) {
+    case REQUEST_PREPAY_INFO:
+      return Object.assign({},state,{loading:true})
     case RECEIVE_PREPAY_INFO:
-      return action.data
+      return {data:action.data,loading:false}
     default:
       return state
   }

@@ -2,13 +2,14 @@
  * create by wuwq
  */
 import React, {Component} from 'react';
-import { Link } from 'react-router';
+import { IndexLink,Link } from 'react-router';
 import '../../stylesheets/partials/modules/Account.scss';
 import LitenedList from '../containers/lists/LitenedList';
 import IAskedList from '../containers/lists/IAskedList';
 import AskedMeList from '../containers/lists/AskedMeList';
 import { connect } from  'react-redux';
 import { getUserInfo, getListened, getAskedMe, getIAsked } from '../actions/account'
+import {baseUrl} from "../api/config"
 
 class Account extends Component {
   constructor(props) {
@@ -26,24 +27,25 @@ class Account extends Component {
   }
 
   render() {
-      let list = <LitenedList />
-      switch (this.state.index){
-          case 1:
-              list = <LitenedList />;
-              break;
-          case 2:
-              list = <IAskedList />;
-              break;
-          case 3:
-              list = <AskedMeList />;
-              break;
-          default:
-              list = <LitenedList />;
-              break;
-      }
+      // let list = <LitenedList />
+      //
+      // switch (this.state.index){
+      //     case 1:
+      //         list = <LitenedList />;
+      //         break;
+      //     case 2:
+      //         list = <IAskedList />;
+      //         break;
+      //     case 3:
+      //         list = <AskedMeList />;
+      //         break;
+      //     default:
+      //         list = <LitenedList />;
+      //         break;
+      // }
     return (
       <div id="accountIndex">
-        <Link to="account/edit" >
+        <Link to={baseUrl+"edit"} >
           <img className="editEntry" src={require("../../images/EditEntry.png")}/>
         </Link>
         <div className="head">
@@ -69,7 +71,7 @@ class Account extends Component {
         </div>
         <div className="dividerWide"></div>
         <div className="nav">
-          <ul>
+          {/*<ul>
             <li
               onClick={this.handleClick.bind(this, 1) }
               className={this.state.index == 1 ? 'active': ''}
@@ -85,11 +87,14 @@ class Account extends Component {
               className={this.state.index == 3 ? 'active': ''}
             >问我的
             </li>
-          </ul>
+          </ul>*/}
+          <IndexLink to={baseUrl+"account/"} activeClassName="active" >听过的</IndexLink>
+          <Link to={baseUrl+"account/IAskedList"} activeClassName="active" >我问的</Link>
+          <Link to={baseUrl+"account/AskedMeList"} activeClassName="active" >问我的</Link>
           <div className="divider"></div>
         </div>
         <div>
-          { list }
+          { this.props.children }
         </div>
       </div>
     )

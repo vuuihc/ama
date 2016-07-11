@@ -2,33 +2,39 @@
  * Created by zhushihao on 2016/6/13.
  */
 import fetch from 'isomorphic-fetch'
-const domain = 'http://api.7dyk.com'
+import { domain } from './config'
 const env = 'development'
-import data from './data.js'
+import apiHandler from "../util/apiHandler"
 
 export default  {
   getHotQuestionList(page, num, cb){
     const url = domain + '/api/v1/question/gettopic?page=' + page + '&number=' + num
-    fetch(url)
+    fetch(url,{
+      credentials: 'same-origin'
+    })
       .then(response =>
           response.json()
         // data.questionList
       )
-      .then(json => cb(json.data))
+      .then(json => apiHandler.handleResponse(json,cb))
   },
   getQuestionInfo(id, cb){
     const url = domain + '/api/v1/question/getquestion?id=' + id;
-    fetch(url)
+    fetch(url,{
+      credentials: 'same-origin'
+    })
       .then(response =>
           response.json()
         // data.questionInfo
       )
-      .then(json => cb(json.data))
+      .then(json => apiHandler.handleResponse(json,cb))
   },
   getListenInfo(answerId,cb){
-    fetch(`${domain}/api/v1/answer/listen?answer_id=${answerId}`)
+    fetch(`${domain}/api/v1/answer/listen?answer_id=${answerId}`,{
+      credentials: 'same-origin'
+    })
       .then(response => response.json())
-      .then(json => cb(json.data))
+      .then(json => apiHandler.handleResponse(json,cb))
   },
   saveVoice(serverId,questionId,cb) {
     fetch( `${domain}/api/v1/answer/answer`,{
@@ -51,7 +57,7 @@ export default  {
             cb(json.data);
             break;
           default:
-            console.log('上传录音失败', json);
+            apiHandler.handleResponse(json,cb);
         }
       });
   }

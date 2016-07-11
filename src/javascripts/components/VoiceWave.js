@@ -7,13 +7,13 @@ import '../../stylesheets/partials/modules/VoiceWave.scss'
 export default class VoiceWave extends Component {
   render(){
     return(
-      <span className="voice-waves">
+      <div className="voice-waves">
         {
           [1,2,3].map(index =>
             <span className={`voice-wave voice-wave-${index}`} /> 
           )
         }
-      </span>
+      </div>
     )
   }
 }

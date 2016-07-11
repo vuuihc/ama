@@ -8,25 +8,29 @@ import {getTutorList} from '../actions/tutor.js'
 
 import '../../stylesheets/partials/modules/TutorList.scss'
 import Loading from "./Loading"
-
+import {baseUrl} from "../api/config"
 class TutorList extends Component {
   constructor(props){
     super(props)
     this.state = {
       curPage:1,
     }
+    this.handleScroll = this.handleScroll.bind(this)
   }
   componentDidMount() {
     this.props.dispatch(getTutorList(1, 10))
     console.log("tutorList===" + this.props.tutorList)
-    function onScroll(e) {
-      if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.tutorList.completed) {
-        const curPage = ++this.state.curPage;
-        this.setState({curPage});
-        this.props.dispatch(getTutorList(curPage, 10))
-      }
+    document.addEventListener('scroll', this.handleScroll);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.handleScroll);
+  }
+  handleScroll() {
+    if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.tutorList.completed) {
+      const curPage = ++this.state.curPage;
+      this.setState({curPage});
+      this.props.dispatch(getTutorList(curPage, 10))
     }
-    document.addEventListener('scroll', onScroll.bind(this));
   }
 
   render() {
@@ -35,7 +39,7 @@ class TutorList extends Component {
       <main className="tutor-list">
         {
           tutorList.data.map((tutor, index) =>
-            <Link key={index} to={"/tutor/"+tutor.user_id}>
+            <Link key={index} to={baseUrl+"tutor/"+tutor.user_id}>
               <article>
                 <div className="tutor-info">
                   <img src={tutor.user_face}/>

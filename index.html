@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script type="text/javascript" src="./libs/flexible.js"></script>
-    <script type="text/javascript" src="./libs/vconsole.min.js"></script>
-    <script   src="./libs/zepto.min.js" ></script>
-    <script   src="./libs/jr-qrcode.min.js" ></script>
+    <script type="text/javascript" src="/ama/7dyk/libs/flexible.js"></script>
+    <script type="text/javascript" src="/ama/7dyk/libs/vconsole.min.js"></script>
+    <script   src="/ama/7dyk/libs/zepto.min.js" ></script>
+    <script   src="/ama/7dyk/libs/jr-qrcode.min.js" ></script>
     <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <title>七点一刻</title>
   </head>
@@ -13,9 +13,21 @@
     </div>
     <script>
       var wx_config = {};//全局变量
+      var entryUrl = location.href;
+      console.log("entryUrl==="+entryUrl)
       function getWxConfig(){
-        fetch('http://api.7dyk.com/api/v1/question/test')
-            .then(function(response){ return response.json()})
+        fetch(`http://api.7dyk.com/api/v1/question/test`,{
+          //credentials: 'same-origin',
+          method: 'post',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            url:entryUrl
+          })
+        })
+            .then(function(response){ return  response.json()})
             .then(function(json){
               var data = json.data;
               var jsApiList = [
@@ -26,12 +38,11 @@
                   'pauseVoice',
                   'stopVoice',
                   'onVoicePlayEnd',
-                  'uploadVoice',
-                  'downloadVoice'
+                  'uploadVoice'
               ]
 //              wx_config['url'] = "http://h5app.7dyk.com/ama/7dyk/";
-              wx_config['debug'] = false;
-              wx_config['url'] = "http://localhost:8080/";
+              wx_config['debug'] = true;
+//              wx_config['url'] = "http://localhost:8080/";
               wx_config['appId'] = data['appId'];
               wx_config['timestamp'] = data['timestamp'];
               wx_config['nonceStr'] = data['nonceStr'];
@@ -42,26 +53,19 @@
             })
       }
       window.onload = function () {
-//        wx.config({
-//          debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-//          appId: 'wxfbe89421611bdb2d', // 必填，公众号的唯一标识
-//          timestamp: , // 必填，生成签名的时间戳
-//          nonceStr: '', // 必填，生成签名的随机串
-//          signature: '',// 必填，签名，见附录1
-//          jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-//        })
-        getWxConfig();
+//        if(wx_config[])
+//        getWxConfig();
         wx.ready(function(){
           alert('wxapi is ready')
           console.log('wxapi is ready')
         })
         wx.error(function (res) {
           alert("error is "+res)
-          console.log("error is "+res)
+          console.log("error is "+JSON.stringify(res))
         })
       }
     </script>
-    <script src="./dist/mobile.js"></script>
+    <script src="/ama/7dyk/dist/mobile.js"></script>
     <!--<script src="http://localhost:8080/assets/mobile.js"></script>-->
   </body>
 </html>
