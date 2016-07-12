@@ -9,16 +9,19 @@
     left: px2rem(32);
     top: px2rem(23);
     &-1{
+      -webkit-animation: opacity-1-3 2s linear infinite;
       animation: opacity-1-3 2s linear infinite;
       background-image: url(../../../images/voicewave1.png);
       @include uniMethod('background-size', 'cover');
     }
     &-2{
+      -webkit-animation: opacity-2-3 2s linear infinite;
       animation: opacity-2-3 2s linear infinite;
       background-image: url(../../../images/voicewave2.png);
       @include uniMethod('background-size', 'cover');
     }
     &-3{
+      -webkit-animation: opacity-3-3 2s linear infinite;
       animation: opacity-3-3 2s linear infinite;
       background: url(../../../images/voicewave3.png);
       @include uniMethod('background-size', 'cover');

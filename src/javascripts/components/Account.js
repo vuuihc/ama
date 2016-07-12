@@ -4,11 +4,8 @@
 import React, {Component} from 'react';
 import { IndexLink,Link } from 'react-router';
 import '../../stylesheets/partials/modules/Account.scss';
-import LitenedList from '../containers/lists/LitenedList';
-import IAskedList from '../containers/lists/IAskedList';
-import AskedMeList from '../containers/lists/AskedMeList';
 import { connect } from  'react-redux';
-import { getUserInfo, getListened, getAskedMe, getIAsked } from '../actions/account'
+import { getUserInfo } from '../actions/account'
 import {baseUrl} from "../api/config"
 
 class Account extends Component {
@@ -70,9 +67,6 @@ class Account extends Component {
 const mapStateToProps = (state) =>{
     return{
         userInfo: state.account.userInfo,
-        listened: state.account.listened,
-        iAsked: state.account.iAsked,
-        askedMe: state.account.askedMe
     }
 }
 

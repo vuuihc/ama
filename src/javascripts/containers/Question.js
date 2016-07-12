@@ -36,7 +36,7 @@ class Question extends Component {
           WeixinJSBridge.invoke(
             'getBrandWCPayRequest', nextProps.listenInfo.data,
             function(res){
-              if(res.err_msg == "get_brand_wcpay_request：ok" ) { 
+              if(res.err_msg == "get_brand_wcpay_request:ok" ) { 
                 console.log("支付成功！")
                 self.state.listenTimer = setTimeout(() => self.props.dispatch(getListenInfo(answerId)),1000);
                 self.setState({playNow: false})

@@ -62,7 +62,7 @@ class HotQuestionList extends Component {
           WeixinJSBridge.invoke(
             'getBrandWCPayRequest', nextProps.listenInfo.data,
             function(res){
-              if(res.err_msg == "get_brand_wcpay_request：ok" ) {
+              if(res.err_msg == "get_brand_wcpay_request:ok" ) {
                 console.log("支付成功！")
                 browserHistory.push(`/question/${self.state.curQuestionId}`)
               }else{

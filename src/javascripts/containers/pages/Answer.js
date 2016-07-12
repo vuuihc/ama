@@ -4,6 +4,7 @@ import { Link,browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import '../../../stylesheets/partials/modules/Answer.scss';
 import { getQuestionInfo,saveVoice } from  '../../actions/question';
+import { getAskedMe } from  '../../actions/account';
 import { getWXConfig } from "../../actions/config"
 import time from '../../util/time'
 import VoiceWave from  "../../components/VoiceWave"
@@ -45,6 +46,7 @@ class Answer extends Component {
   componentWillReceiveProps(nextProps){
     if(nextProps.saveVoiceInfo.saved){
       this.setState({answerSuccess:true})
+      this.props.getAskedMe(1,10)
       this.state.successTimer = setTimeout(()=>{
         this.setState({answerSuccess:false})
         browserHistory.push(baseUrl+"account/AskedMeList")
@@ -242,6 +244,6 @@ const mapStateToProps = (state) =>{
   }
 }
 
-Answer = connect( mapStateToProps, { getQuestionInfo,saveVoice,getWXConfig })(Answer);
+Answer = connect( mapStateToProps, { getQuestionInfo,saveVoice,getWXConfig,getAskedMe })(Answer);
 
 export default Answer;

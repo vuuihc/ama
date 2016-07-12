@@ -4,8 +4,8 @@
 import React, {Component, PropTypes} from 'react'
 import {Link,browserHistory} from 'react-router'
 import {connect} from 'react-redux'
-
 import {getTutorInfo,getTutorAnswerList,getPrepayInfo} from '../actions/tutor.js'
+import {getIAsked} from '../actions/account.js'
 import QuestionItemWithoutAvatar from "./blocks/QuestionItemWithoutAvatar"
 import Loading from "./Loading"
 import Toast from "../util/weui/toast"
@@ -35,6 +35,7 @@ class TutorIndex extends Component {
             if(res.err_msg == "get_brand_wcpay_request:ok" ) {
               console.log("支付成功！")
               self.setState({askSuccess:true})
+              this.props.dispatch(getIAsked(1, 10));
               self.state.successTimer = setTimeout(()=>{
                 self.setState({askSuccess:false})
                 browserHistory.push(baseUrl+"account/IAskedList")
