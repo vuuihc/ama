@@ -70,7 +70,7 @@ class Answer extends Component {
         ]
         const newWxConfig = {}
         console.log("newWxConfig")
-        newWxConfig['debug'] = true;
+        newWxConfig['debug'] = false;
 //              wx_config['url'] = "http://localhost:8080/";
         newWxConfig['appId'] = nextProps.WXConfig.data['appId'];
         newWxConfig['timestamp'] = nextProps.WXConfig.data.timestamp.toString();
