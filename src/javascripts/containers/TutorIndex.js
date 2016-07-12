@@ -32,7 +32,7 @@ class TutorIndex extends Component {
         WeixinJSBridge.invoke(
           'getBrandWCPayRequest', nextProps.prepayInfo.data,
           function(res){
-            if(res.err_msg == "get_brand_wcpay_request：ok" ) { 
+            if(res.err_msg == "get_brand_wcpay_request:ok" ) {
               console.log("支付成功！")
               self.setState({askSuccess:true})
               self.state.successTimer = setTimeout(()=>{
