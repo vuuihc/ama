@@ -32,7 +32,7 @@ class Answer extends Component {
   componentDidMount(){
     this.refreshWXConfig()
     console.log(this.props.questionInfo);
-    var talkBtn = ReactDOM.findDOMNode(this.refs.replyContainer)
+    var talkBtn = ReactDOM.findDOMNode(this.refs.roundContainer)
     const self = this
     wx.ready(function(){
       talkBtn.addEventListener('click',self.clickHandler)
@@ -218,7 +218,7 @@ class Answer extends Component {
         <div className="hint">您的回答将被公开，答案每被偷听一次，你就赚 ￥0.3</div>
         <div className="replyHint">{this.state.localId==null?"点击录音":"点击试听"}</div>
         <div ref="replyContainer" className="replyContainer">
-          <div className={"round-container"+classNames[this.state.status]}>
+          <div ref="roundContainer" className={"round-container"+classNames[this.state.status]}>
             <div className="replyIcon"></div>
             <div className="recording"></div>
             <div className="bubble-voice"></div>
