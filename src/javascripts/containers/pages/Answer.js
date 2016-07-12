@@ -29,10 +29,7 @@ class Answer extends Component {
     this.props.getQuestionInfo(id);
   }
   componentDidMount(){
-    console.log("window.wx_config.ready=="+window.wx_config.ready)
-    if(!window.wx_config.ready){
-      this.refreshWXConfig()
-    }
+    this.refreshWXConfig()
     console.log(this.props.questionInfo);
     var talkBtn = ReactDOM.findDOMNode(this.refs.replyContainer)
     const self = this
