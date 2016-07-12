@@ -28,6 +28,7 @@
     left: 0;
     background: rgba(0,0,0,0);
     transition: background .3s;
+    -webkit-transition: background .3s;
 }
 .weui_fade_toggle{
     background: rgba(0,0,0,.6);
