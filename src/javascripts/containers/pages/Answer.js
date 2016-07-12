@@ -72,7 +72,7 @@ class Answer extends Component {
         ]
         const newWxConfig = {}
         console.log("newWxConfig")
-        newWxConfig['debug'] = false;
+        newWxConfig['debug'] = true;
         newWxConfig['appId'] = nextProps.WXConfig.data['appId'];
         newWxConfig['timestamp'] = nextProps.WXConfig.data.timestamp.toString();
         newWxConfig['nonceStr'] = nextProps.WXConfig.data['nonceStr'];
