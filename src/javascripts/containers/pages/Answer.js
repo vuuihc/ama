@@ -21,7 +21,6 @@ class Answer extends Component {
       successTimer:null,
       START:0,
       END:0,
-      recordTimer:null
     }
     this.clickHandler = this.clickHandler.bind(this)
   }
@@ -35,7 +34,7 @@ class Answer extends Component {
     var talkBtn = ReactDOM.findDOMNode(this.refs.roundContainer)
     const self = this
     wx.ready(function(){
-      talkBtn.addEventListener('click',self.clickHandler)
+      talkBtn.addEventListener('click',self.clickHandler,false)
     })
     wx.onVoicePlayEnd({
       success: function (res) {
@@ -86,9 +85,9 @@ class Answer extends Component {
   componentWillUnmount(){
     const self =this
     clearTimeout(this.state.successTimer)
-    var talkBtn = ReactDOM.findDOMNode(this.refs.replyContainer)
+    var talkBtn = ReactDOM.findDOMNode(this.refs.roundContainer)
     wx.ready(function(){
-      talkBtn.removeEventListener('click',self.clickHandler)
+      talkBtn.removeEventListener('click',self.clickHandler,false)
   })
 
   }
@@ -115,16 +114,14 @@ class Answer extends Component {
       });
     }
     var recordStopHandler = function (event) {
-      event.preventDefault();
+      // event.preventDefault();
       let END = new Date().getTime();
       console.log("start at ==="+ self.state.START)
       console.log("stop at ==="+ END)
-      if((END - self.state.START) < 300){
+      if((END - self.state.START) < 10000){
         END = 0;
-        self.setState({START:0})
         console.log("录音时间"+(END-self.state.START));
-        //小于300ms，不录音
-        clearTimeout(self.state.recordTimer);
+        alert("录音不能小于10秒哦")
       }else{
         console.log("录音时间"+(END-self.state.START));
         wx.stopRecord({
