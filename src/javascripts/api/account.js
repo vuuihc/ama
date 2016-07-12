@@ -15,7 +15,7 @@ export default  {
             credentials: 'same-origin'
         })
             .then(res => res.json())
-            .then(json => apiHandler.handleResponse(json));
+            .then(json => apiHandler.handleResponse(json, cb));
     },
     editUserInfo(company, job, experience, introduction, cb) {
       fetch( domain + `/api/v1/user/editusernow`,{

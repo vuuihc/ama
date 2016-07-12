@@ -122,7 +122,7 @@ class TutorIndex extends Component {
         <Toast  show={this.state.askSuccess} >提问成功</Toast>
         <Toast  icon="loading" show={prepayInfo.loading} >请求支付中……</Toast>
         <div className="tutor-info">
-          <Link to={baseUrl+"user/share"} >
+          <Link to={baseUrl+`user/${tutorInfo.user_id}`} >
             <img className="QREntry" src={require("../../images/QREntry.png")}/>
           </Link>
           <img className="avatar" src={tutorInfo.user_face}/>

@@ -17,6 +17,7 @@ import IAskedList from './containers/lists/IAskedList'
 import AccountEdit from './containers/AccountEdit'
 import Question from './containers/Question'
 import TutorIndex from './containers/TutorIndex'
+// import TutorShare from './containers/TutorShare'
 import UserIndex from './containers/UserIndex'
 import UserShare from './containers/UserShare'
 import Answer from './containers/pages/Answer'
@@ -39,7 +40,10 @@ ReactDom.render((
         <Route path={baseUrl+"answer/:id" } component={Answer}/>
         <Route path={baseUrl+"edit"} component={AccountEdit}/>
         <Route path={baseUrl+"question/:id"} component={Question}/>
-        <Route path={baseUrl+"tutor/:id"} component={TutorIndex}/>
+        <Route path={baseUrl + 'tutor'}>
+          <Route path={baseUrl + 'tutor/:id'}  component={TutorIndex} />
+        {/*<Route path={baseUrl + 'tutor/share/:id'}  component={TutorShare} />*/}
+        </Route>
         <Route path={baseUrl+"user/:id"} component={UserIndex}>
           {/*
            <IndexRoute component={UserIndex} />
