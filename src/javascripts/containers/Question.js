@@ -38,8 +38,12 @@ class Question extends Component {
             function(res){
               if(res.err_msg == "get_brand_wcpay_request：ok" ) { 
                 console.log("支付成功！")
+                self.state.listenTimer = setTimeout(() => self.props.dispatch(getListenInfo(answerId)),1000);
+                self.setState({playNow: false})
               }else{
                 console.log(res)
+                alert("支付失败，原因："+JSON.stringify(res))
+                //     console.log("失败原因：")
               }
               if( document.removeEventListener ){
                 document.removeEventListener('WeixinJSBridgeReady', onBridgeReady);
