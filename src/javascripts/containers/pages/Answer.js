@@ -102,15 +102,14 @@ class Answer extends Component {
     var recordStartHandler = function (event) {
       event.preventDefault();
       wx.startRecord({
-        complete: function(){
-          let START = new Date().getTime();
-          self.setState({START:START,status:2})
-          console.log("start at ==="+ START)
-        },
         cancel: function () {
           alert('用户拒绝授权录音');
+          self.setState({status:0})
         }
       });
+      let START = new Date().getTime();
+      self.setState({START:START,status:2})
+      console.log("start at ==="+ START)
     }
     var recordStopHandler = function (event) {
       // event.preventDefault();
