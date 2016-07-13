@@ -3,11 +3,18 @@
   text-align: center;
   padding-top: px2rem(40);
   img.editEntry{
-    width: px2rem(32);
-    height: px2rem(30);
+    width: px2rem(42);
+    height: px2rem(40);
     position: absolute;
     top: px2rem(26);
     right: px2rem(26);
+  }
+  img.QREntry{
+    width: px2rem(42);
+    height: px2rem(40);
+    position: absolute;
+    top: px2rem(26);
+    left: px2rem(26);
   }
   .head{
     width:100%;

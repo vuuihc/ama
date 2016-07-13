@@ -14,7 +14,8 @@ class AskedMeList extends Component {
     super();
     this.state = {
       afford: '',
-      inviteCode: ''
+      inviteCode: '',
+      // isTeacher: false
     }
     this.handleScroll = this.handleScroll.bind(this)
   }
@@ -53,21 +54,11 @@ class AskedMeList extends Component {
                 <div className="hint">
                   还没有人问你
                 </div>
-                <button className="becomeTutor" onClick={(e) => {this.refs.qrcode.open();}}>
-                  让更多人了解你
-                </button>
-                <Modal ref="qrcode" left="22" top="300">
-                  <img width="100%" src={
-                                        jrQrcode.getQrBase64(`${domainPath}/tutor/${this.props.userInfo.user_id}`, {
-                                            padding		: 10,   //二维码四边空白，默认为10px
-                                            width		: 256,  //二维码图片宽度，默认为256px
-                                            height		: 256,  //二维码图片高度，默认为256px
-                                            correctLevel	: 2,    //二维码容错level，默认为高
-                                            background      : "#ffffff",    //二维码颜色
-                                            foreground      : "#000000"     //二维码背景颜色
-                                        })}
-                  />
-                </Modal>
+                <Link to={`${baseUrl}tutor/share/${this.props.userInfo.user_id}`}>
+                    <button className="becomeTutor">
+                        让更多人了解你
+                    </button>
+                </Link>
               </div>
             ) : (
               <div>
@@ -129,6 +120,39 @@ class AskedMeList extends Component {
             </div>
           )
         }
+          <Link to={`${baseUrl}tutor/share/${this.props.userInfo.user_id}`}>
+              <button className="becomeTutor">
+                  让更多人了解你
+              </button>
+          </Link>
+          <button className="becomeTutor" onClick={(e)=>{this.refs.modal.open()}}>
+              成为导师
+          </button>
+          <Modal left="22" top="330" ref="modal">
+              <div className="invitation">
+                  <span>邀请码</span>
+                  <input
+                      type="text"
+                      className="no-underline"
+                      style={{width:`${250/75}rem`}}
+                      value={this.state.inviteCode}
+                      placeholder="请输入您的邀请码"
+                      onChange={(e)=>{this.setState({inviteCode:e.target.value})}}
+                  />
+              </div>
+              <div className="afford">
+                  <span>向我提问需要支付</span>
+                  <input
+                      type="text"
+                      style={{width:`${30/75}rem`}}
+                      className="no-underline"
+                      value={this.state.afford}
+                      onChange={(e)=>{this.setState({afford:e.target.value})}}
+                  />
+                  <span>元</span>
+              </div>
+              <div className="submit" onClick={this.handleSubmit.bind(this)}>确定</div>
+          </Modal>
       </div>
     )
   }
