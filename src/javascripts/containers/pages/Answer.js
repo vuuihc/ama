@@ -34,11 +34,13 @@ class Answer extends Component {
     var talkBtn = ReactDOM.findDOMNode(this.refs.roundContainer)
     const self = this
     wx.ready(function(){
-      if(!localStorage.rainAllowRecord || localStorage.rainAllowRecord !== 'true'){
+      console.log("allowRecord"+localStorage.allowRecord)
+      if(!localStorage.allowRecord || localStorage.allowRecord !== 'true'){
         wx.startRecord({
           success: function(){
-            localStorage.rainAllowRecord = 'true';
+            localStorage.allowRecord = true;
             wx.stopRecord();
+            console.log("here");
           },
           cancel: function () {
             alert('用户拒绝授权录音');
