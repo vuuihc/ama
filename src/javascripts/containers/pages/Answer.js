@@ -53,7 +53,7 @@ class Answer extends Component {
     })
     wx.onVoicePlayEnd({
       success: function (res) {
-        self.setState({status: 2})
+        self.setState({status: 4})
       }
     });
   }
@@ -117,22 +117,26 @@ class Answer extends Component {
     var recordStartHandler = function (event) {
       event.preventDefault();
       wx.startRecord({
+        success:function () {
+          let START = new Date().getTime();
+          self.setState({START:START,status:2})
+          console.log("start at ==="+ START)
+        },
         cancel: function () {
           alert('用户拒绝授权录音');
           self.setState({status:0})
         }
       });
-      let START = new Date().getTime();
-      self.setState({START:START,status:2})
-      console.log("start at ==="+ START)
     }
     var recordStopHandler = function (event) {
       // event.preventDefault();
       let END = new Date().getTime();
       console.log("录音时间"+(END-self.state.START));
-      if((END - self.state.START) < 10000){
+      if((END - self.state.START) < 1000){
         END = 0;
-        alert("录音不能小于10秒哦")
+        alert("录音不能小于1秒哦")
+        wx.stopRecord()
+        self.setState({status:0})
         return null
       }else{
         console.log("录音时间"+(END-self.state.START));
@@ -221,6 +225,14 @@ class Answer extends Component {
       4 : " voice",
       5 : " voice-on"
     }
+    const Tips = {
+      0 : "点击录音",
+      1 : "开启中",
+      2 : "正在录音",
+      3 : "停止中",
+      4 : "点击试听",
+      5 : "播放中"
+    }
     return (
       <div className="accountAnswer">
         <Toast  show={this.state.answerSuccess} >回答成功</Toast>
@@ -236,7 +248,7 @@ class Answer extends Component {
           <div className="time">{time.getTimeSpan(questionInfo.question_time)}之前</div>
         </div>
         <div className="hint">您的回答将被公开，答案每被偷听一次，你就赚 ￥0.3</div>
-        <div className="replyHint">{this.state.localId==null?"点击录音":"点击试听"}</div>
+        <div className="replyHint">{Tips[this.state.status]}</div>
         <div ref="replyContainer" className="replyContainer">
           <div ref="roundContainer" className={"round-container"+classNames[this.state.status]}>
             <div className="replyIcon"></div>
