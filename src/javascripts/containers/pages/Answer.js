@@ -16,7 +16,7 @@ class Answer extends Component {
     super();
     this.state={
       localId: null,
-      status: 0,//0:话筒等待录音，1：正在录音，2：音波等待播放，3：正在播放
+      status: 0,//0:话筒等待录音，1：等待微信发起录音，2：录音中，3：等待微信停止录音，4：等待播放，5：播放中
       answerSuccess: false,
       successTimer:null,
       START:0,
@@ -34,6 +34,21 @@ class Answer extends Component {
     var talkBtn = ReactDOM.findDOMNode(this.refs.roundContainer)
     const self = this
     wx.ready(function(){
+      console.log("allowRecord"+sessionStorage.allowRecord)
+      if(!sessionStorage.allowRecord || sessionStorage.allowRecord !== 'true'){
+        wx.startRecord({
+          success: function(){
+            sessionStorage.allowRecord = true;
+            self.recordTimer = setTimeout(function(){
+              wx.stopRecord();
+            },500);
+            console.log("here");
+          },
+          cancel: function () {
+            alert('用户拒绝授权录音');
+          }
+        });
+      }
       talkBtn.addEventListener('click',self.clickHandler,false)
     })
     wx.onVoicePlayEnd({
@@ -71,7 +86,7 @@ class Answer extends Component {
         ]
         const newWxConfig = {}
         console.log("newWxConfig")
-        newWxConfig['debug'] = true;
+        newWxConfig['debug'] = false;
         newWxConfig['appId'] = nextProps.WXConfig.data['appId'];
         newWxConfig['timestamp'] = nextProps.WXConfig.data.timestamp.toString();
         newWxConfig['nonceStr'] = nextProps.WXConfig.data['nonceStr'];
@@ -101,33 +116,30 @@ class Answer extends Component {
     var self = this
     var recordStartHandler = function (event) {
       event.preventDefault();
-      let START = new Date().getTime();
-      self.setState({START:START})
-      console.log("start at ==="+ START)
       wx.startRecord({
-        success: function(){
-          localStorage.rainAllowRecord = 'true';
-        },
         cancel: function () {
           alert('用户拒绝授权录音');
+          self.setState({status:0})
         }
       });
+      let START = new Date().getTime();
+      self.setState({START:START,status:2})
+      console.log("start at ==="+ START)
     }
     var recordStopHandler = function (event) {
       // event.preventDefault();
       let END = new Date().getTime();
-      console.log("start at ==="+ self.state.START)
-      console.log("stop at ==="+ END)
+      console.log("录音时间"+(END-self.state.START));
       if((END - self.state.START) < 10000){
         END = 0;
-        console.log("录音时间"+(END-self.state.START));
         alert("录音不能小于10秒哦")
+        return null
       }else{
         console.log("录音时间"+(END-self.state.START));
         wx.stopRecord({
           success: function (res) {
             let localId = res.localId
-            self.setState({localId:localId})
+            self.setState({localId:localId,status:4})
           },
           fail: function (res) {
             alert(JSON.stringify(res));
@@ -147,22 +159,31 @@ class Answer extends Component {
         localId: self.state.localId // 需要停止的音频的本地ID，由stopRecord接口获得
       });
     }
+    var passHandler = function (event) {
+      console.log("wait for wx")
+    }
     switch (self.state.status) {
-      case 0:
+      case 0:/*话筒等待录音*/
+        self.setState({status: 1})
         recordStartHandler(event)
-        self.setState({status:1})
         break
-      case 1:
-        recordStopHandler(event)
-        self.setState({status:2})
+      case 1:/*等待微信发起录音*/
+        passHandler(event)
         break
-      case 2:
-        playStartHandler(event)
+      case 2:/*录音中*/
         self.setState({status:3})
+        recordStopHandler(event)
         break
-      case 3:
+      case 3:/*等待微信停止录音*/
+        passHandler(event)
+        break
+      case 4:/*等待播放*/
+        self.setState({status:5})
+        playStartHandler(event)
+        break
+      case 5:/*播放中*/
         playStopHandler(event)
-        self.setState({status:2})
+        self.setState({status:4})
     }
     
   }
@@ -196,13 +217,15 @@ class Answer extends Component {
     const questionInfo = this.props.questionInfo;
     const classNames = {
       0 : " ",
-      1 : " on",
-      2 : " voice",
-      3 : " voice-on"
+      2 : " on",
+      4 : " voice",
+      5 : " voice-on"
     }
     return (
       <div className="accountAnswer">
-        <Toast  show={this.state.askSuccess} >回答成功</Toast>
+        <Toast  show={this.state.answerSuccess} >回答成功</Toast>
+        <Toast  icon="loading" show={this.state.status==1} >开启中</Toast>
+        <Toast  icon="loading" show={this.state.status==3} >停止中</Toast>
         <div className="question">
           <div className="head">
             <Link to={`${baseUrl}user/${questionInfo.user_id}`}><img src={questionInfo.user_face}/></Link>
