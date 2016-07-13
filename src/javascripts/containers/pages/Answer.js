@@ -39,7 +39,9 @@ class Answer extends Component {
         wx.startRecord({
           success: function(){
             localStorage.allowRecord = true;
-            wx.stopRecord();
+            self.recordTimer = setTimeout(function(){
+              wx.stopRecord();
+            },1000);
             console.log("here");
           },
           cancel: function () {
@@ -127,11 +129,9 @@ class Answer extends Component {
     var recordStopHandler = function (event) {
       // event.preventDefault();
       let END = new Date().getTime();
-      console.log("start at ==="+ self.state.START)
-      console.log("stop at ==="+ END)
+      console.log("录音时间"+(END-self.state.START));
       if((END - self.state.START) < 10000){
         END = 0;
-        console.log("录音时间"+(END-self.state.START));
         alert("录音不能小于10秒哦")
         return null
       }else{
