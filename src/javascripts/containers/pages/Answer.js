@@ -102,7 +102,7 @@ class Answer extends Component {
     var recordStartHandler = function (event) {
       event.preventDefault();
       wx.startRecord({
-        success: function(){
+        complete: function(){
           let START = new Date().getTime();
           self.setState({START:START,status:2})
           console.log("start at ==="+ START)
