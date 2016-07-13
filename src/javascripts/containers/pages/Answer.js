@@ -34,14 +34,14 @@ class Answer extends Component {
     var talkBtn = ReactDOM.findDOMNode(this.refs.roundContainer)
     const self = this
     wx.ready(function(){
-      console.log("allowRecord"+localStorage.allowRecord)
-      if(!localStorage.allowRecord || localStorage.allowRecord !== 'true'){
+      console.log("allowRecord"+sessionStorage.allowRecord)
+      if(!sessionStorage.allowRecord || sessionStorage.allowRecord !== 'true'){
         wx.startRecord({
           success: function(){
-            localStorage.allowRecord = true;
+            sessionStorage.allowRecord = true;
             self.recordTimer = setTimeout(function(){
               wx.stopRecord();
-            },1000);
+            },500);
             console.log("here");
           },
           cancel: function () {
