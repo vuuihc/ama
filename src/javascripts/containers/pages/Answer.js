@@ -34,6 +34,17 @@ class Answer extends Component {
     var talkBtn = ReactDOM.findDOMNode(this.refs.roundContainer)
     const self = this
     wx.ready(function(){
+      if(!localStorage.rainAllowRecord || localStorage.rainAllowRecord !== 'true'){
+        wx.startRecord({
+          success: function(){
+            localStorage.rainAllowRecord = 'true';
+            wx.stopRecord();
+          },
+          cancel: function () {
+            alert('用户拒绝授权录音');
+          }
+        });
+      }
       talkBtn.addEventListener('click',self.clickHandler,false)
     })
     wx.onVoicePlayEnd({
