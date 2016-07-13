@@ -26,6 +26,9 @@ class Account extends Component {
   render() {
     return (
       <div id="accountIndex">
+          <Link to={baseUrl+`tutor/share/${this.props.userInfo.user_id}`} >
+              <img className="QREntry" src={require("../../images/QREntry.png")}/>
+          </Link>
         <Link to={baseUrl+"edit"} >
           <img className="editEntry" src={require("../../images/EditEntry.png")}/>
         </Link>

@@ -118,7 +118,7 @@ class TutorIndex extends Component {
   render() {
     const {tutorInfo,tutorAnswerList,prepayInfo} = this.props
     return (
-      <main className="tutor">
+      <main className="tutorIndex">
         <Toast  show={this.state.askSuccess} >提问成功</Toast>
         <Toast  icon="loading" show={prepayInfo.loading} >请求支付中……</Toast>
         <div className="tutor-info">
@@ -139,7 +139,7 @@ class TutorIndex extends Component {
               <span>被偷听</span>
             </div>
           </div>
-          <textarea ref="content" placeholder={"向"+tutorInfo.user_name+"提问，等TA语音回答；超过48小时未回答，将按支付路径全额退款"}/>
+          <textarea ref="content" placeholder={"向"+tutorInfo.user_name+"提问，等TA语音回答；超过24小时未回答，将按支付路径全额退款"}/>
           <div className="value">￥{tutorInfo.teacher_prize}</div>
           <a className="bottom-btn" onClick={this.getPrepayInfo.bind(this)}>向TA提问</a>
 

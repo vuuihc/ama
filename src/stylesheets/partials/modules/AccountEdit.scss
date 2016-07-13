@@ -45,6 +45,7 @@
       }
     }
     a.bottom-btn{
+      text-align: center;
       display: block;
       width: px2rem(496);
       height: px2rem(79);
@@ -52,7 +53,7 @@
       border: 1px solid $borderOrange;
       border-radius: px2rem(10);
       color: white;
-      line-height: px2rem(90);
+      line-height: px2rem(70);
       margin: px2rem(37) auto;
     }
   }

@@ -20,6 +20,7 @@ class Question extends Component {
       playNow: true,
       listenTimer:null,
     }
+    this.handlePrise = this.handlePrise.bind(this);
   }
   componentDidMount() {
     const {id} = this.props.params
@@ -143,6 +144,9 @@ class Question extends Component {
     }
   }
 
+  handlePrise(){
+
+  }
   render() {
     const {questionInfo,listenInfo} = this.props
     console.log("this.state.playing=="+this.state.playing)
@@ -172,6 +176,9 @@ class Question extends Component {
         <div className="remark">
           <span>{questionInfo.answer_listen}人偷听</span>
           <span className="kui">{questionInfo.answer_like}人觉得赞</span>
+          <div className="prise" onClick={this.handlePrise}>
+            赞
+          </div>
         </div>
         <div className="ask">
           <div className="value">￥{questionInfo.teacher_prize}</div>
