@@ -108,7 +108,7 @@ class HotQuestionList extends Component {
         <Toast icon="loading" show={listenInfo.loading} >正在请求……</Toast>
         {
           hotQuestionList.data.map((question, index) =>
-            <QuestionItemWithAvatar quesion = { question } key={index} />
+            <QuestionItemWithAvatar question = { question } key={index} />
           )
         }
         {!hotQuestionList.completed && <Loading /> }
