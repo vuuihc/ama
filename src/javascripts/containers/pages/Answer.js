@@ -4,7 +4,7 @@ import { Link,browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import '../../../stylesheets/partials/modules/Answer.scss';
 import { getQuestionInfo,saveVoice } from  '../../actions/question';
-import { getAskedMe } from  '../../actions/account';
+import { getAskedMe,clearAskedMe } from  '../../actions/account';
 import { getWXConfig } from "../../actions/config"
 import time from '../../util/time'
 import VoiceWave from  "../../components/VoiceWave"
@@ -60,6 +60,7 @@ class Answer extends Component {
   componentWillReceiveProps(nextProps){
     if(nextProps.saveVoiceInfo.saved){
       this.setState({answerSuccess:true})
+      this.props.clearAskedMe()
       this.props.getAskedMe(1,10)
       this.state.successTimer = setTimeout(()=>{
         this.setState({answerSuccess:false})
@@ -221,7 +222,9 @@ class Answer extends Component {
     const questionInfo = this.props.questionInfo;
     const classNames = {
       0 : " ",
+      1 : " ",
       2 : " on",
+      3 : " on",
       4 : " voice",
       5 : " voice-on"
     }
@@ -250,7 +253,7 @@ class Answer extends Component {
         <div className="hint">您的回答将被公开，答案每被偷听一次，你就赚 ￥0.3</div>
         <div className="replyHint">{Tips[this.state.status]}</div>
         <div ref="replyContainer" className="replyContainer">
-          <div ref="roundContainer" className={"round-container"+classNames[this.state.status]}>
+          <div ref="roundContainer" className={"round-container "+classNames[this.state.status]}>
             <div className="replyIcon"></div>
             <div className="recording"></div>
             <div className="bubble-voice"></div>
@@ -276,6 +279,6 @@ const mapStateToProps = (state) =>{
   }
 }
 
-Answer = connect( mapStateToProps, { getQuestionInfo,saveVoice,getWXConfig,getAskedMe })(Answer);
+Answer = connect( mapStateToProps, { getQuestionInfo,saveVoice,getWXConfig,getAskedMe,clearAskedMe })(Answer);
 
 export default Answer;

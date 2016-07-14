@@ -1,117 +1,125 @@
 import account from '../api/account'
 import {
-    REQUEST_LISTENED,
-    REQUEST_ASKED_ME,
-    REQUEST_I_ASKED,
-    RECEIVE_USER_INFO,
-    RECEIVE_LISTENED,
-    RECEIVE_I_ASKED,
-    RECEIVE_ASKED_ME,
-    LISTENED_COMPLETED,
-    I_ASKED_COMPLETED,
-    ASKED_ME_COMPLETED,
-    RECEIVE_OTHER_USER_INFO,
+  REQUEST_LISTENED,
+  REQUEST_ASKED_ME,
+  CLEAR_ASKED_ME,
+  REQUEST_I_ASKED,
+  RECEIVE_USER_INFO,
+  RECEIVE_LISTENED,
+  RECEIVE_I_ASKED,
+  RECEIVE_ASKED_ME,
+  LISTENED_COMPLETED,
+  I_ASKED_COMPLETED,
+  ASKED_ME_COMPLETED,
+  RECEIVE_OTHER_USER_INFO,
 } from './ActionTypes'
 
 
-export function  getUserInfo(id) {
-    return (dispatch) => {
-        account.getUserInfo((data) => {
-            dispatch({
-                type: RECEIVE_USER_INFO,
-                data
-            })
-        })
-    }
+export function getUserInfo(id) {
+  return (dispatch) => {
+    account.getUserInfo((data) => {
+      dispatch({
+        type: RECEIVE_USER_INFO,
+        data
+      })
+    })
+  }
 }
-export function  getOtherUserInfo(id) {
-    return (dispatch) => {
-        account.getOtherUserInfo(id, (data) => {
-            dispatch({
-                type: RECEIVE_OTHER_USER_INFO,
-                data
-            })
-        })
-    }
+export function getOtherUserInfo(id) {
+  return (dispatch) => {
+    account.getOtherUserInfo(id, (data) => {
+      dispatch({
+        type: RECEIVE_OTHER_USER_INFO,
+        data
+      })
+    })
+  }
 }
 
-export function editUserInfo(company, job, experience, introduction){
-    return (dispatch) => {
-        account.editUserInfo(company, job, experience, introduction, (data) => {
-            dispatch({
-                type: RECEIVE_USER_INFO,
-                data
-            })
-        });
-    }
+export function editUserInfo(company, job, experience, introduction) {
+  return (dispatch) => {
+    account.editUserInfo(company, job, experience, introduction, (data) => {
+      dispatch({
+        type: RECEIVE_USER_INFO,
+        data
+      })
+    });
+  }
 }
-export function getListened(page, num){
-    return (dispatch) => {
+export function getListened(page, num) {
+  return (dispatch) => {
+    dispatch({
+      type: REQUEST_LISTENED
+    });
+    account.getListened(page, num, (data) => {
+      if (data.length === 0) {
         dispatch({
-            type:REQUEST_LISTENED
+          type: LISTENED_COMPLETED
         });
-        account.getListened(page, num, (data) => {
-            if(data.length === 0){
-                dispatch({
-                    type:LISTENED_COMPLETED
-                });
-            }else {
-                dispatch({
-                    type: RECEIVE_LISTENED,
-                    data
-                })
-            }
-        })
-    }
-}
-
-export function getIAsked(page, num){
-    return (dispatch) => {
+      } else {
         dispatch({
-            type:REQUEST_I_ASKED
-        });
-        account.getIAsked(page, num, (data) => {
-            if(data.length === 0){
-                dispatch({
-                    type:I_ASKED_COMPLETED
-                });
-            }else {
-                dispatch({
-                    type: RECEIVE_I_ASKED,
-                    data
-                })
-            }
+          type: RECEIVE_LISTENED,
+          data
         })
-    }
+      }
+    })
+  }
 }
 
-export function getAskedMe(page, num){
-    return (dispatch) => {
+export function getIAsked(page, num) {
+  return (dispatch) => {
+    dispatch({
+      type: REQUEST_I_ASKED
+    });
+    account.getIAsked(page, num, (data) => {
+      if (data.length === 0) {
         dispatch({
-            type:REQUEST_ASKED_ME
+          type: I_ASKED_COMPLETED
         });
-        account.getAskedMe(page, num, (data) => {
-            if(data.length === 0){
-                dispatch({
-                    type:ASKED_ME_COMPLETED
-                });
-            }else {
-                dispatch({
-                    type: RECEIVE_ASKED_ME,
-                    data
-                })
-            }
+      } else {
+        dispatch({
+          type: RECEIVE_I_ASKED,
+          data
         })
-    }
+      }
+    })
+  }
 }
 
-export function requestBecomeTeacher(invite, prize){
-    return (dispatch) => {
-        account.requestBecomeTeacher(invite, prize, (data) => {
-            dispatch({
-                type: RECEIVE_USER_INFO,
-                data
-            })
+export function getAskedMe(page, num) {
+  return (dispatch) => {
+    dispatch({
+      type: REQUEST_ASKED_ME
+    });
+    account.getAskedMe(page, num, (data) => {
+      if (data.length === 0) {
+        dispatch({
+          type: ASKED_ME_COMPLETED
+        });
+      } else {
+        dispatch({
+          type: RECEIVE_ASKED_ME,
+          data
         })
-    }
+      }
+    })
+  }
+}
+export function clearAskedMe() {
+  return dispatch => {
+    dispatch({
+      type: CLEAR_ASKED_ME
+    })
+  }
+}
+
+export function requestBecomeTeacher(invite, prize) {
+  return (dispatch) => {
+    account.requestBecomeTeacher(invite, prize, (data) => {
+      dispatch({
+        type: RECEIVE_USER_INFO,
+        data
+      })
+    })
+  }
 }

@@ -32,6 +32,7 @@ export const I_ASKED_COMPLETED = 'I_ASKED_COMPLETED';
 
 //获取问我的问题列表
 export const REQUEST_ASKED_ME = 'REQUEST_ASKED_ME';
+export const CLEAR_ASKED_ME = 'CLEAR_ASKED_ME';
 export const RECEIVE_ASKED_ME = 'RECEIVE_ASKED_ME';
 export const ASKED_ME_COMPLETED = 'ASKED_ME_COMPLETED';
 
