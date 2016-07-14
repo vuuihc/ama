@@ -109,11 +109,13 @@
     margin-top: px2rem(20);
     color:$lightGray;
     font-size: px2rem(24);
+    text-align:center;
   }
   .becomeTutor{
     text-align: center;
     margin-top: px2rem(53);
     border: none;
+    text-align:center;
     @include uniMethod('border-radius', 5px);
     background: $orange;
     font-size: px2rem(30);

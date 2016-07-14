@@ -14,7 +14,7 @@ class AskedMeList extends Component {
     this.state = {
       afford: '',
       inviteCode: '',
-      isTeacher: false
+      // isTeacher: false
     }
     this.handleScroll = this.handleScroll.bind(this)
   }
@@ -44,8 +44,8 @@ class AskedMeList extends Component {
     return (
       <div className="askedMeList">
         {
-          // this.props.userInfo.is_teacher === '1' ? (
-          this.state.isTeacher ? (
+          this.props.userInfo.is_teacher === '1' ? (
+          // this.state.isTeacher ? (
             this.props.data.length === 0
               ? (
               <div>
@@ -115,7 +115,7 @@ class AskedMeList extends Component {
                 </div>
                 <div className="submit" onClick={this.handleSubmit.bind(this)}>确定</div>
               </Modal>
-              <div onClick={e=>{this.setState({isTeacher: !this.state.isTeacher});}}>切换</div>
+                {/*<div onClick={e=>{this.setState({isTeacher: !this.state.isTeacher});}}>切换</div>*/}
             </div>
           )
         }
