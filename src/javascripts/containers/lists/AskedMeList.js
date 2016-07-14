@@ -6,8 +6,7 @@ import {connect} from 'react-redux'
 import QuestionItemWithoutAvatarWithoutBubble from '../blocks/QuestionItemWithoutAvatarWithoutBubble';
 import {getAskedMe, requestBecomeTeacher} from '../../actions/account'
 import Loading from '../Loading'
-import ReactDom from 'react-dom'
-import {baseUrl, domainPath} from "../../api/config"
+import { baseUrl } from "../../api/config"
 class AskedMeList extends Component {
 
   constructor() {
@@ -15,7 +14,7 @@ class AskedMeList extends Component {
     this.state = {
       afford: '',
       inviteCode: '',
-      // isTeacher: false
+      isTeacher: false
     }
     this.handleScroll = this.handleScroll.bind(this)
   }
@@ -41,13 +40,12 @@ class AskedMeList extends Component {
       this.props.getAskedMe(this.props.page, 10);
     }
   }
-
   render() {
     return (
       <div className="askedMeList">
         {
-          this.props.userInfo.is_teacher === '1' ? (
-          // this.state.isTeacher ? (
+          // this.props.userInfo.is_teacher === '1' ? (
+          this.state.isTeacher ? (
             this.props.data.length === 0
               ? (
               <div>
@@ -98,7 +96,7 @@ class AskedMeList extends Component {
                   <input
                     type="text"
                     className="no-underline"
-                    style={{width:`${250/75}rem`}}
+                    style={{width:`4rem`}}
                     value={this.state.inviteCode}
                     placeholder="请输入您的邀请码"
                     onChange={(e)=>{this.setState({inviteCode:e.target.value})}}
@@ -108,7 +106,7 @@ class AskedMeList extends Component {
                   <span>向我提问需要支付</span>
                   <input
                     type="text"
-                    style={{width:`${30/75}rem`}}
+                    style={{width:`1.2rem`}}
                     className="no-underline"
                     value={this.state.afford}
                     onChange={(e)=>{this.setState({afford:e.target.value})}}
@@ -117,42 +115,10 @@ class AskedMeList extends Component {
                 </div>
                 <div className="submit" onClick={this.handleSubmit.bind(this)}>确定</div>
               </Modal>
+              <div onClick={e=>{this.setState({isTeacher: !this.state.isTeacher});}}></div>
             </div>
           )
         }
-          <Link to={`${baseUrl}tutor/share/${this.props.userInfo.user_id}`}>
-              <button className="becomeTutor">
-                  让更多人了解你
-              </button>
-          </Link>
-          <button className="becomeTutor" onClick={(e)=>{this.refs.modal.open()}}>
-              成为导师
-          </button>
-          <Modal left="22" top="330" ref="modal">
-              <div className="invitation">
-                  <span>邀请码</span>
-                  <input
-                      type="text"
-                      className="no-underline"
-                      style={{width:`4rem`}}
-                      value={this.state.inviteCode}
-                      placeholder="请输入您的邀请码"
-                      onChange={(e)=>{this.setState({inviteCode:e.target.value})}}
-                  />
-              </div>
-              <div className="afford">
-                  <span>向我提问需要支付</span>
-                  <input
-                      type="text"
-                      style={{width:`1.2rem`}}
-                      className="no-underline"
-                      value={this.state.afford}
-                      onChange={(e)=>{this.setState({afford:e.target.value})}}
-                  />
-                  <span>元</span>
-              </div>
-              <div className="submit" onClick={this.handleSubmit.bind(this)}>确定</div>
-          </Modal>
       </div>
     )
   }

@@ -17,9 +17,9 @@ import IAskedList from './containers/lists/IAskedList'
 import AccountEdit from './containers/AccountEdit'
 import Question from './containers/Question'
 import TutorIndex from './containers/TutorIndex'
-// import TutorShare from './containers/TutorShare'
+import TutorShare from './containers/TutorShare'
 import UserIndex from './containers/UserIndex'
-import UserShare from './containers/UserShare'
+// import UserShare from './containers/UserShare'
 import Answer from './containers/pages/Answer'
 
 import configureStore from './store/configureStore'
@@ -45,10 +45,6 @@ ReactDom.render((
           <Route path={baseUrl + 'tutor/share/:id'}  component={TutorShare} />
         </Route>
         <Route path={baseUrl+"user/:id"} component={UserIndex}>
-          {/*
-           <IndexRoute component={UserIndex} />
-           <Route path="share" component={UserShare} />
-           */}
         </Route>
       </Route>
     </Router>
