@@ -7,13 +7,13 @@ import { editUserInfo } from '../actions/account';
 import '../../stylesheets/partials/modules/AccountEdit.scss'
 
 class AccountEdit extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
-            company:'',
-            job:'',
-            experience:'',
-            introduction:''
+            company:this.props.userInfo.user_company,
+            job:this.props.userInfo.user_position,
+            experience:this.props.userInfo.user_experience,
+            introduction:this.props.userInfo.user_introduction
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }

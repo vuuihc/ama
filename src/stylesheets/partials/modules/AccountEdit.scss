@@ -10,7 +10,7 @@
       border: 3px solid $darkBlue;
     }
     div.form-group {
-      margin: px2rem(61) px2rem(62) 0;
+      margin: px2rem(50) px2rem(62) 0;
       &:first-of-type{
         margin-top: px2rem(57);
       }
@@ -35,8 +35,9 @@
           display: block;
         }
         textarea{
+          padding:5px;
           width: px2rem(500);
-          height: px2rem(232);
+          height: px2rem(180);
           border: 1px solid $lightGray;
           -webkit-border-radius:px2rem(5);
           -moz-border-radius:px2rem(5);

@@ -134,7 +134,7 @@ class AskedMeList extends Component {
                   <input
                       type="text"
                       className="no-underline"
-                      style={{width:`${250/75}rem`}}
+                      style={{width:`4rem`}}
                       value={this.state.inviteCode}
                       placeholder="请输入您的邀请码"
                       onChange={(e)=>{this.setState({inviteCode:e.target.value})}}
@@ -144,7 +144,7 @@ class AskedMeList extends Component {
                   <span>向我提问需要支付</span>
                   <input
                       type="text"
-                      style={{width:`${30/75}rem`}}
+                      style={{width:`1.2rem`}}
                       className="no-underline"
                       value={this.state.afford}
                       onChange={(e)=>{this.setState({afford:e.target.value})}}

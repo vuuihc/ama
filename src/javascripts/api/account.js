@@ -28,7 +28,7 @@ export default  {
           credentials: 'same-origin',
           body: JSON.stringify({
               company,
-              job,
+              position:job,
               experience,
               introduction
           })

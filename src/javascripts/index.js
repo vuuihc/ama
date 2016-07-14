@@ -42,7 +42,7 @@ ReactDom.render((
         <Route path={baseUrl+"question/:id"} component={Question}/>
         <Route path={baseUrl + 'tutor'}>
           <Route path={baseUrl + 'tutor/:id'}  component={TutorIndex} />
-        {/*<Route path={baseUrl + 'tutor/share/:id'}  component={TutorShare} />*/}
+          <Route path={baseUrl + 'tutor/share/:id'}  component={TutorShare} />
         </Route>
         <Route path={baseUrl+"user/:id"} component={UserIndex}>
           {/*
