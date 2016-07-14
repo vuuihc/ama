@@ -115,7 +115,7 @@ class AskedMeList extends Component {
                 </div>
                 <div className="submit" onClick={this.handleSubmit.bind(this)}>确定</div>
               </Modal>
-              <div onClick={e=>{this.setState({isTeacher: !this.state.isTeacher});}}></div>
+              <div onClick={e=>{this.setState({isTeacher: !this.state.isTeacher});}}>切换</div>
             </div>
           )
         }

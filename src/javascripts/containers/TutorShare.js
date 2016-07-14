@@ -4,6 +4,7 @@
 import React, { Component, PropTypes } from 'react'
 import {Link} from 'react-router'
 import { connect } from 'react-redux'
+import { getTutorInfo } from '../actions/tutor'
 import {domainPath} from '../api/config'
 import '../../stylesheets/partials/modules/TutorShare.scss'
 
