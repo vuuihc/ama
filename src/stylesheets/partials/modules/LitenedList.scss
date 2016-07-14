@@ -77,10 +77,10 @@
         color:$lightGray;
         padding: px2rem(16) 0;
         text-align: right;
-        .howManyListen{
+        .howManyListen span{
           font-size: px2rem(24);
         }
-        .howManySorrow{
+        .howManySorrow span{
           margin-left:px2rem(27);
           font-size: px2rem(24);
         }
