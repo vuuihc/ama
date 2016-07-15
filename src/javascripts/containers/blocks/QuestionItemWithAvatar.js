@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import {baseUrl} from "../../api/config"
 import {getListenInfo} from '../../actions/question'
 import { connect } from 'react-redux';
-
+import {browserHistory} from 'react-router'
 class QuestionItemWithAvatar extends Component{
     constructor(){
         super();
