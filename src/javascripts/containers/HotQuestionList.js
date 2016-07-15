@@ -16,8 +16,10 @@ class HotQuestionList extends Component {
     this.state={
       curAudio:"",
       curPage:1,
+      loading:false
     }
     this.handleScroll = this.handleScroll.bind(this)
+    this.handleLoading = this.handleLoading.bind(this)
   }
   handleScroll(){
     if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.hotQuestionList.completed) {
@@ -25,6 +27,9 @@ class HotQuestionList extends Component {
       this.setState({curPage});
       this.props.dispatch(getHotQuestionList(curPage, 10))
     }
+  }
+  handleLoading(state){
+    this.setState({loading:state});
   }
   componentDidMount() {
     if(this.props.landPage==null){
@@ -42,10 +47,10 @@ class HotQuestionList extends Component {
     const {hotQuestionList,listenInfo} = this.props
     return (
       <main className="hot-question-list">
-        <Toast icon="loading" show={listenInfo.loading} >正在请求……</Toast>
+        <Toast icon="loading" show={this.state.loading} >正在请求……</Toast>
         {
           hotQuestionList.data.map((question, index) =>
-            <QuestionItemWithAvatar question = { question } key={index} />
+            <QuestionItemWithAvatar question = { question } key={index} handleLoading = {this.handleLoading}/>
           )
         }
         {!hotQuestionList.completed && <Loading /> }

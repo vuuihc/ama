@@ -18,18 +18,21 @@ class QuestionItemWithAvatar extends Component{
         this.props.dispatch(getListenInfo(answerId))
     }
     bubbleClick(answerId,questionId,isPayed){
+        const self = this;
         if(isPayed){
             browserHistory.push(`${baseUrl}question/${questionId}`)
         }else{
             //取预支付订单
+            self.props.handleLoading(true);
             fetch(`${domain}/api/v1/answer/listen?answer_id=${answerId}`,{
                 credentials: 'same-origin'
             })
                 .then(response => response.json())
                 .then(json => apiHandler.handleResponse(json,(data)=>{
-                    alert('nexstate:' + data.timeStamp + '' + (time.valueOf()/1000 - data.timeStamp));
+                    self.props.handleLoading(false);
                     if(data.timeStamp!=undefined){
                         const time = new Date()
+                        alert('nexstate:' + data.timeStamp + '' + (time.valueOf()/1000 - data.timeStamp));
                         if(time.valueOf()/1000-data.timeStamp<1000){
                             console.log("进入微信支付")
                             alert('enter pay');
