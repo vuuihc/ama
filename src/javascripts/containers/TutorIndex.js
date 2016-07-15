@@ -85,7 +85,7 @@ class TutorIndex extends Component {
                 if(res.err_msg == "get_brand_wcpay_request:ok" ) {
                   console.log("支付成功！")
                   self.setState({askSuccess:true})
-                  this.props.dispatch(getIAsked(1, 10));
+                  self.props.dispatch(getIAsked(1, 10));
                   let successTimer = setTimeout(()=>{
                     browserHistory.push(baseUrl+"account/IAskedList")
                   },2000)
