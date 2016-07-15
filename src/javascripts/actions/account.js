@@ -1,8 +1,9 @@
 import account from '../api/account'
 import {
+  CLEAR_ASKED_ME,
+  CLEAR_I_ASKED,
   REQUEST_LISTENED,
   REQUEST_ASKED_ME,
-  CLEAR_ASKED_ME,
   REQUEST_I_ASKED,
   RECEIVE_USER_INFO,
   RECEIVE_LISTENED,
@@ -68,6 +69,11 @@ export function getListened(page, num) {
 
 export function getIAsked(page, num) {
   return (dispatch) => {
+    if(page==1){
+      dispatch({
+        type: CLEAR_I_ASKED
+      })
+    }
     dispatch({
       type: REQUEST_I_ASKED
     });
@@ -88,6 +94,11 @@ export function getIAsked(page, num) {
 
 export function getAskedMe(page, num) {
   return (dispatch) => {
+    if(page==1){
+      dispatch({
+        type: CLEAR_ASKED_ME
+      })
+    }
     dispatch({
       type: REQUEST_ASKED_ME
     });

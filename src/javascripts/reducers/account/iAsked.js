@@ -1,4 +1,4 @@
-import { RECEIVE_I_ASKED, REQUEST_I_ASKED, I_ASKED_COMPLETED } from  '../../actions/ActionTypes'
+import { CLEAR_I_ASKED,RECEIVE_I_ASKED, REQUEST_I_ASKED, I_ASKED_COMPLETED } from  '../../actions/ActionTypes'
 const defaultState = {
     loading:false,
     data:[],
@@ -7,6 +7,8 @@ const defaultState = {
 }
 const iAsked = (state = defaultState, action) => {
     switch(action.type){
+        case CLEAR_I_ASKED:
+            return defaultState;
         case REQUEST_I_ASKED:
             return Object.assign({}, state, {loading: true});
         case RECEIVE_I_ASKED:
