@@ -17,7 +17,6 @@ class HotQuestionList extends Component {
       curPage:1,
     }
     this.handleScroll = this.handleScroll.bind(this)
-    this.handleLoading = this.handleLoading.bind(this)
   }
   handleScroll(){
     if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.hotQuestionList.completed) {
