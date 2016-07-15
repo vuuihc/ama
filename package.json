@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "7dyk frontend",
   "scripts": {
-    "build": "set NODE_ENV=development &webpack --progress --colors --watch",
+    "build": "set NODE_ENV=development &webpack --progress --colors --watch -p",
     "watch": "set NODE_ENV=development & webpack-dev-server --hot --inline --progress --colors",
     "dist": "set NODE_ENV=production & webpack --progress --colors -p"
   },
