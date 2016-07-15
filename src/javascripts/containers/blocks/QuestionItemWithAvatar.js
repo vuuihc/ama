@@ -8,14 +8,6 @@ import apiHandler from "../../util/apiHandler"
 class QuestionItemWithAvatar extends Component{
     constructor(){
         super();
-        this.state={
-            curQuestionId:null,
-            curAnswerId:null
-        }
-    }
-    getPrepayInfo(questionId,answerId){
-        this.setState({curQuestionId:questionId,curAnswerId:answerId})
-        this.props.dispatch(getListenInfo(answerId))
     }
     bubbleClick(answerId,questionId,isPayed){
         const self = this;
@@ -42,7 +34,7 @@ class QuestionItemWithAvatar extends Component{
                                     function(res){
                                         if(res.err_msg == "get_brand_wcpay_request:ok" ) {
                                             console.log("支付成功！")
-                                            browserHistory.push(`/question/${self.state.curQuestionId}`)
+                                            browserHistory.push(`/question/${questionId}`)
                                         }else{
                                             alert("支付失败，原因："+JSON.stringify(res))
                                         }
@@ -127,5 +119,5 @@ class QuestionItemWithAvatar extends Component{
         )
     }
 }
-QuestionItemWithAvatar = connect(undefined)(QuestionItemWithAvatar)
+//QuestionItemWithAvatar = connect(undefined)(QuestionItemWithAvatar)
 export default QuestionItemWithAvatar;
