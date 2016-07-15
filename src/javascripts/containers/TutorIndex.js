@@ -17,12 +17,13 @@ class TutorIndex extends Component {
     super(props)
     this.state = {
       curPage:1,
-      askSuccess:false
+      askSuccess:false,
+      loading:false
     }
   }
   componentWillReceiveProps(nextProps){
-    const time = new Date()
-    const self =this
+    // const time = new Date()
+    // const self =this
     // if(nextProps.prepayInfo.data.timeStamp!=undefined && time.valueOf()/1000-nextProps.prepayInfo.data.timeStamp<5){
     //   console.log("获得了最新的timestamp")
     //   console.log(nextProps.prepayInfo.data.timeStamp)
@@ -68,11 +69,13 @@ class TutorIndex extends Component {
   }
   payForAsk(content,tutorId){
     const url = domain + `/api/v1/question/testquestion?content=${content}&answer_user_id=${tutorId}`
+    this.setState({loading:true})
     fetch(url,{
       credentials: 'same-origin'
     })
       .then(response => response.json())
       .then(json =>{
+        this.setState({loading:false})
         const self =this
         if(json.data.timeStamp!=undefined){
           function onBridgeReady(){
@@ -145,11 +148,11 @@ class TutorIndex extends Component {
   }
 
   render() {
-    const {tutorInfo,tutorAnswerList,prepayInfo} = this.props
+    const {tutorInfo,tutorAnswerList} = this.props
     return (
       <main className="tutorIndex">
         <Toast  show={this.state.askSuccess} >提问成功</Toast>
-        <Toast  icon="loading" show={prepayInfo.loading} >请求支付中……</Toast>
+        <Toast  icon="loading" show={this.state.loading} >请求支付中……</Toast>
         <div className="tutor-info">
           <Link to={baseUrl+`user/${tutorInfo.user_id}`} >
             <img className="QREntry" src={require("../../images/QREntry.png")}/>
