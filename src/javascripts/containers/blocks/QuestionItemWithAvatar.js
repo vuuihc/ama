@@ -4,6 +4,7 @@ import Toast from "../../util/weui/toast"
 import {domain, baseUrl} from "../../api/config"
 import {browserHistory} from 'react-router'
 import apiHandler from "../../util/apiHandler"
+import '../../../stylesheets/partials/modules/QuestionItemWithAvatar.scss'
 class QuestionItemWithAvatar extends Component{
     constructor(){
         super();
@@ -73,7 +74,7 @@ class QuestionItemWithAvatar extends Component{
     render() {
         const { question } = this.props;
         return(
-            <article>
+            <article className="question-item-with-avatar">
                 <Toast icon="loading" show={this.state.loading} >正在请求……</Toast>
                 <Link to={baseUrl +"question/"+question.question_id}>
                     <div className="question-content">
@@ -106,5 +107,8 @@ class QuestionItemWithAvatar extends Component{
             </article>
         )
     }
+}
+QuestionItemWithAvatar.defaultProps = {
+    question:{}
 }
 export default QuestionItemWithAvatar;

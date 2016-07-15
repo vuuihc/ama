@@ -1,0 +1,128 @@
+@import "../base";
+
+article.question-item-with-avatar {
+  border-bottom: 1px solid $borderGray;
+  overflow: hidden;
+  min-height: px2rem(303);
+  .question-content {
+    h4{
+      padding: px2rem(30) px2rem(27) px2rem(57) px2rem(27);
+      margin: 0;
+      font-size: px2rem(32);
+      font-weight: 500;
+    }
+  }
+  .mentor{
+    float: left;
+    width: px2rem(100);
+    margin: 0 px2rem(21) px2rem(34) px2rem(27);
+    img{
+      width: px2rem(100);
+      height: px2rem(100);
+      -webkit-border-radius: px2rem(50);
+      -moz-border-radius: px2rem(50);
+      border-radius: px2rem(50);
+    }
+    .mentor-info{
+      position: relative;
+      margin-top: px2rem(30);
+      left: px2rem(3);
+      white-space: nowrap;
+      color: $lightBlue;
+      span {
+        font-size: px2rem(24);
+      }
+      .name{
+        margin-right: px2rem(20);
+        font-size: px2rem(24);
+      }
+    }
+  }
+  .answer {
+    float: left;
+    width: px2rem(335);
+    .bubble{
+      position: relative;
+      left: px2rem(20);
+      display: block;
+      width: px2rem(335);
+      height: px2rem(88);
+      background-color: rgb(3,135,231);
+      -webkit-border-radius: px2rem(50);
+      -moz-border-radius: px2rem(50);
+      border-radius: px2rem(50);
+      .bubble-voice {
+        background-image: url(../../../images/voice.png);
+        -webkit-background-size: 100% 100%;
+        background-size: 100% 100%;
+        width: px2rem(36);
+        height: px2rem(36);
+        position: absolute;
+        left: px2rem(30);
+        bottom: px2rem(27);
+      }
+      .bubble-tail{
+        background-image: url(../../../images/bubble-tail-blue.png);
+        -webkit-background-size: 100% 100%;
+        background-size: 100% 100%;
+        width: px2rem(36);
+        height: px2rem(48);
+        position: absolute;
+        left: px2rem(-14);
+        bottom: 0;
+      }
+      .bubble-text {
+        position: absolute;
+        left:px2rem(124);
+        top: px2rem(28);
+        font-size: px2rem(24);
+        color: white;
+      }
+    }
+
+  }
+  .remark {
+    float: right;
+    margin-right: px2rem(26);
+    width: px2rem(230);
+    position: relative;
+    .value {
+      margin-top: px2rem(55);
+      text-align: right;
+      color: red;
+      span {
+        font-size: px2rem(24);
+      }
+    }
+    .remark-info {
+      position: absolute;
+      right: 0;
+      margin-top: px2rem(40);
+      color: $lightGray;
+      text-align: right;
+      white-space: nowrap;
+      span {
+        font-size: px2rem(24);
+      }
+      .kui {
+        margin-left: px2rem(20);
+        font-size: px2rem(24);
+
+      }
+    }
+  }
+}
+
+.askMeList article {
+  .mentor{
+    margin-left: 0 !important;
+  }
+
+  .remark{
+    margin-right: 0 !important;
+  }
+  .question-content h4{
+    padding-left:0;
+    padding-right:0;
+  }
+}
