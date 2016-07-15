@@ -9,7 +9,7 @@ import {setLandPage} from '../actions/config.js'
 import Loading from "./Loading"
 import Toast from "../util/weui/toast"
 import {baseUrl} from "../api/config"
-import { QuestionItemWithAvatar } from './blocks/QuestionItemWithAvatar'
+import  QuestionItemWithAvatar  from './blocks/QuestionItemWithAvatar'
 import '../../stylesheets/partials/modules/HotQuestionList.scss'
 
 class HotQuestionList extends Component {

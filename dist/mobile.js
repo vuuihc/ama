@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "67d991fa1fd814a2e2f3"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "bfb46cd753c4e3fdcac6"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -20242,6 +20242,8 @@
 	
 	var _QuestionItemWithAvatar = __webpack_require__(199);
 	
+	var _QuestionItemWithAvatar2 = _interopRequireDefault(_QuestionItemWithAvatar);
+	
 	__webpack_require__(609);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -20311,7 +20313,7 @@
 	          '正在请求……'
 	        ),
 	        hotQuestionList.data.map(function (question, index) {
-	          return _react2.default.createElement(_QuestionItemWithAvatar.QuestionItemWithAvatar, { question: question, key: index });
+	          return _react2.default.createElement(_QuestionItemWithAvatar2.default, { question: question, key: index });
 	        }),
 	        !hotQuestionList.completed && _react2.default.createElement(_Loading2.default, null)
 	      );
