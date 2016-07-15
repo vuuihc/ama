@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "192ec4a555824f1ea04c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "67d991fa1fd814a2e2f3"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -12899,6 +12899,8 @@
 	
 	var _config = __webpack_require__(16);
 	
+	var _question = __webpack_require__(117);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -12926,7 +12928,7 @@
 	        key: 'getPrepayInfo',
 	        value: function getPrepayInfo(questionId, answerId) {
 	            this.setState({ curQuestionId: questionId, curAnswerId: answerId });
-	            this.props.dispatch(getListenInfo(answerId));
+	            this.props.dispatch((0, _question.getListenInfo)(answerId));
 	        }
 	    }, {
 	        key: 'bubbleClick',

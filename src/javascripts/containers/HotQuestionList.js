@@ -4,7 +4,7 @@
 import React, {Component, PropTypes} from 'react'
 import {Link,browserHistory} from 'react-router'
 import {connect} from 'react-redux'
-import {getHotQuestionList,getListenInfo} from '../actions/question.js'
+import {getHotQuestionList} from '../actions/question.js'
 import {setLandPage} from '../actions/config.js'
 import Loading from "./Loading"
 import Toast from "../util/weui/toast"
