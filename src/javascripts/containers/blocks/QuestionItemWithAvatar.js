@@ -26,10 +26,12 @@ class QuestionItemWithAvatar extends Component{
     componentWillReceiveProps(nextProps){
         const self = this
         console.log(nextProps.listenInfo.data)
+        alert('get nextstate' + nextProps.listenInfo.data.timeStamp + '' + (time.valueOf()/1000-nextProps.listenInfo.data.timeStamp));
         if(nextProps.listenInfo.data.timeStamp!=undefined){
             const time = new Date()
-            if(time.valueOf()/1000-nextProps.listenInfo.data.timeStamp<5){
+            if(time.valueOf()/1000-nextProps.listenInfo.data.timeStamp<1000){
                 console.log("进入微信支付")
+                alert('enter pay');
                 function onBridgeReady(){
                     WeixinJSBridge.invoke(
                         'getBrandWCPayRequest', nextProps.listenInfo.data,

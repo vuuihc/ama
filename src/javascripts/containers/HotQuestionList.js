@@ -2,13 +2,11 @@
  * Created by zsh on 2016/3/11.
  */
 import React, {Component, PropTypes} from 'react'
-import {Link,browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 import {getHotQuestionList} from '../actions/question.js'
 import {setLandPage} from '../actions/config.js'
 import Loading from "./Loading"
 import Toast from "../util/weui/toast"
-import {baseUrl} from "../api/config"
 import  QuestionItemWithAvatar  from './blocks/QuestionItemWithAvatar'
 import '../../stylesheets/partials/modules/HotQuestionList.scss'
 
