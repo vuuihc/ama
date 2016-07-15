@@ -23,10 +23,12 @@ class LitenedList extends Component {
     document.removeEventListener('scroll', this.handleScroll);
   }
 
+
   handleScroll() {
     if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.completed) {
       this.props.getListened(this.props.page, 10);
     }
+
   }
 
   render() {
@@ -50,7 +52,7 @@ class LitenedList extends Component {
                 你还没有偷听过呦~{this.props.data.length}
               </div>
               <div className="go">
-                快去<Link to={baseUrl+"hot"} >热门</Link>逛一逛吧~
+                快去<Link to={baseUrl+"hot"}>热门</Link>逛一逛吧~
               </div>
             </div>
           )

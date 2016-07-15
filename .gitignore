@@ -8,6 +8,10 @@ target
 /RUNNING_PID
 
 .ssh/
+# 去掉hotupdate文件
+dist/	
+!dist/mobile.js
+!dist/mobile.js.map
 
 # node相关
 # Logs

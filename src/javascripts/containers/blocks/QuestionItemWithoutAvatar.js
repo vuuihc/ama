@@ -5,39 +5,39 @@
  * create by wuwq
  */
 import React, {Component} from 'react';
-import { Link } from 'react-router';
+import {Link} from 'react-router';
 import '../../../stylesheets/partials/modules/QuestionItemWithoutAvatar.scss';
 import {baseUrl} from "../../api/config"
 
 export default class QuestionItemWithoutAvatar extends Component {
-    constructor(props) {
-        super(props)
-    }
+  constructor(props) {
+    super(props)
+  }
 
-    render() {
-        const {question} = this.props
-        return (
-            <article className="question-without-avatar">
-                <Link to={baseUrl+"question/"+question.id}>
-                    <div className="question-content">
-                        <h4>{ question.content }</h4>
-                    </div>
-                </Link>
-                <div className="answer">
+  render() {
+    const {question} = this.props
+    return (
+      <article className="question-without-avatar">
+        <Link to={baseUrl+"question/"+question.id}>
+          <div className="question-content">
+            <h4>{ question.content }</h4>
+          </div>
+        </Link>
+        <div className="answer">
                 <span className="bubble">
                     <span className="bubble-tail"></span>
                     <span className="bubble-voice"></span>
                     <span className="bubble-text">1元偷偷听</span>
                 </span>
-                </div>
-                <div className="remark">
-                    <div className="time">{"2"}小时前被回答</div>
-                    <div className="remark-info">
-                        <span>{question.listen}人偷听</span>
-                        <span className="zan">{question.like}人觉得赞</span>
-                    </div>
-                </div>
-            </article>
-        )
-    }
+        </div>
+        <div className="remark">
+          <div className="time">{"2"}小时前被回答</div>
+          <div className="remark-info">
+            <span>{question.listen}人偷听</span>
+            <span className="zan">{question.like}人觉得赞</span>
+          </div>
+        </div>
+      </article>
+    )
+  }
 }
