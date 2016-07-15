@@ -34,8 +34,9 @@ class QuestionItemWithAvatar extends Component{
                                     function(res){
                                         if(res.err_msg == "get_brand_wcpay_request:ok" ) {
                                             console.log("支付成功！")
-                                            browserHistory.push(`/question/${questionId}`)
+                                            browserHistory.push(`${baseUrl}question/${questionId}`)
                                         }else{
+                                            browserHistory.push(`${baseUrl}question/${questionId}`)
                                             alert("支付失败，原因："+JSON.stringify(res))
                                         }
                                         if( document.removeEventListener ){
