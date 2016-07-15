@@ -1,13 +1,15 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router'
+import Toast from "../../util/weui/toast"
 import {domain, baseUrl} from "../../api/config"
-import {getListenInfo} from '../../actions/question'
-import { connect } from 'react-redux';
 import {browserHistory} from 'react-router'
 import apiHandler from "../../util/apiHandler"
 class QuestionItemWithAvatar extends Component{
     constructor(){
         super();
+        this.state = {
+            loading:false
+        }
     }
     bubbleClick(answerId,questionId,isPayed){
         const self = this;
@@ -15,19 +17,19 @@ class QuestionItemWithAvatar extends Component{
             browserHistory.push(`${baseUrl}question/${questionId}`)
         }else{
             //取预支付订单
-            self.props.handleLoading(true);
+            self.setState({loading:true});
             fetch(`${domain}/api/v1/answer/listen?answer_id=${answerId}`,{
                 credentials: 'same-origin'
             })
                 .then(response => response.json())
                 .then(json => apiHandler.handleResponse(json,(data)=>{
-                    self.props.handleLoading(false);
+                    self.setState({loading:false});
                     if(data.timeStamp!=undefined){
                         const time = new Date()
-                        alert('nexstate:' + data.timeStamp + '' + (time.valueOf()/1000 - data.timeStamp));
+                        // alert('nexstate:' + data.timeStamp + '' + (time.valueOf()/1000 - data.timeStamp));
                         if(time.valueOf()/1000-data.timeStamp<1000){
                             console.log("进入微信支付")
-                            alert('enter pay');
+                            // alert('enter pay');
                             function onBridgeReady(){
                                 WeixinJSBridge.invoke(
                                     'getBrandWCPayRequest', data,
@@ -36,7 +38,7 @@ class QuestionItemWithAvatar extends Component{
                                             console.log("支付成功！")
                                             browserHistory.push(`${baseUrl}question/${questionId}`)
                                         }else{
-                                            browserHistory.push(`${baseUrl}question/${questionId}`)
+                                            // browserHistory.push(`${baseUrl}question/${questionId}`)
                                             alert("支付失败，原因："+JSON.stringify(res))
                                         }
                                         if( document.removeEventListener ){
@@ -59,23 +61,7 @@ class QuestionItemWithAvatar extends Component{
                             }else{
                                 onBridgeReady();
                             }
-                            // wx.chooseWXPay({
-                            //   timestamp:data.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-                            //   nonceStr: data.nonceStr, // 支付签名随机串，不长于 32 位
-                            //   package: data.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
-                            //   signType: data.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-                            //   paySign: data.paySign, // 支付签名
-                            //   success: function (res) {
-                            //     console.log("支付成功！");
-                            //     browserHistory.push(`/question/${self.state.curQuestionId}`)
-                            //     // self.props.dispatch(getListenInfo(self.state.curQuestionId))
-                            //   },
-                            //   fail:function(res){
-                            //     alert("支付失败")
-                            //     console.log("失败原因：")
-                            //     console.log(res)
-                            //   }
-                            // });
+
                         }else if(data.url!=undefined){
                             // this.context.router.push(`question/${self.state.curQuestionId}`)
                         }
@@ -88,6 +74,7 @@ class QuestionItemWithAvatar extends Component{
         const { question } = this.props;
         return(
             <article>
+                <Toast icon="loading" show={this.state.loading} >正在请求……</Toast>
                 <Link to={baseUrl +"question/"+question.question_id}>
                     <div className="question-content">
                         <h4>{question.question_content}</h4>
@@ -120,5 +107,4 @@ class QuestionItemWithAvatar extends Component{
         )
     }
 }
-//QuestionItemWithAvatar = connect(undefined)(QuestionItemWithAvatar)
 export default QuestionItemWithAvatar;

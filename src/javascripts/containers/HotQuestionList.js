@@ -6,7 +6,6 @@ import {connect} from 'react-redux'
 import {getHotQuestionList} from '../actions/question.js'
 import {setLandPage} from '../actions/config.js'
 import Loading from "./Loading"
-import Toast from "../util/weui/toast"
 import  QuestionItemWithAvatar  from './blocks/QuestionItemWithAvatar'
 import '../../stylesheets/partials/modules/HotQuestionList.scss'
 
@@ -16,7 +15,6 @@ class HotQuestionList extends Component {
     this.state={
       curAudio:"",
       curPage:1,
-      loading:false
     }
     this.handleScroll = this.handleScroll.bind(this)
     this.handleLoading = this.handleLoading.bind(this)
@@ -27,9 +25,6 @@ class HotQuestionList extends Component {
       this.setState({curPage});
       this.props.dispatch(getHotQuestionList(curPage, 10))
     }
-  }
-  handleLoading(state){
-    this.setState({loading:state});
   }
   componentDidMount() {
     if(this.props.landPage==null){
@@ -47,7 +42,6 @@ class HotQuestionList extends Component {
     const {hotQuestionList,listenInfo} = this.props
     return (
       <main className="hot-question-list">
-        <Toast icon="loading" show={this.state.loading} >正在请求……</Toast>
         {
           hotQuestionList.data.map((question, index) =>
             <QuestionItemWithAvatar question = { question } key={index} handleLoading = {this.handleLoading}/>
