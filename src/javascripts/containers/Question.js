@@ -105,7 +105,7 @@ class Question extends Component {
             console.log("进入微信支付")
             function onBridgeReady(){
               WeixinJSBridge.invoke(
-                'getBrandWCPayRequest', nextProps.listenInfo.data,
+                'getBrandWCPayRequest', json.data,
                 function(res){
                   if(res.err_msg == "get_brand_wcpay_request:ok" ) {
                     self.setState({paySuccess:true})
