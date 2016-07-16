@@ -1,0 +1,51 @@
+@import "../base";
+
+article.question-without-avatar {
+  border-top: 1px solid $borderGray;
+  border-bottom: 1px solid $borderGray;
+  .userInfo{
+    img{
+      width: px2rem(40);
+      height: px2rem(40);
+      float: left;
+      @include uniMethod('border-radius', px2rem(20));
+    }
+    span{
+      float: left;
+      line-height: px2rem(40);
+    }
+  }
+  .question-content {
+    h4{
+      margin: px2rem(20) 0;
+      height: px2rem(90);
+      line-height: px2rem(30);
+      font-size: px2rem(28);
+      font-weight: 500;
+      overflow : hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+  .status{
+    float: right;
+    .btn{
+      display: inline-block;
+      width:px2rem(83);
+      height:px2rem(37);
+      line-height: px2rem(37);
+      text-align: center;
+      @include uniMethod('border-radius', 5px);
+      color: $white;
+      font-size: px2rem(16);
+      &.not-solved{
+        background: $orange;
+      }
+      &.solved{
+        background: $darkBlue;
+      }
+    }
+  }
+}
