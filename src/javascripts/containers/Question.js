@@ -99,8 +99,10 @@ class Question extends Component {
 
   payForAnswer(answerId){
     const self = this
+    this.setState({loading: true})
     this.getListenInfo(answerId,json => {
         if(json.errCode==0){
+          this.setState({loading: false})
           const time = new Date()
           if(time.valueOf()/1000-json.data.timeStamp<5){
             console.log("进入微信支付")
@@ -143,8 +145,9 @@ class Question extends Component {
   }
   getAudio(answerId){
     const self =this
-    console.log("into playAudio");
+    this.setState({loading: true})
     this.getListenInfo(answerId,json => {
+      this.setState({loading: false})
       if(json.data.timeStamp){
         setTimeout(function(){//todo 优化
           self.getAudio(answerId)
@@ -162,6 +165,7 @@ class Question extends Component {
   playAudio(answerId,answerAudio){
     let audio = this.state.answerAudio || answerAudio
     if(audio){
+      console.log("audio.src===="+audio.src)
       audio.play();//todo 优化
     }else{
       this.getAudio(answerId)
@@ -200,7 +204,7 @@ class Question extends Component {
     this.props.priseQuestion(answerId);
   }
   render() {
-    const {questionInfo,listenInfo} = this.props
+    const {questionInfo} = this.props
     console.log("this.state.playing=="+this.state.playing)
     const classNames = {
       0: " ",
@@ -208,7 +212,7 @@ class Question extends Component {
     }
     return ( questionInfo.question_content ? 
       <main className="question">
-        <Toast icon="loading" show={listenInfo.loading} >{questionInfo.answer_ispayed?"加载声音中……":"请求支付中……"}</Toast>
+        <Toast icon="loading" show={this.state.loading} >{(questionInfo.answer_ispayed || this.state.paySuccess)?"加载声音中……":"请求支付中……"}</Toast>
         <div className="question-content">
           <Link to={`${baseUrl}user/${questionInfo.user_id}`}>
             <img src={questionInfo.user_face} />
