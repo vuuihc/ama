@@ -62,7 +62,7 @@ export default  {
       });
   },
   priseQuestion(questionId, cb){
-    fetch(`${domain}/api/v1/answer/listen?answer_id=${questionId}`, {
+    fetch(`${domain}/api/v1/question/like?answer_id=${questionId}`, {
       credentials: 'same-origin'
     })
       .then(res => res.json())

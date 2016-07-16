@@ -4,6 +4,7 @@ article.question-item-asked-me {
   border-bottom: 1px solid $borderGray;
   .userInfo{
     height: 0.8rem;
+    margin-top: px2rem(10);
     img{
       width: 0.8rem;
       height: 0.8rem;
@@ -18,10 +19,9 @@ article.question-item-asked-me {
   }
   .question-content {
     h4{
-      margin: px2rem(20) 0;
+      margin: px2rem(10) 0;
       height: px2rem(90);
-      line-height: px2rem(30);
-      font-size: px2rem(28);
+      line-height: px2rem(45);
       font-weight: 500;
       overflow : hidden;
       text-overflow: ellipsis;
@@ -31,8 +31,10 @@ article.question-item-asked-me {
     }
   }
   .status{
-    float: right;
+    height:px2rem(37);
+    margin-bottom: px2rem(10);
     .btn{
+      float: right;
       display: inline-block;
       width:px2rem(83);
       height:px2rem(37);
