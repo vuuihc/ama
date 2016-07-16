@@ -13,7 +13,7 @@ const iAsked = (state = defaultState, action) => {
             const data = state.data.concat(action.data);
             return Object.assign({}, state, {loading: false, data:data, page:state.page +1});
         case I_ASKED_COMPLETED:
-            return Object.assign({}, state, {completed:true});
+            return Object.assign({}, state, {completed:true, loading:false});
         default:
             return state;
     }

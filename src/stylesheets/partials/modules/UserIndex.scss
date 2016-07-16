@@ -1,9 +1,10 @@
 @import "../base";
 
 .user {
+  margin-tottom: px2rem(120);
   .user-card-bg {
     width: 10rem;
-    height: 16rem;
+    min-height: 16rem;
     vertical-align: middle;
     display: table-cell;
     -webkit-filter: blur(px2rem(30));
@@ -15,7 +16,7 @@
     }
   }
   .user-card {
-    position: fixed;
+    position: absolute;
     top: px2rem(203);
     left: px2rem(64);
     width: px2rem(623);

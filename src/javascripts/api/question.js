@@ -60,5 +60,12 @@ export default  {
             apiHandler.handleResponse(json,cb);
         }
       });
+  },
+  priseQuestion(questionId, cb){
+    fetch(`${domain}/api/v1/answer/listen?answer_id=${questionId}`, {
+      credentials: 'same-origin'
+    })
+      .then(res => res.json())
+      .then(json => apiHandler.handleResponse(json, cb))
   }
 }

@@ -6,7 +6,8 @@ import {
   RECEIVE_QUESTION_INFO,
   REQUEST_LISTEN_INFO,
   RECEIVE_LISTEN_INFO,
-  RECEIVE_SAVE_VOICE
+  RECEIVE_SAVE_VOICE,
+  RECEIVE_PRISE_QUESTION
 }from '../actions/ActionTypes'
 
 const initialState = {
@@ -46,6 +47,12 @@ export function questionInfo(state = initialState.questionInfo, action) {
   switch (action.type) {
     case RECEIVE_QUESTION_INFO:
       return action.questionInfo
+    case RECEIVE_PRISE_QUESTION:
+      return Object.assign({}, state, {
+        answer_islike: 1,
+        answer_like: action.like,
+        answer_listen: action.listen
+      })
     default:
       return state
   }

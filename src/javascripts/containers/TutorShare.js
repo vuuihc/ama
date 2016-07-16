@@ -32,7 +32,7 @@ class TutorShare extends Component{
                     <div className="description">
                         随时随地帮你解决找工作难题！
                     </div>
-                    <img width="100%" src={
+                    <img width="70%" src={
                                         jrQrcode.getQrBase64(`${domainPath}tutor/share/${tutorInfo.user_id}`, {
                                             padding		: 10,   //二维码四边空白，默认为10px
                                             width		: 256,  //二维码图片宽度，默认为256px

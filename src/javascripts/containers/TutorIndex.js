@@ -9,8 +9,7 @@ import {getIAsked} from '../actions/account.js'
 import QuestionItemWithoutAvatar from "./blocks/QuestionItemWithoutAvatar"
 import Loading from "./Loading"
 import Toast from "../util/weui/toast"
-
-import {baseUrl} from "../api/config"
+import {baseUrl,domain} from "../api/config"
 import '../../stylesheets/partials/modules/TutorIndex.scss'
 
 class TutorIndex extends Component {
@@ -18,84 +17,117 @@ class TutorIndex extends Component {
     super(props)
     this.state = {
       curPage:1,
-      askSuccess:false
+      askSuccess:false,
+      loading:false
     }
   }
   componentWillReceiveProps(nextProps){
-    const time = new Date()
-    const self =this
-    if(nextProps.prepayInfo.data.timeStamp!=undefined && time.valueOf()/1000-nextProps.prepayInfo.data.timeStamp<5){
-      console.log("获得了最新的timestamp")
-      console.log(nextProps.prepayInfo.data.timeStamp)
-      console.log((Math.ceil(new Date().valueOf()/1000)).toString())
-      function onBridgeReady(){
-        WeixinJSBridge.invoke(
-          'getBrandWCPayRequest', nextProps.prepayInfo.data,
-          function(res){
-            if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-              console.log("支付成功！")
-              self.setState({askSuccess:true})
-              this.props.dispatch(getIAsked(1, 10));
-              self.state.successTimer = setTimeout(()=>{
-                self.setState({askSuccess:false})
-                browserHistory.push(baseUrl+"account/IAskedList")
-              },2000)
-            }else{
-              console.log(res)
-              alert("支付失败，原因："+JSON.stringify(res))
-            }
-            if( document.removeEventListener ){
-              document.removeEventListener('WeixinJSBridgeReady', onBridgeReady);
-            }else if (document.attachEvent){
-              document.detachEvent('WeixinJSBridgeReady', onBridgeReady);
-              document.detachEvent('onWeixinJSBridgeReady', onBridgeReady);
-            }
-            
-            // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
-          }
-        );
-      }
-      if (typeof WeixinJSBridge == "undefined"){
-        if( document.addEventListener ){
-          document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-        }else if (document.attachEvent){
-          document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-          document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-        }
-      }else{
-        onBridgeReady();
-      }
-      // wx.chooseWXPay({
-      //   timestamp:nextProps.prepayInfo.data.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-      //   nonceStr: nextProps.prepayInfo.data.nonceStr, // 支付签名随机串，不长于 32 位
-      //   package: nextProps.prepayInfo.data.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
-      //   signType: nextProps.prepayInfo.data.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-      //   paySign: nextProps.prepayInfo.data.paySign, // 支付签名
-      //   success: function (res) {
-      //     console.log("支付成功！");
-      //     self.setState({askSuccess:true})
-      //     self.state.successTimer = setTimeout(()=>{
-      //       self.setState({askSuccess:false})
-      //       browserHistory.push(baseUrl+"account/IAskedList")
-      //     },2000)
-      //   },
-      //   fail:function(res){
-      //     console.log("失败原因：")
-      //     console.log(res)
-      //   }
-      // });
-    }
+    // const time = new Date()
+    // const self =this
+    // if(nextProps.prepayInfo.data.timeStamp!=undefined && time.valueOf()/1000-nextProps.prepayInfo.data.timeStamp<5){
+    //   console.log("获得了最新的timestamp")
+    //   console.log(nextProps.prepayInfo.data.timeStamp)
+    //   console.log((Math.ceil(new Date().valueOf()/1000)).toString())
+    //   function onBridgeReady(){
+    //     WeixinJSBridge.invoke(
+    //       'getBrandWCPayRequest', nextProps.prepayInfo.data,
+    //       function(res){
+    //         if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+    //           console.log("支付成功！")
+    //           self.setState({askSuccess:true})
+    //           this.props.dispatch(getIAsked(1, 10));
+    //           self.state.successTimer = setTimeout(()=>{
+    //             self.setState({askSuccess:false})
+    //             browserHistory.push(baseUrl+"account/IAskedList")
+    //           },2000)
+    //         }else{
+    //           console.log(res)
+    //           alert("支付失败，原因："+JSON.stringify(res))
+    //         }
+    //         if( document.removeEventListener ){
+    //           document.removeEventListener('WeixinJSBridgeReady', onBridgeReady);
+    //         }else if (document.attachEvent){
+    //           document.detachEvent('WeixinJSBridgeReady', onBridgeReady);
+    //           document.detachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    //         }
+    //        
+    //         // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+    //       }
+    //     );
+    //   }
+    //   if (typeof WeixinJSBridge == "undefined"){
+    //     if( document.addEventListener ){
+    //       document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    //     }else if (document.attachEvent){
+    //       document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+    //       document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    //     }
+    //   }else{
+    //     onBridgeReady();
+    //   }
+    // }
   }
-  getPrepayInfo(){
+  payForAsk(content,tutorId){
+    const url = domain + `/api/v1/question/testquestion?content=${content}&answer_user_id=${tutorId}`
+    this.setState({loading:true})
+    fetch(url,{
+      credentials: 'same-origin'
+    })
+      .then(response => response.json())
+      .then(json =>{
+        this.setState({loading:false})
+        const self =this
+        if(json.data.timeStamp!=undefined){
+          function onBridgeReady(){
+            WeixinJSBridge.invoke(
+              'getBrandWCPayRequest', json.data,
+              function(res){
+                if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                  console.log("支付成功！")
+                  self.setState({askSuccess:true})
+                  self.props.dispatch(getIAsked(1, 10));
+                  let successTimer = setTimeout(()=>{
+                    browserHistory.push(baseUrl+"account/IAskedList")
+                  },2000)
+                  self.setState({successTimer:successTimer})
+                }else{
+                  console.log(res)
+                  alert("支付失败")
+                }
+                if( document.removeEventListener ){
+                  document.removeEventListener('WeixinJSBridgeReady', onBridgeReady);
+                }else if (document.attachEvent){
+                  document.detachEvent('WeixinJSBridgeReady', onBridgeReady);
+                  document.detachEvent('onWeixinJSBridgeReady', onBridgeReady);
+                }
+
+                // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+              }
+            );
+          }
+          if (typeof WeixinJSBridge == "undefined"){
+            if( document.addEventListener ){
+              document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+            }else if (document.attachEvent){
+              document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+              document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+            }
+          }else{
+            onBridgeReady();
+          }
+        }
+      })
+  }
+  askBtnClick(){
     const content = this.refs.content.value
     console.log("content is ==="+content)
     if(content==""){
       alert("内容不能为空哦")
       return
     }
-    const {tutorInfo} = this.props
     const {id} = this.props.params
     this.props.dispatch(getPrepayInfo(content,id))
+    this.payForAsk(content,id)
   }
 
   componentDidMount() {
@@ -116,11 +148,11 @@ class TutorIndex extends Component {
   }
 
   render() {
-    const {tutorInfo,tutorAnswerList,prepayInfo} = this.props
+    const {tutorInfo,tutorAnswerList} = this.props
     return (
       <main className="tutorIndex">
         <Toast  show={this.state.askSuccess} >提问成功</Toast>
-        <Toast  icon="loading" show={prepayInfo.loading} >请求支付中……</Toast>
+        <Toast  icon="loading" show={this.state.loading} >请求支付中……</Toast>
         <div className="tutor-info">
           <Link to={baseUrl+`user/${tutorInfo.user_id}`} >
             <img className="QREntry" src={require("../../images/QREntry.png")}/>
@@ -141,7 +173,7 @@ class TutorIndex extends Component {
           </div>
           <textarea ref="content" placeholder={"向"+tutorInfo.user_name+"提问，等TA语音回答；超过24小时未回答，将按支付路径全额退款"}/>
           <div className="value">￥{tutorInfo.teacher_prize}</div>
-          <a className="bottom-btn" onClick={this.getPrepayInfo.bind(this)}>向TA提问</a>
+          <a className="bottom-btn" onClick={this.askBtnClick.bind(this)}>向TA提问</a>
 
         </div>
         <div className="question-list">

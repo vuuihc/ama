@@ -10,6 +10,7 @@ import Toast from "../util/weui/toast"
 import {baseUrl,domain} from "../api/config"
 import '../../stylesheets/partials/modules/Question.scss'
 import Loading from "./Loading"
+import { priseQuestion } from '../actions/question'
 class Question extends Component {
   constructor(props){
     super(props)
@@ -195,8 +196,8 @@ class Question extends Component {
       this.payForAnswer(answerId)
     }
   }
-  handlePrise(){
-
+  handlePrise(answerId){
+    this.props.priseQuestion(answerId);
   }
   render() {
     const {questionInfo,listenInfo} = this.props
@@ -209,6 +210,9 @@ class Question extends Component {
       <main className="question">
         <Toast icon="loading" show={listenInfo.loading} >{questionInfo.answer_ispayed?"加载声音中……":"请求支付中……"}</Toast>
         <div className="question-content">
+          <Link to={`${baseUrl}user/${questionInfo.user_id}`}>
+            <img src={questionInfo.user_face} />
+          </Link>
           {questionInfo.question_content}
         </div>
         <div className="tutor">
@@ -227,9 +231,17 @@ class Question extends Component {
         <div className="remark">
           <span>{questionInfo.answer_listen}人偷听</span>
           <span className="kui">{questionInfo.answer_like}人觉得赞</span>
-          <div className="prise" onClick={this.handlePrise}>
-            赞
-          </div>
+          {
+            questionInfo.answer_isliked
+            ? <div className="prise" onClick={() => {this.handlePrise(questionInfo.answer_id)}}>
+                <div><i className="zanNo" /></div>
+                <div className="desc">赞</div>
+              </div>
+            : <div className="prise">
+                <div><i className="zanYes" /></div>
+                <div className="desc">已赞</div>
+              </div>
+          }
         </div>
         <div className="ask">
           <div className="value">￥{questionInfo.teacher_prize}</div>
@@ -255,5 +267,8 @@ function mapStateToProps(state) {
 }
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  {
+    priseQuestion
+  }
 )(Question)
