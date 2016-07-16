@@ -60,7 +60,7 @@ export function questionInfo(state = initialState.questionInfo, action) {
       return action.questionInfo
     case RECEIVE_PRISE_QUESTION:
       return Object.assign({}, state, {
-        answer_islike: 1,
+        answer_isliked: 1,
         answer_like: action.data.like,
         answer_listen: action.data.listen
       })
