@@ -86,7 +86,7 @@ class QuestionItemWithAvatar extends Component{
                         <img src={question.teacher_face}/>
                         <div className="mentor-info">
                             <span className="name">{question.teacher_name}</span>
-                            <span>{question.user_title}</span>
+                            <span>{question.teacher_position}</span>
                         </div>
                     </div>
                 </Link>

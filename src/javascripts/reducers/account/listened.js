@@ -16,13 +16,14 @@ const listened = (state = defaultState, action) => {
           answer_like: item.like,
           answer_listen: item.listen,
           teacher_id: item.answer_user_id,
+          teacher_face: item.teacher_face,
+          teacher_name: item.teacher_name,
+          teacher_position: item.teacher_position,
           question_content: item.content,
           question_id: item.id,
           question_prize:item.prize,
           question_time: item.time,
           user_id: item.question_user_id,
-          user_face: item.user_face,
-          user_name: item.user_name,
           isAnswered: item.isanswered,
           weight: item.weight
         }

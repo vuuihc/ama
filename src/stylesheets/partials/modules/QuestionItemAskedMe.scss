@@ -1,18 +1,19 @@
 @import "../base";
 
 article.question-item-asked-me {
-  border-top: 1px solid $borderGray;
   border-bottom: 1px solid $borderGray;
   .userInfo{
+    height: 0.8rem;
     img{
-      width: px2rem(40);
-      height: px2rem(40);
+      width: 0.8rem;
+      height: 0.8rem;
       float: left;
-      @include uniMethod('border-radius', px2rem(20));
+      @include uniMethod('border-radius', 0.4rem);
     }
     span{
       float: left;
-      line-height: px2rem(40);
+      margin-left: px2rem(20);
+      line-height: px2rem(0.8rem);
     }
   }
   .question-content {

@@ -237,11 +237,11 @@ class Question extends Component {
           {
             questionInfo.answer_isliked
             ? <div className="prise" onClick={() => {this.handlePrise(questionInfo.answer_id)}}>
-                <div><i className="zanNo" /></div>
+                <div><i className="iconfont icon-zanNo" /></div>
                 <div className="desc">赞</div>
               </div>
             : <div className="prise">
-                <div><i className="zanYes" /></div>
+                <div><i className="iconfont icon-zanYes" /></div>
                 <div className="desc">已赞</div>
               </div>
           }
