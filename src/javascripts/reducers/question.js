@@ -7,7 +7,8 @@ import {
   REQUEST_LISTEN_INFO,
   RECEIVE_LISTEN_INFO,
   RECEIVE_SAVE_VOICE,
-  RECEIVE_PRISE_QUESTION
+  RECEIVE_PRISE_QUESTION,
+  RECEIVE_PAID
 }from '../actions/ActionTypes'
 
 const initialState = {
@@ -39,6 +40,16 @@ export function hotQuestionList(state = initialState.hotQuestionList, action) {
       else {
         return {data: state.data.concat(action.data), page: action.page}
       }
+    case RECEIVE_PAID:
+      return Object.assign({}, state, {
+        data: [
+          ...state.data.slice(0, action.index),
+          Object.assign({}, state.data[action.index], {
+            answer_ispayed: 1
+          }),
+          ...state.data.slice(action.index + 1, state.data.length)
+        ]
+      });
     default:
       return state
   }

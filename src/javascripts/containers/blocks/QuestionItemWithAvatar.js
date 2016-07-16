@@ -4,6 +4,7 @@ import Toast from "../../util/weui/toast"
 import {domain, baseUrl} from "../../api/config"
 import {browserHistory} from 'react-router'
 import apiHandler from "../../util/apiHandler"
+import { handlePaid } from '../../actions/question'
 import '../../../stylesheets/partials/modules/QuestionItemWithAvatar.scss'
 class QuestionItemWithAvatar extends Component{
     constructor(){
@@ -37,6 +38,7 @@ class QuestionItemWithAvatar extends Component{
                                     function(res){
                                         if(res.err_msg == "get_brand_wcpay_request:ok" ) {
                                             console.log("支付成功！")
+                                            this.props.handlePaid(this.props.index);
                                             browserHistory.push(`${baseUrl}question/${questionId}`)
                                         }else{
                                             // browserHistory.push(`${baseUrl}question/${questionId}`)
@@ -108,7 +110,10 @@ class QuestionItemWithAvatar extends Component{
         )
     }
 }
+
 QuestionItemWithAvatar.defaultProps = {
-    question:{}
+    question:{},
+    index:0
 }
+QuestionItemWithAvatar = connect(undefined, {handlePaid})(QuestionItemWithAvatar)
 export default QuestionItemWithAvatar;

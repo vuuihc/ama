@@ -67,3 +67,12 @@ export function priseQuestion(answerId){
     })
   }
 }
+//支付成功
+export function handlePaid(index){
+  return dispatch => {
+    dispatch({
+      type: RECEIVE_PAID,
+      index
+    })
+  }
+}

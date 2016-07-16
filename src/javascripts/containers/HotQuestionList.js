@@ -43,7 +43,7 @@ class HotQuestionList extends Component {
       <main className="hot-question-list">
         {
           hotQuestionList.data.map((question, index) =>
-            <QuestionItemWithAvatar question = { question } key={index} handleLoading = {this.handleLoading}/>
+            <QuestionItemWithAvatar question = { question } key={index} index={index}/>
           )
         }
         {!hotQuestionList.completed && <Loading /> }

@@ -39,22 +39,20 @@
       color: $darkBlue;
     }
     h4 {
-      margin-top: px2rem(27);
+      margin-top: px2rem(20);
       font-size: px2rem(36);
       color: $lightBlue;
     }
   }
   .answer {
-    height: px2rem(192);
-    padding-top: px2rem(30);
-    padding-bottom: px2rem(40);
+    padding-top: px2rem(25);
+    padding-bottom: px2rem(25);
     .bubble{
       margin: 0 auto;
       position: relative;
       left: px2rem(20);
       display: block;
       width: px2rem(335);
-      height: px2rem(88);
       background-color: rgb(3,135,231);
       -webkit-border-radius: px2rem(50);
       -moz-border-radius: px2rem(50);
@@ -100,7 +98,6 @@
   }
   .remark {
     width: 10rem;
-    height: px2rem(206);
     text-align: center;
     span{
       font-size: px2rem(24);
@@ -112,13 +109,12 @@
   }
   .prise{
     margin: px2rem(20) auto 0;
-    height: px2rem(90);
     .icon-zanNo, .icon-zanYes{
       color:$orange;
       font-size:px2rem(65);
     }
     .desc{
-      margin-top:px2rem(10);
+      margin:px2rem(10) 0;
       font-size:px2rem(14);
       color: $lightGray;
     }
