@@ -84,7 +84,7 @@ class AskedMeList extends Component {
               <button className="becomeTutor" onClick={(e)=>{this.refs.modal.open()}}>
                 成为导师
               </button>
-              <Modal left="22" top="330" ref="modal">
+              <Modal left="22" top="225" ref="modal">
                 <div className="invitation">
                   <span>邀请码</span>
                   <input

@@ -10,7 +10,7 @@ import Toast from "../util/weui/toast"
 import {baseUrl,domain} from "../api/config"
 import '../../stylesheets/partials/modules/Question.scss'
 import Loading from "./Loading"
-import { priseQuestion } from '../actions/question'
+import { getQuestionInfo, priseQuestion } from '../actions/question'
 class Question extends Component {
   constructor(props){
     super(props)
@@ -25,7 +25,7 @@ class Question extends Component {
   }
   componentDidMount() {
     const {id} = this.props.params
-    this.props.dispatch(getQuestionInfo(id))
+    this.props.getQuestionInfo(id);
   }
   componentWillReceiveProps(nextProps){
     const self = this
@@ -273,6 +273,7 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {
-    priseQuestion
+    priseQuestion,
+    getQuestionInfo
   }
 )(Question)

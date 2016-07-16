@@ -30,8 +30,8 @@ export default class Modal extends Component {
 
   render() {
     const left = (this.props.left) ? this.props.left / 75 : 22 / 75;
-    const top = (this.props.top) ? this.props.top / 75 : 330 / 75;
-    const bottom = (this.props.bottom) ? this.props.bottom / 75 : 120 / 75;
+    const top = (this.props.top) ? this.props.top / 75 : 200 / 75;
+    const bottom = (this.props.bottom) ? this.props.bottom / 75 : undefined;
     return (
       <div className="modal-package-blur" id="modal">
         <div className="modal-content"
