@@ -235,7 +235,7 @@ class Question extends Component {
           <span>{questionInfo.answer_listen}人偷听</span>
           <span className="kui">{questionInfo.answer_like}人觉得赞</span>
           {
-            questionInfo.answer_isliked
+            questionInfo.answer_isliked === 0
             ? <div className="prise" onClick={() => {this.handlePrise(questionInfo.answer_id)}}>
                 <div><i className="iconfont icon-zanNo" /></div>
                 <div className="desc">赞</div>
