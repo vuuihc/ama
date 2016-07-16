@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router'
+import { connect } from 'react-redux'
 import Toast from "../../util/weui/toast"
 import {domain, baseUrl} from "../../api/config"
 import {browserHistory} from 'react-router'
