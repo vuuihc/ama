@@ -61,8 +61,8 @@ export function questionInfo(state = initialState.questionInfo, action) {
     case RECEIVE_PRISE_QUESTION:
       return Object.assign({}, state, {
         answer_islike: 1,
-        answer_like: action.like,
-        answer_listen: action.listen
+        answer_like: action.data.like,
+        answer_listen: action.data.listen
       })
     default:
       return state
