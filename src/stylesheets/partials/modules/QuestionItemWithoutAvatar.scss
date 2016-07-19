@@ -1,10 +1,10 @@
 @import "../base";
 
 article.question-without-avatar {
-  border-top: 1px solid $borderGray;
+  //border-top: 1px solid $borderGray;
   border-bottom: 1px solid $borderGray;
   overflow: hidden;
-  min-height: px2rem(277);
+  //min-height: px2rem(277);
   .question-content {
     h4{
       padding: px2rem(38) px2rem(27) px2rem(35) px2rem(27);

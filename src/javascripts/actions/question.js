@@ -9,7 +9,8 @@ import {
   REQUEST_LISTEN_INFO,
   RECEIVE_LISTEN_INFO,
   RECEIVE_SAVE_VOICE,
-  RECEIVE_PRISE_QUESTION
+  RECEIVE_PRISE_QUESTION,
+  RECEIVE_PAID
 } from './ActionTypes'
 
 export function getHotQuestionList(page, num) {

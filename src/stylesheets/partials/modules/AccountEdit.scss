@@ -33,6 +33,11 @@
       &.self-intro-text{
         label{
           display: block;
+          .count{
+            float:right;
+            margin-right: 10px;
+            color:$red;
+          }
         }
         textarea{
           padding:5px;

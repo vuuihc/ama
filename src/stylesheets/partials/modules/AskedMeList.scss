@@ -1,6 +1,6 @@
 @import '../base';
 .askedMeList{
-  padding: 0 px2rem(25) px2rem(120);
+  padding: 0 px2rem(25) px2rem(90);
   text-align: left;
   article{
     width:100%;
@@ -18,6 +18,7 @@
     margin-top: px2rem(28);
     color:$lightGray;
     font-size: px2rem(24);
+    text-align:center;
   }
   .next{
     margin-top: px2rem(20);

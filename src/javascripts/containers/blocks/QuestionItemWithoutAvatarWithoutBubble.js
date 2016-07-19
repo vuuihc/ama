@@ -6,6 +6,7 @@
  */
 import React, {Component} from 'react';
 import { Link } from 'react-router';
+import {baseUrl} from "../../api/config"
 import '../../../stylesheets/partials/modules/QuestionItemWithoutAvatarWithoutBubble.scss';
 
 class QuestionItemWithoutAvatarWithoutBubble extends Component {
@@ -15,26 +16,22 @@ class QuestionItemWithoutAvatarWithoutBubble extends Component {
   render() {
     const {question} = this.props;
     return (
-      <article className="question-without-avatar-without-bubble">
-        <div className="question-content">
-          <h4>{question.content}</h4>
-        </div>
-        <div className="status">
-            {
-                question.isanswered == '0'
-              ? <div className="btn not-solved">待解决</div>
-              : <div className="btn solved">已解决</div>
-            }
-        </div>
-      </article>
+      <Link to={baseUrl+"question/"+question.id}>
+        <article className="question-without-avatar-without-bubble">
+          <div className="question-content">
+            <h4>{question.content}</h4>
+          </div>
+          <div className="status">
+              {
+                  question.isanswered == '0'
+                ? <div className="btn not-solved">待解决</div>
+                : <div className="btn solved">已解决</div>
+              }
+          </div>
+        </article>
+      </Link>
     )
   }
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         is_teacher: state.account.userInfo.is_teacher
-//     }
-// }
-// QuestionItemWithoutAvatarWithoutBubble = connect(mapStateToProps)();
 export default QuestionItemWithoutAvatarWithoutBubble;

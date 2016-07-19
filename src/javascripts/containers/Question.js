@@ -212,25 +212,34 @@ class Question extends Component {
     return ( questionInfo.question_content ? 
       <main className="question">
         <Toast icon="loading" show={this.state.loading} >{(questionInfo.answer_ispayed || this.state.paySuccess)?"加载声音中……":"请求支付中……"}</Toast>
+        <Link to = {`${baseUrl}user/${questionInfo.user_id}`} >
+          <div className="userInfo">
+            <img src={question.user_face} />
+            <span>{question.user_name}</span>
+          </div>
+        </Link>
         <div className="question-content">
-          <Link to={`${baseUrl}user/${questionInfo.user_id}`}>
-            <img src={questionInfo.user_face} />
-          </Link>
           {questionInfo.question_content}
         </div>
-        <div className="tutor">
-          <img src={questionInfo.teacher_face}/>
-          <h3 >{questionInfo.teacher_name}</h3>
-          <h4 >{questionInfo.teacher_company+"　"+questionInfo.teacher_position}  </h4>
-        </div>
-        <div className="answer" onClick={this.bubbleClick.bind(this,questionInfo.answer_id,questionInfo.answer_ispayed)}>
-            <span className={`bubble${classNames[this.state.playing]}`}>
+        {
+          questionInfo.isAnswered == '1' ? (
+            <div>
+              <div className="tutor">
+                <img src={questionInfo.teacher_face}/>
+                <h3 >{questionInfo.teacher_name}</h3>
+                <h4 >{questionInfo.teacher_company+"　"+questionInfo.teacher_position}  </h4>
+              </div>
+              <div className="answer" onClick={this.bubbleClick.bind(this,questionInfo.answer_id,questionInfo.answer_ispayed)}>
+                <span className={`bubble${classNames[this.state.playing]}`}>
                 <span className="bubble-tail"></span>
                 <VoiceWave />
                 <span className="bubble-voice"></span>
-              <span className="bubble-text">{(questionInfo.answer_ispayed || this.state.paySuccess)?(this.state.playing==1?"正在播放":"点击播放"):`${questionInfo.question_prize}元偷偷听`}</span>
-            </span>
-        </div>
+                <span className="bubble-text">{(questionInfo.answer_ispayed || this.state.paySuccess)?(this.state.playing==1?"正在播放":"点击播放"):`${questionInfo.question_prize}元偷偷听`}</span>
+              </span>
+              </div>
+            </div>): null
+        }
+
         <div className="remark">
           <span>{questionInfo.answer_listen}人偷听</span>
           <span className="kui">{questionInfo.answer_like}人觉得赞</span>
@@ -252,7 +261,7 @@ class Question extends Component {
         </div>
       </main>
         :
-        <Loading />
+      <Loading />
     )
   }
 }
