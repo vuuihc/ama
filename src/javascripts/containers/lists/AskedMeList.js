@@ -63,6 +63,7 @@ class AskedMeList extends Component {
                   this.props.data.map((item, index)=> {
                     return <QuestionItemAskedMe question={item} key={index} />;
                   })
+                    
                 }
                 {
                   this.props.loading ? <Loading  /> : ''
