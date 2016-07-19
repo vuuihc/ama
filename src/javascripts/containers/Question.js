@@ -209,6 +209,7 @@ class Question extends Component {
       0: " ",
       1: " playing"
     }
+    
     return ( questionInfo.question_content ? 
       <main className="question">
         <Toast icon="loading" show={this.state.loading} >{(questionInfo.answer_ispayed || this.state.paySuccess)?"加载声音中……":"请求支付中……"}</Toast>
