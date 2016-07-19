@@ -33,7 +33,6 @@ class AskedMeList extends Component {
     this.props.requestBecomeTeacher(this.state.inviteCode, this.state.afford);
     this.refs.modal.close();
   }
-
   handleScroll() {
     if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.completed) {
       this.props.getAskedMe(this.props.page, 10);
