@@ -23,7 +23,7 @@ class QuestionItemAskedMe extends Component {
             <span>{question.user_name}</span>
           </div>
         </Link>
-        <Link to = {`${baseUrl}question/${question.id}`}>
+        <Link to = {`${baseUrl}answer/${question.id}`}>
           <div className="question-content">
             <h4>{question.content}</h4>
           </div>

@@ -29,7 +29,6 @@ class AskedMeList extends Component {
   componentWillUnmount() {
     document.removeEventListener('scroll', this.handleScroll);
   }
-
   handleSubmit() {
     this.props.requestBecomeTeacher(this.state.inviteCode, this.state.afford);
     this.refs.modal.close();
