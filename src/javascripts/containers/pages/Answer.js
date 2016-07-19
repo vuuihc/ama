@@ -9,7 +9,7 @@ import { getWXConfig } from "../../actions/config"
 import time from '../../util/time'
 import VoiceWave from  "../../components/VoiceWave"
 import Toast from "../../util/weui/toast"
-import {baseUrl} from "../../api/config"
+import {baseUrl,domain} from "../../api/config"
 
 class Answer extends Component {
   constructor(){
@@ -58,13 +58,6 @@ class Answer extends Component {
     });
   }
   componentWillReceiveProps(nextProps){
-    if(nextProps.saveVoiceInfo.saved){
-      this.setState({answerSuccess:true})
-      this.props.getAskedMe(1,10)
-      this.state.successTimer = setTimeout(()=>{
-        browserHistory.push(baseUrl+"account/AskedMeList")
-      },2000)
-    }
     console.log("nextProps.WXConfig.data=="+JSON.stringify(nextProps.WXConfig.data))
     if(nextProps.WXConfig.data.timestamp){
       const now = new Date().valueOf()
@@ -190,6 +183,36 @@ class Answer extends Component {
     }
     
   }
+  saveVoice(serverId,questionId){
+    const self = this
+    fetch( `${domain}/api/v1/answer/answer`,{
+      credentials: 'same-origin',
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify({
+        server_id:serverId,
+        question_id:questionId
+      })
+    })
+      .then(res => res.json())
+      .then(json => {
+        if(json.errCode==0){
+          self.setState({answerSuccess:true})
+          self.props.getAskedMe(1,10)
+          let successTimer = setTimeout(()=>{
+            browserHistory.push(baseUrl+"account/AskedMeList")
+          },2000)
+          self.setState({successTimer:successTimer})
+        }else{
+          alert("抱歉，上传失败")
+          console.log("语音上传失败，原因是"+json.msg)
+        }
+      });
+  }
   confirmAnswer(){
     const self = this
     const localId = this.state.localId
@@ -205,7 +228,7 @@ class Answer extends Component {
         console.log("serverId is ==="+res.serverId)
         const serverId = res.serverId
         const questionId = self.props.params.id
-        self.props.saveVoice(serverId,questionId)
+        self.saveVoice(serverId,questionId)
       }
     });
     
@@ -227,12 +250,12 @@ class Answer extends Component {
       5 : " voice-on"
     }
     const Tips = {
-      0 : "点击录音",
-      1 : "开启中",
-      2 : "正在录音",
-      3 : "停止中",
-      4 : "点击试听",
-      5 : "播放中"
+      0 : <div>点击录音</div>,
+      1 : <div>开启中</div>,
+      2 : <div>正在录音<br/>点击停止</div>,
+      3 : <div>停止中</div>,
+      4 : <div>点击试听</div>,
+      5 : <div>播放中</div>
     }
     return (
       <div className="accountAnswer">
