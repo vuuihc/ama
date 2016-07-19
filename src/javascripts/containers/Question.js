@@ -214,8 +214,8 @@ class Question extends Component {
         <Toast icon="loading" show={this.state.loading} >{(questionInfo.answer_ispayed || this.state.paySuccess)?"加载声音中……":"请求支付中……"}</Toast>
         <Link to = {`${baseUrl}user/${questionInfo.user_id}`} >
           <div className="userInfo">
-            <img src={question.user_face} />
-            <span>{question.user_name}</span>
+            <img src={questionInfo.user_face} />
+            <span>{questionInfo.user_name}</span>
           </div>
         </Link>
         <div className="question-content">
