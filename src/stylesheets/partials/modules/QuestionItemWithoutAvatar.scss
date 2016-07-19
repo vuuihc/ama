@@ -7,7 +7,7 @@ article.question-without-avatar {
   //min-height: px2rem(277);
   .question-content {
     h4{
-      padding: px2rem(38) px2rem(27) px2rem(35) px2rem(27);
+      padding: px2rem(38) px2rem(27) 0 px2rem(27);
       margin: 0;
       font-size: px2rem(32);
       font-weight: 500;
@@ -16,6 +16,7 @@ article.question-without-avatar {
   .answer {
     width: 10rem;
     padding-left: px2rem(27);
+    margin-top: px2rem(35);
     .bubble{
       position: relative;
       display: block;

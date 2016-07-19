@@ -16,7 +16,7 @@ export default class QuestionItemWithoutAvatar extends Component {
 
   render() {
     const {question} = this.props
-    const bubble = question.isAnswered == '1'
+    const bubble = question.isanswered == '1'
       ? (<div className="answer">
               <span className="bubble">
                 <span className="bubble-tail"></span>
