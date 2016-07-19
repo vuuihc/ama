@@ -3,14 +3,21 @@
 article.question-without-avatar-without-bubble {
   border-bottom: 1px solid $borderGray;
   overflow: hidden;
-  height: px2rem(156);
+  //height: px2rem(156);
   text-align: left;
   .question-content {
     h4{
-      padding: px2rem(38) px2rem(27) px2rem(20) px2rem(27);
-      margin: 0;
+      padding: px2rem(15) px2rem(27) px2rem(15) px2rem(27);
       font-size: px2rem(32);
       font-weight: 500;
+      height: 1.2rem;
+      line-height: .6rem;
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
   }
   .status{

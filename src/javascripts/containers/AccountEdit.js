@@ -2,6 +2,8 @@
  * Created by zhushihao on 2016/6/24.
  */
 import React, { Component, PropTypes } from 'react'
+import { browserHistory } from 'react-router'
+import {baseUrl} from '../api/config'
 import { connect } from 'react-redux'
 import { editUserInfo } from '../actions/account';
 import '../../stylesheets/partials/modules/AccountEdit.scss'
@@ -24,6 +26,7 @@ class AccountEdit extends Component{
     }
     handleSubmit(){
         this.props.editUserInfo(this.state.company, this.state.job, this.state.experience, this.state.introduction);
+        browserHistory.push( baseUrl + "account/IAskedList")
     }
     render() {
         const { userInfo } = this.props;
@@ -46,27 +49,23 @@ class AccountEdit extends Component{
                 />
                 </div>
                 <div className="form-group">
-                <label>职   业/学   历：</label>
+                <label>职   业/年   级：</label>
                 <input
                     placeholder="输入您的职业类型"
                     value={this.state.job}
                     onChange={(e)=>{this.setState({job: e.target.value})}}
                 />
                 </div>
-                <div className="form-group">
-                <label>经   验/年   级：</label>
-                <input
-                    placeholder="输入您的工作时间"
-                    value={this.state.experience}
-                    onChange={(e)=>{this.setState({experience: e.target.value})}}
-                />
-                </div>
                 <div className="form-group self-intro-text">
-                <label>您  的   介  绍：</label>
+                <label>您  的   介  绍：<span className="count">{this.state.introduction.length} / 100</span> </label>
                 <textarea
                     placeholder="写点什么让大家更了解你吧~"
                     value={this.state.introduction}
-                    onChange={(e)=>{this.setState({introduction: e.target.value})}}
+                    onChange={(e)=>{
+                      if(this.state.introduction.length < 100){
+                        this.setState({introduction: e.target.value})
+                      }
+                    }}
                 />
                 </div>
                 <a className="bottom-btn" onClick={this.handleSubmit}>完成</a>
