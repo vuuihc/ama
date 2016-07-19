@@ -16,25 +16,19 @@ export default class QuestionItemWithoutAvatar extends Component {
 
   render() {
     const {question} = this.props
-    const bubble = question.isanswered == '1'
-      ? (<div className="answer">
-              <span className="bubble">
-                <span className="bubble-tail"></span>
-                <span className="bubble-voice"></span>
-                <span className="bubble-text">点击播放</span>
-              </span>
-       </div>)
-      : null
     return (
       <article className="question-without-avatar">
         <Link to={baseUrl+"question/"+question.id}>
           <div className="question-content">
             <h4>{ question.content }</h4>
           </div>
-
-          {
-            bubble
-          }
+          <div className="answer">
+              <span className="bubble">
+                <span className="bubble-tail"></span>
+                <span className="bubble-voice"></span>
+                <span className="bubble-text">点击播放</span>
+              </span>
+          </div>
           <div className="remark">
             <div className="time">{ question.time }小时前被回答</div>
             <div className="remark-info">
