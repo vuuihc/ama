@@ -64,7 +64,7 @@
       }
       .bubble-voice {
         background-image: url(../../../images/voicewave3.png);
-        background-size: cover;
+        background-size: contain;
         position: absolute;
         width: px2rem(29);
         height: px2rem(36);
