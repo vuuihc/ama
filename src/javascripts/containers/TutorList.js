@@ -5,6 +5,7 @@ import React, {Component, PropTypes} from 'react'
 import {Link} from 'react-router'
 import {connect} from 'react-redux'
 import {getTutorList} from '../actions/tutor.js'
+import { getUserInfo } from '../actions/account'
 
 import '../../stylesheets/partials/modules/TutorList.scss'
 import Loading from "./Loading"
@@ -19,6 +20,7 @@ class TutorList extends Component {
   }
   componentDidMount() {
     this.props.dispatch(getTutorList(1, 10))
+    this.props.dispatch(getUserInfo());
     console.log("tutorList===" + this.props.tutorList)
     document.addEventListener('scroll', this.handleScroll);
   }
@@ -34,12 +36,12 @@ class TutorList extends Component {
   }
 
   render() {
-    const {tutorList} = this.props
+    const {tutorList, userId} = this.props
     return (
       <main className="tutor-list">
         {
           tutorList.data.map((tutor, index) =>
-            <Link key={index} to={baseUrl+"tutor/"+tutor.user_id}>
+            <Link key={index} to={tutor.userId == userId ? `${baseUrl}account` : `${baseUrl}tutor/${tutor.user_id}` }>
               <article>
                 <div className="tutor-info">
                   <img src={tutor.user_face}/>
@@ -57,7 +59,7 @@ class TutorList extends Component {
             </Link>
           )
         }
-        {!tutorList.completed && <Loading />}
+        <Loading completed = { tutorList.completed } />
       </main>
     )
   }
@@ -69,7 +71,8 @@ TutorList.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    tutorList: state.tutorList
+    tutorList: state.tutorList,
+    userId: state.account.userInfo.user_id
   }
 }
 

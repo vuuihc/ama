@@ -16,7 +16,7 @@ import {
 } from './ActionTypes'
 
 
-export function getUserInfo(id) {
+export function getUserInfo() {
   return (dispatch) => {
     account.getUserInfo((data) => {
       dispatch({

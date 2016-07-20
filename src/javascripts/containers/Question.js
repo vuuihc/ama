@@ -52,7 +52,8 @@ class Question extends Component {
                 'getBrandWCPayRequest', json.data,
                 function(res){
                   if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-                    self.setState({paySuccess:true})
+                    self.setState({paySuccess:true});
+                    self.props.getQuestionInfo(self.props.questionInfo.question_id);
                     // self.state.listenTimer = setTimeout(() => self.props.dispatch(getQuestionInfo(answerId)),1000);
                     // self.setState({playNow: false})
                   }else{
@@ -160,6 +161,7 @@ class Question extends Component {
           <div className="userInfo">
             <img src={questionInfo.user_face} />
             <span>{questionInfo.user_name}</span>
+            <span className="shareText">问题不错,快分享出去吧！<img src={require('../../images/share.png')}/></span>
           </div>
         </Link>
         <div className="question-content">
@@ -228,6 +230,6 @@ export default connect(
   mapStateToProps,
   {
     priseQuestion,
-    getQuestionInfo
+    getQuestionInfo,
   }
 )(Question)

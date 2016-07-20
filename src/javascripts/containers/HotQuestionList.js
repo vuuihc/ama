@@ -5,7 +5,7 @@ import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {getHotQuestionList} from '../actions/question.js'
 import {setLandPage} from '../actions/config.js'
-import Loading from "./Loading"
+import Loading from "./Loading2"
 import  QuestionItemWithAvatar  from './blocks/QuestionItemWithAvatar'
 import '../../stylesheets/partials/modules/HotQuestionList.scss'
 
@@ -38,7 +38,7 @@ class HotQuestionList extends Component {
   }
   
   render() {
-    const {hotQuestionList,listenInfo} = this.props
+    const {hotQuestionList} = this.props
     return (
       <main className="hot-question-list">
         {
@@ -46,7 +46,7 @@ class HotQuestionList extends Component {
             <QuestionItemWithAvatar question = { question } key={index} index={index}/>
           )
         }
-        {!hotQuestionList.completed && <Loading /> }
+        <Loading completed = { hotQuestionList.completed } />
       </main>
     )
   }

@@ -53,14 +53,14 @@ module.exports = {
     ]
   },
   externals: {
-    //'moment': 'moment',
-    //'react': 'React',
-    //'babel-polyfill': 'true'
+    'babel-polyfill': 'true',
+    'react': 'React',
+    'react-dom': 'ReactDOM',
   },
   resolve: {
     alias: {
       'redux': path.resolve('node_modules',"redux/dist/redux.min.js"),
-      'react-dom': path.resolve('node_modules',"react-dom/dist/react-dom.min.js"),
+      // 'react-dom': path.resolve('node_modules',"react-dom/dist/react-dom.min.js"),
       'react-redux': path.resolve('node_modules',"react-redux/dist/react-redux.min.js")
     }
   }

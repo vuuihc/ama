@@ -3,7 +3,7 @@ import {Link} from 'react-router'
 import '../../../stylesheets/partials/modules/LitenedList.scss'
 import {getListened} from '../../actions/account'
 import {connect} from 'react-redux'
-import Loading from '../Loading'
+import Loading from '../Loading2'
 import QuestionItemWithAvatar from '../blocks/QuestionItemWithAvatar'
 import {baseUrl} from "../../api/config"
 class LitenedList extends Component {
@@ -32,24 +32,23 @@ class LitenedList extends Component {
   }
 
   render() {
+    const { data, completed } = this.props;
     return (
       <div className="askMeList">
         {
-          this.props.data.length ? (
+          data.length || !completed ? (
             <ul>
               {
-                this.props.data.map((question, index) => {
+                data.map((question, index) => {
                   return <QuestionItemWithAvatar question={question} key={index}/>;
                 })
               }
-              {
-                this.props.loading ? <Loading /> : ''
-              }
+               <Loading completed = {completed}/>
             </ul>
           ) : (
             <div>
               <div className="hint">
-                你还没有偷听过呦~{this.props.data.length}
+                你还没有偷听过呦~{data.length}
               </div>
               <div className="go">
                 快去<Link to={baseUrl+"hot"}>热门</Link>逛一逛吧~

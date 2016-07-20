@@ -28,7 +28,7 @@
   }
   .becomeTutor{
     text-align: center;
-    margin-top: px2rem(53);
+    margin: px2rem(53) auto;
     border: none;
     text-align:center;
     @include uniMethod('border-radius', 5px);

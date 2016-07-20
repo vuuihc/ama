@@ -45,7 +45,8 @@ export function hotQuestionList(state = initialState.hotQuestionList, action) {
         data: [
           ...state.data.slice(0, action.index),
           Object.assign({}, state.data[action.index], {
-            answer_ispayed: 1
+            answer_ispayed: 1,
+            answer_listen: (state.data[action.index].answer_listen + 1).toString()
           }),
           ...state.data.slice(action.index + 1, state.data.length)
         ]

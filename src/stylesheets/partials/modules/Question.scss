@@ -3,20 +3,31 @@
 .question {
   padding-bottom: px2rem(120);
   .userInfo{
-    height: 0.8rem;
-    margin-top: px2rem(10);
+    height: 1rem;
+    margin-top: px2rem(20);
     background-color: #fafafa;
-    padding: 0 px2rem(20);
+    padding: 0 px2rem(40);
     img{
-      width: 0.8rem;
-      height: 0.8rem;
+      width: 1rem;
+      height: 1rem;
       float: left;
-      @include uniMethod('border-radius', 0.4rem);
+      @include uniMethod('border-radius', 0.5rem);
     }
     span{
       float: left;
-      margin-left: px2rem(20);
-      line-height: 0.8rem;
+      margin-left: px2rem(30);
+      line-height: 1rem;
+    }
+    .share{
+      float:right;
+      line-height: 1rem;
+      img{
+        position:relative;
+        bottom:0;
+        margin-left: px2rem(45);
+        width:px2rem(90);
+        height:px2rem(60);
+      }
     }
   }
   .question-content {
