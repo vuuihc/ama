@@ -209,7 +209,7 @@ class Question extends Component {
       0: " ",
       1: " playing"
     }
-    
+
     return ( questionInfo.question_content ? 
       <main className="question">
         <Toast icon="loading" show={this.state.loading} >{(questionInfo.answer_ispayed || this.state.paySuccess)?"加载声音中……":"请求支付中……"}</Toast>
@@ -222,14 +222,15 @@ class Question extends Component {
         <div className="question-content">
           {questionInfo.question_content}
         </div>
+        <div className="tutor">
+          <img src={questionInfo.teacher_face}/>
+          <h3 >{questionInfo.teacher_name}</h3>
+          <h4 >{questionInfo.teacher_company+"　"+questionInfo.teacher_position}  </h4>
+        </div>
+
         {
-          questionInfo.isAnswered == '1' ? (
+          questionInfo.isanswered == '1' ? (
             <div>
-              <div className="tutor">
-                <img src={questionInfo.teacher_face}/>
-                <h3 >{questionInfo.teacher_name}</h3>
-                <h4 >{questionInfo.teacher_company+"　"+questionInfo.teacher_position}  </h4>
-              </div>
               <div className="answer" onClick={this.bubbleClick.bind(this,questionInfo.answer_id,questionInfo.answer_ispayed)}>
                 <span className={`bubble${classNames[this.state.playing]}`}>
                 <span className="bubble-tail"></span>
@@ -238,24 +239,25 @@ class Question extends Component {
                 <span className="bubble-text">{(questionInfo.answer_ispayed || this.state.paySuccess)?(this.state.playing==1?"正在播放":"点击播放"):`${questionInfo.question_prize}元偷偷听`}</span>
               </span>
               </div>
+              <div className="remark">
+                <span>{questionInfo.answer_listen}人偷听</span>
+                <span className="kui">{questionInfo.answer_like}人觉得赞</span>
+                {
+                  questionInfo.answer_isliked === 0
+                    ? <div className="prise" onClick={() => {this.handlePrise(questionInfo.answer_id)}}>
+                    <div><i className="iconfont icon-zanNo" /></div>
+                    <div className="desc">赞</div>
+                  </div>
+                    : <div className="prise">
+                    <div><i className="iconfont icon-zanYes" /></div>
+                    <div className="desc">已赞</div>
+                  </div>
+                }
+              </div>
             </div>): null
         }
 
-        <div className="remark">
-          <span>{questionInfo.answer_listen}人偷听</span>
-          <span className="kui">{questionInfo.answer_like}人觉得赞</span>
-          {
-            questionInfo.answer_isliked === 0
-            ? <div className="prise" onClick={() => {this.handlePrise(questionInfo.answer_id)}}>
-                <div><i className="iconfont icon-zanNo" /></div>
-                <div className="desc">赞</div>
-              </div>
-            : <div className="prise">
-                <div><i className="iconfont icon-zanYes" /></div>
-                <div className="desc">已赞</div>
-              </div>
-          }
-        </div>
+
         <div className="ask">
           <div className="value">￥{questionInfo.teacher_prize}</div>
           <Link className="bottom-btn" to={baseUrl+"tutor/"+questionInfo.teacher_id}>向TA提问</Link>

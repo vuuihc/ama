@@ -2,6 +2,21 @@
 
 .question {
   padding-bottom: px2rem(120);
+  .userInfo{
+    height: 0.8rem;
+    margin-top: px2rem(10);
+    img{
+      width: 0.8rem;
+      height: 0.8rem;
+      float: left;
+      @include uniMethod('border-radius', 0.4rem);
+    }
+    span{
+      float: left;
+      margin-left: px2rem(20);
+      line-height: 0.8rem;
+    }
+  }
   .question-content {
     width: 10rem;
     min-height: px2rem(252);
