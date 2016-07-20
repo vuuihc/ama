@@ -40,7 +40,7 @@ class QuestionItemWithAvatar extends Component {
                   function (res) {
                     if (res.err_msg == "get_brand_wcpay_request:ok") {
                       console.log("支付成功！")
-                      this.props.handlePaid(this.props.index);
+                      this.props.handlePaid(index);
                       browserHistory.push(`${baseUrl}question/${questionId}`)
                     } else {
                       // browserHistory.push(`${baseUrl}question/${questionId}`)
@@ -78,7 +78,7 @@ class QuestionItemWithAvatar extends Component {
   }
 
   render() {
-    const {question} = this.props;
+    const {question, index} = this.props;
     return (
       <article className="question-item-with-avatar">
         <Toast icon="loading" show={this.state.loading}>正在请求……</Toast>

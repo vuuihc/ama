@@ -5,7 +5,7 @@ import Modal from '../Modal';
 import {connect} from 'react-redux'
 import QuestionItemAskedMe from '../blocks/QuestionItemAskedMe';
 import {getAskedMe, requestBecomeTeacher} from '../../actions/account'
-import Loading from '../Loading'
+import Loading from '../Loading2'
 import { baseUrl } from "../../api/config"
 class AskedMeList extends Component {
 
@@ -20,8 +20,8 @@ class AskedMeList extends Component {
   }
 
   componentDidMount() {
-    if (this.props.data.length === 0) {
-      this.props.getAskedMe(1, 10);
+    if (data.length === 0) {
+      getAskedMe(1, 10);
     }
     document.addEventListener('scroll', this.handleScroll);
   }
@@ -30,27 +30,29 @@ class AskedMeList extends Component {
     document.removeEventListener('scroll', this.handleScroll);
   }
   handleSubmit() {
-    this.props.requestBecomeTeacher(this.state.inviteCode, this.state.afford);
+    requestBecomeTeacher(this.state.inviteCode, this.state.afford);
     this.refs.modal.close();
   }
   handleScroll() {
-    if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.completed) {
-      this.props.getAskedMe(this.props.page, 10);
+    const {completed, page} = this.props;
+    if (window.scrollY + window.innerHeight == document.body.clientHeight && !completed) {
+      getAskedMe(page, 10);
     }
   }
   render() {
+    const {userInfo, completed, data} = this.props;
     return (
       <div className="askedMeList">
         {
-          // this.props.userInfo.is_teacher === '1' ? (
+          // userInfo.is_teacher === '1' ? (
           this.state.isTeacher ? (
-            this.props.data.length === 0
+            (data.length === 0) && completed
               ? (
               <div>
                 <div className="hint">
                   还没有人问你
                 </div>
-                <Link to={`${baseUrl}tutor/share/${this.props.userInfo.user_id}`}>
+                <Link to={`${baseUrl}tutor/share/${userInfo.user_id}`}>
                     <button className="becomeTutor">
                         让更多人了解你
                     </button>
@@ -59,16 +61,13 @@ class AskedMeList extends Component {
             ) : (
               <div>
                 {
-                  this.props.data.map((item, index)=> {
+                  data.map((item, index)=> {
                     return <QuestionItemAskedMe question={item} key={index} />;
                   })
-                    
                 }
+                <div onClick={e=>{this.setState({isTeacher: !this.state.isTeacher});}}>切换</div>
                 {
-                  this.props.loading ? <Loading  /> : ''
-                }
-                {
-                  <div onClick={e=>{this.setState({isTeacher: !this.state.isTeacher});}}></div>
+                  <Loading completed = {completed} />
                 }
               </div>
             )
@@ -124,6 +123,7 @@ const mapStateToProps = (state) => {
   return {
     loading: state.account.askedMe.loading,
     data: state.account.askedMe.data,
+    completed: state.account.askedMe.completed,
     userInfo: state.account.userInfo,
     page: state.account.askedMe.page
   }

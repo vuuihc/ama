@@ -26,64 +26,6 @@ class Question extends Component {
     const {id} = this.props.params
     this.props.getQuestionInfo(id);
   }
-  componentWillReceiveProps(nextProps){
-    const self = this
-    const answerId = this.props.params.id
-    // if(nextProps.listenInfo.data.timeStamp!=undefined){
-    //   const time = new Date()
-    //   if(time.valueOf()/1000-nextProps.listenInfo.data.timeStamp<5){
-    //     console.log("进入微信支付")
-    //     function onBridgeReady(){
-    //       WeixinJSBridge.invoke(
-    //         'getBrandWCPayRequest', nextProps.listenInfo.data,
-    //         function(res){
-    //           if(res.err_msg == "get_brand_wcpay_request:ok" ) { 
-    //             console.log("支付成功！")
-    //             self.state.listenTimer = setTimeout(() => self.props.dispatch(getListenInfo(answerId)),1000);
-    //             self.setState({playNow: false})
-    //           }else{
-    //             console.log(res)
-    //             alert("支付失败，原因："+JSON.stringify(res))
-    //             //     console.log("失败原因：")
-    //           }
-    //           if( document.removeEventListener ){
-    //             document.removeEventListener('WeixinJSBridgeReady', onBridgeReady);
-    //           }else if (document.attachEvent){
-    //             document.detachEvent('WeixinJSBridgeReady', onBridgeReady);
-    //             document.detachEvent('onWeixinJSBridgeReady', onBridgeReady);
-    //           }
-    //           // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
-    //         }
-    //       );
-    //     }
-    //     if (typeof WeixinJSBridge == "undefined"){
-    //       if( document.addEventListener ){
-    //         document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-    //       }else if (document.attachEvent){
-    //         document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-    //         document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-    //       }
-    //     }else{
-    //       onBridgeReady();
-    //     }
-    //   }
-    // }else if(nextProps.listenInfo.data.url!=undefined){
-    //   console.log("nextProps.listenInfo.data")
-    //   console.log(nextProps.listenInfo.data)
-    //   const time = new Date().valueOf()
-    //   const questionId = this.props.params.id
-    //   if(nextProps.listenInfo.data.question_id==questionId && time-nextProps.listenInfo.timeStamp<500){
-    //     const answerAudio = new Audio(nextProps.listenInfo.data.url)
-    //     console.log("get audio===="+nextProps.listenInfo.data.url)
-    //     this.setState({answerAudio:answerAudio})
-    //     this.props.dispatch(getQuestionInfo(nextProps.listenInfo.data.question_id))
-    //     if(this.state.playNow){
-    //       this.setState({playing:1})
-    //       this.playAudio(answerAudio)
-    //     }
-    //   }
-    // }
-  }
   componentWillUnmount(){
     const self = this
     clearTimeout(self.state.listenTimer);

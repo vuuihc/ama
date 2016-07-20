@@ -6,6 +6,7 @@
  */
 import React, {Component} from 'react';
 import {Link} from 'react-router';
+import time from '../../util/time';
 import '../../../stylesheets/partials/modules/QuestionItemWithoutAvatar.scss';
 import {baseUrl} from "../../api/config"
 
@@ -30,7 +31,7 @@ export default class QuestionItemWithoutAvatar extends Component {
               </span>
           </div>
           <div className="remark">
-            <div className="time">{ question.time }小时前被回答</div>
+            <div className="time">{ time.getTimeSpan(question.time) }小时前被回答</div>
             <div className="remark-info">
               <span>{question.listen}人偷听</span>
               <span className="zan">{question.like}人觉得赞</span>

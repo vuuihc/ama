@@ -5,6 +5,7 @@ import '../../../stylesheets/partials/modules/IAskedList.scss';
 import QuestionItemWithoutAvatar from '../blocks/QuestionItemWithoutAvatar';
 import QuestionItemWithoutAvatarWithoutBubble from '../blocks/QuestionItemWithoutAvatarWithoutBubble';
 import {getIAsked} from '../../actions/account'
+import Loading from '../Loading2'
 import {baseUrl} from "../../api/config"
 
 class IAskedList extends Component {
@@ -14,8 +15,8 @@ class IAskedList extends Component {
   }
 
   componentDidMount() {
-    if (this.props.data.length === 0) {
-      this.props.getIAsked(1, 10);
+    if (data.length === 0) {
+      getIAsked(1, 10);
     }
     document.addEventListener('scroll', this.handleScroll);
   }
@@ -25,28 +26,33 @@ class IAskedList extends Component {
   }
 
   handleScroll() {
-    if (window.scrollY + window.innerHeight == document.body.offsetHeight && !this.props.completed) {
+    const { completed, page }  = this.props;
+    if (window.scrollY + window.innerHeight == document.body.offsetHeight && !completed) {
       console.log('hah');
-      this.props.getIAsked(this.props.page, 10);
+      getIAsked(page, 10);
     }
   }
 
   render() {
+    const { data, completed }  = this.props;
     return (
       <div className="iAskedList">
         {
-          this.props.data.length ? (
-            this.props.data.map((item, index)=> {
-              switch (item.isanswered) {
-                case '0':
-                  return <QuestionItemWithoutAvatarWithoutBubble key={index} question={item}/>;
-                case '1':
-                  return <QuestionItemWithoutAvatar key={index} question={item}/>;
-                default:
-                  console.log("这个问题有问题", item);
-                  return '';
-              }
-            })
+          data.length &&  !completed? (
+            <div>
+              {data.map((item, index)=> {
+                switch (item.isanswered) {
+                  case '0':
+                    return <QuestionItemWithoutAvatarWithoutBubble key={index} question={item}/>;
+                  case '1':
+                    return <QuestionItemWithoutAvatar key={index} question={item}/>;
+                  default:
+                    console.log("这个问题有问题", item);
+                    return '';
+                }
+              })}
+              <Loading completed = {completed}/>
+          </div>
           ) : (
             <div>
               <div className="hint">

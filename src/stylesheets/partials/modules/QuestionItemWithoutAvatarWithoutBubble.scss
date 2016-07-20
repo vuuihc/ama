@@ -27,6 +27,7 @@ article.question-without-avatar-without-bubble {
       width:px2rem(83);
       height:px2rem(37);
       line-height: px2rem(37);
+      margin-bottom: px2rem(15);
       text-align: center;
       @include uniMethod('border-radius', 5px);
       color: $white;

@@ -34,7 +34,7 @@ export function hotQuestionList(state = initialState.hotQuestionList, action) {
   switch (action.type) {
     case RECEIVE_HOT_QUESTION_LIST:
       if (action.data.length < action.num) {
-        return Object.assign({}, state, {data:action.data,completed: true})
+        return Object.assign({}, state, {data:state.data.concat(action.data),completed: true})
       } else if (action.page == 1)
         return Object.assign({}, initialState.hotQuestionList, {data: action.data})
       else {
