@@ -202,6 +202,7 @@ class Question extends Component {
   handlePrise(answerId){
     this.props.priseQuestion(answerId);
   }
+
   render() {
     const {questionInfo} = this.props
     console.log("this.state.playing=="+this.state.playing)
