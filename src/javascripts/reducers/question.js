@@ -33,12 +33,19 @@ const initialState = {
 export function hotQuestionList(state = initialState.hotQuestionList, action) {
   switch (action.type) {
     case RECEIVE_HOT_QUESTION_LIST:
-      if (action.data.length < action.num) {
-        return Object.assign({}, state, {data:state.data.concat(action.data),completed: true})
-      } else if (action.page == 1)
-        return Object.assign({}, initialState.hotQuestionList, {data: action.data})
-      else {
-        return {data: state.data.concat(action.data), page: action.page}
+      if(action.page==1){
+        return Object.assign({},initialState.hotQuestionList,{
+          data:action.data,
+          completed:action.data.length < action.num ? true : false,
+          loading:false
+        })
+      }else{
+        return Object.assign({},state,{
+          data:state.data.concat(action.data),
+          completed:action.data.length < action.num ? true : false,
+          loading:false,
+          page:action.page
+        })
       }
     case RECEIVE_PAID:
       return Object.assign({}, state, {

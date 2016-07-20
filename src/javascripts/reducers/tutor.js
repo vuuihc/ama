@@ -31,12 +31,19 @@ const initialState = {
 export function tutorList(state = initialState.tutorList, action) {
   switch (action.type) {
     case RECEIVE_TUTOR_LIST:
-      if(action.data.length < action.num){
-        return  Object.assign({},state,{data:action.data,completed:true,loading:false})
-      }else if(action.page==1)
-        return Object.assign({},initialState.tutorList,{data:action.data,loading:false})
-      else{
-        return {data:state.data.concat(action.data),page:action.page,loading:false}
+      if(action.page==1){
+        return Object.assign({},initialState.tutorList,{
+          data:action.data,
+          completed:action.data.length < action.num ? true : false,
+          loading:false
+        })
+      }else{
+        return Object.assign({},state,{
+          data:state.data.concat(action.data),
+          completed:action.data.length < action.num ? true : false,
+          loading:false,
+          page:action.page
+        })
       }
     default:
       return state
