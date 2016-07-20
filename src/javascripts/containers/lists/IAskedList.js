@@ -15,7 +15,7 @@ class IAskedList extends Component {
   }
 
   componentDidMount() {
-    if (data.length === 0) {
+    if (this.props.data.length === 0) {
       getIAsked(1, 10);
     }
     document.addEventListener('scroll', this.handleScroll);
@@ -38,7 +38,7 @@ class IAskedList extends Component {
     return (
       <div className="iAskedList">
         {
-          data.length &&  !completed? (
+          data.length ||  !completed? (
             <div>
               {data.map((item, index)=> {
                 switch (item.isanswered) {

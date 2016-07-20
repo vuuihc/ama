@@ -20,7 +20,7 @@ class AskedMeList extends Component {
   }
 
   componentDidMount() {
-    if (data.length === 0) {
+    if (this.props.data.length === 0) {
       getAskedMe(1, 10);
     }
     document.addEventListener('scroll', this.handleScroll);
