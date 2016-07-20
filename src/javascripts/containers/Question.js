@@ -161,7 +161,7 @@ class Question extends Component {
           <div className="userInfo">
             <img src={questionInfo.user_face} />
             <span>{questionInfo.user_name}</span>
-            <span className="shareText">问题不错,快分享出去吧！<img src={require('../../images/share.png')}/></span>
+            <div className="share">问题不错,快分享出去吧！<img src={require('../../images/share.png')}/></div>
           </div>
         </Link>
         <div className="question-content">

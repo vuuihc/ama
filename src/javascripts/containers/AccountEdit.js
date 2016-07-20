@@ -66,7 +66,7 @@ class AccountEdit extends Component {
               placeholder="写点什么让大家更了解你吧~"
               value={this.state.introduction}
               onChange={(e)=>{
-                  if(e.target.value < 101 || e.target.value - this.state.introduction < 0){
+                  if(e.target.value.length < 101 || e.target.value.length - this.state.introduction.length < 0){
                     this.setState({introduction: e.target.value})
                   }
                 }}

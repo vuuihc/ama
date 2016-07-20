@@ -8,7 +8,7 @@ import {getTutorList} from '../actions/tutor.js'
 import { getUserInfo } from '../actions/account'
 
 import '../../stylesheets/partials/modules/TutorList.scss'
-import Loading from "./Loading"
+import Loading from "./Loading2"
 import {baseUrl} from "../api/config"
 class TutorList extends Component {
   constructor(props){
