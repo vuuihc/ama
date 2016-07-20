@@ -1,12 +1,3 @@
-logs
-target
-/.idea
-/.idea_modules
-/.classpath
-/.project
-/.settings
-/RUNNING_PID
-
 .ssh/
 # 去掉hotupdate文件
 dist/	
