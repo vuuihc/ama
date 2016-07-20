@@ -21,7 +21,7 @@ class AskedMeList extends Component {
 
   componentDidMount() {
     if (this.props.data.length === 0) {
-      getAskedMe(1, 10);
+      this.props.getAskedMe(1, 10);
     }
     document.addEventListener('scroll', this.handleScroll);
   }
@@ -36,7 +36,7 @@ class AskedMeList extends Component {
   handleScroll() {
     const {completed, page} = this.props;
     if (window.scrollY + window.innerHeight == document.body.clientHeight && !completed) {
-      getAskedMe(page, 10);
+      this.props.getAskedMe(page, 10);
     }
   }
   render() {

@@ -16,7 +16,7 @@ class IAskedList extends Component {
 
   componentDidMount() {
     if (this.props.data.length === 0) {
-      getIAsked(1, 10);
+      this.props.getIAsked(1, 10);
     }
     document.addEventListener('scroll', this.handleScroll);
   }
@@ -29,7 +29,7 @@ class IAskedList extends Component {
     const { completed, page }  = this.props;
     if (window.scrollY + window.innerHeight == document.body.offsetHeight && !completed) {
       console.log('hah');
-      getIAsked(page, 10);
+      this.props.getIAsked(page, 10);
     }
   }
 
