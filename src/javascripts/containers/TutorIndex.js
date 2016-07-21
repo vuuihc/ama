@@ -180,7 +180,7 @@ class TutorIndex extends Component {
           <h5 className="title">他还回答了这些问题</h5>
           {
             tutorAnswerList.data.map((question,index) =>
-              <QuestionItemWithoutAvatar img={tutorInfo.user_face} key={index} question={question}/>
+              <QuestionItemWithoutAvatar head={tutorInfo.user_face} key={index} question={question}/>
             )
           }
            <Loading completed={tutorAnswerList.completed} />

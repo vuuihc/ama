@@ -16,7 +16,7 @@ export default class QuestionItemWithoutAvatar extends Component {
   }
 
   render() {
-    const {question, img} = this.props
+    const {question, head} = this.props
     return (
       <article className="question-without-avatar">
         <Link to={baseUrl+"question/"+question.id}>
@@ -24,7 +24,7 @@ export default class QuestionItemWithoutAvatar extends Component {
             <h4>{ question.content }</h4>
           </div>
           <div className="answer">
-            <img src={img}/>
+            <img src={ head }/>
 
             <span className="bubble">
               <span className="bubble-tail"></span>
