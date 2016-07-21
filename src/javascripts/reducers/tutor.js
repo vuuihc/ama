@@ -65,6 +65,7 @@ export function tutorAnswerList(state = initialState.tutorAnswerList, action){
       }else if(action.page==1)
         return Object.assign({},initialState.tutorAnswerList,{data:action.data,loading:false})
       else{
+        
         return {data:state.data.concat(action.data),page:action.page,loading:false}
       }
     default:
