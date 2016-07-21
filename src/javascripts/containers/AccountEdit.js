@@ -52,7 +52,7 @@ class AccountEdit extends Component {
             />
           </div>
           <div className="form-group">
-            <label>职 业/年 级：</label>
+            <label>职  业/年  级：</label>
             <input
               placeholder="输入您的职业类型"
               value={this.state.job}
@@ -60,7 +60,7 @@ class AccountEdit extends Component {
             />
           </div>
           <div className="form-group self-intro-text">
-            <label>您 的 介 绍： </label>
+            <label>您  的 介  绍： </label>
             <div className="count">{this.state.introduction.length} / 100</div>
             <textarea
               placeholder="写点什么让大家更了解你吧~"
