@@ -101,6 +101,8 @@ article.question-item-with-avatar {
       color: $lightGray;
       text-align: right;
       white-space: nowrap;
+      width: px2rem(550);
+      height: px2rem(80);
       span {
         font-size: px2rem(24);
       }
