@@ -25,6 +25,7 @@ export default class QuestionItemWithoutAvatar extends Component {
           </div>
           <div className="answer">
             <img src={img}/>
+
             <span className="bubble">
               <span className="bubble-tail"></span>
               <span className="bubble-voice"></span>
