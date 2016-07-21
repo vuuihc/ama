@@ -7,7 +7,7 @@ import {connect} from 'react-redux'
 import {getTutorInfo,getTutorAnswerList,getPrepayInfo} from '../actions/tutor.js'
 import {getIAsked} from '../actions/account.js'
 import QuestionItemWithoutAvatar from "./blocks/QuestionItemWithoutAvatar"
-import Loading from "./Loading"
+import Loading from "./Loading2"
 import Toast from "../util/weui/toast"
 import {baseUrl,domain} from "../api/config"
 import '../../stylesheets/partials/modules/TutorIndex.scss'
@@ -180,10 +180,10 @@ class TutorIndex extends Component {
           <h5 className="title">他还回答了这些问题</h5>
           {
             tutorAnswerList.data.map((question,index) =>
-              <QuestionItemWithoutAvatar key={index} question={question}/>
+              <QuestionItemWithoutAvatar img={tutorInfo.user_face} key={index} question={question}/>
             )
           }
-          {!tutorAnswerList.completed && <Loading />}
+           <Loading completed={tutorAnswerList.completed} />
         </div>
       </main>
     )

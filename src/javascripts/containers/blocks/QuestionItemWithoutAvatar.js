@@ -16,7 +16,7 @@ export default class QuestionItemWithoutAvatar extends Component {
   }
 
   render() {
-    const {question} = this.props
+    const {question, img} = this.props
     return (
       <article className="question-without-avatar">
         <Link to={baseUrl+"question/"+question.id}>
@@ -24,11 +24,12 @@ export default class QuestionItemWithoutAvatar extends Component {
             <h4>{ question.content }</h4>
           </div>
           <div className="answer">
-              <span className="bubble">
-                <span className="bubble-tail"></span>
-                <span className="bubble-voice"></span>
-                <span className="bubble-text">点击播放</span>
-              </span>
+            <img src={img}/>
+            <span className="bubble">
+              <span className="bubble-tail"></span>
+              <span className="bubble-voice"></span>
+              <span className="bubble-text">点击播放</span>
+            </span>
           </div>
           <div className="remark">
             <div className="time">{ time.getTimeSpan(question.time) }小时前被回答</div>

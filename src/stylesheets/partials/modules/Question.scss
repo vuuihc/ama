@@ -139,6 +139,11 @@
       color: $lightGray;
     }
   }
+  .not-answer{
+    padding: px2rem(10);
+    text-align: center;
+    font-size: px2rem(36);
+  }
   .ask {
     width: 10rem;
     height: px2rem(246);

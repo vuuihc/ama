@@ -199,7 +199,7 @@ class Question extends Component {
                   </div>
                 }
               </div>
-            </div>): null
+            </div>): (<div className="not-answer">等待老师回答……</div>)
         }
 
 

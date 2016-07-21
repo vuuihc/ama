@@ -17,6 +17,12 @@ article.question-without-avatar {
     width: 10rem;
     padding-left: px2rem(27);
     margin-top: px2rem(35);
+    img{
+      height:px2rem(88);
+      width: px2rem(88);
+      margin-right:px2rem(30);
+      @include uniMethod('border-radius', px2rem(44));
+    }
     .bubble{
       position: relative;
       display: block;
