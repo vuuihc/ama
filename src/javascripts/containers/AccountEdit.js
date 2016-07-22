@@ -2,7 +2,7 @@
  * Created by zhushihao on 2016/6/24.
  */
 import React, {Component, PropTypes} from 'react'
-import {browserHistory} from 'react-router'
+import {browserHistory, withRouter} from 'react-router'
 import {baseUrl} from '../api/config'
 import {connect} from 'react-redux'
 import {editUserInfo} from '../actions/account';
@@ -85,6 +85,8 @@ class AccountEdit extends Component {
     )
   }
 }
+AccountEdit = withRouter(AccountEdit)
+
 
 AccountEdit.propTypes = {
   // tutorInfo: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
