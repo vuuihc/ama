@@ -24,7 +24,6 @@ class AccountEdit extends Component {
   routerWillLeave(nextLocation) {
     // return false to prevent a transition w/o prompting the user,
     // or return a string to allow the user to decide:
-    if (!this.state.isSaved)
       return 'Your work is not saved! Are you sure you want to leave?'
   }
   componentDidMount() {
