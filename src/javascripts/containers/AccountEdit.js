@@ -20,10 +20,18 @@ class AccountEdit extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+
+  routerWillLeave(nextLocation) {
+    // return false to prevent a transition w/o prompting the user,
+    // or return a string to allow the user to decide:
+    if (!this.state.isSaved)
+      return 'Your work is not saved! Are you sure you want to leave?'
+  }
   componentDidMount() {
     // const {id} = this.props.params
     // this.props.dispatch((id))
     console.log("questionInfo===" + this.props.tutorInfo)
+    this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave)
   }
 
   handleSubmit() {
