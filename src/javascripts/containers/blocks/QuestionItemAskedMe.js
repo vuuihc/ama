@@ -17,13 +17,13 @@ class QuestionItemAskedMe extends Component {
     const {question} = this.props;
     return (
       <article className="question-item-asked-me">
-        <Link to = {`${baseUrl}user/${question.question_user_id}`} >
-          <div className="userInfo">
+        <div className="userInfo">
+          <Link to = {`${baseUrl}user/${question.question_user_id}`} >
             <img src={question.user_face} />
             <span>{question.user_name}</span>
-          </div>
-        </Link>
-        <Link to = {`${baseUrl}answer/${question.id}`}>
+          </Link>
+        </div>
+        <Link to = {`       ${baseUrl}answer/${question.id}`}>
           <div className="question-content">
             <h4>{question.content}</h4>
           </div>

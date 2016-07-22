@@ -11,6 +11,8 @@ import Loading from "./Loading2"
 import Toast from "../util/weui/toast"
 import {baseUrl,domain} from "../api/config"
 import '../../stylesheets/partials/modules/TutorIndex.scss'
+import { withRouter } from 'react-router'
+
 
 class TutorIndex extends Component {
   constructor(props) {
@@ -20,52 +22,6 @@ class TutorIndex extends Component {
       askSuccess:false,
       loading:false
     }
-  }
-  componentWillReceiveProps(nextProps){
-    // const time = new Date()
-    // const self =this
-    // if(nextProps.prepayInfo.data.timeStamp!=undefined && time.valueOf()/1000-nextProps.prepayInfo.data.timeStamp<5){
-    //   console.log("获得了最新的timestamp")
-    //   console.log(nextProps.prepayInfo.data.timeStamp)
-    //   console.log((Math.ceil(new Date().valueOf()/1000)).toString())
-    //   function onBridgeReady(){
-    //     WeixinJSBridge.invoke(
-    //       'getBrandWCPayRequest', nextProps.prepayInfo.data,
-    //       function(res){
-    //         if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-    //           console.log("支付成功！")
-    //           self.setState({askSuccess:true})
-    //           this.props.dispatch(getIAsked(1, 10));
-    //           self.state.successTimer = setTimeout(()=>{
-    //             self.setState({askSuccess:false})
-    //             browserHistory.push(baseUrl+"account/IAskedList")
-    //           },2000)
-    //         }else{
-    //           console.log(res)
-    //           alert("支付失败，原因："+JSON.stringify(res))
-    //         }
-    //         if( document.removeEventListener ){
-    //           document.removeEventListener('WeixinJSBridgeReady', onBridgeReady);
-    //         }else if (document.attachEvent){
-    //           document.detachEvent('WeixinJSBridgeReady', onBridgeReady);
-    //           document.detachEvent('onWeixinJSBridgeReady', onBridgeReady);
-    //         }
-    //        
-    //         // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
-    //       }
-    //     );
-    //   }
-    //   if (typeof WeixinJSBridge == "undefined"){
-    //     if( document.addEventListener ){
-    //       document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-    //     }else if (document.attachEvent){
-    //       document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-    //       document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-    //     }
-    //   }else{
-    //     onBridgeReady();
-    //   }
-    // }
   }
   payForAsk(content,tutorId){
     const url = domain + `/api/v1/question/testquestion?content=${content}&answer_user_id=${tutorId}`
@@ -141,7 +97,16 @@ class TutorIndex extends Component {
         this.props.dispatch(getTutorAnswerList(id,curPage, 10))
       }
     }
+    this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave)
     document.addEventListener('scroll', onScroll.bind(this));
+  }
+
+  routerWillLeave(nextLocation) {
+    // return false to prevent a transition w/o prompting the user,
+    // or return a string to allow the user to decide:
+    if(this.refs.content.value != '' && !this.state.askSuccess){
+      return '您的提问尚未支付，确认离开?'
+    }
   }
   componentWillUnmount(){
     clearTimeout(this.state.successTimer)
@@ -189,6 +154,8 @@ class TutorIndex extends Component {
     )
   }
 }
+
+TutorIndex = withRouter(TutorIndex)
 
 TutorIndex.propTypes = {
   tutorInfo: PropTypes.shape({}).isRequired,
