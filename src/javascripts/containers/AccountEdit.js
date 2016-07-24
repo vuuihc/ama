@@ -18,17 +18,14 @@ class AccountEdit extends Component {
       introduction: this.props.userInfo.user_introduction
     }
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.routerWillLeave = this.routerWillLeave.bind(this);
   }
-
-
   routerWillLeave(nextLocation) {
     // return false to prevent a transition w/o prompting the user,
     // or return a string to allow the user to decide:
+    console.log(nextLocation);
     const now = this.state;
     const previous = this.props.userInfo;
-    console.log(this.state);
-    console.log(this.props);
-    console.log('离开检查', this.a);
     if(now.company != previous.company || now.job != previous.job || now.introduction != previous.introduction){
       return '您所编辑的页面尚未保存，确认离开?'
     }
