@@ -24,7 +24,11 @@ class AccountEdit extends Component {
   routerWillLeave(nextLocation) {
     // return false to prevent a transition w/o prompting the user,
     // or return a string to allow the user to decide:
-      return 'Your work is not saved! Are you sure you want to leave?'
+    const now = this.state;
+    const previous = this.props.userInfo;
+    if(now.company != previous.company || now.job != previous.job || now.introduction != previous.introduction){
+      return '您所编辑的页面尚未保存，确认离开?'
+    }
   }
   componentDidMount() {
     // const {id} = this.props.params
@@ -86,11 +90,6 @@ class AccountEdit extends Component {
   }
 }
 AccountEdit = withRouter(AccountEdit)
-
-
-AccountEdit.propTypes = {
-  // tutorInfo: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-}
 
 function mapStateToProps(state) {
   return {

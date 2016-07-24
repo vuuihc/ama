@@ -1,6 +1,6 @@
 import React, {Component,PropTypes} from 'react'
 import ReactDOM from 'react-dom'
-import { Link,browserHistory } from 'react-router'
+import { Link,browserHistory, withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import '../../../stylesheets/partials/modules/Answer.scss';
 import { getQuestionInfo,saveVoice } from  '../../actions/question';
@@ -56,6 +56,14 @@ class Answer extends Component {
         self.setState({status: 4})
       }
     });
+    this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave)
+  }
+  routerWillLeave(nextLocation) {
+    // return false to prevent a transition w/o prompting the user,
+    // or return a string to allow the user to decide:
+    if(!this.state.answerSuccess){
+      return '您的回答尚未完成，确认离开?'
+    }
   }
   componentWillReceiveProps(nextProps){
     console.log("nextProps.WXConfig.data=="+JSON.stringify(nextProps.WXConfig.data))
@@ -288,6 +296,8 @@ class Answer extends Component {
     )
   }
 }
+Answer = withRouter(Answer)
+
 Answer.contextTypes = {
   router: PropTypes.object
 }
@@ -299,6 +309,7 @@ const mapStateToProps = (state) =>{
     landPage:state.landPage
   }
 }
+
 
 Answer = connect( mapStateToProps, { getQuestionInfo,saveVoice,getWXConfig,getAskedMe })(Answer);
 
