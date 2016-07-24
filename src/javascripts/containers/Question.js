@@ -112,27 +112,6 @@ class Question extends Component {
     }else{
       this.getAudio(answerId)
     }
-    // if (window.WeixinJSBridge) {
-    //   wx.getNetworkType({
-    //     success: function (res) {
-    //       answerAudio.play();
-    //     },
-    //     fail: function (res) {
-    //       answerAudio.play();
-    //     }
-    //   });
-    // }else{
-    //   document.addEventListener("WeixinJSBridgeReady", function() {
-    //     wx.getNetworkType({
-    //       success: function (res) {
-    //         answerAudio.play();
-    //       },
-    //       fail: function (res) {
-    //         answerAudio.play();
-    //       }
-    //     });
-    //   }, false);
-    // }
   }
   bubbleClick(answerId,isPayed){
     if(this.state.paySuccess || isPayed ){
@@ -161,7 +140,7 @@ class Question extends Component {
           <div className="userInfo">
             <img src={questionInfo.user_face} />
             <span>{questionInfo.user_name}</span>
-            <div className="share">问题不错,快分享出去吧！<img src={require('../../images/share.png')}/></div>
+            <div className="share">问题不错,快分享出去吧！<i className="iconfont icon-arrow" /></div>
           </div>
         </Link>
         <div className="question-content">
