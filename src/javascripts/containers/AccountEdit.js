@@ -26,6 +26,9 @@ class AccountEdit extends Component {
     // or return a string to allow the user to decide:
     const now = this.state;
     const previous = this.props.userInfo;
+    console.log(this.state);
+    console.log(this.props);
+    console.log('离开检查', this.a);
     if(now.company != previous.company || now.job != previous.job || now.introduction != previous.introduction){
       return '您所编辑的页面尚未保存，确认离开?'
     }
@@ -39,6 +42,8 @@ class AccountEdit extends Component {
 
   handleSubmit() {
     this.props.editUserInfo(this.state.company, this.state.job, this.state.experience, this.state.introduction);
+    console.log('提交');
+    this.a = '1';
     browserHistory.push(baseUrl + "account/IAskedList")
   }
 
