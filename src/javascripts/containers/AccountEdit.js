@@ -23,7 +23,9 @@ class AccountEdit extends Component {
   routerWillLeave(nextLocation) {
     // return false to prevent a transition w/o prompting the user,
     // or return a string to allow the user to decide:
-    console.log(nextLocation);
+	if(nextLocation.state == 'okay'){
+		return true;
+	}
     const now = this.state;
     const previous = this.props.userInfo;
     if(now.company != previous.company || now.job != previous.job || now.introduction != previous.introduction){
@@ -39,9 +41,7 @@ class AccountEdit extends Component {
 
   handleSubmit() {
     this.props.editUserInfo(this.state.company, this.state.job, this.state.experience, this.state.introduction);
-    console.log('提交');
-    this.a = '1';
-    browserHistory.push(baseUrl + "account/IAskedList")
+    browserHistory.push({pathname:baseUrl + "account/IAskedList", state:'okay'});
   }
 
   render() {

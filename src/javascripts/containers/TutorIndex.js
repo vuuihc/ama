@@ -22,6 +22,7 @@ class TutorIndex extends Component {
       askSuccess:false,
       loading:false
     }
+	this.routerWillLeave = this.routerWillLeave.bind(this);
   }
   payForAsk(content,tutorId){
     const url = domain + `/api/v1/question/testquestion?content=${content}&answer_user_id=${tutorId}`
