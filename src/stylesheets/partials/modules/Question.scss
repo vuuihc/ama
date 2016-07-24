@@ -21,10 +21,9 @@
     .share{
       float:right;
       line-height: 1rem;
-      img{
+      .icon-arrow{
         float:right;
-        width:px2rem(90);
-        height:px2rem(60);
+		font-size:px2rem(60);
       }
     }
   }
