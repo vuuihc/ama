@@ -32,7 +32,7 @@ module.exports = {
   output: {
     path: './dist',
     filename: '[name].js',
-    publicPath: 'http://localhost:8080/assets/'
+    publicPath: 'http://h5app.7dyk.com/ama/7dyk/dist/'
   },
   plugins: plugins,
 

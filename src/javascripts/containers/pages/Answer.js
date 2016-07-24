@@ -23,6 +23,7 @@ class Answer extends Component {
       END:0,
     }
     this.clickHandler = this.clickHandler.bind(this)
+	this.routerWillLeave = this.routerWillLeave.bind(this)
   }
   componentWillMount(){
     const {id} = this.props.params;
