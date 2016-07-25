@@ -28,6 +28,7 @@ class AccountEdit extends Component {
 	}
     const now = this.state;
     const previous = this.props.userInfo;
+	console.log(now, previous);
     if(now.company != previous.company || now.job != previous.job || now.introduction != previous.introduction){
       return '您所编辑的页面尚未保存，确认离开?'
     }
