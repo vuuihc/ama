@@ -9,17 +9,6 @@ import classNames from 'classnames';
 import Mask from './mask';
 
 class Alert extends React.Component {
-    static propTypes = {
-        buttons: React.PropTypes.array,
-        show: React.PropTypes.bool,
-        title: React.PropTypes.string
-    };
-
-    static defaultProps = {
-        buttons: [],
-        show: false,
-        title: ''
-    };
 
     _renderButtons() {
         return this.props.buttons.map((action, idx) => {
@@ -56,5 +45,17 @@ class Alert extends React.Component {
         );
     }
 }
+
+Alert.propTypes = {
+  buttons: React.PropTypes.array,
+  show: React.PropTypes.bool,
+  title: React.PropTypes.string
+};
+
+Alert.defaultProps = {
+  buttons: [],
+  show: false,
+  title: ''
+};
 
 export default Alert;

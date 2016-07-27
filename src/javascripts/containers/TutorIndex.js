@@ -37,6 +37,17 @@ class TutorIndex extends Component {
           }
         ]
       },
+      showAlert:false,
+      alert:{
+        title:'',
+        buttons:[
+          {
+            type: 'default',
+            label: '确定',
+            onClick: this.hideAlert.bind(this)
+          }
+        ]
+      },
       nextLocation:location.href,
     }
 	this.routerWillLeave = this.routerWillLeave.bind(this);
@@ -66,7 +77,7 @@ class TutorIndex extends Component {
                   self.setState({successTimer:successTimer})
                 }else{
                   console.log(res)
-                  alert("支付失败")
+                  self.setState({showAlert:true,alert:{title:"支付失败"}})
                 }
                 if( document.removeEventListener ){
                   document.removeEventListener('WeixinJSBridgeReady', onBridgeReady);
@@ -96,7 +107,8 @@ class TutorIndex extends Component {
     const content = this.refs.content.value
     console.log("content is ==="+content)
     if(content==""){
-      alert("内容不能为空哦")
+      // alert("内容不能为空哦")
+      this.setState({showAlert:true,alert:{title:'内容不能为空哦'}})
       return
     }
     const {id} = this.props.params
@@ -124,8 +136,8 @@ class TutorIndex extends Component {
     // or return a string to allow the user to decide:
     if(this.refs.content.value != '' && !this.state.askSuccess){
       // return '您的提问尚未支付，确认离开?'
-      this.setState({showConfirm:true,nextLocation:nextLocation})
-      console.log("nextLocation=="+nextLocation)
+      this.setState({showConfirm:true,nextLocation:nextLocation.href})
+      console.log(nextLocation)
       return false
     }
   }
@@ -146,6 +158,7 @@ class TutorIndex extends Component {
         <Toast  show={this.state.askSuccess} >提问成功</Toast>
         <Toast  icon="loading" show={this.state.loading} >请求支付中……</Toast>
         <Confirm show={this.state.showConfirm} title={this.state.confirm.title} buttons={this.state.confirm.buttons}/>
+        <Alert show={this.state.showAlert} title={this.state.alert.title} buttons={this.state.alert.buttons} />
         <div className="tutor-info">
           <Link to={baseUrl+`tutor/share/${tutorInfo.user_id}`} >
             <img className="QREntry" src={require("../../images/QREntry.png")}/>
