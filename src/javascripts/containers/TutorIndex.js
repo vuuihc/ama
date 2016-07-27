@@ -144,6 +144,9 @@ class TutorIndex extends Component {
   hideConfirm(){
     this.setState({showConfirm:false})
   }
+  hideAlert(){
+    this.setState({showAlert:false})
+  }
   leaveThisPage(){
     location.href= this.state.nextLocation
   }
