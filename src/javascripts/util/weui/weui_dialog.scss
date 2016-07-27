@@ -1,3 +1,4 @@
+@import "./base";
 
 $globalTextColor: black;
 $weuiDialogBackgroundColor: #FAFAFC;
@@ -55,21 +56,21 @@ $weuiDialogLinkActiveBc: #EEEEEE;
         flex: 1;
         color: $weuiDialogLinkColor;
         text-decoration: none;
-        .setTapColor;
+        @include setTapColor();
         &:active {
             background-color: $weuiDialogLinkActiveBc;
         }
     }
     &:after {
         content: " ";
-        .setTopLine($weuiDialogLineColor);
+        @include setTopLine($weuiDialogLineColor);
     }
     .weui_dialog_confirm & {
         a {
             position: relative;
             &:after {
                 content: " ";
-                .setLeftLine($weuiDialogLineColor);
+                @include setLeftLine($weuiDialogLineColor);
             }
             &:first-child {
                 &:after {
