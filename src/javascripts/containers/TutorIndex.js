@@ -126,6 +126,7 @@ class TutorIndex extends Component {
       // return '您的提问尚未支付，确认离开?'
       this.setState({showConfirm:true,nextLocation:nextLocation})
       console.log("nextLocation=="+nextLocation)
+      return false
     }
   }
   hideConfirm(){
