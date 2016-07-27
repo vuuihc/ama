@@ -79,7 +79,7 @@ class TutorIndex extends Component {
                   self.setState({successTimer:successTimer})
                 }else{
                   console.log(res)
-                  self.setState({showAlert:true,alert:{title:"支付失败"}})
+                  self.setState({showAlert:true,alertContent:"支付失败"})
                 }
                 if( document.removeEventListener ){
                   document.removeEventListener('WeixinJSBridgeReady', onBridgeReady);
