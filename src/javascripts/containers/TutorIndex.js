@@ -13,6 +13,7 @@ import {baseUrl,domain} from "../api/config"
 import '../../stylesheets/partials/modules/TutorIndex.scss'
 import { withRouter } from 'react-router'
 import Confirm from "../util/weui/confirm"
+import Alert from "../util/weui/alert"
 
 class TutorIndex extends Component {
   constructor(props) {
