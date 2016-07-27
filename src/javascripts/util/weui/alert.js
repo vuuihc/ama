@@ -7,6 +7,8 @@
 import React from 'react';
 import classNames from 'classnames';
 import Mask from './mask';
+import "./weui_mask.css"
+import "./weui_dialog.scss"
 
 class Alert extends React.Component {
 
