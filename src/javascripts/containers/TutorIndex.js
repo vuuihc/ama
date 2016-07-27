@@ -12,7 +12,7 @@ import Toast from "../util/weui/toast"
 import {baseUrl,domain} from "../api/config"
 import '../../stylesheets/partials/modules/TutorIndex.scss'
 import { withRouter } from 'react-router'
-
+import Confirm from "../util/weui/confirm"
 
 class TutorIndex extends Component {
   constructor(props) {
@@ -20,7 +20,24 @@ class TutorIndex extends Component {
     this.state = {
       curPage:1,
       askSuccess:false,
-      loading:false
+      loading:false,
+      showConfirm:false,
+      confirm:{
+        title: "您的提问尚未支付，确认离开？",
+        buttons:[
+          {
+            type:'default',
+            label:'接着提问',
+            onClick: this.hideConfirm.bind(this)
+          },
+          {
+            type:'primary',
+            label:'离开',
+            onClick:this.leaveThisPage.bind(this)
+          }
+        ]
+      },
+      nextLocation:location.href,
     }
 	this.routerWillLeave = this.routerWillLeave.bind(this);
   }
@@ -106,8 +123,16 @@ class TutorIndex extends Component {
     // return false to prevent a transition w/o prompting the user,
     // or return a string to allow the user to decide:
     if(this.refs.content.value != '' && !this.state.askSuccess){
-      return '您的提问尚未支付，确认离开?'
+      // return '您的提问尚未支付，确认离开?'
+      this.setState({showConfirm:true,nextLocation:nextLocation})
+      console.log("nextLocation=="+nextLocation)
     }
+  }
+  hideConfirm(){
+    this.setState({showConfirm:false})
+  }
+  leaveThisPage(){
+    location.href= this.state.nextLocation
   }
   componentWillUnmount(){
     clearTimeout(this.state.successTimer)
@@ -119,6 +144,7 @@ class TutorIndex extends Component {
       <main className="tutorIndex">
         <Toast  show={this.state.askSuccess} >提问成功</Toast>
         <Toast  icon="loading" show={this.state.loading} >请求支付中……</Toast>
+        <Confirm show={this.state.showConfirm} title={this.state.confirm.title} buttons={this.state.confirm.buttons}/>
         <div className="tutor-info">
           <Link to={baseUrl+`tutor/share/${tutorInfo.user_id}`} >
             <img className="QREntry" src={require("../../images/QREntry.png")}/>
