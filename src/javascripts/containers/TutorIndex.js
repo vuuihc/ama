@@ -24,7 +24,7 @@ class TutorIndex extends Component {
       loading:false,
       showConfirm:false,
       confirm:{
-        title: "您的提问尚未支付，确认离开？",
+        title: "提示",
         buttons:[
           {
             type:'default',
@@ -40,7 +40,7 @@ class TutorIndex extends Component {
       },
       showAlert:false,
       alert:{
-        title:'',
+        title:"提示",
         buttons:[
           {
             type: 'default',
@@ -49,6 +49,7 @@ class TutorIndex extends Component {
           }
         ]
       },
+      alertContent:'',
       nextLocation:location.href,
     }
 	this.routerWillLeave = this.routerWillLeave.bind(this);
@@ -109,7 +110,7 @@ class TutorIndex extends Component {
     console.log("content is ==="+content)
     if(content==""){
       // alert("内容不能为空哦")
-      this.setState({showAlert:true,alert:{title:'内容不能为空哦'}})
+      this.setState({showAlert:true,alertContent:'内容不能为空哦'})
       return
     }
     const {id} = this.props.params
@@ -137,7 +138,7 @@ class TutorIndex extends Component {
     // or return a string to allow the user to decide:
     if(this.refs.content.value != '' && !this.state.askSuccess){
       // return '您的提问尚未支付，确认离开?'
-      this.setState({showConfirm:true,nextLocation:nextLocation.href})
+      this.setState({showConfirm:true,nextLocation:nextLocation.pathname})
       console.log(nextLocation)
       return false
     }
@@ -161,8 +162,8 @@ class TutorIndex extends Component {
       <main className="tutorIndex">
         <Toast  show={this.state.askSuccess} >提问成功</Toast>
         <Toast  icon="loading" show={this.state.loading} >请求支付中……</Toast>
-        <Confirm show={this.state.showConfirm} title={this.state.confirm.title} buttons={this.state.confirm.buttons}/>
-        <Alert show={this.state.showAlert} title={this.state.alert.title} buttons={this.state.alert.buttons} />
+        <Confirm show={this.state.showConfirm} title={this.state.confirm.title} buttons={this.state.confirm.buttons}>您的提问尚未支付，确认离开？</Confirm>
+        <Alert show={this.state.showAlert} title={this.state.alert.title} buttons={this.state.alert.buttons} >{this.state.alertContent}</Alert>
         <div className="tutor-info">
           <Link to={baseUrl+`tutor/share/${tutorInfo.user_id}`} >
             <img className="QREntry" src={require("../../images/QREntry.png")}/>
