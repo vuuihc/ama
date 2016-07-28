@@ -10,6 +10,8 @@ import time from '../../util/time'
 import VoiceWave from  "../../components/VoiceWave"
 import Toast from "../../util/weui/toast"
 import {baseUrl,domain} from "../../api/config"
+import Confirm from "../../util/weui/confirm"
+import Alert from "../../util/weui/alert"
 
 class Answer extends Component {
   constructor(){
@@ -32,13 +34,34 @@ class Answer extends Component {
             onClick:this.hideAlert.bind(this)
           }
         ]
-      }
+      },
+      showConfirm:false,
+      confirmText:"",
+      confirm:{
+        title:"提示",
+        buttons:[
+          {
+            type:"primary",
+            label:"接着回答",
+            onClick:this.hideAlert.bind(this)
+          },
+          {
+            type:"default",
+            label:"离开",
+            onClick:this.leaveThisPage.bind(this)
+          }
+        ]
+      },
+      nextLocation:location.href
     }
     this.clickHandler = this.clickHandler.bind(this)
 	  this.routerWillLeave = this.routerWillLeave.bind(this)
   }
   hideAlert(){
     this.setState({showAlert:false})
+  }
+  leaveThisPage(){
+    browserHistory.push(this.state.nextLocation.pathname)
   }
   componentWillMount(){
     const {id} = this.props.params;
@@ -79,7 +102,8 @@ class Answer extends Component {
     // return false to prevent a transition w/o prompting the user,
     // or return a string to allow the user to decide:
     if(!this.state.answerSuccess){
-      return '您的回答尚未完成，确认离开?'
+      // return '您的回答尚未完成，确认离开?'
+      this.setState({confirmText:"您的回答尚未完成，确认离开?",showConfirm:true,nextLocation:nextLocation})
     }
   }
   componentWillReceiveProps(nextProps){
@@ -290,6 +314,7 @@ class Answer extends Component {
         <Toast  icon="loading" show={this.state.status==1} >开启中</Toast>
         <Toast  icon="loading" show={this.state.status==3} >停止中</Toast>
         <Alert show={this.state.showAlert} title="提示" buttons={this.state.alert.buttons}>{this.state.alertContent}</Alert>
+        <Confirm show={this.state.showConfirm} title="提示" buttons={this.state.confirm.buttons}>{this.state.confirmText}</Confirm>
         <div className="question">
           <div className="head">
             <Link to={`${baseUrl}user/${questionInfo.user_id}`}><img src={questionInfo.user_face}/></Link>
