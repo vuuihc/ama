@@ -21,9 +21,24 @@ class Answer extends Component {
       successTimer:null,
       START:0,
       END:0,
+      showAlert:false,
+      alertContent:"",
+      alert:{
+        title:"提示",
+        buttons:[
+          {
+            type:"default",
+            label:"确定",
+            onClick:this.hideAlert.bind(this)
+          }
+        ]
+      }
     }
     this.clickHandler = this.clickHandler.bind(this)
-	this.routerWillLeave = this.routerWillLeave.bind(this)
+	  this.routerWillLeave = this.routerWillLeave.bind(this)
+  }
+  hideAlert(){
+    this.setState({showAlert:false})
   }
   componentWillMount(){
     const {id} = this.props.params;
@@ -46,7 +61,8 @@ class Answer extends Component {
             console.log("here");
           },
           cancel: function () {
-            alert('用户拒绝授权录音');
+            // alert('用户拒绝授权录音');
+            self.setState({alertContent:"用户拒绝授权录音",showAlert:true})
           }
         });
       }
@@ -124,8 +140,8 @@ class Answer extends Component {
           console.log("start at ==="+ START)
         },
         cancel: function () {
-          alert('用户拒绝授权录音');
-          self.setState({status:0})
+          // alert('用户拒绝授权录音');
+          self.setState({status:0,alertContent:"用户拒绝授权录音",showAlert:true})
         }
       });
     }
@@ -135,9 +151,9 @@ class Answer extends Component {
       console.log("录音时间"+(END-self.state.START));
       if((END - self.state.START) < 1000){
         END = 0;
-        alert("录音不能小于1秒哦")
+        // alert("录音不能小于1秒哦")
         wx.stopRecord()
-        self.setState({status:0})
+        self.setState({status:0,alertContent:"录音不能少于1秒哦",showAlert:true})
         return null
       }else{
         console.log("录音时间"+(END-self.state.START));
@@ -217,7 +233,8 @@ class Answer extends Component {
           },2000)
           self.setState({successTimer:successTimer})
         }else{
-          alert("抱歉，上传失败")
+          // alert("抱歉，上传失败")
+          self.setState({alertContent:"抱歉，录音上传失败",showAlert:true})
           console.log("语音上传失败，原因是"+json.msg)
         }
       });
@@ -226,7 +243,8 @@ class Answer extends Component {
     const self = this
     const localId = this.state.localId
     if(localId==null){
-      alert("请先录音哦")
+      // alert("请先录音哦")
+      self.setState({alertContent:"请先录音哦",showAlert:true})
       return
     }
     wx.uploadVoice({
@@ -271,6 +289,7 @@ class Answer extends Component {
         <Toast  show={this.state.answerSuccess} >回答成功</Toast>
         <Toast  icon="loading" show={this.state.status==1} >开启中</Toast>
         <Toast  icon="loading" show={this.state.status==3} >停止中</Toast>
+        <Alert show={this.state.showAlert} title="提示" buttons={this.state.alert.buttons}>{this.state.alertContent}</Alert>
         <div className="question">
           <div className="head">
             <Link to={`${baseUrl}user/${questionInfo.user_id}`}><img src={questionInfo.user_face}/></Link>

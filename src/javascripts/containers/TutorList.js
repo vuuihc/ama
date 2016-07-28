@@ -19,7 +19,7 @@ class TutorList extends Component {
     this.handleScroll = this.handleScroll.bind(this)
   }
   componentDidMount() {
-    this.props.dispatch(getTutorList(1, 10))
+    this.props.dispatch(getTutorList(1, 20))
     this.props.dispatch(getUserInfo());
     console.log("tutorList===" + this.props.tutorList)
     document.addEventListener('scroll', this.handleScroll);

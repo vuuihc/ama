@@ -27,12 +27,12 @@ class TutorIndex extends Component {
         title: "提示",
         buttons:[
           {
-            type:'default',
+            type:'primary',
             label:'接着提问',
             onClick: this.hideConfirm.bind(this)
           },
           {
-            type:'primary',
+            type:'default',
             label:'离开',
             onClick:this.leaveThisPage.bind(this)
           }
@@ -79,7 +79,7 @@ class TutorIndex extends Component {
                   self.setState({successTimer:successTimer})
                 }else{
                   console.log(res)
-                  self.setState({showAlert:true,alertContent:"支付失败"})
+                  self.setState({alertContent:"支付失败",showAlert:true})
                 }
                 if( document.removeEventListener ){
                   document.removeEventListener('WeixinJSBridgeReady', onBridgeReady);
@@ -110,7 +110,7 @@ class TutorIndex extends Component {
     console.log("content is ==="+content)
     if(content==""){
       // alert("内容不能为空哦")
-      this.setState({showAlert:true,alertContent:'内容不能为空哦'})
+      this.setState({alertContent:'内容不能为空哦',showAlert:true})
       return
     }
     const {id} = this.props.params
@@ -138,7 +138,7 @@ class TutorIndex extends Component {
     // or return a string to allow the user to decide:
     if(this.refs.content.value != '' && !this.state.askSuccess){
       // return '您的提问尚未支付，确认离开?'
-      this.setState({showConfirm:true,nextLocation:nextLocation.pathname})
+      this.setState({nextLocation:nextLocation.pathname,showConfirm:true})
       console.log(nextLocation)
       return false
     }
