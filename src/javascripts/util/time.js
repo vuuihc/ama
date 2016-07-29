@@ -13,7 +13,7 @@ export default  {
         }else if( seconds < 3600){
             return parseInt(seconds / 60) + ' 分钟';
         }else if( seconds < 86400){
-            return parseInt(seconds / 3660) + ' 小时';
+            return parseInt(seconds / 3600) + ' 小时';
         }else if( seconds < 2592000){
             return parseInt( seconds / 86400) + ' 天';
         }else if( seconds < 31536000){
