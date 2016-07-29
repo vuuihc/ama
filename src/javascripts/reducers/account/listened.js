@@ -16,7 +16,7 @@ const listened = (state = defaultState, action) => {
           answer_like: item.like,
           answer_ispayed:1,
           answer_listen: item.listen,
-          teacher_id: item.answer_user_id,
+          teacher_id: item.teacher_id,
           teacher_face: item.teacher_face,
           teacher_name: item.teacher_name,
           teacher_position: item.teacher_position,
