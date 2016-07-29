@@ -78,7 +78,9 @@ class QuestionItemWithAvatar extends Component {
   }
 
   render() {
-    const {question, index} = this.props;
+    const {question} = this.props;
+    console.log("question is ====")
+    console.log(question)
     return (
       <article className="question-item-with-avatar">
         <Toast icon="loading" show={this.state.loading}>正在请求……</Toast>
