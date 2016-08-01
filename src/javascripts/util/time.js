@@ -6,8 +6,8 @@ export default  {
     getTimeSpan(time){
         console.log(time);
         let now = new Date();
-        timeDate = new Date(time);
-        timestamp = timeDate.getTime();
+        let timeDate = new Date(time);
+        let timestamp = timeDate.getTime();
         console.log(timestamp);
         console.log(now.getTime())
         let seconds = (now.getTime() - timestamp) / 1000;
