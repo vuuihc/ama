@@ -22,7 +22,7 @@ class HotQuestionList extends Component {
     if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.hotQuestionList.completed) {
       const curPage = ++this.state.curPage;
       this.setState({curPage});
-      this.props.dispatch(getHotQuestionList(curPage, 10))
+      this.props.dispatch(getHotQuestionList(curPage, 20))
     }
   }
   componentDidMount() {

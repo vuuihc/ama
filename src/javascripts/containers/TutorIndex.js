@@ -12,7 +12,8 @@ import Toast from "../util/weui/toast"
 import {baseUrl,domain} from "../api/config"
 import '../../stylesheets/partials/modules/TutorIndex.scss'
 import { withRouter } from 'react-router'
-
+import Confirm from "../util/weui/confirm"
+import Alert from "../util/weui/alert"
 
 class TutorIndex extends Component {
   constructor(props) {
@@ -20,7 +21,36 @@ class TutorIndex extends Component {
     this.state = {
       curPage:1,
       askSuccess:false,
-      loading:false
+      loading:false,
+      showConfirm:false,
+      confirm:{
+        title: "提示",
+        buttons:[
+          {
+            type:'primary',
+            label:'接着提问',
+            onClick: this.hideConfirm.bind(this)
+          },
+          {
+            type:'default',
+            label:'离开',
+            onClick:this.leaveThisPage.bind(this)
+          }
+        ]
+      },
+      showAlert:false,
+      alert:{
+        title:"提示",
+        buttons:[
+          {
+            type: 'default',
+            label: '确定',
+            onClick: this.hideAlert.bind(this)
+          }
+        ]
+      },
+      alertContent:'',
+      nextLocation:location.href,
     }
 	this.routerWillLeave = this.routerWillLeave.bind(this);
   }
@@ -49,7 +79,7 @@ class TutorIndex extends Component {
                   self.setState({successTimer:successTimer})
                 }else{
                   console.log(res)
-                  alert("支付失败")
+                  self.setState({alertContent:"支付失败",showAlert:true})
                 }
                 if( document.removeEventListener ){
                   document.removeEventListener('WeixinJSBridgeReady', onBridgeReady);
@@ -79,7 +109,8 @@ class TutorIndex extends Component {
     const content = this.refs.content.value
     console.log("content is ==="+content)
     if(content==""){
-      alert("内容不能为空哦")
+      // alert("内容不能为空哦")
+      this.setState({alertContent:'内容不能为空哦',showAlert:true})
       return
     }
     const {id} = this.props.params
@@ -106,8 +137,20 @@ class TutorIndex extends Component {
     // return false to prevent a transition w/o prompting the user,
     // or return a string to allow the user to decide:
     if(this.refs.content.value != '' && !this.state.askSuccess){
-      return '您的提问尚未支付，确认离开?'
+      // return '您的提问尚未支付，确认离开?'
+      this.setState({nextLocation:nextLocation.pathname,showConfirm:true})
+      console.log(nextLocation)
+      return false
     }
+  }
+  hideConfirm(){
+    this.setState({showConfirm:false})
+  }
+  hideAlert(){
+    this.setState({showAlert:false})
+  }
+  leaveThisPage(){
+    location.href= this.state.nextLocation
   }
   componentWillUnmount(){
     clearTimeout(this.state.successTimer)
@@ -119,6 +162,8 @@ class TutorIndex extends Component {
       <main className="tutorIndex">
         <Toast  show={this.state.askSuccess} >提问成功</Toast>
         <Toast  icon="loading" show={this.state.loading} >请求支付中……</Toast>
+        <Confirm show={this.state.showConfirm} title={this.state.confirm.title} buttons={this.state.confirm.buttons}>您的提问尚未支付，确认离开？</Confirm>
+        <Alert show={this.state.showAlert} title={this.state.alert.title} buttons={this.state.alert.buttons} >{this.state.alertContent}</Alert>
         <div className="tutor-info">
           <Link to={baseUrl+`tutor/share/${tutorInfo.user_id}`} >
             <img className="QREntry" src={require("../../images/QREntry.png")}/>

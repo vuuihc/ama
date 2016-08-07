@@ -4,6 +4,7 @@
   <script src="//cdn.bootcss.com/babel-polyfill/6.9.1/polyfill.min.js"></script>
   <script src="//cdn.bootcss.com/react/15.2.1/react.min.js"></script>
   <script src="//cdn.bootcss.com/react/15.2.1/react-dom.js"></script>
+  <script src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.js"></script>
   <script type="text/javascript" src="/ama/7dyk/libs/flexible.js"></script>
   <script type="text/javascript" src="/ama/7dyk/libs/vconsole.min.js"></script>
   <script type="text/javascript"  src="/ama/7dyk/libs/zepto.min.js" ></script>
@@ -16,10 +17,15 @@
 <div id="root">
 </div>
 <script src="/ama/7dyk/dist/mobile.js"></script>
+<script type="text/javascript">
+	if ('addEventListener' in document) {
+		document.addEventListener('DOMContentLoaded', function(){
+			FastClick.attach(document.body);
+		}, false);
+	}
+</script>
 <!--友盟统计-->
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259969345'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1259969345%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 <!--<script src="http://localhost:8080/assets/mobile.js"></script>-->
-<!--友盟统计-->
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259969345'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1259969345%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
 </html>

@@ -33,7 +33,7 @@ export default class QuestionItemWithoutAvatar extends Component {
             </span>
           </div>
           <div className="remark">
-            <div className="time">{ time.getTimeSpan(question.time) }小时前被回答</div>
+            <div className="time">{ time.getTimeSpan(question.time) }前被回答</div>
             <div className="remark-info">
               <span>{question.listen}人偷听</span>
               <span className="zan">{question.like}人觉得赞</span>

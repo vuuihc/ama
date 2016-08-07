@@ -68,10 +68,8 @@ article.question-without-avatar {
     overflow: hidden;
     .time{
       float: left;
-      span{
-        font-size: px2rem(20);
-        color: $lightGray;
-      }
+      font-size: px2rem(20);
+      color: $lightGray;
     }
     .remark-info {
       float: right;
