@@ -3,7 +3,9 @@
 dist/	
 !dist/mobile.js
 !dist/mobile.js.map
-
+!dist/images
+#编辑器相关
+.idea/
 # node相关
 # Logs
 logs

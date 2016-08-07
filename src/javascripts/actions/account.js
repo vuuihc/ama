@@ -26,6 +26,7 @@ export function getUserInfo() {
     })
   }
 }
+
 export function getOtherUserInfo(id) {
   return (dispatch) => {
     account.getOtherUserInfo(id, (data) => {
