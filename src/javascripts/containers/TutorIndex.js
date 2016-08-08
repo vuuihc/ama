@@ -168,7 +168,7 @@ class TutorIndex extends Component {
           <Link to={baseUrl+`tutor/share/${tutorInfo.user_id}`} >
             <img className="QREntry" src={require("../../images/QREntry.png")}/>
           </Link>
-          <img className="avatar" src={tutorInfo.user_face}/>
+          <img className="avatar" src={tutorInfo.user_face.slice(0, -1) + '64'}/>
           <h3 className="tutor-name">{tutorInfo.user_name}</h3>
           <h4 className="tutor-title">{tutorInfo.user_title}</h4>
           <h5 className="tutor-intro">{tutorInfo.user_introduction}</h5>
@@ -191,7 +191,7 @@ class TutorIndex extends Component {
           <h5 className="title">他还回答了这些问题</h5>
           {
             tutorAnswerList.data.map((question,index) =>
-              <QuestionItemWithoutAvatar head={tutorInfo.user_face} key={index} question={question}/>
+              <QuestionItemWithoutAvatar head={tutorInfo.user_face.slice(0, -1) + '64'} key={index} question={question}/>
             )
           }
            <Loading completed={tutorAnswerList.completed} />

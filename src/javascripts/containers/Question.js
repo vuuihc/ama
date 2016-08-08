@@ -4,7 +4,7 @@
 import React, {Component, PropTypes} from 'react'
 import {Link} from 'react-router'
 import {connect} from 'react-redux'
-import {getQuestionInfo, priseQuestion} from '../actions/question.js'
+import {getQuestionInfo, priseQuestion, cancelPriseQuestion} from '../actions/question.js'
 import VoiceWave from "../components/VoiceWave"
 import Toast from "../util/weui/toast"
 import {baseUrl,domain} from "../api/config"
@@ -21,6 +21,7 @@ class Question extends Component {
       listenTimer:null,
     }
     this.handlePrise = this.handlePrise.bind(this);
+    this.handleCanclePrise = this.handleCanclePrise.bind(this);
   }
   componentDidMount() {
     const {id} = this.props.params
@@ -124,7 +125,9 @@ class Question extends Component {
   handlePrise(answerId){
     this.props.priseQuestion(answerId);
   }
-
+  handleCanclePrise(answerId){
+    this.props.cancelPriseQuestion(answerId);
+  }
   render() {
     const {questionInfo} = this.props
     console.log("this.state.playing=="+this.state.playing)
@@ -138,7 +141,7 @@ class Question extends Component {
         <Toast icon="loading" show={this.state.loading} >{(questionInfo.answer_ispayed || this.state.paySuccess)?"加载声音中……":"请求支付中……"}</Toast>
         <Link to = {`${baseUrl}user/${questionInfo.user_id}`} >
           <div className="userInfo">
-            <img src={questionInfo.user_face} />
+            <img src={questionInfo.user_face.slice(0, -1) + '64'} />
             <span>{questionInfo.user_name}</span>
             <div className="share">问题不错,快分享出去吧！<i className="iconfont icon-arrow" /></div>
           </div>
@@ -147,7 +150,7 @@ class Question extends Component {
           {questionInfo.question_content}
         </div>
         <div className="tutor">
-          <img src={questionInfo.teacher_face}/>
+          <img src={questionInfo.teacher_face.slice(0, -1) + '132'}/>
           <h3 >{questionInfo.teacher_name}</h3>
           <h4 >{questionInfo.teacher_company+"　"+questionInfo.teacher_position}  </h4>
         </div>
@@ -172,7 +175,7 @@ class Question extends Component {
                     <div><i className="iconfont icon-zanNo" /></div>
                     <div className="desc">赞</div>
                   </div>
-                    : <div className="prise">
+                    : <div className="prise" onClick={() => {this.handleCanclePrise(questionInfo.answer_id)}}>
                     <div><i className="iconfont icon-zanYes" /></div>
                     <div className="desc">已赞</div>
                   </div>
@@ -210,5 +213,6 @@ export default connect(
   {
     priseQuestion,
     getQuestionInfo,
+    cancelPriseQuestion
   }
 )(Question)

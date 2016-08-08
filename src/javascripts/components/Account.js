@@ -27,7 +27,7 @@ class Account extends Component {
     return (
       <div id="accountIndex">
         {
-          this.props.userInfo.is_teacher
+          this.props.userInfo.is_teacher === '1'
           ? <Link to={baseUrl+`tutor/share/${this.props.userInfo.user_id}`} >
               <img className="QREntry" src={require("../../images/QREntry.png")}/>
             </Link>
@@ -38,7 +38,7 @@ class Account extends Component {
         </Link>
         <div className="head">
           <div className="headOuter">
-            <img src={this.props.userInfo.user_face}/>
+            <img src={this.props.userInfo.user_face.slice(0, -1) + '64'}/>
           </div>
         </div>
         <div className="name">{this.props.userInfo.user_name}</div>

@@ -10,6 +10,7 @@ import {
   RECEIVE_LISTEN_INFO,
   RECEIVE_SAVE_VOICE,
   RECEIVE_PRISE_QUESTION,
+  RECEIVE_CANCEL_PRISE_QUESTION,
   RECEIVE_PAID
 } from './ActionTypes'
 
@@ -63,6 +64,18 @@ export function priseQuestion(answerId){
     question.priseQuestion(answerId, (data) => {
       dispatch({
         type: RECEIVE_PRISE_QUESTION,
+        data
+      })
+    })
+  }
+}
+
+//取消点赞
+export function cancelPriseQuestion(answerId){
+  return dispatch => {
+    question.cancelPriseQuestion(answerId, (data) => {
+      dispatch({
+        type: RECEIVE_CANCEL_PRISE_QUESTION,
         data
       })
     })

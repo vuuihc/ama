@@ -19,7 +19,7 @@ class QuestionItemAskedMe extends Component {
       <article className="question-item-asked-me">
         <div className="userInfo">
           <Link to = {`${baseUrl}user/${question.question_user_id}`} >
-            <img src={question.user_face} />
+            <img src={question.user_face.slice(0, -1) + '64'} />
             <span>{question.user_name}</span>
           </Link>
         </div>

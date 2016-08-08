@@ -61,8 +61,15 @@ export default  {
         }
       });
   },
-  priseQuestion(questionId, cb){
-    fetch(`${domain}/api/v1/question/like?answer_id=${questionId}`, {
+  priseQuestion(answerId, cb){
+    fetch(`${domain}/api/v1/question/like?answer_id=${answerId}`, {
+      credentials: 'same-origin'
+    })
+      .then(res => res.json())
+      .then(json => apiHandler.handleResponse(json, cb))
+  },
+  cancelPriseQuestion(answerId, cb){
+    fetch(`${domain}/api/v1/question/cancelLike?answer_id=${answerId}`, {
       credentials: 'same-origin'
     })
       .then(res => res.json())

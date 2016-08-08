@@ -8,6 +8,7 @@ import {
   RECEIVE_LISTEN_INFO,
   RECEIVE_SAVE_VOICE,
   RECEIVE_PRISE_QUESTION,
+  RECEIVE_CANCEL_PRISE_QUESTION,
   RECEIVE_PAID
 }from '../actions/ActionTypes'
 
@@ -69,6 +70,12 @@ export function questionInfo(state = initialState.questionInfo, action) {
     case RECEIVE_PRISE_QUESTION:
       return Object.assign({}, state, {
         answer_isliked: 1,
+        answer_like: action.data.like,
+        answer_listen: action.data.listen
+      })
+    case RECEIVE_CANCEL_PRISE_QUESTION:
+      return  Object.assign({}, state, {
+        answer_isliked: 0,
         answer_like: action.data.like,
         answer_listen: action.data.listen
       })
