@@ -7,7 +7,7 @@ import '../../stylesheets/partials/modules/Account.scss';
 import { connect } from  'react-redux';
 import { getUserInfo } from '../actions/account'
 import {baseUrl} from "../api/config"
-
+import Loading from "../containers/Loading"
 class Account extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +25,7 @@ class Account extends Component {
 
   render() {
     return (
+      this.props.userInfo ?
       <div id="accountIndex">
         {
           this.props.userInfo.is_teacher === '1'
@@ -68,6 +69,7 @@ class Account extends Component {
           { this.props.children }
         </div>
       </div>
+      : <Loading />
     )
   }
 }
