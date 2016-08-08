@@ -25,7 +25,7 @@ class Account extends Component {
 
   render() {
     return (
-      this.props.userInfo ?
+      this.props.userInfo.user_face ?
       <div id="accountIndex">
         {
           this.props.userInfo.is_teacher === '1'
