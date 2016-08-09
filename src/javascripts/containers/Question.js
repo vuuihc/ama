@@ -138,7 +138,7 @@ class Question extends Component {
       1: " playing"
     }
 
-    return ( questionInfo.question_content ? 
+    return ( questionInfo.user_face ?
       <main className="question">
         <Toast icon="loading" show={this.state.loading} >{(questionInfo.answer_ispayed || this.state.paySuccess)?"加载声音中……":"请求支付中……"}</Toast>
         <Link to = {`${baseUrl}user/${questionInfo.user_id}`} >
