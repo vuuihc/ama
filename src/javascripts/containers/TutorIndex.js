@@ -4,10 +4,11 @@
 import React, {Component, PropTypes} from 'react'
 import {Link,browserHistory} from 'react-router'
 import {connect} from 'react-redux'
-import {getTutorInfo,getTutorAnswerList,getPrepayInfo} from '../actions/tutor.js'
+import {getTutorInfo,getTutorAnswerList,getPrepayInfo,clearTutorIndex} from '../actions/tutor.js'
 import {getIAsked} from '../actions/account.js'
 import QuestionItemWithoutAvatar from "./blocks/QuestionItemWithoutAvatar"
-import Loading from "./Loading2"
+import Loading2 from "./Loading2"
+import Loading from './Loading'
 import Toast from "../util/weui/toast"
 import {baseUrl,domain} from "../api/config"
 import '../../stylesheets/partials/modules/TutorIndex.scss'
@@ -153,12 +154,14 @@ class TutorIndex extends Component {
     location.href= this.state.nextLocation
   }
   componentWillUnmount(){
-    clearTimeout(this.state.successTimer)
+    clearTimeout(this.state.successTimer);
+    this.props.dispatch(clearTutorIndex());
   }
 
   render() {
     const {tutorInfo,tutorAnswerList} = this.props
     return (
+      tutorInfo.user_face ?
       <main className="tutorIndex">
         <Toast  show={this.state.askSuccess} >提问成功</Toast>
         <Toast  icon="loading" show={this.state.loading} >请求支付中……</Toast>
@@ -194,9 +197,10 @@ class TutorIndex extends Component {
               <QuestionItemWithoutAvatar head={tutorInfo.user_face.slice(0, -1) + '64'} key={index} question={question}/>
             )
           }
-           <Loading completed={tutorAnswerList.completed} />
+           <Loading2 completed={tutorAnswerList.completed} />
         </div>
       </main>
+      : <Loading/>
     )
   }
 }
@@ -214,7 +218,7 @@ function mapStateToProps(state) {
   return {
     tutorInfo: state.tutorInfo,
     tutorAnswerList: state.tutorAnswerList,
-    prepayInfo: state.prepayInfo
+    prepayInfo: state.prepayInfo,
   }
 }
 
