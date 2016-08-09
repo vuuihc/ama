@@ -9,7 +9,8 @@ import {
   RECEIVE_SAVE_VOICE,
   RECEIVE_PRISE_QUESTION,
   RECEIVE_CANCEL_PRISE_QUESTION,
-  RECEIVE_PAID
+  RECEIVE_PAID,
+  CLEAR_QUESTION
 }from '../actions/ActionTypes'
 
 const initialState = {
@@ -79,6 +80,8 @@ export function questionInfo(state = initialState.questionInfo, action) {
         answer_like: action.data.like,
         answer_listen: action.data.listen
       })
+    case CLEAR_QUESTION:
+      return initialState.questionInfo;
     default:
       return state
   }
@@ -89,6 +92,8 @@ export function listenInfo(state = initialState.listenInfo, action) {
       return Object.assign({},state,{loading:true})
     case RECEIVE_LISTEN_INFO:
       return {data: action.data,timeStamp: new Date().valueOf(),loading:false}
+    case CLEAR_QUESTION:
+      return initialState.listenInfo;
     default:
       return state
   }

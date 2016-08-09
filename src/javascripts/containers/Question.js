@@ -4,7 +4,7 @@
 import React, {Component, PropTypes} from 'react'
 import {Link} from 'react-router'
 import {connect} from 'react-redux'
-import {getQuestionInfo, priseQuestion, cancelPriseQuestion} from '../actions/question.js'
+import {getQuestionInfo, priseQuestion, cancelPriseQuestion, clearQuesiton} from '../actions/question.js'
 import VoiceWave from "../components/VoiceWave"
 import Toast from "../util/weui/toast"
 import {baseUrl,domain} from "../api/config"
@@ -30,6 +30,8 @@ class Question extends Component {
   componentWillUnmount(){
     const self = this
     clearTimeout(self.state.listenTimer);
+    this.props.clearQuesiton();
+
   }
   getListenInfo(answerId,cb) {
     fetch(`${domain}/api/v1/answer/listen?answer_id=${answerId}`, {
@@ -213,6 +215,7 @@ export default connect(
   {
     priseQuestion,
     getQuestionInfo,
-    cancelPriseQuestion
+    cancelPriseQuestion,
+    clearQuesiton
   }
 )(Question)

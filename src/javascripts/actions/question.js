@@ -11,7 +11,8 @@ import {
   RECEIVE_SAVE_VOICE,
   RECEIVE_PRISE_QUESTION,
   RECEIVE_CANCEL_PRISE_QUESTION,
-  RECEIVE_PAID
+  RECEIVE_PAID,
+  CLEAR_QUESTION
 } from './ActionTypes'
 
 export function getHotQuestionList(page, num) {
@@ -88,5 +89,10 @@ export function handlePaid(index){
       type: RECEIVE_PAID,
       index
     })
+  }
+}
+export function clearQuesiton(){
+  return {
+    type:CLEAR_QUESTION
   }
 }

@@ -72,7 +72,7 @@ export function tutorAnswerList(state = initialState.tutorAnswerList, action){
         return {data:state.data.concat(action.data),page:action.page,loading:false}
       }
     case CLEAR_TUTOR_INDEX:
-      return initialState.tutorInfo
+      return initialState.tutorAnswerList
     default:
       return state
   }
@@ -84,7 +84,7 @@ export function prepayInfo(state = initialState.prepayInfo, action){
     case RECEIVE_PREPAY_INFO:
       return {data:action.data,loading:false}
     case CLEAR_TUTOR_INDEX:
-      return initialState.tutorInfo
+      return initialState.prepayInfo
     default:
       return state
   }
