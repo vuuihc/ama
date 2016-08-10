@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div ref="content">{ this.props.children }</div>
+        <div className="app-container" ref="content">{ this.props.children }</div>
         <div className="footer">
           <ul>
             <li><IndexLink activeClassName='active' to={baseUrl}>热点</IndexLink></li>
