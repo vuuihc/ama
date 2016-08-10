@@ -7,11 +7,25 @@ import {browserHistory} from 'react-router'
 import apiHandler from "../../util/apiHandler"
 import {handlePaid} from '../../actions/question'
 import '../../../stylesheets/partials/modules/QuestionItemWithAvatar.scss'
+import Alert from "../../util/weui/alert"
+
 class QuestionItemWithAvatar extends Component {
   constructor() {
     super();
     this.state = {
-      loading: false
+        loading: false,
+        showAlert:false,
+        alert:{
+          title:"提示",
+          buttons:[
+            {
+              type: 'default',
+              label: '确定',
+              onClick: this.hideAlert.bind(this)
+            }
+          ]
+        },
+        alertContent:''
     }
   }
 
@@ -44,7 +58,8 @@ class QuestionItemWithAvatar extends Component {
                       browserHistory.push(`${baseUrl}question/${questionId}`)
                     } else {
                       // browserHistory.push(`${baseUrl}question/${questionId}`)
-                      alert("支付失败，原因：" + JSON.stringify(res))
+                      self.setState({alertContent:"支付失败",showAlert:true})
+                    //   alert("支付失败，原因：" + JSON.stringify(res))
                     }
                     if (document.removeEventListener) {
                       document.removeEventListener('WeixinJSBridgeReady', onBridgeReady);
@@ -76,13 +91,16 @@ class QuestionItemWithAvatar extends Component {
         }))
     }
   }
-
+  hideAlert(){
+      this.setState({showAlert:false})
+    }
   render() {
     const {question} = this.props;
     console.log("question is ====")
     console.log(question)
     return (
       <article className="question-item-with-avatar">
+        <Alert show={this.state.showAlert} title={this.state.alert.title} buttons={this.state.alert.buttons} >{this.state.alertContent}</Alert>
         <Toast icon="loading" show={this.state.loading}>正在请求……</Toast>
         <Link to={baseUrl +"question/"+question.question_id}>
           <div className="question-content">

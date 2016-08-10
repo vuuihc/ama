@@ -12,10 +12,11 @@
       height: px2rem(38);
     }
     img.avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 60px;
-      margin: 57px auto 33px;
+      width: px2rem(120);
+      height: px2rem(120);
+      border-radius: px2rem(60);
+      margin: px2rem(57) auto px2rem(33);
+      border: 1px solid blue;
     }
     .tutor-name{
       font-size: px2rem(48);
@@ -35,21 +36,18 @@
     }
     .grade {
       margin-top: px2rem(52);
-      span {
-        font-size: px2rem(24);
-        color: $lightGray;
-      }
-      .num{
-        >span:first-child {
-          margin-right: px2rem(229);
-        }
-      }
-      .grade-name{
-        margin-top: px2rem(16);
-        span:first-child {
-          margin-right: px2rem(208);
-        }
-      }
+      @include uniMethod('display','flex');
+     justify-content: space-around;
+     .grade-item{
+         text-align: center;
+         span{
+             font-size: px2rem(24);
+             color: $lightGray;
+             &:first-child{
+                 margin-bottom: px2rem(16);
+             }
+         }
+     }
     }
     textarea {
       font-size: px2rem(24);

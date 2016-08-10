@@ -10,6 +10,7 @@ import Toast from "../util/weui/toast"
 import {baseUrl,domain} from "../api/config"
 import '../../stylesheets/partials/modules/Question.scss'
 import Loading from "./Loading"
+import Alert from "../util/weui/alert"
 class Question extends Component {
   constructor(props){
     super(props)
@@ -19,6 +20,18 @@ class Question extends Component {
       curAnswerId:null,
       playNow: true,
       listenTimer:null,
+      showAlert:false,
+      alert:{
+        title:"提示",
+        buttons:[
+          {
+            type: 'default',
+            label: '确定',
+            onClick: this.hideAlert.bind(this)
+          }
+        ]
+      },
+      alertContent:'',
     }
     this.handlePrise = this.handlePrise.bind(this);
     this.handleCanclePrise = this.handleCanclePrise.bind(this);
@@ -61,6 +74,7 @@ class Question extends Component {
                     // self.setState({playNow: false})
                   }else{
                     console.log(res)
+                    self.setState({alertContent:"支付失败",showAlert:true})
                     // alert("支付失败，原因："+JSON.stringify(res))
                     //     console.log("失败原因：")
                   }
@@ -130,6 +144,9 @@ class Question extends Component {
   handleCanclePrise(answerId){
     this.props.cancelPriseQuestion(answerId);
   }
+  hideAlert(){
+    this.setState({showAlert:false})
+  }
   render() {
     const {questionInfo} = this.props
     console.log("this.state.playing=="+this.state.playing)
@@ -140,6 +157,7 @@ class Question extends Component {
 
     return ( questionInfo.user_face ?
       <main className="question">
+        <Alert show={this.state.showAlert} title={this.state.alert.title} buttons={this.state.alert.buttons} >{this.state.alertContent}</Alert>
         <Toast icon="loading" show={this.state.loading} >{(questionInfo.answer_ispayed || this.state.paySuccess)?"加载声音中……":"请求支付中……"}</Toast>
         <Link to = {`${baseUrl}user/${questionInfo.user_id}`} >
           <div className="userInfo">
