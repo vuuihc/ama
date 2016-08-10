@@ -190,8 +190,10 @@ class TutorIndex extends Component {
               <p>被偷听</p>
             </div>
           </div>
-          <textarea ref="content" maxlength="60" minlength="10" onPropertyChange={this.handleTextarea.bind(this)} placeholder={"向"+tutorInfo.user_name+"提问，等TA语音回答；超过24小时未回答，将按支付路径全额退款"}/>
-          <div className="textarea-tips">{this.state.textLength}/60</div>
+          <div className="answer-text">
+              <textarea ref="content" maxlength="60" minlength="10" onKeyup={this.handleTextarea.bind(this)} onChange={this.handleTextarea.bind(this)} placeholder={"向"+tutorInfo.user_name+"提问，等TA语音回答；超过24小时未回答，将按支付路径全额退款"}/>
+              <div className="text-tips">{this.state.textLength}/60</div>
+          </div>
           <div className="value">￥{tutorInfo.teacher_prize}</div>
           <a className="bottom-btn" onClick={this.askBtnClick.bind(this)}>向TA提问</a>
 

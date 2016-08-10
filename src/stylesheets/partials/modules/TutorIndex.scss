@@ -49,20 +49,29 @@
          }
      }
     }
-    textarea {
-      font-size: px2rem(24);
-      color: $lightGray;
-      width: px2rem(704);
-      height: px2rem(190);
-      margin: px2rem(38) px2rem(24) 0;
-      padding: px2rem(20) px2rem(30);
-      line-height: px2rem(40);
-      -webkit-border-radius: px2rem(15);
-      -moz-border-radius: px2rem(15);
-      border-radius: px2rem(15);
-      &:active{
-        outline: none;
-      }
+    .answer-text{
+        position: relative;
+        textarea {
+          font-size: px2rem(24);
+          color: $lightGray;
+          width: px2rem(704);
+          height: px2rem(190);
+          margin: px2rem(38) px2rem(24) 0;
+          padding: px2rem(20) px2rem(30);
+          line-height: px2rem(40);
+          -webkit-border-radius: px2rem(15);
+          -moz-border-radius: px2rem(15);
+          border-radius: px2rem(15);
+          &:active{
+            outline: none;
+          }
+        }
+        .text-tips{
+            position: absolute;
+            right: px2rem(30);
+            bottom: px2rem(20);
+            color: lightGray;
+        }
     }
     .value {
       margin-top: px2rem(36);
