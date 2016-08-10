@@ -127,7 +127,7 @@ class QuestionItemWithAvatar extends Component {
         </div>
         <Link to={baseUrl +"question/"+question.question_id}>
           <div className="remark">
-            <div className="value">价值￥{question.question_prize}</div>
+            <div className="value"><i className="iconfont icon-qiandai" />{question.question_prize}</div>
             <div className="remark-info">
               <span>{question.answer_listen}人偷听</span>
               <span className="kui">{question.answer_like}人觉得赞</span>

@@ -6,8 +6,7 @@
     "build": "set NODE_ENV=development &webpack --progress --colors --watch -p",
     "watch": "set NODE_ENV=development & webpack-dev-server --hot --inline --progress --colors",
     "dist": "set NODE_ENV=production & webpack --progress --colors -p",
-    "add": "git add dist/mobile.js dist/mobile.js.map src/*",
-    "commit": "git commit -am 'update' & git push"
+    "commit": "git add dist/mobile.js dist/mobile.js.map src/* & git commit -am 'update' & git push"
   },
   "repository": {
     "type": "git"
