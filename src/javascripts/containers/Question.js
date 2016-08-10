@@ -42,8 +42,11 @@ class Question extends Component {
   }
   componentWillUnmount(){
     const self = this
-    clearTimeout(self.state.listenTimer);
-    this.props.clearQuesiton();
+    clearTimeout(self.state.listenTimer)
+    this.state.answerAudio.pause()
+    this.state.answerAudio.currentTime=0
+    this.setState({answerAudio:null})
+    this.props.clearQuesiton()
 
   }
   getListenInfo(answerId,cb) {

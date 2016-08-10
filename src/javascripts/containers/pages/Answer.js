@@ -12,7 +12,7 @@ import Toast from "../../util/weui/toast"
 import {baseUrl,domain} from "../../api/config"
 import Confirm from "../../util/weui/confirm"
 import Alert from "../../util/weui/alert"
-
+import Loading from "../Loading"
 class Answer extends Component {
   constructor(){
     super();
@@ -21,6 +21,8 @@ class Answer extends Component {
       status: 0,//0:话筒等待录音，1：等待微信发起录音，2：录音中，3：等待微信停止录音，4：等待播放，5：播放中
       answerSuccess: false,
       successTimer:null,
+      authorizing:false,
+      uploading:false,
       START:0,
       END:0,
       showAlert:false,
@@ -75,9 +77,11 @@ class Answer extends Component {
     wx.ready(function(){
       console.log("allowRecord"+sessionStorage.allowRecord)
       if(!sessionStorage.allowRecord || sessionStorage.allowRecord !== 'true'){
+        self.setState({authorizing:true})
         wx.startRecord({
           success: function(){
             sessionStorage.allowRecord = true;
+            self.setState({authorizing:false})
             self.recordTimer = setTimeout(function(){
               wx.stopRecord();
             },500);
@@ -230,10 +234,11 @@ class Answer extends Component {
         playStopHandler(event)
         self.setState({status:4})
     }
-    
+
   }
   saveVoice(serverId,questionId){
     const self = this
+    self.setState({uploading:true})
     fetch( `${domain}/api/v1/answer/answer`,{
       credentials: 'same-origin',
       method: 'post',
@@ -250,7 +255,7 @@ class Answer extends Component {
       .then(res => res.json())
       .then(json => {
         if(json.errCode==0){
-          self.setState({answerSuccess:true})
+          self.setState({uploading:false,answerSuccess:true})
           self.props.getAskedMe(1,10)
           let successTimer = setTimeout(()=>{
             browserHistory.push(baseUrl+"account/AskedMeList")
@@ -275,14 +280,12 @@ class Answer extends Component {
       localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
       isShowProgressTips: 1, // 默认为1，显示进度提示
       success: function (res) {
-        console.log("上传成功了！")
-        console.log("serverId is ==="+res.serverId)
         const serverId = res.serverId
         const questionId = self.props.params.id
         self.saveVoice(serverId,questionId)
       }
     });
-    
+
   }
   playVoice(){
     this.setState({playing:true})
@@ -309,35 +312,39 @@ class Answer extends Component {
       5 : <div>播放中</div>
     }
     return (
-      <div className="accountAnswer">
-        <Toast  show={this.state.answerSuccess} >回答成功</Toast>
-        <Toast  icon="loading" show={this.state.status==1} >开启中</Toast>
-        <Toast  icon="loading" show={this.state.status==3} >停止中</Toast>
-        <Alert show={this.state.showAlert} title="提示" buttons={this.state.alert.buttons}>{this.state.alertContent}</Alert>
-        <Confirm show={this.state.showConfirm} title="提示" buttons={this.state.confirm.buttons}>{this.state.confirmText}</Confirm>
-        <div className="question">
-          <div className="head">
-            <Link to={`${baseUrl}user/${questionInfo.user_id}`}><img src={questionInfo.user_face.slice(0, -1) + '64'}/></Link>
-            <span className="name">{questionInfo.user_name}</span>
-            <span className="price">￥ {questionInfo.question_prize}</span>
+        questionInfo.user_face?
+          <div className="accountAnswer">
+            <Toast  show={this.state.answerSuccess} >回答成功</Toast>
+            <Toast  icon="loading" show={this.state.status==1} >开启中</Toast>
+            <Toast  icon="loading" show={this.state.status==3} >停止中</Toast>
+            <Toast  icon="loading" show={this.state.authorizing} >获取授权</Toast>
+            <Toast  icon="loading" show={this.state.uploading} >上传中</Toast>
+            <Alert show={this.state.showAlert} title="提示" buttons={this.state.alert.buttons}>{this.state.alertContent}</Alert>
+            <Confirm show={this.state.showConfirm} title="提示" buttons={this.state.confirm.buttons}>{this.state.confirmText}</Confirm>
+            <div className="question">
+              <div className="head">
+                <Link to={`${baseUrl}user/${questionInfo.user_id}`}><img src={questionInfo.user_face.slice(0, -1) + '64'}/></Link>
+                <span className="name">{questionInfo.user_name}</span>
+                <span className="price">￥ {questionInfo.question_prize}</span>
+              </div>
+              <div className="stem">{ questionInfo.question_content}</div>
+              <div className="time">{time.getTimeSpan(questionInfo.question_time)}之前</div>
+            </div>
+            <div className="hint">您的回答将被公开，答案每被偷听一次，你就赚 ￥0.3</div>
+            <div className="replyHint">{Tips[this.state.status]}</div>
+            <div ref="replyContainer" className="replyContainer">
+              <div ref="roundContainer" className={"round-container "+classNames[this.state.status]}>
+                <div className="replyIcon"></div>
+                <div className="recording"></div>
+                <div className="bubble-voice"></div>
+                <VoiceWave />
+              </div>
+            </div>
+            <div className="reRecord" onClick={this.reRecord.bind(this)}>重录</div>
+            <div className="recordHint">{this.state.localId==null?"点击录音按钮最多可录制60S":"点击试听可试听您最近一次的回答"}</div>
+            <div className="sendBtn" onClick={this.confirmAnswer.bind(this)}>发送</div>
           </div>
-          <div className="stem">{ questionInfo.question_content}</div>
-          <div className="time">{time.getTimeSpan(questionInfo.question_time)}之前</div>
-        </div>
-        <div className="hint">您的回答将被公开，答案每被偷听一次，你就赚 ￥0.3</div>
-        <div className="replyHint">{Tips[this.state.status]}</div>
-        <div ref="replyContainer" className="replyContainer">
-          <div ref="roundContainer" className={"round-container "+classNames[this.state.status]}>
-            <div className="replyIcon"></div>
-            <div className="recording"></div>
-            <div className="bubble-voice"></div>
-            <VoiceWave />
-          </div>
-        </div>
-        <div className="reRecord" onClick={this.reRecord.bind(this)}>重录</div>
-        <div className="recordHint">{this.state.localId==null?"点击录音按钮最多可录制60S":"点击试听可试听您最近一次的回答"}</div>
-        <div className="sendBtn" onClick={this.confirmAnswer.bind(this)}>发送</div>
-      </div>
+          :<Loading />
     )
   }
 }
