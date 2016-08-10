@@ -125,6 +125,7 @@ class QuestionItemWithAvatar extends Component {
                   <span className="bubble-text">{question.answer_ispayed ? "点击偷偷听" : "1元偷偷听"}</span>
                 </span>
         </div>
+          
         <Link to={baseUrl +"question/"+question.question_id}>
           <div className="remark">
             <div className="value"><i className="iconfont icon-qiandai" />&nbsp;{question.question_prize}</div>
