@@ -45,7 +45,7 @@ class Account extends Component {
         <div className="name">{this.props.userInfo.user_name}</div>
         <div className="position">{this.props.userInfo.user_company} {this.props.userInfo.user_position}</div>
         <div className="description">{this.props.userInfo.user_introduction}</div>
-        <div className="divider top"></div>
+        {this.props.userInfo.answer_num?<div className="divider top"></div>:""}
         {this.props.userInfo.answer_num?
             <div className="statics">
               <ul>
