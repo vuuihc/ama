@@ -36,14 +36,14 @@ class HotQuestionList extends Component {
     document.removeEventListener('scroll', this.handleScroll);
     console.log(this.refs);
   }
-  
+
   render() {
-    const {hotQuestionList} = this.props
+    const {hotQuestionList,userId} = this.props
     return (
       <main className="hot-question-list">
         {
           hotQuestionList.data.map((question, index) =>
-            <QuestionItemWithAvatar question = { question } key={index} index={index}/>
+            <QuestionItemWithAvatar userId={userId} question = { question } key={index} index={index}/>
           )
         }
         <Loading completed = { hotQuestionList.completed } />
@@ -65,7 +65,8 @@ function mapStateToProps(state) {
   return {
     hotQuestionList: state.hotQuestionList,
     listenInfo:state.listenInfo,
-    landPage:state.landPage
+    landPage:state.landPage,
+    userId: state.account.userInfo.user_id
   }
 }
 

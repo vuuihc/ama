@@ -3,7 +3,7 @@ import apiHandler from "../util/apiHandler"
 
 export default  {
     getUserInfo(cb) {
-        
+
         fetch(domain + `/api/v1/user/getusernow`, {
             credentials: 'same-origin'
         })
@@ -25,7 +25,6 @@ export default  {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
           },
-          credentials: 'same-origin',
           body: JSON.stringify({
               company,
               position:job,
@@ -74,4 +73,3 @@ export default  {
             .then(json => apiHandler.handleResponse(json,cb))
     }
 }
-    

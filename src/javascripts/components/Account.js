@@ -46,18 +46,20 @@ class Account extends Component {
         <div className="position">{this.props.userInfo.user_company} {this.props.userInfo.user_position}</div>
         <div className="description">{this.props.userInfo.user_introduction}</div>
         <div className="divider top"></div>
-        <div className="statics">
-          <ul>
-            <li>{this.props.userInfo.answer_num}题</li>
-            <li>{this.props.userInfo.listen_num}次</li>
-            <li>￥{this.props.userInfo.teacher_prize}</li>
-          </ul>
-          <ul>
-            <li>回答过</li>
-            <li>被偷听</li>
-            <li>身价</li>
-          </ul>
-        </div>
+        {this.props.userInfo.answer_num?
+            <div className="statics">
+              <ul>
+                <li>{this.props.userInfo.answer_num}题</li>
+                <li>{this.props.userInfo.listen_num}次</li>
+                <li>￥{this.props.userInfo.teacher_prize}</li>
+              </ul>
+              <ul>
+                <li>回答过</li>
+                <li>被偷听</li>
+                <li>身价</li>
+              </ul>
+            </div>:""
+        }
         <div className="dividerWide"></div>
         <div className="nav">
           <IndexLink to={baseUrl+"account/"} activeClassName="active" >听过的</IndexLink>

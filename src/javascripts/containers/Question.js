@@ -139,7 +139,11 @@ class Question extends Component {
     }
   }
   handlePrise(answerId){
-    this.props.priseQuestion(answerId);
+    if(!this.props.questionInfo.answer_ispayed&&!this.state.paySuccess){
+        this.setState({alertContent:"您还没有听过该问题",showAlert:true})
+    }else{
+        this.props.priseQuestion(answerId);
+    }
   }
   handleCanclePrise(answerId){
     this.props.cancelPriseQuestion(answerId);

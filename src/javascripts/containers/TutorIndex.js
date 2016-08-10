@@ -191,7 +191,7 @@ class TutorIndex extends Component {
             </div>
           </div>
           <div className="answer-text">
-              <textarea ref="content" maxlength="60" minlength="10" onKeyup={this.handleTextarea.bind(this)} onChange={this.handleTextarea.bind(this)} placeholder={"向"+tutorInfo.user_name+"提问，等TA语音回答；超过24小时未回答，将按支付路径全额退款"}/>
+              <textarea ref="content" maxLength="60" onKeyup={this.handleTextarea.bind(this)} onChange={this.handleTextarea.bind(this)} placeholder={"向"+tutorInfo.user_name+"提问，等TA语音回答；超过24小时未回答，将按支付路径全额退款"}/>
               <div className="text-tips">{this.state.textLength}/60</div>
           </div>
           <div className="value">￥{tutorInfo.teacher_prize}</div>

@@ -4,12 +4,9 @@ export default  {
      * @param cb
      */
     getTimeSpan(time){
-        console.log("time==="+time);
         let now = new Date();
         let timestamp = new Date(time).getTime();
-        console.log("timestamp===="+timestamp);
-        console.log("now==="+now.getTime())
-        let seconds = (now.getTime() - timestamp) / 1000;
+        let seconds = (now.getTime()/1000 - timestamp);
         if( seconds < 60){
             return parseInt(seconds) + ' 秒';
         }else if( seconds < 3600){

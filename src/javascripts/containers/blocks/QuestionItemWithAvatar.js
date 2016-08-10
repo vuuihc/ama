@@ -95,9 +95,10 @@ class QuestionItemWithAvatar extends Component {
       this.setState({showAlert:false})
     }
   render() {
-    const {question} = this.props;
+    const {question,userId} = this.props;
     console.log("question is ====")
     console.log(question)
+    console.log("userId is=="+userId)
     return (
       <article className="question-item-with-avatar">
         <Alert show={this.state.showAlert} title={this.state.alert.title} buttons={this.state.alert.buttons} >{this.state.alertContent}</Alert>
@@ -107,7 +108,7 @@ class QuestionItemWithAvatar extends Component {
             <h4>{question.question_content}</h4>
           </div>
         </Link>
-        <Link to={baseUrl+"tutor/"+question.teacher_id}>
+        <Link to={userId==question.teacher_id?`${baseUrl}account` : `${baseUrl}tutor/${question.teacher_id}`}>
           <div className="mentor">
             <img src={question.teacher_face.slice(0, -1) + '64'}/>
             <div className="mentor-info">
@@ -140,7 +141,7 @@ class QuestionItemWithAvatar extends Component {
 
   QuestionItemWithAvatar.defaultProps = {
     question:{},
-    index:0
+    index:0,
   }
   QuestionItemWithAvatar = connect(undefined, {handlePaid})(QuestionItemWithAvatar)
   export default QuestionItemWithAvatar;

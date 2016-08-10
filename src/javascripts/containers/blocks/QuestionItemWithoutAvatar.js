@@ -29,14 +29,14 @@ export default class QuestionItemWithoutAvatar extends Component {
             <span className="bubble">
               <span className="bubble-tail"></span>
               <span className="bubble-voice"></span>
-              <span className="bubble-text">点击播放</span>
+              <span className="bubble-text"> 1 元偷偷听</span>
             </span>
           </div>
           <div className="remark">
-            <div className="time">{ time.getTimeSpan(question.time) }前被回答</div>
+            <div className="time">{ time.getTimeSpan(question.time) }前回答</div>
             <div className="remark-info">
-              <span>{question.listen}人偷听</span>
-              <span className="zan">{question.like}人觉得赞</span>
+              <span>{question.listen} 人偷听</span>
+              <span className="zan">{question.like} 人觉得赞</span>
             </div>
           </div>
         </Link>
