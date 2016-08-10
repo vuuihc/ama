@@ -20,7 +20,8 @@ class TutorIndex extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      curPage:1,
+        textLength:0,
+        curPage:1,
       askSuccess:false,
       loading:false,
       showConfirm:false,
@@ -157,7 +158,11 @@ class TutorIndex extends Component {
     clearTimeout(this.state.successTimer);
     this.props.dispatch(clearTutorIndex());
   }
-
+  handleTextarea(){
+      const text = ReactDOM.findDOMNode(this.refs.content).value;
+      console.log("textLength=="+text.length);
+      this.setState({textLength: text.length})
+    }
   render() {
     const {tutorInfo,tutorAnswerList} = this.props
     return (
@@ -173,19 +178,20 @@ class TutorIndex extends Component {
           </Link>
           <img className="avatar" src={tutorInfo.user_face.slice(0, -1) + '64'}/>
           <h3 className="tutor-name">{tutorInfo.user_name}</h3>
-          <h4 className="tutor-title">{tutorInfo.user_title}</h4>
+          <h4 className="tutor-title">{tutorInfo.user_company+"  "+tutorInfo.user_position}</h4>
           <h5 className="tutor-intro">{tutorInfo.user_introduction}</h5>
           <div className="grade">
-            <div className="num">
-              <span>￥{tutorInfo.teacher_income}</span>
-              <span>￥{tutorInfo.listen_num}</span>
+            <div className="grade-item">
+              <p>￥{tutorInfo.teacher_income}</p>
+              <p>总收入</p>
             </div>
-            <div className="grade-name">
-              <span>总收入</span>
-              <span>被偷听</span>
+            <div className="grade-item">
+              <p>￥{tutorInfo.listen_num}</p>
+              <p>被偷听</p>
             </div>
           </div>
-          <textarea ref="content" placeholder={"向"+tutorInfo.user_name+"提问，等TA语音回答；超过24小时未回答，将按支付路径全额退款"}/>
+          <textarea ref="content" maxlength="60" minlength="10" onPropertyChange={this.handleTextarea.bind(this)} placeholder={"向"+tutorInfo.user_name+"提问，等TA语音回答；超过24小时未回答，将按支付路径全额退款"}/>
+          <div className="textarea-tips">{this.state.textLength}/60</div>
           <div className="value">￥{tutorInfo.teacher_prize}</div>
           <a className="bottom-btn" onClick={this.askBtnClick.bind(this)}>向TA提问</a>
 

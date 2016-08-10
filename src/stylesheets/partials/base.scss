@@ -7,6 +7,11 @@
   -moz-#{$key}:#{$value};
   #{$key}:#{$value};
 }
+@mixin uniValue($key, $value){
+  #{$key}:-webkit-#{$value};
+  #{$key}:-moz-#{$value};
+  #{$key}:#{$value};
+}
 
 
 /*蓝色*/
@@ -34,4 +39,3 @@ $white : #ffffff;
 /*高度和大小*/
 $buttonHeight : px2rem(90); //按钮高度
 $buttonFontSize : px2rem(30); //按钮字体大小
-

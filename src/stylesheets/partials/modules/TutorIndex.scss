@@ -36,11 +36,11 @@
     }
     .grade {
       margin-top: px2rem(52);
-      @include uniMethod('display','flex');
+      @include uniValue('display','flex');
      justify-content: space-around;
      .grade-item{
          text-align: center;
-         span{
+         p{
              font-size: px2rem(24);
              color: $lightGray;
              &:first-child{
