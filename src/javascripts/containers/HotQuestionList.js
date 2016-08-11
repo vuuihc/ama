@@ -38,7 +38,6 @@ class HotQuestionList extends Component {
     $('.app-container').off('scroll', this.handleScroll);
     console.log(this.refs);
   }
-
   render() {
     const {hotQuestionList,userId} = this.props
     return (
