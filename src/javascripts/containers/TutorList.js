@@ -22,13 +22,15 @@ class TutorList extends Component {
     this.props.dispatch(getTutorList(1, 20))
     this.props.dispatch(getUserInfo());
     console.log("tutorList===" + this.props.tutorList)
-    document.addEventListener('scroll', this.handleScroll);
+    $('.app-container').on('scroll', this.handleScroll);
   }
   componentWillUnmount() {
-    document.removeEventListener('scroll', this.handleScroll);
+    $('.app-container').off('scroll', this.handleScroll);
   }
   handleScroll() {
-    if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.tutorList.completed) {
+    let container = document.getElementsByClassName('app-container')[0];   
+    console.log(container.clientHeight, '+', container.scrollTop, '=', container.clientHeight + container.scrollTop, container.scrollHeight);  
+    if (container.clientHeight + container.scrollTop + 1 == container.scrollHeight  && !this.props.hotQuestionList.completed) {
       const curPage = ++this.state.curPage;
       this.setState({curPage});
       this.props.dispatch(getTutorList(curPage, 10))

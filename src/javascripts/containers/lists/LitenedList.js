@@ -16,17 +16,20 @@ class LitenedList extends Component {
     if (this.props.data.length === 0) {
       this.props.getListened(1, 10);
     }
-    document.addEventListener('scroll', this.handleScroll);
+    $('.app-container').on('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('scroll', this.handleScroll);
+    $('.app-container').off('scroll', this.handleScroll);
   }
 
 
   handleScroll() {
-    if (window.scrollY + window.innerHeight == document.body.clientHeight && !this.props.completed) {
-      this.props.getListened(this.props.page, 10);
+    const { completed, page }  = this.props;
+    let container = document.getElementsByClassName('app-container')[0];
+    console.log(container.clientHeight, '+', container.scrollTop, '=', container.clientHeight + container.scrollTop, container.scrollHeight);
+    if (container.clientHeight + container.scrollTop + 1 == container.scrollHeight  && !completed) {
+      this.props.getListened(page, 10);
     }
 
   }

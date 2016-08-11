@@ -21,7 +21,7 @@ class HotQuestionList extends Component {
   handleScroll(){
     let container = document.getElementsByClassName('app-container')[0];
     console.log(container.clientHeight, '+', container.scrollTop, '=', container.clientHeight + container.scrollTop, container.scrollHeight);
-    if (container.clientHeight + container.scrollTop == container.scrollHeight + 1 && !this.props.hotQuestionList.completed) {
+    if (container.clientHeight + container.scrollTop + 1 == container.scrollHeight  && !this.props.hotQuestionList.completed) {
       const curPage = ++this.state.curPage;
       this.setState({curPage});
       this.props.dispatch(getHotQuestionList(curPage, 20))
@@ -36,7 +36,6 @@ class HotQuestionList extends Component {
   }
   componentWillUnmount(){
     $('.app-container').off('scroll', this.handleScroll);
-    console.log(this.refs);
   }
   render() {
     const {hotQuestionList,userId} = this.props
