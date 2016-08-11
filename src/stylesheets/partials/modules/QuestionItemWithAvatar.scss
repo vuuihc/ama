@@ -92,10 +92,11 @@ article.question-item-with-avatar {
       text-align: right;
       color: red;
       font-stretch: expanded;
+      font-size: px2rem(30);
       .iconfont{
-        font-size: px2rem(30);
+        font-size: 0.45rem;
+        color:#FFD404;
       }
-      font-size: px2rem(24);
     }
     .remark-info {
       position: absolute;
