@@ -2,8 +2,19 @@
 span>a>img {
     display: none;
 }
+.app-container{
+  position:absolute;
+  top:0;
+  right:0;
+  left:0;
+  overflow-y: scroll;
+  height:90%;
+  height:calc(100vh - 1.2rem);
+  height:-webkit-calc(100vh - 1.2rem);
+  height:-moz-calc(100vh - 1.2rem);
+}
 .footer{
-  position: fixed;
+  position: absolute;
   bottom:0;
   left:0;
   right:0;

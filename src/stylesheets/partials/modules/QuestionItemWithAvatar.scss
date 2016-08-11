@@ -82,6 +82,7 @@ article.question-item-with-avatar {
 
   }
   .remark {
+    
     float: right;
     margin-right: px2rem(26);
     width: px2rem(230);
@@ -90,8 +91,11 @@ article.question-item-with-avatar {
       margin-top: px2rem(55);
       text-align: right;
       color: red;
-      span {
-        font-size: px2rem(24);
+      font-stretch: expanded;
+      font-size: px2rem(30);
+      .iconfont{
+        font-size: 0.45rem;
+        color:#FFD404;
       }
     }
     .remark-info {
