@@ -34,10 +34,10 @@ class AskedMeList extends Component {
     this.refs.modal.close();
   }
   handleScroll() {
-    const {completed, page} = this.props;
+    const {completed, page, loading} = this.props;
     let container = document.getElementsByClassName('app-container')[0];
     console.log(container.clientHeight, '+', container.scrollTop, '=', container.clientHeight + container.scrollTop, container.scrollHeight);
-    if (container.clientHeight + container.scrollTop + 1 == container.scrollHeight  && !completed) {
+    if (!loading && container.clientHeight + container.scrollTop + 1 == container.scrollHeight  && !completed) {
       this.props.getAskedMe(page, 10);
     }
   }
