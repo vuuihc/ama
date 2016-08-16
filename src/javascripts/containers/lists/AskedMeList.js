@@ -50,8 +50,8 @@ class AskedMeList extends Component {
     return (
       <div className="askedMeList">
         {
-          userInfo.is_teacher === '1' ? (
-          //this.state.isTeacher ? (
+          // userInfo.is_teacher === '1' ? (
+          this.state.isTeacher ? (
             (data.length === 0) && completed
               ? (
               <div>
@@ -72,6 +72,7 @@ class AskedMeList extends Component {
                   })
                 }
                 {/*<div onClick={e=>{this.setState({isTeacher: !this.state.isTeacher});}}>切换</div>*/}
+                  <div onClick={e=>{this.setState({isTeacher: !this.state.isTeacher});}}>切换</div>
                 {
                   <Loading completed = {completed} />
                 }
