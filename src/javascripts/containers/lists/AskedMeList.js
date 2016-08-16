@@ -34,7 +34,7 @@ class AskedMeList extends Component {
         alert('还有空缺的项，请检查后继续填写');
         return;
     }
-    requestBecomeTeacher(this.state.inviteCode, this.state.afford);
+    this.props.requestBecomeTeacher(this.state.inviteCode, this.state.afford);
     this.refs.modal.close();
   }
   handleScroll() {
@@ -45,6 +45,7 @@ class AskedMeList extends Component {
       this.props.getAskedMe(page, 10);
     }
   }
+    
   render() {
     const {userInfo, completed, data} = this.props;
     return (
