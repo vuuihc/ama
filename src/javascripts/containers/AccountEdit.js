@@ -15,7 +15,8 @@ class AccountEdit extends Component {
       company: this.props.userInfo.user_company,
       job: this.props.userInfo.user_position,
       experience: this.props.userInfo.user_experience,
-      introduction: this.props.userInfo.user_introduction
+      introduction: this.props.userInfo.user_introduction,
+      teacher_prize: this.props.userInfo.teacher_prize,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.routerWillLeave = this.routerWillLeave.bind(this);
@@ -40,7 +41,7 @@ class AccountEdit extends Component {
   }
 
   handleSubmit() {
-    this.props.editUserInfo(this.state.company, this.state.job, this.state.experience, this.state.introduction);
+    this.props.editUserInfo(this.state.company, this.state.job, this.state.experience, this.state.teacher_prize,this.state.introduction);
     browserHistory.push({pathname:baseUrl + "account/IAskedList", state:'okay'});
   }
 
@@ -72,6 +73,15 @@ class AccountEdit extends Component {
               onChange={(e)=>{this.setState({job: e.target.value})}}
             />
           </div>
+          {userInfo.is_teacher?
+          <div className="form-group">
+            <label>提 问 价 格：</label>
+            <input
+              placeholder="输入您的提问价格"
+              value={this.state.teacher_prize}
+              onChange={(e)=>{this.setState({teacher_prize: e.target.value})}}
+            />
+          </div>:""}
           <div className="form-group self-intro-text">
             <label>您  的 介  绍： </label>
             <div className="count">{this.state.introduction.length} / 100</div>

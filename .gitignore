@@ -1,9 +1,12 @@
 .ssh/
 # 去掉hotupdate文件
-dist/	
+dist/
 !dist/mobile.js
 !dist/mobile.js.map
 !dist/images
+*.hot-update.js
+*.hot-update.js.map
+*.hot-update.json
 #编辑器相关
 .idea/
 # node相关

@@ -17,7 +17,7 @@ export default  {
             .then(res => res.json())
             .then(json => apiHandler.handleResponse(json, cb));
     },
-    editUserInfo(company, job, experience, introduction, cb) {
+    editUserInfo(company, job, experience, teacher_prize, introduction, cb) {
       fetch( domain + `/api/v1/user/editusernow`,{
           credentials: 'same-origin',
           method: 'post',
@@ -29,6 +29,7 @@ export default  {
               company,
               position:job,
               experience,
+              prize:teacher_prize,
               introduction
           })
       })

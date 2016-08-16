@@ -38,9 +38,9 @@ export function getOtherUserInfo(id) {
   }
 }
 
-export function editUserInfo(company, job, experience, introduction) {
+export function editUserInfo(company, job, experience,teacher_prize, introduction) {
   return (dispatch) => {
-    account.editUserInfo(company, job, experience, introduction, (data) => {
+    account.editUserInfo(company, job, experience, teacher_prize,introduction, (data) => {
       dispatch({
         type: RECEIVE_USER_INFO,
         data
