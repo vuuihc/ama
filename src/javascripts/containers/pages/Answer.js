@@ -323,7 +323,7 @@ class Answer extends Component {
             <Confirm show={this.state.showConfirm} title="提示" buttons={this.state.confirm.buttons}>{this.state.confirmText}</Confirm>
             <div className="question">
               <div className="head">
-                <Link to={`${baseUrl}user/${questionInfo.user_id}`}><img src={questionInfo.user_face.slice(0, -1) + '64'}/></Link>
+                <Link to={`${baseUrl}user/${questionInfo.user_id}`}><img src={questionInfo.user_face.slice(0, -1) + '132'}/></Link>
                 <span className="name">{questionInfo.user_name}</span>
                 <span className="price">￥ {questionInfo.question_prize}</span>
               </div>

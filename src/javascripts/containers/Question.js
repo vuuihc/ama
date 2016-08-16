@@ -168,7 +168,7 @@ class Question extends Component {
         <Toast icon="loading" show={this.state.loading} >{(questionInfo.answer_ispayed || this.state.paySuccess)?"加载声音中……":"请求支付中……"}</Toast>
         <Link to = {`${baseUrl}user/${questionInfo.user_id}`} >
           <div className="userInfo">
-            <img src={questionInfo.user_face.slice(0, -1) + '64'} />
+            <img src={questionInfo.user_face.slice(0, -1) + '132'} />
             <span>{questionInfo.user_name}</span>
             <div className="share">问题不错,快分享出去吧！<i className="iconfont icon-arrow" /></div>
           </div>

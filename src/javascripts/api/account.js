@@ -70,6 +70,11 @@ export default  {
             })
         })
             .then(res => res.json())
-            .then(json => apiHandler.handleResponse(json,cb))
+            .then(json => {
+                if(json.errCode != 0){
+                    alert('您输入的邀请码有误，请核对后填写');
+                }
+                return apiHandler.handleResponse(json,cb)
+            })
     }
 }

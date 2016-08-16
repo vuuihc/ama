@@ -110,7 +110,7 @@ class QuestionItemWithAvatar extends Component {
         </Link>
         <Link to={userId==question.teacher_id?`${baseUrl}account` : `${baseUrl}tutor/${question.teacher_id}`}>
           <div className="mentor">
-            <img src={question.teacher_face.slice(0, -1) + '64'}/>
+            <img src={question.teacher_face.slice(0, -1) + '132'}/>
             <div className="mentor-info">
               <span className="name">{question.teacher_name}</span>
               <span>{question.teacher_position}</span>

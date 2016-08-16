@@ -30,6 +30,10 @@ class AskedMeList extends Component {
     $('.app-container').off('scroll', this.handleScroll);
   }
   handleSubmit() {
+    if(!this.state.inviteCode || !this.state.afford){
+        alert('还有空缺的项，请检查后继续填写');
+        return;
+    }
     requestBecomeTeacher(this.state.inviteCode, this.state.afford);
     this.refs.modal.close();
   }

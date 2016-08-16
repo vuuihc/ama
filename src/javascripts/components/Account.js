@@ -39,7 +39,7 @@ class Account extends Component {
         </Link>
         <div className="head">
           <div className="headOuter">
-            <img src={this.props.userInfo.user_face.slice(0, -1) + '64'}/>
+            <img src={this.props.userInfo.user_face.slice(0, -1) + '132'}/>
           </div>
         </div>
         <div className="name">{this.props.userInfo.user_name}</div>

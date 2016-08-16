@@ -49,10 +49,10 @@ class AccountEdit extends Component {
     return (
       <main className="user edit">
         <div className="user-card-bg">
-          <img src={userInfo.user_face.slice(0, -1) + '64'}/>
+          <img src={userInfo.user_face.slice(0, -1) + '132'}/>
         </div>
         <div className="user-card">
-          <img className="avatar" src={userInfo.user_face.slice(0, -1) + '64'}/>
+          <img className="avatar" src={userInfo.user_face.slice(0, -1) + '132'}/>
           <h3 className="name">
             { userInfo.user_name }
           </h3>
