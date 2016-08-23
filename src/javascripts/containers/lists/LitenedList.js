@@ -53,7 +53,7 @@ class LitenedList extends Component {
                 你还没有偷听过呦~{data.length}
               </div>
               <div className="go">
-                快去<Link to={baseUrl+"hot"}>热门</Link>逛一逛吧~
+                快去<Link to={baseUrl}>热门</Link>逛一逛吧~
               </div>
             </div>
           )
