@@ -94,7 +94,7 @@ class Answer extends Component {
           }
         });
       }
-      var talkBtn = ReactDOM.findDOMNode(this.refs.roundContainer)
+      var talkBtn = ReactDOM.findDOMNode(self.refs.roundContainer)
       talkBtn.addEventListener('click',self.clickHandler,false)
     })
     wx.onVoicePlayEnd({
@@ -142,7 +142,7 @@ class Answer extends Component {
     const self =this
     clearTimeout(this.state.successTimer)
     wx.ready(function(){
-      var talkBtn = ReactDOM.findDOMNode(this.refs.roundContainer)
+      var talkBtn = ReactDOM.findDOMNode(self.refs.roundContainer)
       talkBtn.removeEventListener('click',self.clickHandler,false)
   })
 
