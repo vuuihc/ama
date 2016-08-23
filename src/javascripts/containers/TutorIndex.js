@@ -141,7 +141,7 @@ class TutorIndex extends Component {
     if(this.refs.content.value != '' && !this.state.askSuccess){
       // return '您的提问尚未支付，确认离开?'
       this.setState({nextLocation:nextLocation.pathname,showConfirm:true})
-      console.log(nextLocation)
+    //   console.log(nextLocation)
       return false
     }
   }

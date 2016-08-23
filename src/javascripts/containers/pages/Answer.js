@@ -66,7 +66,11 @@ class Answer extends Component {
       this.setState({showConfirm: false})
   }
   leaveThisPage(){
-    browserHistory.push(this.state.nextLocation.pathname)
+    if(this.state.status != 2){
+        browserHistory.push(this.state.nextLocation.pathname)
+    }else{
+        this.setState({alertContent:"请先停止录音",showAlert:true})
+    }
   }
   componentWillMount(){
     const {id} = this.props.params;
@@ -74,10 +78,9 @@ class Answer extends Component {
   }
   componentDidMount(){
     this.refreshWXConfig()
-    console.log(this.props.questionInfo);
     const self = this
     wx.ready(function(){
-      console.log("allowRecord"+sessionStorage.allowRecord)
+      console.log("allowRecord" + sessionStorage.allowRecord)
       if(!sessionStorage.allowRecord || sessionStorage.allowRecord !== 'true'){
         self.setState({authorizing:true})
         wx.startRecord({
@@ -109,7 +112,23 @@ class Answer extends Component {
     // or return a string to allow the user to decide:
     if(!this.state.answerSuccess){
       // return '您的回答尚未完成，确认离开?'
-      this.setState({confirmText:"您的回答尚未完成，确认离开?",showConfirm:true,nextLocation:nextLocation})
+      let confirmText
+      switch(this.state.status){
+          case 0:
+          case 1:
+              confirmText = "您还未回答该问题，确认离开?"
+              break
+          case 2:
+            confirmText = "正在录音中，确认离开?"
+            break
+          case 3:
+          case 4:
+          case 5:
+            confirmText = "您的录音还未上传，确认离开?"
+            break
+      }
+      this.setState({confirmText:confirmText,showConfirm:true,nextLocation:nextLocation})
+      return false
     }
   }
   componentWillReceiveProps(nextProps){
