@@ -57,7 +57,7 @@ class Answer extends Component {
       nextLocation:location.href
     }
     this.clickHandler = this.clickHandler.bind(this)
-	  this.routerWillLeave = this.routerWillLeave.bind(this)
+	this.routerWillLeave = this.routerWillLeave.bind(this)
   }
   hideAlert(){
     this.setState({showAlert:false})
@@ -66,11 +66,7 @@ class Answer extends Component {
       this.setState({showConfirm: false})
   }
   leaveThisPage(){
-    if(this.state.status != 2){
-        browserHistory.push(this.state.nextLocation.pathname)
-    }else{
-        this.setState({alertContent:"请先停止录音",showAlert:true})
-    }
+    browserHistory.push(this.state.nextLocation.pathname)
   }
   componentWillMount(){
     const {id} = this.props.params;
@@ -119,6 +115,8 @@ class Answer extends Component {
               confirmText = "您还未回答该问题，确认离开?"
               break
           case 2:
+            let talkBtn = ReactDOM.findDOMNode(self.refs.roundContainer)
+            talkBtn.click()
             confirmText = "正在录音中，确认离开?"
             break
           case 3:
