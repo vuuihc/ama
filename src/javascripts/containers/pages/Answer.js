@@ -45,7 +45,7 @@ class Answer extends Component {
           {
             type:"primary",
             label:"接着回答",
-            onClick:this.hideAlert.bind(this)
+            onClick:this.hideConfirm.bind(this)
           },
           {
             type:"default",
@@ -61,6 +61,9 @@ class Answer extends Component {
   }
   hideAlert(){
     this.setState({showAlert:false})
+  }
+  hideConfirm(){
+      this.setState({showConfirm: false})
   }
   leaveThisPage(){
     browserHistory.push(this.state.nextLocation.pathname)
@@ -84,7 +87,6 @@ class Answer extends Component {
             self.recordTimer = setTimeout(function(){
               wx.stopRecord();
             },500);
-            console.log("here");
           },
           cancel: function () {
             // alert('用户拒绝授权录音');
@@ -111,13 +113,9 @@ class Answer extends Component {
     }
   }
   componentWillReceiveProps(nextProps){
-    console.log("nextProps.WXConfig.data=="+JSON.stringify(nextProps.WXConfig.data))
     if(nextProps.WXConfig.data.timestamp){
       const now = new Date().valueOf()
-      console.log("now==="+now/1000)
-      console.log("timestamp==="+nextProps.WXConfig.data.timestamp)
       if(now/1000 - nextProps.WXConfig.data.timestamp<3){
-        console.log("into config===");
         const jsApiList = [
           'startRecord',
           'stopRecord',
@@ -130,14 +128,12 @@ class Answer extends Component {
           'chooseWXPay'
         ]
         const newWxConfig = {}
-        console.log("newWxConfig")
         newWxConfig['debug'] = false;
         newWxConfig['appId'] = nextProps.WXConfig.data['appId'];
         newWxConfig['timestamp'] = nextProps.WXConfig.data.timestamp.toString();
         newWxConfig['nonceStr'] = nextProps.WXConfig.data['nonceStr'];
         newWxConfig['signature'] = nextProps.WXConfig.data['signature'];
         newWxConfig['jsApiList'] = jsApiList;
-        console.log("newWxConfig"+JSON.stringify(newWxConfig))
         wx.config(newWxConfig)
       }
     }
@@ -153,7 +149,6 @@ class Answer extends Component {
   }
   refreshWXConfig(){
     const url = this.props.landPage || location.href
-    console.log("now get wxconfig for url==="+url)
     this.props.getWXConfig(url)
   }
   clickHandler(event){
@@ -165,7 +160,6 @@ class Answer extends Component {
         success:function () {
           let START = new Date().getTime();
           self.setState({START:START,status:2})
-          console.log("start at ==="+ START)
         },
         cancel: function () {
           // alert('用户拒绝授权录音');
@@ -260,7 +254,6 @@ class Answer extends Component {
           },2000)
           self.setState({successTimer:successTimer})
         }else{
-          // alert("抱歉，上传失败")
           self.setState({alertContent:"抱歉，录音上传失败",showAlert:true})
         }
       });
