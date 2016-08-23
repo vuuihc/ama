@@ -20,7 +20,6 @@ class HotQuestionList extends Component {
   }
   handleScroll(){
     let container = document.getElementsByClassName('app-container')[0];
-    console.log(container.clientHeight, '+', container.scrollTop, '=', container.clientHeight + container.scrollTop, container.scrollHeight);
     if (container.clientHeight + container.scrollTop + 1 >= container.scrollHeight  && !this.props.hotQuestionList.completed) {
       const curPage = ++this.state.curPage;
       this.setState({curPage});

@@ -72,7 +72,6 @@ class Answer extends Component {
   componentDidMount(){
     this.refreshWXConfig()
     console.log(this.props.questionInfo);
-    var talkBtn = ReactDOM.findDOMNode(this.refs.roundContainer)
     const self = this
     wx.ready(function(){
       console.log("allowRecord"+sessionStorage.allowRecord)
@@ -93,6 +92,7 @@ class Answer extends Component {
           }
         });
       }
+      var talkBtn = ReactDOM.findDOMNode(this.refs.roundContainer)
       talkBtn.addEventListener('click',self.clickHandler,false)
     })
     wx.onVoicePlayEnd({
@@ -145,8 +145,8 @@ class Answer extends Component {
   componentWillUnmount(){
     const self =this
     clearTimeout(this.state.successTimer)
-    var talkBtn = ReactDOM.findDOMNode(this.refs.roundContainer)
     wx.ready(function(){
+      var talkBtn = ReactDOM.findDOMNode(this.refs.roundContainer)
       talkBtn.removeEventListener('click',self.clickHandler,false)
   })
 
@@ -176,7 +176,6 @@ class Answer extends Component {
     var recordStopHandler = function (event) {
       // event.preventDefault();
       let END = new Date().getTime();
-      console.log("录音时间"+(END-self.state.START));
       if((END - self.state.START) < 1000){
         END = 0;
         // alert("录音不能小于1秒哦")
@@ -184,7 +183,6 @@ class Answer extends Component {
         self.setState({status:0,alertContent:"录音不能少于1秒哦",showAlert:true})
         return null
       }else{
-        console.log("录音时间"+(END-self.state.START));
         wx.stopRecord({
           success: function (res) {
             let localId = res.localId
@@ -264,7 +262,6 @@ class Answer extends Component {
         }else{
           // alert("抱歉，上传失败")
           self.setState({alertContent:"抱歉，录音上传失败",showAlert:true})
-          console.log("语音上传失败，原因是"+json.msg)
         }
       });
   }
@@ -313,7 +310,7 @@ class Answer extends Component {
     }
     return (
         questionInfo.user_face?
-          <div className="accountAnswer">
+          <div className="account-answer">
             <Toast  show={this.state.answerSuccess} >回答成功</Toast>
             <Toast  icon="loading" show={this.state.status==1} >开启中</Toast>
             <Toast  icon="loading" show={this.state.status==3} >停止中</Toast>
@@ -321,7 +318,7 @@ class Answer extends Component {
             <Toast  icon="loading" show={this.state.uploading} >上传中</Toast>
             <Alert show={this.state.showAlert} title="提示" buttons={this.state.alert.buttons}>{this.state.alertContent}</Alert>
             <Confirm show={this.state.showConfirm} title="提示" buttons={this.state.confirm.buttons}>{this.state.confirmText}</Confirm>
-            <div className="question">
+            <div className="answer-question">
               <div className="head">
                 <Link to={`${baseUrl}user/${questionInfo.user_id}`}><img src={questionInfo.user_face.slice(0, -1) + '132'}/></Link>
                 <span className="name">{questionInfo.user_name}</span>

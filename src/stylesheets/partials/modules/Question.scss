@@ -31,9 +31,9 @@
   .question-content {
     width: 10rem;
     min-height: px2rem(252);
-    padding: px2rem(20) px2rem(40);
+    padding: px2rem(20) px2rem(40) px2rem(90);
     font-size: px2rem(40);
-    line-height: px2rem(80);
+    line-height: px2rem(60);
     background-color: $backgroundGray;
     border-bottom: 1px solid $borderGray;
   }
@@ -140,7 +140,7 @@
     }
   }
   .not-answer{
-    padding: px2rem(10);
+    padding: 2rem;
     text-align: center;
     font-size: px2rem(36);
   }
@@ -164,7 +164,7 @@
       height: px2rem(90);
       background-color: $orange;
       border: 1px solid $borderOrange;
-      border-radius: px2rem(30);
+      border-radius: px2rem(10);
       color: white;
       line-height: px2rem(90);
       margin: px2rem(43) auto;

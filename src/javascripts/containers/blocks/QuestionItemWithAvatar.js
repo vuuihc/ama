@@ -96,9 +96,6 @@ class QuestionItemWithAvatar extends Component {
     }
   render() {
     const {question,userId} = this.props;
-    console.log("question is ====")
-    console.log(question)
-    console.log("userId is=="+userId)
     return (
       <article className="question-item-with-avatar">
         <Alert show={this.state.showAlert} title={this.state.alert.title} buttons={this.state.alert.buttons} >{this.state.alertContent}</Alert>
@@ -127,7 +124,7 @@ class QuestionItemWithAvatar extends Component {
         </div>
         <Link to={baseUrl +"question/"+question.question_id}>
           <div className="remark">
-            <div className="value"><i className="iconfont icon-qiandai" />&nbsp;{question.question_prize}</div>
+            <div className="value">￥&nbsp;{question.question_prize}</div>
             <div className="remark-info">
               <span>{question.answer_listen}人偷听</span>
               <span className="kui">{question.answer_like}人觉得赞</span>

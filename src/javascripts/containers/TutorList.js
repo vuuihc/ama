@@ -28,8 +28,7 @@ class TutorList extends Component {
     $('.app-container').off('scroll', this.handleScroll);
   }
   handleScroll() {
-    let container = document.getElementsByClassName('app-container')[0];   
-    console.log(container.clientHeight, '+', container.scrollTop, '=', container.clientHeight + container.scrollTop, container.scrollHeight);  
+    let container = document.getElementsByClassName('app-container')[0];
     if (container.clientHeight + container.scrollTop + 1 >= container.scrollHeight  && !this.props.tutorList.completed) {
       const curPage = ++this.state.curPage;
       this.setState({curPage});

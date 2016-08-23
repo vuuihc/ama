@@ -4,6 +4,7 @@ export default  {
      * @param cb
      */
     getTimeSpan(time){
+        console.log(`params time is ${time}`)
         let now = new Date();
         let timestamp = new Date(time).getTime();
         let seconds = (now.getTime()/1000 - timestamp);

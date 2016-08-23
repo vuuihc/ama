@@ -1,14 +1,16 @@
 @import '../base';
 
-.accountAnswer{
+.account-answer{
   min-height: 100vh;
   background: $backgroundGray;
   padding:px2rem(44) 0 px2rem(90);
-  .question{
+  .answer-question{
     background: white;
     border-top: 1px solid $borderGray;
     border-bottom: 1px solid $borderGray;
-    height:px2rem(339);
+    min-height:px2rem(339);
+    font-size: px2rem(40);
+    line-height: px2rem(60);
     .head{
       margin-top: px2rem(24);
       height: px2rem(120);
