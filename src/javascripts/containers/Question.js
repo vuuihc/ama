@@ -158,7 +158,7 @@ class Question extends Component {
   }
   render() {
     const {questionInfo} = this.props
-    console.log("this.state.playing=="+this.state.playing)
+    // console.log("this.state.playing=="+this.state.playing)
     const classNames = {
       0: " ",
       1: " playing"

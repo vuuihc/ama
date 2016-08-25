@@ -152,7 +152,8 @@ class TutorIndex extends Component {
     this.setState({showAlert:false})
   }
   leaveThisPage(){
-    location.href= this.state.nextLocation
+    this.hideConfirm()
+    browserHistory.push(this.state.nextLocation)
   }
   componentWillUnmount(){
     clearTimeout(this.state.successTimer);
