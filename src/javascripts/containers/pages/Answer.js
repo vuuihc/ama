@@ -108,7 +108,7 @@ class Answer extends Component {
     // or return a string to allow the user to decide:
     if(!this.state.answerSuccess){
       // return '您的回答尚未完成，确认离开?'
-      let confirmText
+      let confirmText,self = this
       switch(this.state.status){
           case 0:
           case 1:
