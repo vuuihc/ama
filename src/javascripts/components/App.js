@@ -6,6 +6,9 @@ import {IndexLink, Link} from 'react-router';
 import {connect} from 'react-redux';
 import '../../stylesheets/partials/modules/App.scss';
 import {baseUrl} from "../api/config"
+import SearchBar from "../containers/SearchBar"
+import SearchTips from "../containers/SearchTips"
+
 class App extends Component {
   constructor() {
     super();
@@ -14,6 +17,8 @@ class App extends Component {
   render() {
     return (
       <div>
+        <SearchBar />
+        <SearchTips />
         <div className="app-container" ref="content">{ this.props.children }</div>
         <div className="footer">
           <ul>

@@ -32,7 +32,8 @@ module.exports = {
   output: {
     path: './dist',
     filename: '[name].js',
-    publicPath: 'http://h5app.7dyk.com/ama/7dyk/dist/'
+    // publicPath: 'http://h5app.7dyk.com/ama/7dyk/dist/'
+    publicPath: '/dist/'
   },
   plugins: plugins,
 

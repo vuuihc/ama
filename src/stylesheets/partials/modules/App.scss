@@ -2,16 +2,88 @@
 span>a>img {
     display: none;
 }
+.search-bar{
+    height: 1rem;
+    line-height: 1rem;
+    border-bottom: 1px solid gray;
+    overflow: hidden;
+    .search-icon{
+        width: px2rem(90);
+        height: 1rem;
+        float: left;
+        img {
+            width: px2rem(46);
+            height: px2rem(45);
+            position: absolute;
+            top: px2rem(15);
+            left: px2rem(22);
+        }
+    }
+    input{
+        width: px2rem(531);
+        border: none;
+        color: gray;
+        &:focus{
+            outline: none;
+        }
+    }
+    button{
+        width: px2rem(128);
+        background: rgb(3,135,231);
+        border: none;
+        color: white;
+    }
+}
+.search-tips{
+    background: white;
+    position: absolute;
+    top: 1rem;
+    z-index: 999;
+    height: calc(100vh - 1rem);
+    height: -webkit-calc(100vh - 1rem);
+    height: -moz-calc(100vh - 1rem);
+    width: 100%;
+    .tip-title{
+        margin-top: px2rem(45);
+        margin-left: px2rem(30);
+        font-size: px2rem(28);
+        float: left;
+        overflow: hidden;
+    }
+    .tag-list{
+        float: left;
+        &:after{
+            content: '';
+            clear: both;
+            visibility: hidden;
+        }
+        .history-item,.hot-item{
+            margin-top: px2rem(25);
+            margin-left: px2rem(26);
+            float: left;
+            font-size: px2rem(24);
+            // width: px2rem(130);
+            padding: 0 px2rem(25);
+            height: px2rem(50);
+            line-height: px2rem(50);
+            text-align: center;
+            background: #f3f3f3;
+            border-radius: px2rem(5);
+        }
+    }
+
+}
 .app-container{
   position:absolute;
-  top:0;
+  top: 1rem;
   right:0;
   left:0;
+  bottom: 1.2rem;
   overflow-y: scroll;
-  height:90%;
-  height:calc(100vh - 1.2rem);
-  height:-webkit-calc(100vh - 1.2rem);
-  height:-moz-calc(100vh - 1.2rem);
+  // height:90%;
+  // height:calc(100vh - 1.2rem);
+  // height:-webkit-calc(100vh - 1.2rem);
+  // height:-moz-calc(100vh - 1.2rem);
 }
 .footer{
   position: absolute;

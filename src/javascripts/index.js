@@ -25,7 +25,7 @@ import Answer from './containers/pages/Answer'
 import configureStore from './store/configureStore'
 const store = configureStore();
 import {baseUrl} from "./api/config"
-
+console.log(baseUrl)
 ReactDom.render((
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -50,5 +50,3 @@ ReactDom.render((
     </Router>
   </Provider>
 ), document.getElementById('root'));
-
-
