@@ -22,6 +22,12 @@ export const RECEIVE_TUTOR_ANSWER_LIST  = 'RECEIVE_TUTOR_ANSWER_LIST'
 export const REQUEST_PREPAY_INFO  = 'REQUEST_PREPAY_INFO'
 export const RECEIVE_PREPAY_INFO  = 'RECEIVE_PREPAY_INFO'
 export const CLEAR_TUTOR_INDEX = 'CLEAR_TUTOR_INDEX'
+
+/*********搜索**********/
+export const RECEIVE_HISTORY_SEARCH = 'RECEIVE_HISTORY_SEARCH'
+export const RECEIVE_HOT_SEARCH = 'RECEIVE_HOT_SEARCH'
+
+
 /*********我的**********/
 //获取到用户消息
 export const RECEIVE_USER_INFO = 'RECEIVE_USER_INFO';
@@ -42,7 +48,3 @@ export const REQUEST_ASKED_ME = 'REQUEST_ASKED_ME';
 export const CLEAR_ASKED_ME = 'CLEAR_ASKED_ME';
 export const RECEIVE_ASKED_ME = 'RECEIVE_ASKED_ME';
 export const ASKED_ME_COMPLETED = 'ASKED_ME_COMPLETED';
-
-
-
-

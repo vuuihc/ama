@@ -25,7 +25,7 @@ if(isProduction()){
 }
 
 module.exports = {
-  devtool: isProduction()?false:'source-map',
+  devtool: isProduction()?false:'inline-source-map',
   entry: {
     mobile: './src/javascripts/index.js'
   },

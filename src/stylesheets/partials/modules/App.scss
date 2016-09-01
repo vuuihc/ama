@@ -47,14 +47,19 @@ span>a>img {
         margin-top: px2rem(45);
         margin-left: px2rem(30);
         font-size: px2rem(28);
-        float: left;
+        // float: left;
         overflow: hidden;
     }
     .tag-list{
-        float: left;
+        // float: left;
+        .empty{
+            text-align: center;
+            font-size: px2rem(24);
+        }
         &:after{
             content: '';
             clear: both;
+            display: block;
             visibility: hidden;
         }
         .history-item,.hot-item{

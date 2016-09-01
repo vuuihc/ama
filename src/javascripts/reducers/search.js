@@ -5,13 +5,25 @@ import {
 
 const initialState = {
   historySearch: {
-    data: [],
+    data: [
+        "郭富城",
+        "郭富城",
+        "郭富城",
+        "郭富城"
+    ],
     completed: false,
     page: 1,
     num: 10,
   },
   hotSearch: {
-    data: [],
+    data: [
+        "刘德华",
+        "刘德华",
+        "刘德华",
+        "刘德华",
+        "刘德华",
+        "刘德华"
+    ],
     completed: false,
     page: 1,
     num: 10,
