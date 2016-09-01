@@ -7,8 +7,10 @@ const env = 'development'
 import apiHandler from "../util/apiHandler"
 
 export default  {
-  getHotQuestionList(page, num, cb){
-    const url = domain + '/api/v1/question/gettopic?page=' + page + '&number=' + num
+  getHotQuestionList(page, num, search, cb){
+    let url = `${domain}/api/v1/question/gettopic?page=${page}&number=${num}`
+    if(search)
+        url += `&search=${search}`
     fetch(url,{
       credentials: 'same-origin'
     })

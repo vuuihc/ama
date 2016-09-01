@@ -7,8 +7,10 @@ import apiHandler from "../util/apiHandler"
 
 
 export default  {
-  getTutorList(page, num, cb){
-    const url = domain + '/api/v1/user/getteacher?page=' + page + '&number=' + num
+  getTutorList(page, num, search, cb){
+    let url = domain + '/api/v1/user/getteacher?page=' + page + '&number=' + num
+    if(search)
+        url += "&search="+search
     fetch(url,{
       credentials: 'same-origin'
     })

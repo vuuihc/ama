@@ -21,6 +21,7 @@ import TutorShare from './containers/TutorShare'
 import UserIndex from './containers/UserIndex'
 // import UserShare from './containers/UserShare'
 import Answer from './containers/pages/Answer'
+import SearchResult from "./containers/SearchResult"
 
 import configureStore from './store/configureStore'
 const store = configureStore();
@@ -44,8 +45,8 @@ ReactDom.render((
           <Route path={baseUrl + 'tutor/:id'}  component={TutorIndex} />
           <Route path={baseUrl + 'tutor/share/:id'}  component={TutorShare} />
         </Route>
-        <Route path={baseUrl+"user/:id"} component={UserIndex}>
-        </Route>
+        <Route path={baseUrl+"user/:id"} component={UserIndex} />
+        <Route path={baseUrl+"search/:query"} component={SearchResult} />
       </Route>
     </Router>
   </Provider>

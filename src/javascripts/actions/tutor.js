@@ -8,13 +8,13 @@ import {
   RECEIVE_TUTOR_INFO,
   RECEIVE_TUTOR_ANSWER_LIST,
   REQUEST_PREPAY_INFO,
-  RECEIVE_PREPAY_INFO, 
+  RECEIVE_PREPAY_INFO,
   CLEAR_TUTOR_INDEX
 } from './ActionTypes'
 
-export function getTutorList(page, num) {
+export function getTutorList(page, num, search) {
   return dispatch => {
-    tutor.getTutorList(page, num, data => {
+    tutor.getTutorList(page, num, search, data => {
       dispatch({
         type: RECEIVE_TUTOR_LIST,
         data,

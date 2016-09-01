@@ -26,6 +26,7 @@ export const CLEAR_TUTOR_INDEX = 'CLEAR_TUTOR_INDEX'
 /*********搜索**********/
 export const RECEIVE_HISTORY_SEARCH = 'RECEIVE_HISTORY_SEARCH'
 export const RECEIVE_HOT_SEARCH = 'RECEIVE_HOT_SEARCH'
+export const SET_CUR_SEARCH = 'SET_CUR_SEARCH'
 
 
 /*********我的**********/

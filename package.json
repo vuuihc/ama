@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "7dyk frontend",
   "scripts": {
-    "start": "set NODE_ENV=development & webpack-dev-server --hot --inline --progress --colors",
+    "start": "set NODE_ENV=development & webpack-dev-server --history-api-fallback --content-base dist/ --hot --inline --progress --colors",
     "build": "set NODE_ENV=development &webpack --progress --colors --watch -p",
     "dist": "set NODE_ENV=production & webpack --progress --colors -p",
     "commit": "git add dist/mobile.js dist/mobile.js.map src/* & git commit -am 'update' & git push"

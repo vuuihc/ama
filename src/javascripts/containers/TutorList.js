@@ -6,6 +6,7 @@ import {Link} from 'react-router'
 import {connect} from 'react-redux'
 import {getTutorList} from '../actions/tutor.js'
 import { getUserInfo } from '../actions/account'
+import TutorItem from "./blocks/TutorItem"
 
 import '../../stylesheets/partials/modules/TutorList.scss'
 import Loading from "./Loading2"
@@ -42,22 +43,7 @@ class TutorList extends Component {
       <main className="tutor-list">
         {
           tutorList.data.map((tutor, index) =>
-            <Link key={index} to={tutor.user_id == userId ? `${baseUrl}account` : `${baseUrl}tutor/${tutor.user_id}` }>
-              <article>
-                <div className="tutor-info">
-                  <img src={tutor.user_face.slice(0, -1) + '132'}/>
-                  <div className="tutor-intro">
-                    <h3 >{tutor.user_name}</h3>
-                    <h4>
-                      <span>{tutor.user_title}</span>
-                    </h4>
-                  </div>
-                </div>
-                <div className="answer-info">
-                  {tutor.answer_number}个回答
-                </div>
-              </article>
-            </Link>
+            <TutorItem tutor={tutor} />
           )
         }
         <Loading completed = { tutorList.completed } />
