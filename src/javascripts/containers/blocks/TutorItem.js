@@ -4,7 +4,9 @@ import { baseUrl } from '../../api/config';
 import "../../../stylesheets/partials/modules/TutorItem.scss"
 
 const TutorItem = ({
-    tutor
+    tutor,
+    index,
+    userId
 })=>{
     return(
         <Link key={index} to={tutor.user_id == userId ? `${baseUrl}account` : `${baseUrl}tutor/${tutor.user_id}` }>

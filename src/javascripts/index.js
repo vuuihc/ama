@@ -22,6 +22,7 @@ import UserIndex from './containers/UserIndex'
 // import UserShare from './containers/UserShare'
 import Answer from './containers/pages/Answer'
 import SearchResult from "./containers/SearchResult"
+import ResultList from "./containers/ResultList"
 
 import configureStore from './store/configureStore'
 const store = configureStore();
@@ -47,6 +48,7 @@ ReactDom.render((
         </Route>
         <Route path={baseUrl+"user/:id"} component={UserIndex} />
         <Route path={baseUrl+"search/:query"} component={SearchResult} />
+        <Route path={baseUrl+"search/list/:type/:query"} component={ResultList} />
       </Route>
     </Router>
   </Provider>

@@ -13,16 +13,18 @@ import {
     RECEIVE_CANCEL_PRISE_QUESTION,
     RECEIVE_PAID,
     CLEAR_QUESTION,
-    SET_CUR_SEARCH
+    SET_CUR_SEARCH,
+    REQUEST_SEARCH_QUESTION
 } from './ActionTypes'
 
 export function getHotQuestionList(page, num, search) {
     return dispatch => {
+        dispatch({
+            type: SET_CUR_SEARCH,
+            curSearch: search || ""
+        })
+        dispatch({type:REQUEST_SEARCH_QUESTION})
         question.getHotQuestionList(page, num, search, data => {
-            dispatch({
-                type: SET_CUR_SEARCH,
-                curSearch: search || ""
-            })
             dispatch({
                 type: RECEIVE_HOT_QUESTION_LIST,
                 data,
