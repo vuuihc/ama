@@ -1,31 +1,24 @@
 import {
+    REQUEST_HISTORY_SEARCH,
     RECEIVE_HISTORY_SEARCH,
     RECEIVE_HOT_SEARCH,
-    SET_CUR_SEARCH
+    REQUEST_HOT_SEARCH,
+    SET_CUR_SEARCH,
+    DELETE_HISTORY_SUCCESS
 } from '../actions/ActionTypes'
 
 const initialState = {
     historySearch: {
-        data: [
-            "郭富城",
-            "郭富城",
-            "郭富城",
-            "郭富城"
-        ],
-        completed: false,
+        data: [],
+        loading: false,
+        completed:false,
         page: 1,
         num: 10,
     },
     hotSearch: {
-        data: [
-            "刘德华",
-            "刘德华",
-            "刘德华",
-            "刘德华",
-            "刘德华",
-            "刘德华"
-        ],
-        completed: false,
+        data: [],
+        completed:false,
+        loading: false,
         page: 1,
         num: 10,
     },
@@ -35,29 +28,38 @@ const initialState = {
 
 export function historySearch(state = initialState.historySearch, action) {
     switch (action.type) {
+        case REQUEST_HISTORY_SEARCH:
+            return Object.assign({},state,{loading:true})
         case RECEIVE_HISTORY_SEARCH:
             if (action.page == 1) {
                 return Object.assign({}, initialState.historySearch, {
                     data: action.data,
                     completed: action.data.length < action.num ? true : false,
-                    loading: false
+                    loading: false,
+                    page: action.page+1
                 })
             } else {
+                console.log(`state ${JSON.stringify(state)}`)
+                // console.log(`state ${state}`)
                 return Object.assign({}, state, {
                     data: state.data.concat(action.data),
                     completed: action.data.length < action.num ? true : false,
                     loading: false,
-                    page: action.page
+                    page: action.page+1
                 })
             }
+        case DELETE_HISTORY_SUCCESS:
+            return Object.assign({},state,{data:[]})
         default:
             return state
     }
 }
 export function hotSearch(state = initialState.hotSearch, action) {
     switch (action.type) {
+        case REQUEST_HOT_SEARCH:
+            return Object.assign({},state,{loading:true})
         case RECEIVE_HOT_SEARCH:
-            return action.hotSearch
+            return Object.assign({},state,{data:action.data,loading:false,completed:true})
         default:
             return state
     }

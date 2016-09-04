@@ -18,7 +18,6 @@ class App extends Component {
     return (
       <div>
         <SearchBar />
-        <SearchTips />
         <div className="app-container" ref="content">{ this.props.children }</div>
         <div className="footer">
           <ul>
