@@ -1,5 +1,6 @@
 import {browserHistory} from "react-router"
 import {connect} from "react-redux"
+import {baseUrl} from "../api/config.js"
 const SearchBar = ({
     curSearch
 })=>{
@@ -12,7 +13,7 @@ const SearchBar = ({
     const showTips=()=>{
         // let tips = document.querySelector(".search-tips")
         // tips.style.display = "block"
-        browserHistory.push(`/search/tips`)
+        browserHistory.push(`${baseUrl}search/tips`)
     }
     // const hideTips=()=>{
     //     let tips = document.querySelector(".search-tips")
@@ -22,7 +23,7 @@ const SearchBar = ({
         let query = document.querySelector("input#search-input").value
         console.log(`query is ${query}`)
         if(query!="")
-            browserHistory.push(`/search/result/${query}`)
+            browserHistory.push(`${baseUrl}search/result/${query}`)
     }
     const clearInput = ()=>{
         let input = document.querySelector("input#search-input")
