@@ -61,7 +61,7 @@ module.exports = {
             'react-redux': path.resolve('node_modules', "react-redux/dist/react-redux.min.js")
         }
     },
-    dev-server:{
+    devServer:{
         historyApiFallback:true,
         hot:true,
         inline:true,
