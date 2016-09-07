@@ -1,12 +1,12 @@
 import {baseUrl} from "../api/config"
 import SearchBar from "../containers/SearchBar"
 
-const Search = ()=>{
+const Search = ({children})=>{
 
     return (
       <div>
         <SearchBar />
-        { this.props.children }
+        { children }
       </div>
     )
 }
