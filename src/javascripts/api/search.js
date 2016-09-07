@@ -30,11 +30,15 @@ export default {
     deleteHistory(cb){
         let url = `${domain}/api/v1/history/delete`
         fetch(url,{
-                credentials: 'same-origin'
+                credentials: 'same-origin',
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
             })
             .then(response =>
                 response.json()
-                // data.questionList
             )
             .then(json => apiHandler.handleResponse(json, cb))
     }
