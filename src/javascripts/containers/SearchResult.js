@@ -45,7 +45,7 @@ const SearchResult = ({
             <div className="tutor-list">
                 {(tutorSearchStatus=="complete")&&tutors.length>0?tutors.map((item,index)=>{
                     if(index<2)
-                        return <TutorItem tutor={item} />
+                        return <TutorItem tutor={item} key={index}/>
                 }):<div className="empty" >暂无相关结果</div>}
             </div>
         </div>

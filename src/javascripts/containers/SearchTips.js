@@ -28,8 +28,8 @@ class SearchTips  extends Component{
                 {historySearch.data.length>0?<img className="delete-icon" onClick={this.deleteHistory.bind(this)} src={require("../../images/delete.png")} />:""}
                 <div className="tag-list">
                     {historySearch.data.length>0?historySearch.data.map((item,index)=>(
-                        <Link key={index} to={`${baseUrl}search/result/${item}`}>
-                            <div  className="history-item">{item}</div>
+                        <Link key={index} to={`${baseUrl}search/result/${item.search}`}>
+                            <div  className="history-item">{item.search}</div>
                         </Link>
                     )):(historySearch.loading?<Loading />:<div className="empty" >暂无记录</div>)}
                 </div>

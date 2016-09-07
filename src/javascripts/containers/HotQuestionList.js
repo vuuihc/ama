@@ -7,6 +7,7 @@ import {getHotQuestionList} from '../actions/question.js'
 import {setLandPage} from '../actions/config.js'
 import Loading from "./Loading2"
 import  QuestionItemWithAvatar  from './blocks/QuestionItemWithAvatar'
+import SearchBar from "./SearchBar"
 import '../../stylesheets/partials/modules/HotQuestionList.scss'
 
 class HotQuestionList extends Component {
@@ -40,6 +41,7 @@ class HotQuestionList extends Component {
     const {hotQuestionList,userId} = this.props
     return (
       <main className="hot-question-list">
+        <SearchBar />
         {
           hotQuestionList.data.map((question, index) =>
             <QuestionItemWithAvatar userId={userId} question = { question } key={index} index={index}/>

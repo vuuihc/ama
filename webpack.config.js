@@ -60,5 +60,16 @@ module.exports = {
             // 'react-dom': path.resolve('node_modules',"react-dom/dist/react-dom.min.js"),
             'react-redux': path.resolve('node_modules', "react-redux/dist/react-redux.min.js")
         }
+    },
+    dev-server:{
+        historyApiFallback:true,
+        hot:true,
+        inline:true,
+        progress:true,
+        colors:true,
+        // proxy:{
+        //     "/"
+        // }
+
     }
 }

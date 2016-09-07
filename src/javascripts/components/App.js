@@ -17,7 +17,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <SearchBar />
         <div className="app-container" ref="content">{ this.props.children }</div>
         <div className="footer">
           <ul>

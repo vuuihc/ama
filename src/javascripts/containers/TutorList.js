@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import {getTutorList} from '../actions/tutor.js'
 import { getUserInfo } from '../actions/account'
 import TutorItem from "./blocks/TutorItem"
+import SearchBar from "./SearchBar"
 
 import '../../stylesheets/partials/modules/TutorList.scss'
 import Loading from "./Loading2"
@@ -22,7 +23,6 @@ class TutorList extends Component {
   componentDidMount() {
     this.props.dispatch(getTutorList(1, 20))
     this.props.dispatch(getUserInfo());
-    console.log("tutorList===" + this.props.tutorList)
     $('.app-container').on('scroll', this.handleScroll);
   }
   componentWillUnmount() {
@@ -41,9 +41,10 @@ class TutorList extends Component {
     const {tutorList, userId} = this.props
     return (
       <main className="tutor-list">
+        <SearchBar />
         {
           tutorList.data.map((tutor, index) =>
-            <TutorItem tutor={tutor} />
+            <TutorItem tutor={tutor} key={index}/>
           )
         }
         <Loading completed = { tutorList.completed } />
