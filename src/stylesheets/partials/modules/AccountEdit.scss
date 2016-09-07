@@ -31,12 +31,16 @@
         }
       }
       &.self-intro-text{
+        position: absolute;
         label{
           float:left;
         }
         .count{
-          float:right;
-          color:$red;
+        //   float:right;
+          position: absolute;
+          color:$lightGray;
+          bottom: px2rem(20);
+          right: px2rem(30);
         }
         textarea{
           padding:5px;

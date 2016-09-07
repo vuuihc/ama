@@ -172,7 +172,7 @@ class Question extends Component {
           <div className="userInfo">
             <img src={questionInfo.user_face.slice(0, -1) + '132'} />
             <span>{questionInfo.user_name}</span>
-            <div className="share">问题不错,快分享出去吧！<i className="iconfont icon-arrow" /></div>
+            {/*<div className="share">问题不错,快分享出去吧！<i className="iconfont icon-arrow" /></div>*/}
           </div>
         </Link>
         <div className="question-content">
@@ -202,11 +202,11 @@ class Question extends Component {
                   questionInfo.answer_isliked === 0
                     ? <div className="prise" onClick={() => {this.handlePrise(questionInfo.answer_id)}}>
                     <div><i className="iconfont icon-zanNo" /></div>
-                    <div className="desc">赞</div>
+                    {/*<div className="desc">赞</div>*/}
                   </div>
                     : <div className="prise" onClick={() => {this.handleCanclePrise(questionInfo.answer_id)}}>
                     <div><i className="iconfont icon-zanYes" /></div>
-                    <div className="desc">已赞</div>
+                    {/*<div className="desc">已赞</div>*/}
                   </div>
                 }
               </div>

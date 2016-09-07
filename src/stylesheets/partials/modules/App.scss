@@ -138,7 +138,8 @@ span>a>img {
         color:$darkGray;
         display: block;
         &.active{
-          color:$lightBlue;
+        //   color:$lightBlue;
+            color: $orange ;
         }
       }
     }

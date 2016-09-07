@@ -39,8 +39,6 @@ export function historySearch(state = initialState.historySearch, action) {
                     page: action.page+1
                 })
             } else {
-                console.log(`state ${JSON.stringify(state)}`)
-                // console.log(`state ${state}`)
                 return Object.assign({}, state, {
                     data: state.data.concat(action.data),
                     completed: action.data.length < action.num ? true : false,
