@@ -32,7 +32,7 @@ import {baseUrl} from "./api/config"
 ReactDom.render((
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path = '/test' component={Test}/>
+      <Route path = '/ama/7dyk/test' component={Test}/>
       <Route path={baseUrl} component={App}>
         <IndexRoute component={Hot}/>
         <Route path={baseUrl+"tutor"} component={Tutor}/>
