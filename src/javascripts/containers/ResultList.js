@@ -34,7 +34,7 @@ const ResultList = ({
                 </div>
                 <div className="tutor-list">
                     {tutors.map((tutor, index)=>(
-                        <TutorItem tutor={tutor} />
+                        <TutorItem key={index} tutor={tutor} />
                     ))}
                 </div>
             </div>

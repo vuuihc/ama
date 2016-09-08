@@ -8,7 +8,8 @@ export default {
         return cb(json.data)
         break
       case 101:
-        location.href=json.data.login_url
+        let redirectUrl = location.href
+        location.href=`${json.data.login_url}?redirect_url=${redirectUrl}`
         break
       default:
         console.error(json.msg)
