@@ -22,7 +22,8 @@ class Toast1 extends React.Component{
 
 
 let message = {};
-message.success = (content, duration  = 1, onClose) => {
+let onClose = ()=>{}
+message.success = (content, duration  = 1, onClose = onClose) => {
     let div = document.createElement('div');
     div.id = 'toast-success';
     document.append(div);
