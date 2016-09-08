@@ -64,11 +64,9 @@ class Answer extends Component {
     this.setState({showAlert:false})
   }
   hideConfirm(){
-      this.setState({showConfirm: false})
+      this.setState({canLeave:false, showConfirm: false})
   }
   leaveThisPage(){
-    console.log(this.state.nextLocation.pathname)
-    this.setState({canLeave:true})
     browserHistory.push(this.state.nextLocation.pathname)
   }
   componentWillMount(){
@@ -111,6 +109,7 @@ class Answer extends Component {
     // or return a string to allow the user to decide:
     if(!this.state.answerSuccess&&!this.state.canLeave){
       // return '您的回答尚未完成，确认离开?'
+      this.setState({canLeave:true})
       let confirmText,self = this
       switch(this.state.status){
           case 0:
