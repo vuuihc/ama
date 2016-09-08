@@ -53,6 +53,7 @@ class TutorIndex extends Component {
       },
       alertContent:'',
       nextLocation:location.href,
+      canLeave: false
     }
 	this.routerWillLeave = this.routerWillLeave.bind(this);
   }
@@ -138,7 +139,7 @@ class TutorIndex extends Component {
   routerWillLeave(nextLocation) {
     // return false to prevent a transition w/o prompting the user,
     // or return a string to allow the user to decide:
-    if(this.refs.content.value != '' && !this.state.askSuccess){
+    if(this.refs.content.value != '' && !this.state.askSuccess && !this.state.canLeave){
       // return '您的提问尚未支付，确认离开?'
       this.setState({nextLocation:nextLocation.pathname,showConfirm:true})
     //   console.log(nextLocation)
@@ -153,6 +154,7 @@ class TutorIndex extends Component {
   }
   leaveThisPage(){
     this.hideConfirm()
+    this.setState({canLeave: true})
     browserHistory.push(this.state.nextLocation)
   }
   componentWillUnmount(){

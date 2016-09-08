@@ -29,7 +29,7 @@ export default class QuestionItemWithoutAvatar extends Component {
             <span className="bubble">
               <span className="bubble-tail"></span>
               <span className="bubble-voice"></span>
-              <span className="bubble-text"> 1 元偷偷听</span>
+              <span className="bubble-text">{question.is_payed?"点击偷偷听":"1 元偷偷听"}</span>
             </span>
           </div>
           <div className="remark">
