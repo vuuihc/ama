@@ -9,7 +9,8 @@ class Toast1 extends React.Component{
         }
     }
     componentDidMount(){
-        setTimeout(()=>{this.setState({show:false}); this.props.onClose()},this.props.duration * 1000);
+        console.log(this.props);
+        setTimeout(()=>{this.setState({show:false});console.log(this.props); this.props.onClose()},this.props.duration * 1000);
     }
     render(){
         return(
@@ -22,13 +23,22 @@ class Toast1 extends React.Component{
 
 let message = {};
 message.success = (content, duration  = 1, onClose) => {
-    ReactDom.render(React.createElement(Toast1, {icon: 'weui_icon_success', content: content, onClose:onClose, duration: duration}), document.getElementById('root'));
+    let div = document.createElement('div');
+    div.id = 'toast-success';
+    document.append(div);
+    ReactDom.render(React.createElement(Toast1, {icon: 'weui_icon_success', content: content, onClose:onClose, duration: duration}), document.getElementById('toast-success'));
 }
 message.info =(content, duration  = 1, onClose) => {
-    ReactDom.render(React.createElement(Toast1, {icon: 'weui_icon_info', content: content, onClose:onClose, duration: duration}), document.getElementById('root'));
+    let div = document.createElement('div');
+    div.id = 'toast-info';
+    document.append(div);
+    ReactDom.render(React.createElement(Toast1, {icon: 'weui_icon_info', content: content, onClose:onClose, duration: duration}), document.getElementById('toast-info'));
 }
 message.cancel = (content, duration  = 1, onClose) => {
-    ReactDom.render(React.createElement(Toast1, {icon: 'weui_icon_cancel', content: content, onClose:onClose, duration: duration}), document.getElementById('root'));
+    let div = document.createElement('div');
+    div.id = 'toast-cancel';
+    document.append(div);
+    ReactDom.render(React.createElement(Toast1, {icon: 'weui_icon_cancel', content: content, onClose:onClose, duration: duration}), document.getElementById('toast-cancel'));
 }
 
 export default message;
