@@ -128,11 +128,12 @@ export function clearAskedMe() {
 export function requestBecomeTeacher(invite, prize) {
   return (dispatch) => {
     account.requestBecomeTeacher(invite, prize, (data) => {
+      alert('恭喜你成为导师');
+      window.location.reload();
       dispatch({
         type: RECEIVE_USER_INFO,
         data
       })
-      alert('申请成功！');
     })
   }
 }
