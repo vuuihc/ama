@@ -13,7 +13,7 @@ $weuiDialogLinkActiveBc: #EEEEEE;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
+    -webkit-transform: translate(-50%, -50%);
     background-color: $weuiDialogBackgroundColor;
     text-align: center;
     border-radius: 3px;
@@ -52,8 +52,9 @@ $weuiDialogLinkActiveBc: #EEEEEE;
     font-size: 17px;
     display: flex;
     a {
-        display: block;
+        display: inline-block;
         flex: 1;
+		width:50%;
         color: $weuiDialogLinkColor;
         text-decoration: none;
         @include setTapColor();

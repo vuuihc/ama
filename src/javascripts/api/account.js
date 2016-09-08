@@ -75,6 +75,7 @@ export default  {
                 if(json.errCode != 0){
                     alert('您输入的邀请码有误，请核对后填写');
                 }
+                alert('申请成功！');
                 return apiHandler.handleResponse(json,cb)
             })
     }
