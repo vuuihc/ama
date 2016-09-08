@@ -109,7 +109,7 @@ class Answer extends Component {
   routerWillLeave(nextLocation) {
     // return false to prevent a transition w/o prompting the user,
     // or return a string to allow the user to decide:
-    if(!this.state.answerSuccess&&!canLeave){
+    if(!this.state.answerSuccess&&!this.state.canLeave){
       // return '您的回答尚未完成，确认离开?'
       let confirmText,self = this
       switch(this.state.status){
