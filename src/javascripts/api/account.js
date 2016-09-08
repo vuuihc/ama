@@ -74,7 +74,7 @@ export default  {
             .then(res => res.json())
             .then(json => {
                 if(json.errCode != 0){
-                    message.info('您输入的邀请码有误，请核对后填写');
+                    message.info('邀请码错误');
                 }
                 return apiHandler.handleResponse(json,cb)
             })

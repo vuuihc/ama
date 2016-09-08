@@ -10,7 +10,11 @@ class Toast1 extends React.Component{
     }
     componentDidMount(){
         console.log(this.props);
-        setTimeout(()=>{this.setState({show:false});console.log(this.props); this.props.onClose()},this.props.duration * 1000);
+        setTimeout(()=>{
+            this.setState({show:false});
+            console.log(this.props);
+            if(typeof this.props.onClose == 'function') this.props.onClose()
+        },this.props.duration * 1000);
     }
     render(){
         return(
@@ -22,8 +26,7 @@ class Toast1 extends React.Component{
 
 
 let message = {};
-let onClose = ()=>{}
-message.success = (content, duration  = 1, onClose = onClose) => {
+message.success = (content, duration  = 1, onClose ) => {
     let div = document.createElement('div');
     div.id = 'toast-success';
     document.body.appendChild(div);

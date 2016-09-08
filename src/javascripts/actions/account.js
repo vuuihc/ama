@@ -128,7 +128,7 @@ export function clearAskedMe() {
 export function requestBecomeTeacher(invite, prize) {
   return (dispatch) => {
     account.requestBecomeTeacher(invite, prize, (data) => {
-      message.success('恭喜你成为导师!', 1.5, () =>{window.location.reload()});
+      message.success('申请成功!', 1.5, () =>{window.location.reload()});
       dispatch({
         type: RECEIVE_USER_INFO,
         data
