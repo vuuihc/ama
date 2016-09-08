@@ -9,7 +9,9 @@ class Test extends React.Component{
         }
     }
     componentDidMount(){
-        message();
+        message.success('chenggongle', 2, ()=>{alert('234')});
+        message.info('chenggongle', 2, ()=>{alert('234')});
+        message.cancel('chenggongle', 2, ()=>{alert('234')});
     }
     render(){
         return(
