@@ -44,7 +44,7 @@ class TutorList extends Component {
         <SearchBar />
         {
           tutorList.data.map((tutor, index) =>
-            <TutorItem tutor={tutor} key={index}/>
+            <TutorItem userId={userId} tutor={tutor} key={index}/>
           )
         }
         <Loading completed = { tutorList.completed } />

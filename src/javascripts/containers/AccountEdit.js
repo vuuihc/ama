@@ -6,6 +6,7 @@ import {browserHistory, withRouter} from 'react-router'
 import {baseUrl} from '../api/config'
 import {connect} from 'react-redux'
 import {editUserInfo} from '../actions/account';
+import Alert from "../util/weui/alert"
 import '../../stylesheets/partials/modules/AccountEdit.scss'
 
 class AccountEdit extends Component {
@@ -17,9 +18,24 @@ class AccountEdit extends Component {
       experience: this.props.userInfo.user_experience,
       introduction: this.props.userInfo.user_introduction,
       teacher_prize: this.props.userInfo.teacher_prize,
+      showAlert:false,
+      alertContent:"",
+      alert:{
+        title:"提示",
+        buttons:[
+          {
+            type:"default",
+            label:"确定",
+            onClick:this.hideAlert.bind(this)
+          }
+        ]
+      },
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.routerWillLeave = this.routerWillLeave.bind(this);
+  }
+  hideAlert(){
+    this.setState({showAlert:false})
   }
   routerWillLeave(nextLocation) {
     // return false to prevent a transition w/o prompting the user,
@@ -41,6 +57,10 @@ class AccountEdit extends Component {
   }
 
   handleSubmit() {
+    if(!(/^[1-9]+[0-9]*]*$/).test(this.state.teacher_prize)){
+        this.setState({alertContent:'请在"提问价格"中填入整数',showAlert:true})
+        return
+    }
     this.props.editUserInfo(this.state.company, this.state.job, this.state.experience, this.state.teacher_prize,this.state.introduction);
     browserHistory.push({pathname:baseUrl + "account/IAskedList", state:'okay'});
   }
@@ -49,6 +69,7 @@ class AccountEdit extends Component {
     const {userInfo} = this.props;
     return (
       <main className="user edit">
+        <Alert show={this.state.showAlert} title="提示" buttons={this.state.alert.buttons}>{this.state.alertContent}</Alert>
         <div className="user-card-bg">
           <img src={userInfo.user_face.slice(0, -1) + '132'}/>
         </div>
@@ -77,6 +98,7 @@ class AccountEdit extends Component {
           <div className="form-group">
             <label>提 问 价 格：</label>
             <input
+              type="number"
               placeholder="输入您的提问价格"
               value={this.state.teacher_prize}
               onChange={(e)=>{this.setState({teacher_prize: e.target.value})}}

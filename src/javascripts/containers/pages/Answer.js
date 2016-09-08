@@ -66,7 +66,7 @@ class Answer extends Component {
       this.setState({showConfirm: false})
   }
   leaveThisPage(){
-    // console.log(this.state.nextLocation)
+    console.log(this.state.nextLocation)
     this.hideConfirm()
     browserHistory.push(this.state.nextLocation.pathname)
   }
