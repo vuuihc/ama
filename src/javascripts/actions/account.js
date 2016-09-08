@@ -132,6 +132,7 @@ export function requestBecomeTeacher(invite, prize) {
         type: RECEIVE_USER_INFO,
         data
       })
+      alert('申请成功！');
     })
   }
 }
