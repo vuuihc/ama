@@ -4,16 +4,16 @@
     .result-title{
         line-height: px2rem(70);
         background: #e5f5ff;
-        display: flex;
-        display: -webkit-flex;
-        justify-content: space-between;
+        overflow: hidden;
         h5{
             font-size: px2rem(24);
             &.title{
+                float: left;
                 margin-left: px2rem(25);
                 color: gray;
             }
             &.more{
+                float: right;
                 margin-right: px2rem(25);
                 color: blue;
             }

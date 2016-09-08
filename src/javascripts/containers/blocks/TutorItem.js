@@ -10,7 +10,7 @@ const TutorItem = ({
 })=>{
     return(
         <Link key={index} to={tutor.user_id == userId ? `${baseUrl}account` : `${baseUrl}tutor/${tutor.user_id}` }>
-          <article>
+          <article className="tutor-item">
             <div className="tutor-info">
               <img src={tutor.user_face.slice(0, -1) + '132'}/>
               <div className="tutor-intro">

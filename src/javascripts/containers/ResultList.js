@@ -7,7 +7,8 @@ import TutorItem from "./blocks/TutorItem"
 
 const ResultList = ({
     questions,
-    tutors
+    tutors,
+    userId
 }) => {
     let url = location.href.split("/")
     let query = url.pop()
@@ -44,5 +45,6 @@ const ResultList = ({
 
 export default connect(state=>({
     questions: state.hotQuestionList.data,
-    tutors: state.tutorList.data
+    tutors: state.tutorList.data,
+    userId: state.account.userInfo.user_id
 }))(ResultList)
