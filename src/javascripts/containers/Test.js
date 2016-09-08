@@ -1,5 +1,5 @@
 import React from 'react';
-import {message} from "../util/weui/toast1"
+import message from "../util/weui/toast1"
 import ReactDom from 'react-dom'
 class Test extends React.Component{
     constructor(){

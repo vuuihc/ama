@@ -32,4 +32,3 @@ message.cancel = (content, duration  = 1, onClose) => {
 }
 
 export default message;
-
