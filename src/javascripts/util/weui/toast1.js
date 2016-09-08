@@ -26,19 +26,19 @@ let onClose = ()=>{}
 message.success = (content, duration  = 1, onClose = onClose) => {
     let div = document.createElement('div');
     div.id = 'toast-success';
-    document.append(div);
+    document.body.appendChild(div);
     ReactDom.render(React.createElement(Toast1, {icon: 'weui_icon_success', content: content, onClose:onClose, duration: duration}), document.getElementById('toast-success'));
 }
 message.info =(content, duration  = 1, onClose) => {
     let div = document.createElement('div');
-    div.id = 'toast-info';
-    document.append(div);
+    div.id = 'toast-success';
+    document.body.appendChild(div);
     ReactDom.render(React.createElement(Toast1, {icon: 'weui_icon_info', content: content, onClose:onClose, duration: duration}), document.getElementById('toast-info'));
 }
 message.cancel = (content, duration  = 1, onClose) => {
     let div = document.createElement('div');
-    div.id = 'toast-cancel';
-    document.append(div);
+    div.id = 'toast-success';
+    document.body.appendChild(div);
     ReactDom.render(React.createElement(Toast1, {icon: 'weui_icon_cancel', content: content, onClose:onClose, duration: duration}), document.getElementById('toast-cancel'));
 }
 
