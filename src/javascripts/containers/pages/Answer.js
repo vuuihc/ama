@@ -25,6 +25,7 @@ class Answer extends Component {
       uploading:false,
       START:0,
       END:0,
+      canLeave: false,
       showAlert:false,
       alertContent:"",
       alert:{
@@ -67,7 +68,7 @@ class Answer extends Component {
   }
   leaveThisPage(){
     console.log(this.state.nextLocation.pathname)
-    // this.hideConfirm()
+    this.setState({canLeave:true})
     browserHistory.push(this.state.nextLocation.pathname)
   }
   componentWillMount(){
@@ -108,7 +109,7 @@ class Answer extends Component {
   routerWillLeave(nextLocation) {
     // return false to prevent a transition w/o prompting the user,
     // or return a string to allow the user to decide:
-    if(!this.state.answerSuccess){
+    if(!this.state.answerSuccess&&!canLeave){
       // return '您的回答尚未完成，确认离开?'
       let confirmText,self = this
       switch(this.state.status){
