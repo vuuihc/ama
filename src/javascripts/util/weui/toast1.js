@@ -1,6 +1,32 @@
 import React from 'react';
 import Toast from './toast';
+import Alert from './alert';
 import ReactDom from 'react-dom'
+class Alert1 extends React.Component{
+    constructor(){
+        super();
+        this.hideAlert = this.hideAlert.bind(this);
+        this.state = {
+            showAlert : true,
+            buttons: [
+                {
+                    type:"default",
+                    label:"确定",
+                    onClick:this.hideAlert
+                }
+            ]
+        }
+    }
+    hideAlert(){
+        this.setState({showAlert:false});
+        if(typeof this.props.onClose == 'function') this.props.onClose();
+    }
+    render(){
+        return(
+            <Alert show={this.state.showAlert} title="提示" buttons={this.state.buttons}>{this.props.content}</Alert>
+        )
+    }
+}
 class Toast1 extends React.Component{
     constructor(){
         super();
@@ -18,7 +44,7 @@ class Toast1 extends React.Component{
     }
     render(){
         return(
-            <Toast show = {this.state.show} icon={this.props.icon} children = {this.props.content}/>
+            <Toast show = {this.state.show} children = {this.props.content}/>
         )
     }
 }
@@ -28,21 +54,15 @@ class Toast1 extends React.Component{
 let message = {};
 message.success = (content, duration  = 1, onClose ) => {
     let div = document.createElement('div');
-    div.id = 'toast-success';
+    div.id = 'message-success';
     document.body.appendChild(div);
-    ReactDom.render(React.createElement(Toast1, {icon: 'weui_icon_success', content: content, onClose:onClose, duration: duration}), div);
+    ReactDom.render(React.createElement(Toast1, { content: content, onClose:onClose, duration: duration}), div);
 }
-message.info =(content, duration  = 1, onClose) => {
+message.alert =(content, onClose) => {
     let div = document.createElement('div');
-    div.id = 'toast-success';
+    div.id = 'message-alert';
     document.body.appendChild(div);
-    ReactDom.render(React.createElement(Toast1, {icon: 'weui_icon_info', content: content, onClose:onClose, duration: duration}), div);
-}
-message.cancel = (content, duration  = 1, onClose) => {
-    let div = document.createElement('div');
-    div.id = 'toast-success';
-    document.body.appendChild(div);
-    ReactDom.render(React.createElement(Toast1, {icon: 'weui_icon_cancel', content: content, onClose:onClose, duration: duration}), div);
+    ReactDom.render(React.createElement(Alert1, { content: content, onClose:onClose}), div);
 }
 
 export default message;
