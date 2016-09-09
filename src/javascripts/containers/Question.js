@@ -47,7 +47,7 @@ class Question extends Component {
         this.state.answerAudio.pause()
         this.state.answerAudio.currentTime=0
     }
-    this.setState({answerAudio:null})
+    this.setState({answerAudio:null,playing:0})
     this.props.clearQuesiton()
 
   }
@@ -127,10 +127,14 @@ class Question extends Component {
     })
   }
   playAudio(answerId,answerAudio){
-    let audio = this.state.answerAudio || answerAudio
+    let audio = this.state.answerAudio || answerAudio,
+        self = this
     if(audio){
       console.log("audio.src===="+audio.src)
       audio.play();//todo 优化
+      audio.addEventListener("ended",()=>{
+            self.setState({playing:0})
+      })
     }else{
       this.getAudio(answerId)
     }

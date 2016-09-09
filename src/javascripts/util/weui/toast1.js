@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import Toast from './toast';
 import Alert from './alert';
 import ReactDom from 'react-dom'
@@ -49,6 +49,38 @@ class Toast1 extends React.Component{
     }
 }
 
+class SmartConfirm extends Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            showConfirm:true,
+            buttons:[
+                {
+                  type:"primary",
+                  label: this.props.confirmText,
+                  onClick:this.confirm.bind(this)
+                },
+                {
+                  type:"default",
+                  label: this.props.cancelText,
+                  onClick:this.cancel.bind(this)
+                }
+            ]
+        }
+    }
+    confirm(){
+        this.setState({showConfirm:false})
+        if(typeof(this.props.onConfirm)==="function")
+            this.props.onConfirm()
+    }
+    cancel(){
+        this.setState({showConfirm:false})
+        if(typeof(this.props.onCancel)==="function")
+            this.props.onCancel()
+    }
+
+
+}
 
 
 let message = {};
@@ -63,6 +95,15 @@ message.alert =(content, onClose) => {
     div.id = 'message-alert';
     document.body.appendChild(div);
     ReactDom.render(React.createElement(Alert1, { content: content, onClose:onClose}), div);
+}
+message.confirm = (content, confirmText="确定", cancelText="取消",onConfirm, onCancel) => {
+    let div = document.createElement("div");
+    div.id = 'message-confirm';
+    document.body.appendChild(div);
+    ReactDom.render(
+        <SmartConfirm content={content} onConfirm={onConfirm} onClose={onClose} />,
+        div
+    )
 }
 
 export default message;

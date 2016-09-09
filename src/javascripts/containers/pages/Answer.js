@@ -12,6 +12,7 @@ import Toast from "../../util/weui/toast"
 import {baseUrl,domain} from "../../api/config"
 import Confirm from "../../util/weui/confirm"
 import Alert from "../../util/weui/alert"
+import message from "../../util/weui/toast1"
 import Loading from "../Loading"
 class Answer extends Component {
   constructor(){
@@ -97,6 +98,9 @@ class Answer extends Component {
       var talkBtn = ReactDOM.findDOMNode(self.refs.roundContainer)
       talkBtn.addEventListener('click',self.clickHandler,false)
     })
+    wx.error(function(res){
+        self.refreshWXConfig()
+    });
     wx.onVoicePlayEnd({
       success: function (res) {
         self.setState({status: 4})
@@ -127,8 +131,12 @@ class Answer extends Component {
             confirmText = "您的录音还未上传，确认离开?"
             break
       }
-      this.setState({confirmText:confirmText,showConfirm:true,nextLocation:nextLocation})
-      return false
+    //   this.setState({confirmText:confirmText,showConfirm:true,nextLocation:nextLocation})
+    message.confirm(confirmText,"接着回答","离开",
+        ()=>{ return false },
+        ()=>{ return true}
+    )
+    //   return false
     }
   }
   componentWillReceiveProps(nextProps){
