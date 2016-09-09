@@ -53,21 +53,9 @@ class Toast1 extends React.Component{
 class SmartConfirm extends Component{
     constructor(props){
         super(props)
-        console.log(this.props.confirmText,this.props.cancelText)
+        console.log(props)
         this.state = {
-            showConfirm:true,
-            buttons:[
-                {
-                  type:"primary",
-                  label: this.props.confirmText,
-                  onClick:this.confirm.bind(this)
-                },
-                {
-                  type:"default",
-                  label: this.props.cancelText,
-                  onClick:this.cancel.bind(this)
-                }
-            ]
+            showConfirm:true
         }
     }
     confirm(){
@@ -82,7 +70,24 @@ class SmartConfirm extends Component{
     }
     render(){
         return(
-            <Confirm buttons={this.state.buttons} title="提示" show={this.state.showConfirm} >{this.props.content}</Confirm>
+            <Confirm
+            buttons={[
+                {
+                  type:"primary",
+                  label: this.props.confirmText,
+                  onClick:this.confirm.bind(this)
+                },
+                {
+                  type:"default",
+                  label: this.props.cancelText,
+                  onClick:this.cancel.bind(this)
+                }
+            ]}
+            title="提示"
+            show={this.state.showConfirm}
+            >
+            {this.props.content}
+            </Confirm>
         )
     }
 
