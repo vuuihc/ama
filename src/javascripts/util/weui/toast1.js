@@ -101,7 +101,7 @@ message.confirm = (content, confirmText="确定", cancelText="取消",onConfirm,
     div.id = 'message-confirm';
     document.body.appendChild(div);
     ReactDom.render(
-        <SmartConfirm content={content} onConfirm={onConfirm} onClose={onClose} />,
+        <SmartConfirm content={content} onConfirm={onConfirm} onCancel={onCancel} />,
         div
     )
 }
