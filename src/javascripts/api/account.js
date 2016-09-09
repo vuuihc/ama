@@ -1,5 +1,6 @@
 import { domain } from './config'
 import apiHandler from "../util/apiHandler"
+import message from '../util/weui/toast1'
 
 export default  {
     getUserInfo(cb) {
@@ -73,7 +74,7 @@ export default  {
             .then(res => res.json())
             .then(json => {
                 if(json.errCode != 0){
-                    alert('您输入的邀请码有误，请核对后填写');
+                    message.alert('您输入的邀请码有误，请核对后填写',() =>{console.log('hide')});
                 }
                 return apiHandler.handleResponse(json,cb)
             })

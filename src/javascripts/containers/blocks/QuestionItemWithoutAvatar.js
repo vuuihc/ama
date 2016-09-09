@@ -17,6 +17,7 @@ export default class QuestionItemWithoutAvatar extends Component {
 
   render() {
     const {question, head} = this.props
+    console.log(question)
     return (
       <article className="question-without-avatar">
         <Link to={baseUrl+"question/"+question.id}>

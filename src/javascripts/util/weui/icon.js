@@ -14,7 +14,7 @@ class Icon extends Component {
             ['weui_icon_' + value]: true,
             weui_icon_msg: size === 'large',
             [className]: className
-        });
+        }); 
 
         if (value === 'loading') {
             return (

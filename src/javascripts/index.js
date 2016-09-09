@@ -25,13 +25,14 @@ import Search from "./components/Search"
 import SearchTips from "./containers/SearchTips"
 import SearchResult from "./containers/SearchResult"
 import ResultList from "./containers/ResultList"
-
+import Test from "./containers/Test"
 import configureStore from './store/configureStore'
 const store = configureStore();
 import {baseUrl} from "./api/config"
 ReactDom.render((
   <Provider store={store}>
     <Router history={browserHistory}>
+      <Route path = '/ama/7dyk/test' component={Test}/>
       <Route path={baseUrl} component={App}>
         <IndexRoute component={Hot}/>
         <Route path={baseUrl+"tutor"} component={Tutor}/>
