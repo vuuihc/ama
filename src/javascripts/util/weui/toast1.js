@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import Toast from './toast';
 import Alert from './alert';
+import Confirm from "./confirm"
 import ReactDom from 'react-dom'
 class Alert1 extends React.Component{
     constructor(){
@@ -77,6 +78,11 @@ class SmartConfirm extends Component{
         this.setState({showConfirm:false})
         if(typeof(this.props.onCancel)==="function")
             this.props.onCancel()
+    }
+    render(){
+        return(
+            <Confirm buttons={this.state.buttons} title="提示" show={this.state.showConfirm} >{this.props.content}</Confirm>
+        )
     }
 
 
