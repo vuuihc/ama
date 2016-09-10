@@ -1,6 +1,6 @@
 import { domain } from './config'
 import apiHandler from "../util/apiHandler"
-import message from '../util/weui/toast1'
+import message from '../util/weui/message'
 
 export default  {
     getUserInfo(cb) {

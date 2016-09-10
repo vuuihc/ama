@@ -7,6 +7,7 @@ import {baseUrl} from '../api/config'
 import {connect} from 'react-redux'
 import {editUserInfo} from '../actions/account';
 import Alert from "../util/weui/alert"
+import message from "../util/weui/message"
 import '../../stylesheets/partials/modules/AccountEdit.scss'
 
 class AccountEdit extends Component {
@@ -30,6 +31,7 @@ class AccountEdit extends Component {
           }
         ]
       },
+      canLeave:false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.routerWillLeave = this.routerWillLeave.bind(this);
@@ -40,13 +42,22 @@ class AccountEdit extends Component {
   routerWillLeave(nextLocation) {
     // return false to prevent a transition w/o prompting the user,
     // or return a string to allow the user to decide:
+    console.log(nextLocation)
 	if(nextLocation.state == 'okay'){
 		return true;
 	}
     const now = this.state;
     const previous = this.props.userInfo;
-    if(now.company != previous.user_company || now.job != previous.user_position || now.introduction != previous.user_introduction){
-      return '您所编辑的页面尚未保存，确认离开?'
+    if(!this.state.canLeave &&(now.company != previous.user_company || now.job != previous.user_position || now.introduction != previous.user_introduction)){
+      message.confirm('您所编辑的页面尚未保存，确认离开?',"接着编辑","放弃修改",
+        ()=>{
+            self.setState({canLeave:false})
+        },
+        ()=>{
+            browserHistory.push(nextLocation.pathname)
+        }
+      )
+      return false
     }
   }
   componentDidMount() {

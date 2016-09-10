@@ -24,22 +24,22 @@ class TutorIndex extends Component {
         curPage:1,
       askSuccess:false,
       loading:false,
-      showConfirm:false,
-      confirm:{
-        title: "提示",
-        buttons:[
-          {
-            type:'primary',
-            label:'接着提问',
-            onClick: this.hideConfirm.bind(this)
-          },
-          {
-            type:'default',
-            label:'离开',
-            onClick:this.leaveThisPage.bind(this)
-          }
-        ]
-      },
+    //   showConfirm:false,
+    //   confirm:{
+    //     title: "提示",
+    //     buttons:[
+    //       {
+    //         type:'primary',
+    //         label:'接着提问',
+    //         onClick: this.hideConfirm.bind(this)
+    //       },
+    //       {
+    //         type:'default',
+    //         label:'离开',
+    //         onClick:this.leaveThisPage.bind(this)
+    //       }
+    //     ]
+    //   },
       showAlert:false,
       alert:{
         title:"提示",
@@ -140,9 +140,17 @@ class TutorIndex extends Component {
     // return false to prevent a transition w/o prompting the user,
     // or return a string to allow the user to decide:
     if(this.refs.content.value != '' && !this.state.askSuccess && !this.state.canLeave){
-      // return '您的提问尚未支付，确认离开?'
-      this.setState({nextLocation:nextLocation.pathname,showConfirm:true})
+      this.setState({nextLocation:nextLocation.pathname,canLeave:true})
     //   console.log(nextLocation)
+      let self = this
+      message.confirm("您的提问尚未支付，确认离开？","接着提问","离开",
+        ()=>{
+            self.setState({canLeave:false})
+        },
+        ()=>{
+            self.leaveThisPage()
+        }
+      )
       return false
     }
   }

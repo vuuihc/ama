@@ -14,7 +14,7 @@ import {
   ASKED_ME_COMPLETED,
   RECEIVE_OTHER_USER_INFO,
 } from './ActionTypes'
-import message from '../util/weui/toast1'
+import message from '../util/weui/message'
 
 export function getUserInfo() {
   return (dispatch) => {

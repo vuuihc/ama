@@ -12,7 +12,7 @@ import Toast from "../../util/weui/toast"
 import {baseUrl,domain} from "../../api/config"
 import Confirm from "../../util/weui/confirm"
 import Alert from "../../util/weui/alert"
-import message from "../../util/weui/toast1"
+import message from "../../util/weui/message"
 import Loading from "../Loading"
 class Answer extends Component {
   constructor(){
@@ -39,23 +39,23 @@ class Answer extends Component {
           }
         ]
       },
-      showConfirm:false,
-      confirmText:"",
-      confirm:{
-        title:"提示",
-        buttons:[
-          {
-            type:"primary",
-            label:"接着回答",
-            onClick:this.hideConfirm.bind(this)
-          },
-          {
-            type:"default",
-            label:"离开",
-            onClick:this.leaveThisPage.bind(this)
-          }
-        ]
-      },
+    //   showConfirm:false,
+    //   confirmText:"",
+    //   confirm:{
+    //     title:"提示",
+    //     buttons:[
+    //       {
+    //         type:"primary",
+    //         label:"接着回答",
+    //         onClick:this.hideConfirm.bind(this)
+    //       },
+    //       {
+    //         type:"default",
+    //         label:"离开",
+    //         onClick:this.leaveThisPage.bind(this)
+    //       }
+    //     ]
+    //   },
       nextLocation:location.href
     }
     this.clickHandler = this.clickHandler.bind(this)
@@ -64,9 +64,9 @@ class Answer extends Component {
   hideAlert(){
     this.setState({showAlert:false})
   }
-  hideConfirm(){
-      this.setState({canLeave:false, showConfirm: false})
-  }
+  // hideConfirm(){
+  //     this.setState({canLeave:false, showConfirm: false})
+  // }
   leaveThisPage(){
     browserHistory.push(this.state.nextLocation.pathname)
   }
@@ -132,12 +132,20 @@ class Answer extends Component {
             break
       }
     //   this.setState({confirmText:confirmText,showConfirm:true,nextLocation:nextLocation})
-    message.confirm(confirmText,"接着回答","离开",
-        ()=>{ return false },
-        ()=>{ return true}
-    )
-    //   return false
+
+        message.confirm(confirmText, "接着回答", "离开",
+            () => {
+                self.setState({
+                    canLeave: false
+                })
+            },
+            () => {
+                self.leaveThisPage()
+            }
+        )
+        return false
     }
+    return true
   }
   componentWillReceiveProps(nextProps){
     if(nextProps.WXConfig.data.timestamp){
