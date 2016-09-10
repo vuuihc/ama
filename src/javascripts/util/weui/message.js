@@ -53,7 +53,6 @@ class Toast1 extends React.Component{
 class SmartConfirm extends Component{
     constructor(props){
         super(props)
-        console.log(props)
         this.state = {
             showConfirm:true
         }

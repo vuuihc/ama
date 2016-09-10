@@ -49,6 +49,7 @@ class AccountEdit extends Component {
     const now = this.state;
     const previous = this.props.userInfo;
     if(!this.state.canLeave &&(now.company != previous.user_company || now.job != previous.user_position || now.introduction != previous.user_introduction)){
+      self.setState({canLeave:true})
       message.confirm('您所编辑的页面尚未保存，确认离开?',"接着编辑","放弃修改",
         ()=>{
             self.setState({canLeave:false})
