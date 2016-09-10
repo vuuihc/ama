@@ -15,6 +15,7 @@ class QuestionItemAskedMe extends Component {
   }
   render() {
     const {question} = this.props;
+    const url = question.isanswered == '0' ? `${baseUrl}answer/${question.id}` : `${baseUrl}question/${question.id}`;
     return (
       <article className="question-item-asked-me">
         <div className="userInfo">
@@ -23,7 +24,7 @@ class QuestionItemAskedMe extends Component {
             <span>{question.user_name}</span>
           </Link>
         </div>
-        <Link to = {`${baseUrl}answer/${question.id}`}>
+        <Link to = {url}>
           <div className="question-content">
             <h4>{question.content}</h4>
           </div>
