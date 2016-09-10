@@ -8,13 +8,11 @@ import {getHistorySearch,getHotSearch,deleteHistory} from "../actions/search.js"
 class SearchTips  extends Component{
     componentDidMount(){
         const {historySearch,hotSearch,getHistory,getHot} = this.props
-        if((!historySearch.completed)&&(!historySearch.loading)){
+        if(!historySearch.loading){
             getHistory(historySearch.page,10)
         }
-        console.log(`out hotSearch.completed==${hotSearch.completed} hotSearch.loading==${hotSearch.loading} `)
-        if((!hotSearch.completed)&&(!historySearch.loading)){
+        if(!historySearch.loading){
             getHot()
-            console.log(`in hotSearch.completed==${hotSearch.completed} hotSearch.loading==${hotSearch.loading} `)
         }
     }
     deleteHistory(){

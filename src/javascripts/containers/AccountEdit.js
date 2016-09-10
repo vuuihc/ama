@@ -42,7 +42,7 @@ class AccountEdit extends Component {
   routerWillLeave(nextLocation) {
     // return false to prevent a transition w/o prompting the user,
     // or return a string to allow the user to decide:
-    console.log(nextLocation)
+    const self = this
 	if(nextLocation.state == 'okay'){
 		return true;
 	}
