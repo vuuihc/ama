@@ -9,7 +9,7 @@ class SearchTips  extends Component{
     componentDidMount(){
         const {historySearch,hotSearch,getHistory,getHot} = this.props
         if(!historySearch.loading){
-            getHistory(historySearch.page,10)
+            getHistory(1,100)
         }
         if(!historySearch.loading){
             getHot()
