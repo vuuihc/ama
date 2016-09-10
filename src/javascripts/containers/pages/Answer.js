@@ -18,6 +18,7 @@ class Answer extends Component {
   constructor(){
     super();
     this.state={
+      configUrl: location.href,
       localId: null,
       status: 0,//0:话筒等待录音，1：等待微信发起录音，2：录音中，3：等待微信停止录音，4：等待播放，5：播放中
       answerSuccess: false,
@@ -39,23 +40,6 @@ class Answer extends Component {
           }
         ]
       },
-    //   showConfirm:false,
-    //   confirmText:"",
-    //   confirm:{
-    //     title:"提示",
-    //     buttons:[
-    //       {
-    //         type:"primary",
-    //         label:"接着回答",
-    //         onClick:this.hideConfirm.bind(this)
-    //       },
-    //       {
-    //         type:"default",
-    //         label:"离开",
-    //         onClick:this.leaveThisPage.bind(this)
-    //       }
-    //     ]
-    //   },
       nextLocation:location.href
     }
     this.clickHandler = this.clickHandler.bind(this)
@@ -63,12 +47,6 @@ class Answer extends Component {
   }
   hideAlert(){
     this.setState({showAlert:false})
-  }
-  // hideConfirm(){
-  //     this.setState({canLeave:false, showConfirm: false})
-  // }
-  leaveThisPage(){
-    browserHistory.push(this.state.nextLocation.pathname)
   }
   componentWillMount(){
     const {id} = this.props.params;
@@ -140,7 +118,7 @@ class Answer extends Component {
                 })
             },
             () => {
-                self.leaveThisPage()
+                browserHistory.push(nextLocation.pathname)
             }
         )
         return false
@@ -183,8 +161,9 @@ class Answer extends Component {
 
   }
   refreshWXConfig(){
-    const url = this.props.landPage || location.href
+    let url = (this.props.landPage===undefined||this.state.configUrl === this.props.landPage)?location.href:this.props.landPage
     this.props.getWXConfig(url)
+    this.setState({configUrl:url})
   }
   clickHandler(event){
     // var localId,START,END,recordTimer;

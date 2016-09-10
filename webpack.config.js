@@ -17,6 +17,7 @@ if (isProduction()) {
         })
     )
 } else {
+    console.log('开发环境');
     plugins.push(
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin()

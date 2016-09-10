@@ -10,6 +10,7 @@ import QuestionItemWithoutAvatar from "./blocks/QuestionItemWithoutAvatar"
 import Loading2 from "./Loading2"
 import Loading from './Loading'
 import Toast from "../util/weui/toast"
+import message from "../util/weui/message"
 import {baseUrl,domain} from "../api/config"
 import '../../stylesheets/partials/modules/TutorIndex.scss'
 import { withRouter } from 'react-router'
