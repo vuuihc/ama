@@ -345,7 +345,6 @@ class Answer extends Component {
             <Toast  icon="loading" show={this.state.authorizing} >获取授权</Toast>
             <Toast  icon="loading" show={this.state.uploading} >上传中</Toast>
             <Alert show={this.state.showAlert} title="提示" buttons={this.state.alert.buttons}>{this.state.alertContent}</Alert>
-            <Confirm show={this.state.showConfirm} title="提示" buttons={this.state.confirm.buttons}>{this.state.confirmText}</Confirm>
             <div className="answer-question">
               <div className="head">
                 <Link to={`${baseUrl}user/${questionInfo.user_id}`}><img src={questionInfo.user_face.slice(0, -1) + '132'}/></Link>

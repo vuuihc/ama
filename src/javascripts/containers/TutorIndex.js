@@ -13,7 +13,6 @@ import Toast from "../util/weui/toast"
 import {baseUrl,domain} from "../api/config"
 import '../../stylesheets/partials/modules/TutorIndex.scss'
 import { withRouter } from 'react-router'
-import Confirm from "../util/weui/confirm"
 import Alert from "../util/weui/alert"
 
 class TutorIndex extends Component {
@@ -24,22 +23,6 @@ class TutorIndex extends Component {
         curPage:1,
       askSuccess:false,
       loading:false,
-    //   showConfirm:false,
-    //   confirm:{
-    //     title: "提示",
-    //     buttons:[
-    //       {
-    //         type:'primary',
-    //         label:'接着提问',
-    //         onClick: this.hideConfirm.bind(this)
-    //       },
-    //       {
-    //         type:'default',
-    //         label:'离开',
-    //         onClick:this.leaveThisPage.bind(this)
-    //       }
-    //     ]
-    //   },
       showAlert:false,
       alert:{
         title:"提示",
@@ -148,22 +131,14 @@ class TutorIndex extends Component {
             self.setState({canLeave:false})
         },
         ()=>{
-            self.leaveThisPage()
+            browserHistory.push(nextLocation.pathname)
         }
       )
       return false
     }
   }
-  hideConfirm(){
-    this.setState({showConfirm:false})
-  }
   hideAlert(){
     this.setState({showAlert:false})
-  }
-  leaveThisPage(){
-    this.hideConfirm()
-    this.setState({canLeave: true})
-    browserHistory.push(this.state.nextLocation)
   }
   componentWillUnmount(){
     clearTimeout(this.state.successTimer);
@@ -181,7 +156,6 @@ class TutorIndex extends Component {
       <main className="tutorIndex">
         <Toast  show={this.state.askSuccess} >提问成功</Toast>
         <Toast  icon="loading" show={this.state.loading} >请求支付中……</Toast>
-        <Confirm show={this.state.showConfirm} title={this.state.confirm.title} buttons={this.state.confirm.buttons}>您的提问尚未支付，确认离开？</Confirm>
         <Alert show={this.state.showAlert} title={this.state.alert.title} buttons={this.state.alert.buttons} >{this.state.alertContent}</Alert>
         <div className="tutor-info">
           <Link to={baseUrl+`tutor/share/${tutorInfo.user_id}`} >
