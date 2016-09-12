@@ -55,27 +55,29 @@ class Answer extends Component {
   componentDidMount(){
     this.refreshWXConfig()
     const self = this
-    wx.ready(function(){
-      console.log("allowRecord" + sessionStorage.allowRecord)
-      if(!sessionStorage.allowRecord || sessionStorage.allowRecord !== 'true'){
-        self.setState({authorizing:true})
-        wx.startRecord({
-          success: function(){
-            sessionStorage.allowRecord = true;
-            self.setState({authorizing:false})
-            self.recordTimer = setTimeout(function(){
-              wx.stopRecord();
-            },500);
-          },
-          cancel: function () {
-            // alert('用户拒绝授权录音');
-            self.setState({alertContent:"用户拒绝授权录音",showAlert:true})
-          }
-        });
-      }
-      var talkBtn = ReactDOM.findDOMNode(self.refs.roundContainer)
-      talkBtn.addEventListener('click',self.clickHandler,false)
-    })
+    // wx.ready(function(){
+    //   console.log("allowRecord" + sessionStorage.allowRecord)
+    //   if(!sessionStorage.allowRecord || sessionStorage.allowRecord !== 'true'){
+    //     self.setState({authorizing:true})
+    //     wx.startRecord({
+    //       success: function(){
+    //         sessionStorage.allowRecord = true;
+    //         self.setState({authorizing:false})
+    //         self.recordTimer = setTimeout(function(){
+    //           wx.stopRecord();
+    //         },500);
+    //       },
+    //       complete: function(){
+    //           self.setState({authorizing:false})
+    //       }
+    //       cancel: function () {
+    //         // alert('用户拒绝授权录音');
+    //         self.setState({alertContent:"用户拒绝授权录音",showAlert:true,authorizing:false})
+    //       }
+    //     });
+    //   }
+    //
+    // })
     wx.error(function(res){
         self.refreshWXConfig()
     });
@@ -84,6 +86,8 @@ class Answer extends Component {
         self.setState({status: 4})
       }
     });
+    var talkBtn = ReactDOM.findDOMNode(self.refs.roundContainer)
+    talkBtn.addEventListener('click',self.clickHandler,false)
     this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave)
   }
   routerWillLeave(nextLocation) {
