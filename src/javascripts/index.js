@@ -59,17 +59,3 @@ ReactDom.render((
   </Provider>
 ), document.getElementById('root'));
 //
-wx.onMenuShareAppMessage({
-    title: '［7点问答］问师兄，问师姐，问前辈', // 分享标题
-    desc: '大学生职场问答平台，对于即将到来的秋招，你的问题都可以在这里解决。', // 分享描述
-    link: location.href, // 分享链接
-    imgUrl: require("../images/logo.jpg"), // 分享图标
-    type: '', // 分享类型,music、video或link，不填默认为link
-    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-    success: function () {
-        alert("分享成功")// 用户确认分享后执行的回调函数
-    },
-    cancel: function () {
-        alert("分享失败")// 用户取消分享后执行的回调函数
-    }
-});

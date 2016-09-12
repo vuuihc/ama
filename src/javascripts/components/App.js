@@ -6,6 +6,7 @@ import {IndexLink, Link} from 'react-router';
 import {connect} from 'react-redux';
 import '../../stylesheets/partials/modules/App.scss';
 import {baseUrl} from "../api/config"
+import {setLandPage} from '../actions/config.js'
 import SearchBar from "../containers/SearchBar"
 import SearchTips from "../containers/SearchTips"
 
@@ -13,7 +14,11 @@ class App extends Component {
   constructor() {
     super();
   }
-
+  componentDidMount(){
+      if(this.props.landPage==null){
+        this.props.dispatch(setLandPage(location.href))
+      }
+  }
   render() {
     return (
       <div>
@@ -29,5 +34,7 @@ class App extends Component {
     )
   }
 }
-App = connect()(App);
+App = connect(state=>({
+    landPage: state.landPage
+}))(App);
 export default App;

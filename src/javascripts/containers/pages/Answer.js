@@ -42,6 +42,8 @@ class Answer extends Component {
       },
       nextLocation:location.href
     }
+    // this.configUrlList= []
+    console.log(this.props)
     this.clickHandler = this.clickHandler.bind(this)
 	this.routerWillLeave = this.routerWillLeave.bind(this)
   }
@@ -53,6 +55,7 @@ class Answer extends Component {
     this.props.getQuestionInfo(id);
   }
   componentDidMount(){
+
     this.refreshWXConfig()
     const self = this
     // wx.ready(function(){
@@ -78,6 +81,25 @@ class Answer extends Component {
     //   }
     //
     // })
+    wx.ready(function(res){
+        wx.onMenuShareAppMessage({
+            title: '［7点问答］问师兄，问师姐，问前辈', // 分享标题
+            desc: '大学生职场问答平台，对于即将到来的秋招，你的问题都可以在这里解决。', // 分享描述
+            link: location.href, // 分享链接
+            imgUrl: require("../../../images/logo.jpg"), // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                alert("分享成功")// 用户确认分享后执行的回调函数
+            },
+            fail: function(err){
+                alert("分享失败，原因是"+err)
+            },
+            cancel: function () {
+                alert("分享失败")// 用户取消分享后执行的回调函数
+            }
+        });
+    })
     wx.error(function(res){
         self.refreshWXConfig()
     });
@@ -163,7 +185,8 @@ class Answer extends Component {
 
   }
   refreshWXConfig(){
-    let url = (this.props.landPage===undefined||this.state.configUrl === this.props.landPage)?location.href:this.props.landPage
+    let url = (typeof this.props.landPage!=="string"||this.state.configUrl === this.props.landPage)?location.href:this.props.landPage
+    console.log("configUrl==="+url)
     this.props.getWXConfig(url)
     this.setState({configUrl:url})
   }

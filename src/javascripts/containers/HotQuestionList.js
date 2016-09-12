@@ -4,7 +4,6 @@
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {getHotQuestionList} from '../actions/question.js'
-import {setLandPage} from '../actions/config.js'
 import Loading from "./Loading2"
 import  QuestionItemWithAvatar  from './blocks/QuestionItemWithAvatar'
 import SearchBar from "./SearchBar"
@@ -28,9 +27,6 @@ class HotQuestionList extends Component {
     }
   }
   componentDidMount() {
-    if(this.props.landPage==null){
-      this.props.dispatch(setLandPage(location.href))
-    }
     this.props.dispatch(getHotQuestionList(1, 10))
     $('.app-container').on('scroll', this.handleScroll);
   }
@@ -66,7 +62,6 @@ function mapStateToProps(state) {
   return {
     hotQuestionList: state.hotQuestionList,
     listenInfo:state.listenInfo,
-    landPage:state.landPage,
     userId: state.account.userInfo.user_id
   }
 }
