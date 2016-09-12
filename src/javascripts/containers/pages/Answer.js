@@ -54,9 +54,9 @@ class Answer extends Component {
   }
   componentDidMount(){
     this.configUrlList.push(
-        location.href,
+        "http://h5app.7dyk.com/ama/7dyk/",
         this.props.landPage,
-        "http://h5app.7dyk.com/ama/7dyk/"
+        location.href
     )
     this.refreshWXConfig()
     const self = this
@@ -184,7 +184,7 @@ class Answer extends Component {
   }
   refreshWXConfig(){
     let url = this.configUrlList.pop()
-    if(typeof url === "string"){
+    if(url !== undefined){
         console.log("configUrl==="+url)
         this.props.getWXConfig(url)
     }
