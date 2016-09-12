@@ -86,8 +86,6 @@ class Answer extends Component {
         self.setState({status: 4})
       }
     });
-    var talkBtn = ReactDOM.findDOMNode(self.refs.roundContainer)
-    talkBtn.addEventListener('click',self.clickHandler,false)
     this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave)
   }
   routerWillLeave(nextLocation) {
@@ -340,7 +338,7 @@ class Answer extends Component {
             <div className="hint">您的回答将被公开，答案每被偷听一次，你就赚 ￥0.3</div>
             <div className="replyHint">{Tips[this.state.status]}</div>
             <div ref="replyContainer" className="replyContainer">
-              <div ref="roundContainer" className={"round-container "+classNames[this.state.status]}>
+              <div ref="roundContainer" onClick={e => this.clickHandler(e)} className={"round-container "+classNames[this.state.status]}>
                 <div className="replyIcon"></div>
                 <div className="recording"></div>
                 <div className="bubble-voice"></div>
