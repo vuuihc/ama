@@ -9,6 +9,7 @@ import {baseUrl} from "../api/config"
 import {setLandPage} from '../actions/config.js'
 import SearchBar from "../containers/SearchBar"
 import SearchTips from "../containers/SearchTips"
+import { getWXConfig } from "../actions/config"
 
 class App extends Component {
   constructor() {

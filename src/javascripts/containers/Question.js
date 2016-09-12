@@ -32,6 +32,7 @@ class Question extends Component {
         ]
       },
       alertContent:'',
+      notRegShare: true
     }
     this.handlePrise = this.handlePrise.bind(this);
     this.handleCanclePrise = this.handleCanclePrise.bind(this);
@@ -39,6 +40,27 @@ class Question extends Component {
   componentDidMount() {
     const {id} = this.props.params
     this.props.getQuestionInfo(id);
+  }
+  componentWillReceiveProps(nextProps){
+      let {questionInfo} = nextProps
+      if(questionInfo.user_face && this.state.notRegShare){
+          wx.onMenuShareAppMessage({
+              title: questionInfo.question_content, // 分享标题
+              desc: `${questionInfo.teacher_name}用1分钟的语音就解决了这个问题`, // 分享描述
+              link: location.href, // 分享链接
+              imgUrl: questionInfo.teacher_face, // 分享图标
+              success: function () {
+                //   alert("分享成功")// 用户确认分享后执行的回调函数
+              },
+              fail: function(err){
+                //   alert("分享失败，原因是"+err)
+              },
+              cancel: function () {
+                //   alert("分享失败")// 用户取消分享后执行的回调函数
+              }
+          });
+          this.setState({notRegShare:false})
+      }
   }
   componentWillUnmount(){
     const self = this
