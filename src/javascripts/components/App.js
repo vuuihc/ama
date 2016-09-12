@@ -48,7 +48,7 @@ class App extends Component {
   refreshWXConfig(){
     let url = this.configUrlList.pop()
     if(url !== undefined){
-        this.props.getWXConfig(url)
+        this.props.dispatch(getWXConfig(url))
     }
   }
   componentWillReceiveProps(nextProps){
@@ -88,7 +88,5 @@ class App extends Component {
 App = connect(state=>({
     landPage: state.landPage,
     WXConfig:state.WXConfig
-}),{
-    getWXConfig
-})(App);
+}))(App);
 export default App;
