@@ -160,7 +160,9 @@ class Answer extends Component {
           'stopVoice',
           'onVoicePlayEnd',
           'uploadVoice',
-          'chooseWXPay'
+          'chooseWXPay',
+          'onMenuShareTimeline',
+          'onMenuShareAppMessage'
         ]
         const newWxConfig = {}
         newWxConfig['debug'] = false;
@@ -185,7 +187,6 @@ class Answer extends Component {
   refreshWXConfig(){
     let url = this.configUrlList.pop()
     if(url !== undefined){
-        console.log("configUrl==="+url)
         this.props.getWXConfig(url)
     }
   }
