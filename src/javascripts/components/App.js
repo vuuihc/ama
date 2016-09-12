@@ -35,10 +35,10 @@ class App extends Component {
           link: location.href, // 分享链接
           imgUrl: require("../../images/logo.jpg"), // 分享图标
           success: function () {
-              alert("分享成功")// 用户确认分享后执行的回调函数
+            //   alert("分享成功")// 用户确认分享后执行的回调函数
           },
           fail: function(err){
-              alert("分享失败，原因是"+err)
+            //   alert("分享失败，原因是"+err)
           },
           cancel: function () {
               alert("分享失败")// 用户取消分享后执行的回调函数
@@ -88,5 +88,7 @@ class App extends Component {
 App = connect(state=>({
     landPage: state.landPage,
     WXConfig:state.WXConfig
-}))(App);
+}),{
+    getWXConfig
+})(App);
 export default App;

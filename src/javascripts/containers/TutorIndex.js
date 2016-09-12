@@ -37,7 +37,8 @@ class TutorIndex extends Component {
       },
       alertContent:'',
       nextLocation:location.href,
-      canLeave: false
+      canLeave: false,
+      notRegShare: true
     }
 	this.routerWillLeave = this.routerWillLeave.bind(this);
   }
@@ -141,13 +142,48 @@ class TutorIndex extends Component {
   hideAlert(){
     this.setState({showAlert:false})
   }
+  componentWillReceiveProps(nextProps){
+      let {tutorInfo} = nextProps
+      if(tutorInfo.user_face && this.state.notRegShare){
+          wx.onMenuShareAppMessage({
+              title: `${tutorInfo.user_name}——${tutorInfo.user_company}，${tutorInfo.user_position}`, // 分享标题
+              desc: "说出最近困扰你的问题，我来帮你解决", // 分享描述
+              link: location.href, // 分享链接
+              imgUrl: tutorInfo.user_face, // 分享图标
+              success: function () {
+                //   alert("分享成功")// 用户确认分享后执行的回调函数
+              },
+              fail: function(err){
+                //   alert("分享失败，原因是"+err)
+              },
+              cancel: function () {
+                //   alert("分享失败")// 用户取消分享后执行的回调函数
+              }
+          });
+          this.setState({notRegShare:false})
+      }
+  }
   componentWillUnmount(){
     clearTimeout(this.state.successTimer);
     this.props.dispatch(clearTutorIndex());
+    wx.onMenuShareAppMessage({
+        title: '［7点问答］问师兄，问师姐，问前辈', // 分享标题
+        desc: '大学生职场问答平台，对于即将到来的秋招，你的问题都可以在这里解决。', // 分享描述
+        link: location.href, // 分享链接
+        imgUrl: require("../../images/logo.jpg"), // 分享图标
+        success: function () {
+          //   alert("分享成功")// 用户确认分享后执行的回调函数
+        },
+        fail: function(err){
+          //   alert("分享失败，原因是"+err)
+        },
+        cancel: function () {
+            alert("分享失败")// 用户取消分享后执行的回调函数
+        }
+    });
   }
   handleTextarea(){
       const text = ReactDOM.findDOMNode(this.refs.content).value;
-      console.log("textLength=="+text.length);
       this.setState({textLength: text.length})
     }
   render() {
@@ -177,7 +213,7 @@ class TutorIndex extends Component {
             </div>
           </div>
           <div className="answer-text">
-              <textarea ref="content" maxLength="60" onKeyup={this.handleTextarea.bind(this)} onChange={this.handleTextarea.bind(this)} placeholder={"向"+tutorInfo.user_name+"提问，等TA语音回答；超过24小时未回答，将按支付路径全额退款"}/>
+              <textarea ref="content" maxLength="60" onKeyUp={this.handleTextarea.bind(this)} onChange={this.handleTextarea.bind(this)} placeholder={"向"+tutorInfo.user_name+"提问，等TA语音回答；超过24小时未回答，将按支付路径全额退款"}/>
               <div className="text-tips">{this.state.textLength}/60</div>
           </div>
           <div className="value">￥{tutorInfo.teacher_prize}</div>
