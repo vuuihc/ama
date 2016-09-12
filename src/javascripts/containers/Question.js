@@ -83,7 +83,7 @@ class Question extends Component {
           //   alert("分享失败，原因是"+err)
         },
         cancel: function () {
-            alert("分享失败")// 用户取消分享后执行的回调函数
+            // alert("分享失败")// 用户取消分享后执行的回调函数
         }
     });
 

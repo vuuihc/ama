@@ -29,12 +29,12 @@ class Account extends Component {
       <div id="accountIndex">
         {
           this.props.userInfo.is_teacher === '1'
-          ? <Link to={baseUrl+`tutor/share/${this.props.userInfo.user_id}`} >
+          ? <Link className="entry-left" to={baseUrl+`tutor/share/${this.props.userInfo.user_id}`} >
               <img className="QREntry" src={require("../../images/QREntry.png")}/>
             </Link>
           : ''
         }
-        <Link to={baseUrl+"edit"} >
+        <Link className="entry-right" to={baseUrl+"edit"} >
           <img className="editEntry" src={require("../../images/EditEntry.png")}/>
         </Link>
         <div className="head">

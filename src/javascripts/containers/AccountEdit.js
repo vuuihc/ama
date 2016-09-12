@@ -70,7 +70,7 @@ class AccountEdit extends Component {
 
   handleSubmit() {
     if(!(/^[1-9]+[0-9]*]*$/).test(this.state.teacher_prize)){
-        this.setState({alertContent:'请在"提问价格"中填入整数',showAlert:true})
+        this.setState({alertContent:'请在"提问价格"中填入整数',showAlert:true,teacher_prize:""})
         return
     }
     this.props.editUserInfo(this.state.company, this.state.job, this.state.experience, this.state.teacher_prize,this.state.introduction);

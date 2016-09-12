@@ -29,21 +29,23 @@ class App extends Component {
       wx.error(function(res){
           self.refreshWXConfig()
       });
-      wx.onMenuShareAppMessage({
-          title: '［7点问答］问师兄，问师姐，问前辈', // 分享标题
-          desc: '大学生职场问答平台，对于即将到来的秋招，你的问题都可以在这里解决。', // 分享描述
-          link: location.href, // 分享链接
-          imgUrl: require("../../images/logo.jpg"), // 分享图标
-          success: function () {
-            //   alert("分享成功")// 用户确认分享后执行的回调函数
-          },
-          fail: function(err){
-            //   alert("分享失败，原因是"+err)
-          },
-          cancel: function () {
-              alert("分享失败")// 用户取消分享后执行的回调函数
-          }
-      });
+      wx.ready(function(){
+          wx.onMenuShareAppMessage({
+              title: '［7点问答］问师兄，问师姐，问前辈', // 分享标题
+              desc: '大学生职场问答平台，对于即将到来的秋招，你的问题都可以在这里解决。', // 分享描述
+              link: location.href, // 分享链接
+              imgUrl: require("../../images/logo.jpg"), // 分享图标
+              success: function () {
+                //   alert("分享成功")// 用户确认分享后执行的回调函数
+              },
+              fail: function(err){
+                //   alert("分享失败，原因是"+err)
+              },
+              cancel: function () {
+                  // alert("分享失败")// 用户取消分享后执行的回调函数
+              }
+          });
+      })
   }
   refreshWXConfig(){
     let url = this.configUrlList.pop()
