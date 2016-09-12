@@ -10,7 +10,7 @@ export default class VoiceWave extends Component {
       <div className="voice-waves">
         {
           [1,2,3].map(index =>
-            <span className={`voice-wave voice-wave-${index}`} /> 
+            <span key={index} className={`voice-wave voice-wave-${index}`} /> 
           )
         }
       </div>
