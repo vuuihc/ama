@@ -180,16 +180,18 @@ class Answer extends Component {
     var self = this
     var recordStartHandler = function (event) {
       event.preventDefault();
-      wx.startRecord({
-        success:function () {
-          let START = new Date().getTime();
-          self.setState({START:START,status:2})
-        },
-        cancel: function () {
-          // alert('用户拒绝授权录音');
-          self.setState({status:0,alertContent:"用户拒绝授权录音",showAlert:true})
-        }
-      });
+      wx.ready(function(){
+          wx.startRecord({
+            success:function () {
+              let START = new Date().getTime();
+              self.setState({START:START,status:2})
+            },
+            cancel: function () {
+              // alert('用户拒绝授权录音');
+              self.setState({status:0,alertContent:"用户拒绝授权录音",showAlert:true})
+            }
+          });
+      })
     }
     var recordStopHandler = function (event) {
       // event.preventDefault();
@@ -197,32 +199,40 @@ class Answer extends Component {
       if((END - self.state.START) < 1000){
         END = 0;
         // alert("录音不能小于1秒哦")
-        wx.stopRecord()
+        wx.ready(function(){
+            wx.stopRecord()
+        })
         self.setState({status:0,alertContent:"录音不能少于1秒哦",showAlert:true})
         return null
       }else{
-        wx.stopRecord({
-          success: function (res) {
-            let localId = res.localId
-            self.setState({localId:localId,status:4})
-          },
-          fail: function (res) {
-            alert(JSON.stringify(res));
-          }
-        });
+          wx.ready(function(){
+              wx.stopRecord({
+                success: function (res) {
+                  let localId = res.localId
+                  self.setState({localId:localId,status:4})
+                },
+                fail: function (res) {
+                  alert(JSON.stringify(res));
+                }
+              });
+          })
       }
     }
     var playStartHandler = function (event) {
       event.preventDefault()
-      wx.playVoice({
-        localId: self.state.localId // 需要播放的音频的本地ID，由stopRecord接口获得
-      });
+      wx.ready(function(){
+          wx.playVoice({
+            localId: self.state.localId // 需要播放的音频的本地ID，由stopRecord接口获得
+          });
+      })
     }
     var playStopHandler = function (event) {
       event.preventDefault()
-      wx.stopVoice({
-        localId: self.state.localId // 需要停止的音频的本地ID，由stopRecord接口获得
-      });
+      wx.ready(function(){
+          wx.stopVoice({
+            localId: self.state.localId // 需要停止的音频的本地ID，由stopRecord接口获得
+          });
+      })
     }
     var passHandler = function (event) {
       console.log("wait for wx")
