@@ -139,7 +139,6 @@ class Answer extends Component {
         const jsApiList = [
           'startRecord',
           'stopRecord',
-          'onVoiceRecordEnd',
           'playVoice',
           'pauseVoice',
           'stopVoice',

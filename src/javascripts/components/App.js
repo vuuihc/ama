@@ -58,8 +58,15 @@ class App extends Component {
       const now = new Date().valueOf()
       if(now/1000 - nextProps.WXConfig.data.timestamp<3){
         const jsApiList = [
-          'onMenuShareTimeline',
-          'onMenuShareAppMessage'
+            'startRecord',
+            'stopRecord',
+            'playVoice',
+            'pauseVoice',
+            'stopVoice',
+            'uploadVoice',
+            'chooseWXPay',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage'
         ]
         const newWxConfig = {}
         newWxConfig['debug'] = false;
