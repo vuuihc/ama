@@ -1,6 +1,7 @@
 /**
  * Created by zsh on 2016/3/11.
  */
+ export const WX_CONFIG_SUCCESS  = 'WX_CONFIG_SUCCESS'
 export const RECEIVE_WX_CONFIG  = 'RECEIVE_WX_CONFIG'
 export const SET_LAND_PAGE  = 'SET_LAND_PAGE'
 /*********问题**********/

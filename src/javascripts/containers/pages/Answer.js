@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import '../../../stylesheets/partials/modules/Answer.scss';
 import { getQuestionInfo,saveVoice } from  '../../actions/question';
 import { getAskedMe } from  '../../actions/account';
-import { getWXConfig } from "../../actions/config"
+import { getWXConfig , configSuccess} from "../../actions/config"
 import time from '../../util/time'
 import VoiceWave from  "../../components/VoiceWave"
 import Toast from "../../util/weui/toast"
@@ -58,7 +58,9 @@ class Answer extends Component {
         this.props.landPage,
         location.href
     )
-    this.refreshWXConfig()
+    if(!this.props.WXConfig.success){
+        this.refreshWXConfig()
+    }
     const self = this
     // wx.ready(function(){
     //   console.log("allowRecord" + sessionStorage.allowRecord)
@@ -83,13 +85,18 @@ class Answer extends Component {
     //   }
     //
     // })
+    wx.ready(function(){
+        if(!self.props.WXConfig.success){
+            self.props.configSuccess()
+        }
+        wx.onVoicePlayEnd({
+          success: function (res) {
+            self.setState({status: 4})
+          }
+        });
+    })
     wx.error(function(res){
         self.refreshWXConfig()
-    });
-    wx.onVoicePlayEnd({
-      success: function (res) {
-        self.setState({status: 4})
-      }
     });
     this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave)
   }
@@ -385,6 +392,6 @@ const mapStateToProps = (state) =>{
 }
 
 
-Answer = connect( mapStateToProps, { getQuestionInfo,saveVoice,getWXConfig,getAskedMe })(Answer);
+Answer = connect( mapStateToProps, { getQuestionInfo,saveVoice,getWXConfig,configSuccess,getAskedMe })(Answer);
 
 export default Answer;

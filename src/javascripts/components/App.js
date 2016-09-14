@@ -9,7 +9,7 @@ import {baseUrl} from "../api/config"
 import {setLandPage} from '../actions/config.js'
 import SearchBar from "../containers/SearchBar"
 import SearchTips from "../containers/SearchTips"
-import { getWXConfig } from "../actions/config"
+import { getWXConfig, configSuccess } from "../actions/config"
 
 class App extends Component {
   constructor() {
@@ -25,11 +25,17 @@ class App extends Component {
           this.props.landPage,
           location.href
       )
-      this.refreshWXConfig()
+      if(!this.props.WXConfig.success){
+          this.refreshWXConfig()
+      }
       wx.error(function(res){
           self.refreshWXConfig()
       });
+      let self = this
       wx.ready(function(){
+          if(!self.props.WXConfig.success){
+              self.dispatch(configSuccess())
+          }
           wx.onMenuShareAppMessage({
               title: '［7点问答］问师兄，问师姐，问前辈', // 分享标题
               desc: '大学生职场问答平台，对于即将到来的秋招，你的问题都可以在这里解决。', // 分享描述
