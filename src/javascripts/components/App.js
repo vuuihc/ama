@@ -34,7 +34,7 @@ class App extends Component {
       let self = this
       wx.ready(function(){
           if(!self.props.WXConfig.success){
-              self.dispatch(configSuccess())
+              self.props.dispatch(configSuccess())
           }
           wx.onMenuShareAppMessage({
               title: '［7点问答］问师兄，问师姐，问前辈', // 分享标题
