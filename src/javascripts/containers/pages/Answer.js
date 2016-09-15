@@ -142,7 +142,7 @@ class Answer extends Component {
   componentWillReceiveProps(nextProps){
     if(nextProps.WXConfig.data.timestamp){
       const now = new Date().valueOf()
-      if(now/1000 - nextProps.WXConfig.data.timestamp<3){
+      if(now/1000 - nextProps.WXConfig.data.timestamp<3&&nextProps.WXConfig.data.timestamp!=this.props.WXConfig.data.timestamp){
         const jsApiList = [
           'startRecord',
           'stopRecord',
@@ -195,7 +195,12 @@ class Answer extends Component {
             cancel: function () {
               // alert('用户拒绝授权录音');
               self.setState({status:0,alertContent:"用户拒绝授权录音",showAlert:true})
+            },
+            fail:function(){
+                self.setState({status:0,alertContent:"获取授权失败，请稍候重试",showAlert:true})
+                self.refreshWXConfig()
             }
+
           });
       })
     }
@@ -217,8 +222,9 @@ class Answer extends Component {
                   let localId = res.localId
                   self.setState({localId:localId,status:4})
                 },
-                fail: function (res) {
-                  alert(JSON.stringify(res));
+                fail:function(){
+                    self.setState({status:0,alertContent:"获取授权失败，请稍候重试",showAlert:true})
+                    self.refreshWXConfig()
                 }
               });
           })
