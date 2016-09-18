@@ -1,7 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
 var autoprefixer = require('autoprefixer');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var isProduction = function() {
     return process.env.NODE_ENV.toString() == "production";
@@ -25,7 +24,6 @@ if (isProduction()) {
         new webpack.HotModuleReplacementPlugin()
     )
 }
-plugins.push(new ExtractTextPlugin('mobile.min.css'))
 module.exports = {
     devtool: isProduction() ? false : 'inline-source-map',
     entry: {
@@ -45,11 +43,8 @@ module.exports = {
             loaders: ['babel?presets[]=es2015&presets[]=react'],
             exclude: /node_modules/,
         }, {
-            test: /\.scss$/,
-            loader: 'style!css!postcss!sass'
-        }, {
-            test: /\.css/,
-            loader: ExtractTextPlugin.extract('style', 'css', 'postcss')
+            test: /\.s?css$/,
+            loader: 'style!css!sass!postcss'
         }, {
             test: /\.(png|jpg|bmp)$/,
             loader: 'url?limit=5000&name=images/[name].[ext]'

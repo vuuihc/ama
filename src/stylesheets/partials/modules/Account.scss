@@ -128,30 +128,6 @@
                 border-bottom: 1px solid $darkBlue;
             }
         }
-        //ul{
-        //  list-style-type: none;
-        //  margin: 0 auto;
-        //  padding: 0;
-        //  width:px2rem(635);
-        //  li{
-        //    color:$lightBlue;
-        //    width: px2rem(127);
-        //    float:left;
-        //    &:nth-child(1){
-        //    }
-        //    &:nth-child(2){
-        //      margin-left:px2rem(127);
-        //    }
-        //    &:nth-child(3){
-        //      margin-left:px2rem(127);
-        //    }
-        //    &.active{
-        //      color:$darkBlue;
-        //      font-weight: bold;
-        //      border-bottom:1px solid $darkBlue;
-        //    }
-        //  }
-        //}
         &.fixed {
             position: fixed;
             top: 0;
@@ -249,7 +225,6 @@
         right: 0;
         top: 0;
         bottom: 0;
-        //background:rgba(0,0,0,0.3
         -webkit-filter: blur(10px);
         /* Chrome, Opera */
         -moz-filter: blur(10px);
