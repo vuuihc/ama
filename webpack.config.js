@@ -44,13 +44,12 @@ module.exports = {
             exclude: /node_modules/,
         }, {
             test: /\.s?css$/,
-            loader: 'style!css!sass!postcss'
+            loader: 'style!css!sass'
         }, {
             test: /\.(png|jpg|bmp)$/,
             loader: 'url?limit=5000&name=images/[name].[ext]'
         }]
     },
-    postcss: [autoprefixer],
     externals: {
         'babel-polyfill': 'true',
         'react': 'React',
