@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import {Router, Route, IndexRoute, browserHistory, useRouterHistory} from 'react-router'
 
 
-// import "../stylesheets/style.scss"
+import "../stylesheets/style.scss"
 
 import App from './components/App'
 import Hot from './components/Hot'
