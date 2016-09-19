@@ -1,3 +1,6 @@
+@function px2rem($px){
+  @return $px / 75 * 1rem;
+}
 @mixin setTapColor($c: rgba(0,0,0,0)) {
   -webkit-tap-highlight-color: $c;
 }
