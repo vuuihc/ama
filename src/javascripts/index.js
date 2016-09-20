@@ -31,11 +31,13 @@ const store = configureStore();
 import {baseUrl} from "./api/config"
 
 browserHistory.listen( location =>  {
-    console.log(`发送当前网址${location.href}到谷歌统计`)
-    ga && ga('send', 'pageview', {
-        page: location.href, // 手动设置 path
-        title: location.pathname // 也可以手动设置页面标题
-    });
+    console.log(`发送当前网址${location}到谷歌统计`)
+    if(ga){
+        ga('send', 'pageview', {
+            page: location.href, // 手动设置 path
+            title: location.pathname // 也可以手动设置页面标题
+        });
+    }
 });
 
 ReactDom.render((

@@ -17,8 +17,8 @@ if (isProduction()) {
                 warnings: false
             }
         }),
-        new WebpackMd5Hash()
-        new ExtractTextPlugin("style.[chunkhash].css"),
+        new WebpackMd5Hash(),
+        new ExtractTextPlugin("style.[chunkhash].css")
     )
 } else {
     console.log('开发环境');
