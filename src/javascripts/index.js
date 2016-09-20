@@ -32,11 +32,11 @@ import {baseUrl} from "./api/config"
 
 browserHistory.listen( location =>  {
     console.log(`发送当前网址到谷歌统计`)
-    console.log(location)
+    console.log(window.location)
     if(ga){
         ga('send', 'pageview', {
-            page: location.href, // 手动设置 path
-            title: location.pathname // 也可以手动设置页面标题
+            page: window.location.href, // 手动设置 path
+            title: window.location.pathname // 也可以手动设置页面标题
         });
     }
 });
