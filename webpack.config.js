@@ -1,13 +1,14 @@
 var path = require('path')
 var webpack = require('webpack')
 var autoprefixer = require('autoprefixer');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var WebpackMd5Hash = require('webpack-md5-hash');
 
 var isProduction = function() {
     return process.env.NODE_ENV.toString() == "production";
 };
 
 var plugins = [];
-
 if (isProduction()) {
     console.log('生产环境');
     plugins.push(
@@ -15,7 +16,9 @@ if (isProduction()) {
             compress: {
                 warnings: false
             }
-        })
+        }),
+        new WebpackMd5Hash()
+        new ExtractTextPlugin("style.[chunkhash].css"),
     )
 } else {
     console.log('开发环境');
@@ -31,12 +34,10 @@ module.exports = {
     },
     output: {
         path: './dist',
-        filename: '[name].js',
+        filename: '[name].[chunkhash].js',
         publicPath: 'http://h5app.7dyk.com/ama/7dyk/dist/'
             // publicPath: '/dist/'
     },
-    plugins: plugins,
-
     module: {
         loaders: [{
             test: /\.jsx?$/,
@@ -44,13 +45,14 @@ module.exports = {
             exclude: /node_modules/,
         }, {
             test: /\.s?css$/,
-            loader: 'style!css!sass!postcss'
+            loader: ExtractTextPlugin.extract('style-loader','css!sass!postcss')
         }, {
             test: /\.(png|jpg|bmp)$/,
             loader: 'url?limit=5000&name=images/[name].[ext]'
         }]
     },
     postcss: [autoprefixer],
+    plugins: plugins,
     externals: {
         'babel-polyfill': 'true',
         'react': 'React',

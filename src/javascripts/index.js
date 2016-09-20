@@ -29,9 +29,18 @@ import Test from "./containers/Test"
 import configureStore from './store/configureStore'
 const store = configureStore();
 import {baseUrl} from "./api/config"
+
+browserHistory.listen( location =>  {
+    console.log(`发送当前网址${location.href}到谷歌统计`)
+    ga && ga('send', 'pageview', {
+        page: location.href, // 手动设置 path
+        title: location.pathname // 也可以手动设置页面标题
+    });
+});
+
 ReactDom.render((
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={browserHistory} >
       <Route path = '/ama/7dyk/test' component={Test}/>
       <Route path={baseUrl} component={App}>
         <IndexRoute component={Hot}/>
