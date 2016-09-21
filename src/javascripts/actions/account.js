@@ -54,16 +54,12 @@ export function getListened(page, num) {
       type: REQUEST_LISTENED
     });
     account.getListened(page, num, (data) => {
-      if (data.length === 0) {
-        dispatch({
-          type: LISTENED_COMPLETED
-        });
-      } else {
-        dispatch({
-          type: RECEIVE_LISTENED,
-          data
-        })
-      }
+      dispatch({
+        type: RECEIVE_LISTENED,
+        data,
+        page,
+        num
+      })
     })
   }
 }
@@ -79,16 +75,12 @@ export function getIAsked(page, num) {
       type: REQUEST_I_ASKED
     });
     account.getIAsked(page, num, (data) => {
-      if (data.length === 0) {
-        dispatch({
-          type: I_ASKED_COMPLETED
-        });
-      } else {
-        dispatch({
-          type: RECEIVE_I_ASKED,
-          data
-        })
-      }
+      dispatch({
+        type: RECEIVE_I_ASKED,
+        data,
+        page,
+        num
+      })
     })
   }
 }
@@ -104,16 +96,12 @@ export function getAskedMe(page, num) {
       type: REQUEST_ASKED_ME
     });
     account.getAskedMe(page, num, (data) => {
-      if (data.length === 0) {
-        dispatch({
-          type: ASKED_ME_COMPLETED
-        });
-      } else {
-        dispatch({
-          type: RECEIVE_ASKED_ME,
-          data
-        })
-      }
+      dispatch({
+        type: RECEIVE_ASKED_ME,
+        data,
+        page,
+        num
+      })
     })
   }
 }

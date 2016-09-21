@@ -7,15 +7,26 @@ const defaultState = {
 }
 const askedMe = (state = defaultState, action) => {
     switch(action.type){
-      case CLEAR_ASKED_ME:
-        return defaultState;
-      case REQUEST_ASKED_ME:
+        case CLEAR_ASKED_ME:
+            return defaultState;
+        case REQUEST_ASKED_ME:
             return Object.assign({}, state, {loading: true});
         case RECEIVE_ASKED_ME:
-            const data = state.data.concat(action.data);
-            return Object.assign({}, state, {loading: false, data:data, page:state.page +1});
-        case ASKED_ME_COMPLETED:
-            return Object.assign({}, state, {completed:true, loading:false});
+            if(action.page == 1){
+                return Object.assign({}, state, {
+                    data: defaultState,
+                    completed: action.data.length < action.num ? true : false, 
+                    loading: false
+                });
+            }else{
+                const data = state.data.concat(action.data);
+                return Object.assign({}, state, {
+                    loading: false, 
+                    data:data, 
+                    page:state.page +1,
+                    completed: action.data.length < action.num ? true : false,
+                });
+            }
         default:
             return state;
     }

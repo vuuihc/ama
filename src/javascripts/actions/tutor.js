@@ -39,13 +39,14 @@ export function getTutorInfo(id) {
         })
     }
 }
-export function getTutorAnswerList(id, page, number) {
+export function getTutorAnswerList(id, page, num) {
     return dispatch => {
-        tutor.getTutorAnswerList(id, page, number, data => {
+        tutor.getTutorAnswerList(id, page, num, data => {
             dispatch({
                 type: RECEIVE_TUTOR_ANSWER_LIST,
                 data,
-                page
+                page,
+                numb
             })
         })
     }

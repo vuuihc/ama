@@ -29,11 +29,21 @@ const listened = (state = defaultState, action) => {
           weight: item.weight
         }
       })
-
-      const data = state.data.concat(dataNow);
-      return Object.assign({}, state, {loading: false, data: data, page: state.page + 1});
-    case LISTENED_COMPLETED:
-      return Object.assign({}, state, {completed: true, loading: false});
+      if(action.page == 1){
+        return Object.assign({}, state, {
+          completed: action.data.length < num,
+          loading: false,
+          data: dataNow
+        });
+      }else{
+        const data = state.data.concat(dataNow);
+        return Object.assign({}, state, {
+          completed:action.data.length < num,
+          loading: false,
+          data: data,
+          page: state.page + 1
+        });
+      }
     default:
       return state;
   }

@@ -69,22 +69,18 @@ export function tutorInfo(state = initialState.tutorInfo, action) {
 export function tutorAnswerList(state = initialState.tutorAnswerList, action) {
     switch (action.type) {
         case RECEIVE_TUTOR_ANSWER_LIST:
-            if (action.data.length == 0) {
-                return Object.assign({}, state, {
-                    completed: true,
-                    loading: false
-                })
-            } else if (action.page == 1)
+            if(action.page == 1){
                 return Object.assign({}, initialState.tutorAnswerList, {
                     data: action.data,
-                    loading: false
+                    loading: false,
+                    completed: action.data.length < action.num ? true : false
                 })
-            else {
-
+            }else{
                 return {
                     data: state.data.concat(action.data),
                     page: action.page,
-                    loading: false
+                    loading: false,
+                    completed: action.data.length < action.num ? true : false
                 }
             }
         case CLEAR_TUTOR_INDEX:
