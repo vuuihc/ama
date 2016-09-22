@@ -14,8 +14,9 @@ const askedMe = (state = defaultState, action) => {
         case RECEIVE_ASKED_ME:
             if(action.page == 1){
                 return Object.assign({}, state, {
-                    data: defaultState,
-                    completed: action.data.length < action.num ? true : false, 
+                    data: action.data,
+                    page:state.page +1,
+                    completed: action.data.length < action.num,
                     loading: false
                 });
             }else{

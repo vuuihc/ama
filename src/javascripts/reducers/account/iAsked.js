@@ -1,4 +1,4 @@
-import { CLEAR_I_ASKED,RECEIVE_I_ASKED, REQUEST_I_ASKED, I_ASKED_COMPLETED } from  '../../actions/ActionTypes'
+import { CLEAR_I_ASKED, RECEIVE_I_ASKED, REQUEST_I_ASKED } from  '../../actions/ActionTypes'
 const defaultState = {
     loading:false,
     data:[],
@@ -14,17 +14,17 @@ const iAsked = (state = defaultState, action) => {
         case RECEIVE_I_ASKED:
             if(action.page == 1){
                 return Object.assign({}, state, {
-                    completed:action.data.length < num ? true : false,
+                    completed:action.data.length < num,
                     loading:false,
                     data:action.data
                 });
             }else{
                 const data = state.data.concat(action.data);
                 return Object.assign({}, state, {
-                    completed:action.data.length < num ? true : false,
+                    completed: action.data.length < num,
                     loading: false,
-                    data:data,
-                    page:state.page +1
+                    data: data,
+                    page: state.page +1
                 });
             }
         default:
