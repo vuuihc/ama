@@ -31,14 +31,14 @@ const listened = (state = defaultState, action) => {
       })
       if(action.page == 1){
         return Object.assign({}, state, {
-          completed: action.data.length < num,
+          completed: action.data.length < action.num,
           loading: false,
           data: dataNow
         });
       }else{
         const data = state.data.concat(dataNow);
         return Object.assign({}, state, {
-          completed:action.data.length < num,
+          completed: action.data.length < action.num,
           loading: false,
           data: data,
           page: state.page + 1

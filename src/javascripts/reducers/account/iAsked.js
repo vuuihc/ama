@@ -14,14 +14,14 @@ const iAsked = (state = defaultState, action) => {
         case RECEIVE_I_ASKED:
             if(action.page == 1){
                 return Object.assign({}, state, {
-                    completed:action.data.length < num,
+                    completed: action.data.length < action.num,
                     loading:false,
                     data:action.data
                 });
             }else{
                 const data = state.data.concat(action.data);
                 return Object.assign({}, state, {
-                    completed: action.data.length < num,
+                    completed: action.data.length < action.num,
                     loading: false,
                     data: data,
                     page: state.page +1
