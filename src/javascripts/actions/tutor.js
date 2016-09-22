@@ -46,7 +46,7 @@ export function getTutorAnswerList(id, page, num) {
                 type: RECEIVE_TUTOR_ANSWER_LIST,
                 data,
                 page,
-                numb
+                num
             })
         })
     }
