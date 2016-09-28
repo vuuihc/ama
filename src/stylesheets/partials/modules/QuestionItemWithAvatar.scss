@@ -55,6 +55,7 @@ article.question-item-with-avatar {
         background-image: url(../../../images/voice.png);
         -webkit-background-size: 100% 100%;
         background-size: 100% 100%;
+        background-repeat: no-repeat;
         width: px2rem(36);
         height: px2rem(36);
         position: absolute;
@@ -65,6 +66,7 @@ article.question-item-with-avatar {
         background-image: url(../../../images/bubble-tail-blue.png);
         -webkit-background-size: 100% 100%;
         background-size: 100% 100%;
+        background-repeat: no-repeat;
         width: px2rem(36);
         height: px2rem(48);
         position: absolute;
@@ -82,7 +84,7 @@ article.question-item-with-avatar {
 
   }
   .remark {
-    
+
     float: right;
     margin-right: px2rem(26);
     width: px2rem(230);

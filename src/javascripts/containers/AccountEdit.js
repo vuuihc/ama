@@ -85,52 +85,89 @@ class AccountEdit extends Component {
         <div className="user-card-bg">
           <img src={userInfo.user_face.slice(0, -1) + '132'}/>
         </div>
-        <div className="user-card">
-          <img className="avatar" src={userInfo.user_face.slice(0, -1) + '132'}/>
-          <h3 className="name">
-            { userInfo.user_name }
-          </h3>
-          <div className="form-group">
-            <label>工作单位/学校：</label>
-            <input
-              placeholder="您所在的公司/学校"
-              value={this.state.company}
-              onChange={(e)=>{this.setState({company: e.target.value})}}
-            />
-          </div>
-          <div className="form-group">
-            <label>职  业/年  级：</label>
-            <input
-              placeholder="输入您的职业类型"
-              value={this.state.job}
-              onChange={(e)=>{this.setState({job: e.target.value})}}
-            />
-          </div>
-          {userInfo.is_teacher?
-          <div className="form-group">
-            <label>提 问 价 格：</label>
-            <input
-              type="number"
-              placeholder="输入您的提问价格"
-              value={this.state.teacher_prize}
-              onChange={(e)=>{this.setState({teacher_prize: e.target.value})}}
-            />
-          </div>:""}
-          <div className="form-group self-intro-text">
-            <label>您  的 介  绍： </label>
-            <div className="count">{this.state.introduction.length} / 100</div>
-            <textarea
-              placeholder="写点什么让大家更了解你吧~"
-              value={this.state.introduction}
-              onChange={(e)=>{
-                  if(e.target.value.length < 101 || e.target.value.length - this.state.introduction.length < 0){
-                    this.setState({introduction: e.target.value})
-                  }
-                }}
-            />
-          </div>
+        {userInfo.is_teacher==="1"?
+            <div className="user-card">
+              <img className="avatar" src={userInfo.user_face.slice(0, -1) + '132'}/>
+              <h3 className="name">
+                { userInfo.user_name }
+              </h3>
+              <div className="form-group">
+                <label>姓名：</label>
+                <input
+                  placeholder="您的姓名"
+                  value={this.state.name}
+                  onChange={(e)=>{this.setState({name: e.target.value})}}
+                />
+              </div>
+              <div className="form-group">
+                <label>头衔/职位</label>
+                <input
+                  placeholder="某公司某职位"
+                  value={this.state.company}
+                  onChange={(e)=>{this.setState({company: e.target.value})}}
+                />
+              </div>
+              <div className="form-group">
+                <label>提问价格：</label>
+                <input
+                  type="number"
+                  placeholder="输入您的提问价格"
+                  value={this.state.teacher_prize}
+                  onChange={(e)=>{this.setState({teacher_prize: e.target.value})}}
+                />
+              </div>
+              <div className="form-group self-intro-text">
+                <label>介绍一下自己（100字以内）： </label>
+                <div className="count">{this.state.introduction.length} / 100</div>
+                <textarea
+                  placeholder="简单介绍一下自己，写一些自己的经历和擅长回答的问题"
+                  value={this.state.introduction}
+                  onChange={(e)=>{
+                      if(e.target.value.length < 101 || e.target.value.length - this.state.introduction.length < 0){
+                        this.setState({introduction: e.target.value})
+                      }
+                    }}
+                />
+              </div>
+            </div>
+              :
+              <div className="user-card">
+                <img className="avatar" src={userInfo.user_face.slice(0, -1) + '132'}/>
+                <h3 className="name">
+                  { userInfo.user_name }
+                </h3>
+                <div className="form-group">
+                  <label>学校/年级：</label>
+                  <input
+                    placeholder="某学校大（研）*学生"
+                    value={this.state.job}
+                    onChange={(e)=>{this.setState({company: e.target.value})}}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>头衔/职位：</label>
+                  <input
+                    placeholder="某公司某职位"
+                    value={this.state.company}
+                    onChange={(e)=>{this.setState({job: e.target.value})}}
+                  />
+                </div>
+                <div className="form-group self-intro-text">
+                  <label>介绍一下自己（100字以内）：</label>
+                  <div className="count">{this.state.introduction.length} / 100</div>
+                  <textarea
+                    placeholder="写一些关于自己的情况和需求，让导师可以更好的帮助你解决问题"
+                    value={this.state.introduction}
+                    onChange={(e)=>{
+                        if(e.target.value.length < 101 || e.target.value.length - this.state.introduction.length < 0){
+                          this.setState({introduction: e.target.value})
+                        }
+                      }}
+                  />
+                </div>
+            </div>
+            }
           <a className="bottom-btn" onClick={this.handleSubmit}>完成</a>
-        </div>
       </main>
     )
   }

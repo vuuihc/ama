@@ -54,7 +54,7 @@ class QuestionItemWithAvatar extends Component {
                   function (res) {
                     if (res.err_msg == "get_brand_wcpay_request:ok") {
                       console.log("支付成功！")
-                      this.props.handlePaid(index);
+                      self.props.handlePaid(index);
                       browserHistory.push(`${baseUrl}question/${questionId}`)
                     } else {
                       // browserHistory.push(`${baseUrl}question/${questionId}`)
