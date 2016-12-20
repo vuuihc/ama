@@ -5,7 +5,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var WebpackMd5Hash = require('webpack-md5-hash');
 
 var isProduction = function() {
-    return process.env.NODE_ENV.toString() == "production";
+    return process.env.NODE_ENV === "production";
 };
 
 var plugins = [];
@@ -16,6 +16,11 @@ if (isProduction()) {
             compress: {
                 warnings: false
             }
+        }),
+        new webpack.DefinePlugin({
+          'process.env': {
+            'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+          }
         }),
         new WebpackMd5Hash(),
         new ExtractTextPlugin("style.[chunkhash].css")

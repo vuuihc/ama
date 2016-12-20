@@ -25,7 +25,9 @@ import Search from "./components/Search"
 import SearchTips from "./containers/SearchTips"
 import SearchResult from "./containers/SearchResult"
 import ResultList from "./containers/ResultList"
+import PayIndex from "./components/PayIndex"
 import Test from "./containers/Test"
+
 import configureStore from './store/configureStore'
 const store = configureStore();
 import {baseUrl} from "./api/config"
@@ -33,6 +35,9 @@ import {baseUrl} from "./api/config"
 browserHistory.listen( location =>  {
     console.log(`发送当前网址到谷歌统计`)
     console.log(window.location)
+    if(!window.landPage){
+        window.landPage = window.location.pathname
+    }
     if(ga){
         ga('send', 'pageview', {
             page: window.location.href, // 手动设置 path
@@ -47,6 +52,7 @@ ReactDom.render((
       <Route path = '/ama/7dyk/test' component={Test}/>
       <Route path={baseUrl} component={App}>
         <IndexRoute component={Hot}/>
+        <Route path={baseUrl+"pay"} component={PayIndex} />
         <Route path={baseUrl+"tutor"} component={Tutor}/>
         <Route path={baseUrl+"account"} component={Account}>
           <IndexRoute component={ListenedList}/>

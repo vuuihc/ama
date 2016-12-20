@@ -31,64 +31,66 @@ class QuestionItemWithAvatar extends Component {
 
   bubbleClick(answerId, questionId, isPayed) {
     const self = this;
+    let successUrl = `${baseUrl}question/${questionId}`
     if (isPayed) {
-      browserHistory.push(`${baseUrl}question/${questionId}`)
+      browserHistory.push(successUrl)
     } else {
+    browserHistory.push(`${baseUrl}pay?answerId=${answerId}&type=question&successUrl=${encodeURIComponent(successUrl)}&failUrl=${encodeURIComponent(location.href)}`)
       //取预支付订单
-      self.setState({loading: true});
-      fetch(`${domain}/api/v1/answer/listen?answer_id=${answerId}`, {
-        credentials: 'same-origin'
-      })
-        .then(response => response.json())
-        .then(json => apiHandler.handleResponse(json, (data)=> {
-          self.setState({loading: false});
-          if (data.timeStamp != undefined) {
-            const time = new Date()
-            // alert('nexstate:' + data.timeStamp + '' + (time.valueOf()/1000 - data.timeStamp));
-            if (time.valueOf() / 1000 - data.timeStamp < 1000) {
-              console.log("进入微信支付")
-              // alert('enter pay');
-              function onBridgeReady() {
-                WeixinJSBridge.invoke(
-                  'getBrandWCPayRequest', data,
-                  function (res) {
-                    if (res.err_msg == "get_brand_wcpay_request:ok") {
-                      console.log("支付成功！")
-                      self.props.handlePaid(index);
-                      browserHistory.push(`${baseUrl}question/${questionId}`)
-                    } else {
-                      // browserHistory.push(`${baseUrl}question/${questionId}`)
-                      self.setState({alertContent:"支付失败",showAlert:true})
-                    //   alert("支付失败，原因：" + JSON.stringify(res))
-                    }
-                    if (document.removeEventListener) {
-                      document.removeEventListener('WeixinJSBridgeReady', onBridgeReady);
-                    } else if (document.attachEvent) {
-                      document.detachEvent('WeixinJSBridgeReady', onBridgeReady);
-                      document.detachEvent('onWeixinJSBridgeReady', onBridgeReady);
-                    }
-                    // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
-                  }
-                );
-              }
-
-              if (typeof WeixinJSBridge == "undefined") {
-                if (document.addEventListener) {
-                  document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-                } else if (document.attachEvent) {
-                  document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-                  document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-                }
-              } else {
-                onBridgeReady();
-              }
-
-            } else if (data.url != undefined) {
-              // this.context.router.push(`question/${self.state.curQuestionId}`)
-            }
-          }
-
-        }))
+    //   self.setState({loading: true});
+    //   fetch(`${domain}/api/v1/answer/listen?answer_id=${answerId}`, {
+    //     credentials: 'same-origin'
+    //   })
+    //     .then(response => response.json())
+    //     .then(json => apiHandler.handleResponse(json, (data)=> {
+    //       self.setState({loading: false});
+    //       if (data.timeStamp != undefined) {
+    //         const time = new Date()
+    //         // alert('nexstate:' + data.timeStamp + '' + (time.valueOf()/1000 - data.timeStamp));
+    //         if (time.valueOf() / 1000 - data.timeStamp < 1000) {
+    //           console.log("进入微信支付")
+    //           // alert('enter pay');
+    //           function onBridgeReady() {
+    //             WeixinJSBridge.invoke(
+    //               'getBrandWCPayRequest', data,
+    //               function (res) {
+    //                 if (res.err_msg == "get_brand_wcpay_request:ok") {
+    //                   console.log("支付成功！")
+    //                   self.props.handlePaid(index);
+    //                   browserHistory.push(`${baseUrl}question/${questionId}`)
+    //                 } else {
+    //                   // browserHistory.push(`${baseUrl}question/${questionId}`)
+    //                   self.setState({alertContent:"支付失败",showAlert:true})
+    //                 //   alert("支付失败，原因：" + JSON.stringify(res))
+    //                 }
+    //                 if (document.removeEventListener) {
+    //                   document.removeEventListener('WeixinJSBridgeReady', onBridgeReady);
+    //                 } else if (document.attachEvent) {
+    //                   document.detachEvent('WeixinJSBridgeReady', onBridgeReady);
+    //                   document.detachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    //                 }
+    //                 // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+    //               }
+    //             );
+    //           }
+      //
+    //           if (typeof WeixinJSBridge == "undefined") {
+    //             if (document.addEventListener) {
+    //               document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    //             } else if (document.attachEvent) {
+    //               document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+    //               document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    //             }
+    //           } else {
+    //             onBridgeReady();
+    //           }
+      //
+    //         } else if (data.url != undefined) {
+    //           // this.context.router.push(`question/${self.state.curQuestionId}`)
+    //         }
+    //       }
+      //
+    //     }))
     }
   }
   hideAlert(){

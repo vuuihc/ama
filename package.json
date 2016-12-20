@@ -5,7 +5,8 @@
   "scripts": {
     "start": "set NODE_ENV=development & webpack-dev-server  --content-base dist/ ",
     "build": "set NODE_ENV=development &webpack --progress --colors",
-    "dist": "set NODE_ENV=production& webpack --progress --colors -p",
+    "dist": "set NODE_ENV=production& webpack -p",
+    "mac-dist": "NODE_ENV='production' webpack",
     "commit": "git add . & git commit -am 'update' & git push"
   },
   "repository": {

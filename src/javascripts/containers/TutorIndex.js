@@ -43,56 +43,59 @@ class TutorIndex extends Component {
 	this.routerWillLeave = this.routerWillLeave.bind(this);
   }
   payForAsk(content,tutorId){
-    const url = domain + `/api/v1/question/testquestion?content=${content}&answer_user_id=${tutorId}`
-    this.setState({loading:true})
-    fetch(url,{
-      credentials: 'same-origin'
-    })
-      .then(response => response.json())
-      .then(json =>{
-        this.setState({loading:false})
-        const self =this
-        if(json.data.timeStamp!=undefined){
-          function onBridgeReady(){
-            WeixinJSBridge.invoke(
-              'getBrandWCPayRequest', json.data,
-              function(res){
-                if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-                  console.log("支付成功！")
-                  self.setState({askSuccess:true})
-                  self.props.dispatch(getIAsked(1, 10));
-                  let successTimer = setTimeout(()=>{
-                    browserHistory.push(baseUrl+"account/IAskedList")
-                  },2000)
-                  self.setState({successTimer:successTimer})
-                }else{
-                  console.log(res)
-                  self.setState({alertContent:"支付失败",showAlert:true})
-                }
-                if( document.removeEventListener ){
-                  document.removeEventListener('WeixinJSBridgeReady', onBridgeReady);
-                }else if (document.attachEvent){
-                  document.detachEvent('WeixinJSBridgeReady', onBridgeReady);
-                  document.detachEvent('onWeixinJSBridgeReady', onBridgeReady);
-                }
-
-                // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
-              }
-            );
-          }
-          if (typeof WeixinJSBridge == "undefined"){
-            if( document.addEventListener ){
-              document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-            }else if (document.attachEvent){
-              document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-              document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-            }
-          }else{
-            onBridgeReady();
-          }
-        }
-      })
+      browserHistory.push(`${baseUrl}pay?type=tutor&content=${content}&tutorId=${tutorId}&failUrl=${encodeURIComponent(location.href)}&successUrl=${baseUrl}account/IAskedList`)
   }
+  // payForAsk(content,tutorId){
+  //   const url = domain + `/api/v1/question/testquestion?content=${content}&answer_user_id=${tutorId}`
+  //   this.setState({loading:true})
+  //   fetch(url,{
+  //     credentials: 'same-origin'
+  //   })
+  //     .then(response => response.json())
+  //     .then(json =>{
+  //       this.setState({loading:false})
+  //       const self =this
+  //       if(json.data.timeStamp!=undefined){
+  //         function onBridgeReady(){
+  //           WeixinJSBridge.invoke(
+  //             'getBrandWCPayRequest', json.data,
+  //             function(res){
+  //               if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+  //                 console.log("支付成功！")
+  //                 self.setState({askSuccess:true})
+  //                 self.props.dispatch(getIAsked(1, 10));
+  //                 let successTimer = setTimeout(()=>{
+  //                   browserHistory.push(baseUrl+"account/IAskedList")
+  //                 },2000)
+  //                 self.setState({successTimer:successTimer})
+  //               }else{
+  //                 console.log(res)
+  //                 self.setState({alertContent:"支付失败",showAlert:true})
+  //               }
+  //               if( document.removeEventListener ){
+  //                 document.removeEventListener('WeixinJSBridgeReady', onBridgeReady);
+  //               }else if (document.attachEvent){
+  //                 document.detachEvent('WeixinJSBridgeReady', onBridgeReady);
+  //                 document.detachEvent('onWeixinJSBridgeReady', onBridgeReady);
+  //               }
+  //
+  //               // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+  //             }
+  //           );
+  //         }
+  //         if (typeof WeixinJSBridge == "undefined"){
+  //           if( document.addEventListener ){
+  //             document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+  //           }else if (document.attachEvent){
+  //             document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+  //             document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+  //           }
+  //         }else{
+  //           onBridgeReady();
+  //         }
+  //       }
+  //     })
+  // }
   askBtnClick(){
     const content = this.refs.content.value
     console.log("content is ==="+content)
