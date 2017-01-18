@@ -2,7 +2,7 @@
  * Created by zhushihao on 2016/6/14.
  */
 import React, {Component, PropTypes} from 'react'
-import {Link} from 'react-router'
+import {browserHistory,Link} from 'react-router'
 import {connect} from 'react-redux'
 import {getQuestionInfo, priseQuestion, cancelPriseQuestion, clearQuesiton} from '../actions/question.js'
 import VoiceWave from "../components/VoiceWave"

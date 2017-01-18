@@ -127,9 +127,9 @@ class TutorIndex extends Component {
   routerWillLeave(nextLocation) {
     // return false to prevent a transition w/o prompting the user,
     // or return a string to allow the user to decide:
-    if(this.refs.content.value != '' && !this.state.askSuccess && !this.state.canLeave){
+    if(this.refs.content.value != '' && !this.state.askSuccess && !this.state.canLeave && nextLocation.pathname.indexOf("pay")===-1){
       this.setState({nextLocation:nextLocation.pathname,canLeave:true})
-    //   console.log(nextLocation)
+      console.log(nextLocation)
       let self = this
       message.confirm("您的提问尚未支付，确认离开？","接着提问","离开",
         ()=>{

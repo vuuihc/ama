@@ -23,7 +23,7 @@ if (isProduction()) {
           }
         }),
         new WebpackMd5Hash(),
-        new ExtractTextPlugin("style.[chunkhash].css")
+        new ExtractTextPlugin("style.[hash].css")
     )
 } else {
     console.log('开发环境');
@@ -39,7 +39,7 @@ module.exports = {
     },
     output: {
         path: './dist',
-        filename: '[name].[chunkhash].js',
+        filename: '[name].[hash].js',
         publicPath: 'http://h5app.7dyk.com/ama/7dyk/dist/'
             // publicPath: '/dist/'
     },
